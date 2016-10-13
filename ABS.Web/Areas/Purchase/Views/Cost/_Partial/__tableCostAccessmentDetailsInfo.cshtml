@@ -1,0 +1,66 @@
+﻿
+<div class="row">     </div>
+
+<div class="row" >
+    <div class="form-group" style="font-weight:bold;">
+        <div class="col-md-1"> SL. No </div>
+        <div class="col-md-2"> @*Tax Group*@ Tax Type </div>
+        <div class="col-md-2"> @*Tax Type*@  Tax Amount</div>     
+        @*<div class="col-md-2"></div>*@
+        <div @*class="col-md-2"*@>Delete</div>
+    </div>
+</div>
+<div class="row" style="border-bottom:1px solid #ccc; margin:2px; margin-bottom:8px;">    </div>
+<div class="row" style=" margin-bottom: 2px;" ng-repeat="Accessment in AccessmentDetail">
+    <div class="form-group">
+        <div class="col-md-1"> {{$index+1}} 
+            <input type="hidden" id="AccessmentCostDetailID" readonly="readonly" ng-model="AccessmentCostDetailID" />
+        </div>
+        <div class="col-md-2">
+
+            @*<select style="width:100%" ng-change="GetTaxTypeByTaxCategoryId(Accessment)" class="form-control" ng-model="Accessment.TaxCategoryID" ng-options="c.TaxCategoryID as c.TaxCategoryName for c in listPurchaseTaxCategory ">
+                    <option style="text-align:center" value="">---- Select ----</option>
+            </select>*@
+
+            <select style="width:100%" class="form-control" ng-model="Accessment.TaxID" ng-options="c.TaxID as c.TaxName for c in listPurchaseTax ">
+                <option style="text-align:center" value="">---- Select ----</option>
+            </select>
+
+        </div>
+        <div class="col-md-2">
+            <input type="text" id="txtTaxValue" class="form-control" name="txtTaxValue" ng-model="Accessment.TaxValue" />
+        </div>
+        @*<div class="col-md-2"> </div>
+        <div class="col-md-2"> </div>*@
+        <div class="col-md-2">  
+                @*<button type="button" ng-click="RowRemove(Accessment)" class=" btn btn-default btn-xs">Delete</button>*@ 
+            <span class="label label-danger label-mini">
+                <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                    <i class="icon-trash" ng-click="RowRemove($index)"></i>
+                </a>
+            </span>
+        
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <span>
+
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group" style="text-align:right">
+            <span>
+                <br />
+                <input type="button" id="Add" class="btn btn-info margin-right-btn" value="Add Row" ng-click="addNewRow()" />
+            </span>
+        </div>
+    </div>
+</div>
+
+
+

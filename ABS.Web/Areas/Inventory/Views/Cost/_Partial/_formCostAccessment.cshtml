@@ -1,0 +1,242 @@
+﻿<form novalidate name="frmGRR" id="gRR" class="form-horizontal row-border">
+
+
+    <input type="hidden" id="AccessmentCostID" readonly="readonly" ng-model="AccessmentCostID" />
+    @*<input type="hidden" id="gRRID" readonly="readonly" ng-model="GRRTypeID" />*@
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+
+    <div class="row">
+        
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Accessment No </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtAccessmentNo"
+                           class="form-control"
+                           name="txtAccessmentNo" ng-model="AccessmentNo" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC/LCAF/ Voucher No </label>
+                <div class="col-md-7">
+                    <select id="ddlLCNo" class="select2-select-00"
+                            ng-model="LCorVoucherorLcafNo"
+                            name="ddlLCNo"
+                            data-placeholder="--Select LC No--"
+                            style="width: 100%" ng-options="lc.POID as lc.LCorVoucherorLcafNo for lc in listLCNo" ng-disabled="true" ng-readonly="true">
+                        <option>        </option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.dtGRRDate.$error.required">*</span>
+            </div>
+
+            @*//tt*@
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17"> Accessment Ref Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtAccessmentRefDate"
+                           class="form-control datepicker"
+                           name="dtAccessmentRefDate" ng-model="AccessmentRefDate" required />
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlParty.$error.required">*</span>
+            </div>
+
+            @*//tt*@
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label">Bond Benefit </label>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%"
+                                   id="txtBondAmount"
+                                   class="form-control"
+                                   name="txtBondAmount" placeholder="Amount" ng-model="BondAmount" />
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" style="width:100%"
+                                   id="txtBondDue"
+                                   class="form-control"
+                                   name="txtBondDue" placeholder="Due" ng-model="BondDue" />
+                        </div>
+                    </div>
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.dtGRRDate.$error.required">*</span>
+            </div>
+            
+            @*//tt*@
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input">Attachment</label>
+                <div class="col-md-7">
+                    <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">PO No </label>
+                <div class="col-md-6">
+                    <select id="ddlPONo" class="select2-select-00"
+                            ng-model="PONo" ng-change="LoadInfoByPOID()"
+                            name="ddlPONo"
+                            data-placeholder="--Select PONo--"
+                            style="width: 100%" ng-options="pn.POID as pn.PONo for pn in listPONo">
+                        <option>             </option>
+                    </select>                
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.txtRefChallanNo.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">SPR No </label>
+                <div class="col-md-6">
+                    <select id="ddlSPRNo" class="select2-select-00"
+                            ng-model="SprNo"
+                            name="ddlSPRNo"
+                            data-placeholder="--Select SPR No--"
+                            style="width: 100%" ng-options="sprn.RequisitionID as sprn.RequisitionNo for sprn in listSprNo">
+                        <option>            </option>
+                    </select>                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.dtRefChallanDate.$error.required">*</span>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-5 control-label">Custom Ref  No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtCustomRefNo"
+                           class="form-control"
+                           name="txtCustomRefNo" ng-model="CustomRefNo" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Currency </label>
+                <div class="col-md-6">
+                    <select id="ddlCurrency" class="select2-select-00"
+                            ng-model="lstCurrencyList"
+                            name="ddlCurrency"
+                            data-placeholder="--Select Currency--"
+                            style="width: 100%" ng-options="curn.Id as curn.CurrencyName for curn in listCurrency" required>
+                        <option>       </option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlCurrency.$error.required">*</span>
+            </div>
+
+            @*//tt*@
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Declarant Ref No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtDeclarantRefNo"
+                           class="form-control"
+                           name="txtDeclarantRefNo" ng-model="DeclarantRefNo" />
+                </div>
+           
+            </div>
+
+            @*//tt*@
+            
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">SRO Benefit </label>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%"
+                                   id="txtSROAmount"
+                                   class="form-control"
+                                   name="txtSROAmount" placeholder="Amount" ng-model="SROAmount" />
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" style="width:100%"
+                                   id="txtSRODue"
+                                   class="form-control"
+                                   name="txtSRODue" placeholder="Due" ng-model="SRODue" />
+                        </div>
+                    </div>
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlCurrency.$error.required">*</span>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Accessment Date</label>
+                <div class="col-md-7">
+
+                    <input type="text"
+                           id="dtAccessmentDate"
+                           class="form-control datepicker"
+                           name="dtAccessmentDate" ng-model="AccessmentDate" required />
+
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlWarehouse.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17"> Accessment Ref No </label>
+
+                <div class="col-md-7">
+
+                    <input type="text"
+                           id="txtAccessmentRefNo"
+                           class="form-control"
+                           name="txtAccessmentRefNo" ng-model="AccessmentRefNo" />
+
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.ddlParentDept.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Custom Office </label>
+
+                <div class="col-md-7">
+
+                    <select id="ddlCountry" class="select2-select-00"
+                            ng-model="CountryID"
+                            name="CountryID"
+                            data-placeholder="--Select Country--"
+                            style="width: 100%" ng-options="dept.CountryID as dept.CountryName for dept in listLocation">
+                        <option></option>
+                    </select>
+
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.ddlParentDept.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Description</label>
+
+                <div class="col-md-7">
+
+                    <input type="text"
+                           id="txtAccessmentDescription"
+                           class="form-control"
+                           name="txtAccessmentDescription" ng-model="AccessmentDescription" />
+
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.ddlParentDept.$error.required">*</span>*@
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+
+
+</form>

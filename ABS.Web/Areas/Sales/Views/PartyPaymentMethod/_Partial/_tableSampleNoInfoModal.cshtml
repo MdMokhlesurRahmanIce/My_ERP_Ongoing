@@ -1,0 +1,69 @@
+﻿<div class="modal fade" id="SampleNoModal">
+    @*<div class="modal-dialog">*@
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ListTitleSampleNo}}</h4>
+            </div>
+            <div class="modal-body">
+                <input id="piItemMasterSearch" ng-model="PIItemMasterSearch" type="text" class="form-control search" placeholder="Search...">
+
+                <table class="table table-hover general-table">
+                    <thead>
+                        <tr>
+                            <th style="display:none">Sample ID</th>
+                            <th style="display:none">Item ID</th>
+                            <th style="display:none">Company ID</th>
+                            <th>Article No</th>
+                            <th>Description</th>
+                            <th>C.Width</th>
+                            <th>Construction</th>
+                            <th>Weave</th>
+                            <th>Weight</th>
+                            <th>Color Name</th>
+                            <th>Width</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dataModel in listItemMaster|filter:PIItemMasterSearch">
+                            <td style="display:none">{{dataModel.UniqueCode}}</td>
+                            <td style="display:none">{{dataModel.ItemID}}</td>
+                            <td style="display:none">{{dataModel.CompanyID}}</td>
+                            <td>{{dataModel.ArticleNo}}</td>
+                            <td>{{dataModel.ItemName}}</td>
+                            <td>{{dataModel.CuttableWidth}}</td>
+                            <td>{{dataModel.Construction}}</td>
+                            <td>{{dataModel.Weave}}</td>
+                            <td>{{datModel.WeightPerUnit}}</td>
+                            <td>{{dataModel.ColorName}}</td>
+                            <td>{{dataModel.Width}}</td>
+
+                            <td style="text-align:right; color:white">
+                                <span class="label label-success label-mini">
+                                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                                        <i class="icon-check" ng-click="getListItemMaster(dataModel)">Select</i>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p ng-show="(listItemMaster | filter:PIItemMasterSearch).length == 0" style="color:red">Nothing found!</p>
+
+                <div class="loadmore">
+                    <div ng-show="loaderMore" ng-class="result">
+                        {{lblMessage}}
+                    </div>
+                    <div ng-show="scrollended" ng-class="result">
+                        {{lblMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

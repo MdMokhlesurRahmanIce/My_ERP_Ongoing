@@ -1,0 +1,51 @@
+﻿@*<input id="PIInfoSearch" ng-model="PIInfoSearch" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>
+                <div class="roundedTwo">
+                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                </div>
+            </th>
+            <th style="display:none">PI ID</th>
+            <th>PI No</th>
+            <th>PI Date</th>
+            <th>Quantity (Yds)</th>
+            <th>Amount ($)</th>
+            <th style="text-align:right;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListPIInfoDetails">
+            <td>
+                @*{{dataModel.ProductName}}*@
+                <div class="roundedTwo">
+                    <input type="checkbox" ng-click="toggleSelection()" ng-model="dataModel.Selected" ng-disabled="dataModel.Showing" />
+                </div>
+            </td>
+            <td style="display:none">{{dataModel.PIID}}</td>
+            <td>{{dataModel.PINo}}</td>
+            <td>{{dataModel.PIDate | date:"dd/MM/yyyy"}}</td>
+            <td>{{dataModel.TotalQuantity |number:2}}</td>
+            @*<td>{{dataModel.TotalAmount}}</td>*@
+            <td>{{dataModel.TotalAmount|number:2}}</td>
+            <td style="text-align:right; color:white">
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-href="#PIModal" data-toggle="modal" class="bs-tooltip" title="Show PI">
+                        <i class="icon-search" ng-click="CallgetPIDetails(dataModel)">&nbsp;Show Details</i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListPIInfoDetails | filter:PIInfoSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

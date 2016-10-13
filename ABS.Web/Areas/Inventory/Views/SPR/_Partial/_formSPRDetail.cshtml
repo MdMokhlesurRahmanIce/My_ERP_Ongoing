@@ -1,0 +1,149 @@
+﻿
+<div class="modal fade" id="RequisitionDetailModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ListTitleSampleNo}}</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate name="frmDetailRequisition" id="Requisition" class="form-horizontal row-border">
+                    <input type="hidden" id="requisitionID" readonly="readonly" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="input17">Group </label>
+                                <div class="col-md-7">
+                                    <select id="ddlItemGroup" class="select2-select-00"
+                                            ng-model="lstItemGroup"
+                                            ng-change="LaodItemByGroupID(0)"
+                                            name="ddlItemGroup"
+                                            data-placeholder="--Select Group--"
+                                            style="width: 100%" 
+                                            ng-options="Grp.ItemGroupID as Grp.ItemGroupName for Grp in itemGroupes" required>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <span class="error" ng-show="(frmDetailRequisition.$dirty||submitted) && frmDetailRequisition.ddlItemGroup.$error.required">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Quantity </label>
+                                <div class="col-md-7">
+                                    <input type="number"
+                                           id="Qty"
+                                           class="form-control"
+                                           name="Qty" ng-model="Qty" min="0" required />
+                                </div>
+                                <span class="error" ng-show="(frmDetailRequisition.$invalid||submitted) && frmDetailRequisition.Qty.$error.required">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Unit Price </label>
+                                <div class="col-md-7">
+                                    <input type="number"
+                                           id="txtUnitPrice"
+                                           class="form-control" 
+                                           name="UnitRate" min="0" ng-model="UnitPrice"  readonly required>                                      
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-7">
+                <input type="button" id="Add" class="btn btn-success margin-right-btn" value="{{btnModal}}" ng-click="getListItemDetails()" ng-disabled="frmDetailRequisition.$invalid" />
+        </div>
+
+    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="input17">Item </label>
+                            <div class="col-md-7">
+                                <select id="ddlItem" class="select2-select-00"
+                                        ng-model="ddlItem"
+                                        name="ddlItem" 
+                                        ng-change="LaodItemRateNUnit(0)"
+                                        data-placeholder="--Select Item--"
+                                        style="width: 100%" ng-options="item.ItemID as item.ItemName for item in listItems" required>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <span class="error" ng-show="(frmDetailRequisition.$invalid||submitted) && frmDetailRequisition.ddlItem.$error.required">*</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="input17">Lot No </label>
+                            <div class="col-md-7">
+                                <select id="ddlLotNo" class="select2-select-00"
+                                        ng-model="lstLot"
+                                        name="ddlLotNo"
+                                        data-placeholder="--Select Lot No--"
+                                        style="width: 100%"
+                                        ng-options="lot.LotID as lot.LotNo for lot in listLot">
+                                    <option></option>
+                                </select>
+                            </div>    
+                            
+                            <span class="label label-success label-mini" ng-show="IsItem">
+                                <a href="javascript:void(0);" ng-href="#LotSetupModal" data-toggle="modal" class="bs-tooltip" title="Lot Detail">
+                                    <i class="icon-search" @*ng-click="LoadLotModal(dataModel)"*@></i>
+                                </a>
+                            </span>
+                                                   
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="input17">Unit </label>
+                                <div class="col-md-7">
+                                    <select id="ddlUnit" class="select2-select-00"
+                                            ng-model="UnitID"
+                                            name="ddlUnit"
+                                            data-placeholder="--Select Unit--"                                           
+                                            style="width: 100%" ng-options="Unt.UOMID as Unt.UOMName for Unt in listunit" required>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <span class="error" ng-show="(frmDetailRequisition.$invalid||submitted) && frmDetailRequisition.ddlUnit.$error.required">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="input17">Batch </label>
+                                <div class="col-md-7">
+
+                                    <select id="ddlBatch" class="select2-select-00"
+                                            ng-model="Batch"
+                                            name="ddlBatch"
+                                            data-placeholder="--Select Batch--"
+                                            style="width: 100%" ng-options="batch.BatchID as batch.BatchNo for batch in lstBatchList">
+                                        <option></option>
+
+                                    </select>
+                                </div>  
+                                  
+                                <span class="label label-success label-mini" ng-show="IsItem">
+                                    <a href="javascript:void(0);" ng-href="#BatchSetupModal" data-toggle="modal" class="bs-tooltip" title="Batch Detail">
+                                        <i class="icon-search" @*ng-click="LoadBatchModal(dataModel)"*@></i>
+                                    </a>
+                                </span>                    
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+   
+
+
+
+

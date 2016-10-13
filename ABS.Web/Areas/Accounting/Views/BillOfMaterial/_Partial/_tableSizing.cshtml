@@ -1,0 +1,33 @@
+﻿<table class="table  table-hover table-striped">
+    <thead class="grid-top-panel">
+        <tr>
+
+            <th>SL No:</th>
+            <th>Chemical</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListSizing">
+
+            <td>{{ $index + 1 }}</td>
+            <td>{{dataModel.ItemName}}</td>
+            <td><input type="number" min="0" id="txtQty" name="txtQty" class="form-control" ng-model="dataModel.Qty" @*placeholder="Decimal" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)"*@ ng-blur="calculationSiz(dataModel)" /></td>
+
+            <td> {{dataModel.UOMName}} </td>
+        </tr>
+        <tr> <td></td> <td><span style="font-weight:bold">Total</span></td><td><span style="font-weight:bold">{{sizTotal}}</span></td> <td></td>  </tr>
+    </tbody>
+</table>
+<p ng-show="(ListSizing).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadListSizingmore">
+    <div ng-show="loaderListSizingMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

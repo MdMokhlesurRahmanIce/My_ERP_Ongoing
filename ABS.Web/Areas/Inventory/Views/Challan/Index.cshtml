@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Challan";
+}
+
+<div class="container" ng-controller="challanCtrl">
+    <!-- Breadcrumbs line -->
+    <div ng-controller="BreadcrumbCtrl">
+        @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <div id="PIDiv">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                
+
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                    <i class="icon-refresh"></i> Reset
+                                </span>
+
+                                <span id="show" class="btn btn-info margin-right-btn" ng-href="#ChallanMasterModal" data-toggle="modal" ng-click="loadChallanRecords()">
+                                    <i class="icon-search"></i> {{btnChallanShowText}}
+                                </span>
+
+                                <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmChallan.$invalid">
+                                    <i class="icon-save"></i> {{btnChallanSaveText}}
+                                </span>
+
+                               
+
+                                
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="IsShow"> 
+                        @Html.Partial("~/Areas/Inventory/Views/Challan/_Partial/_formChallan.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col-md-12 -->
+
+        <div class="row" ng-hide="IsHiddenDetail">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleChallanDeatails}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content"> 
+                        @Html.Partial("~/Areas/Inventory/Views/Challan/_Partial/_tableChallanDetailsInfo.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+    <!-- /Modal Item Master(Sample) -->
+    <div class="row"> 
+
+        @Html.Partial("~/Areas/Inventory/Views/Challan/_Partial/_tableSampleNoInfoModal.cshtml")
+    </div> <!-- /.row -->
+
+    <!-- /Modal PI Master -->
+    <div class="row"> 
+
+        @Html.Partial("~/Areas/Inventory/Views/Challan/_Partial/_tableChallanMastrsInfo.cshtml")
+
+    </div> <!-- /.row -->
+
+    <div class="row"> 
+
+        @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_formBatchSetup.cshtml")
+
+    </div> <!-- /.row -->
+    <div class="row"> 
+
+        @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_formLotSetup.cshtml")
+
+    </div> <!-- /.row -->
+</div>
+<!-- /.container -->
+@section AngularScript{
+
+    <script src="~/Areas/Inventory/ScriptsNg/Controllers/ChallanCtrl.js"></script>
+    <script src="~/Areas/Inventory/ScriptsNg/Service/ChallanService.js"></script> 
+    <script src="~/Areas/Inventory/ScriptsNg/Service/RequisitionService.js"></script>
+    <script src="~/Areas/Inventory/ScriptsNg/Service/MRRService.js"></script>
+
+    @*<script src="~/Areas/Sales/ScriptsNg/Controllers/PICtrl.js"></script>*@
+
+    <script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script> 
+    <script src="~/Scripts/CustomToastrMessage.js"></script>
+<script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+}

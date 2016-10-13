@@ -1,0 +1,44 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-m">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Description</th>
+            <th>Shade</th>
+            <th>Role</th>
+            <th>Quantity Yds</th>
+            <th>G.&nbsp;Weight</th>
+            <th>N.&nbsp;Weight</th>
+            <th>Width&nbsp;Sr.</th>
+            <th>Point</th>
+            <th>Widht</th>
+            <th>Shipment%</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in PackingDetailList">
+            <td>{{dataModel.Description}}</td>
+            <td>{{dataModel.Shade}}</td>
+            <td>{{dataModel.RollNo}}</td>
+            <td>{{dataModel.Length}}</td> @*Quantity Yds*@
+            <td>{{dataModel.GWeight}}</td>
+            <td>{{dataModel.NWeight}}</td>
+            <td>{{dataModel.WidthSr}}</td>
+            <td>{{dataModel.DefectPointNo}}</td>
+            <td>{{dataModel.FiniWidth}}</td> @*Widht*@
+            <td>{{dataModel.Shipment | number:2}}</td> @*Shipment%*@
+            <td>
+                <div style="width:100px">
+                    <input type="text"
+                           style="width: 100%"
+                           id="Remarks"
+                           class="form-control"
+                           name="Remarks" ng-model="dataModel.Remarks"
+                           placeholder="Remarks" />
+                </div>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+

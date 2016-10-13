@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Daily Wastage";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="DailyWastageCtrl">
+
+
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i>Chemical Consumption</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#userModal" data-toggle="modal" ng-click="reset(frmUser)">
+                                    <i class="icon-plus-sign"></i>Chemical Consumption
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="userModal">
+                <div class="modal-dialog modal-dialog-ext">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-user"></i> Chemical Consumption</h4>
+                        </div>
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear(frmUser)" @*ng-disabled="frmUser.$invalid"*@ />
+                                    <input type="button" id="save" class="btn btn-success" value="Save" ng-click="save()" ng-disabled="frmUser.$invalid" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+<!-- /.container -->
+
+
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/DailyWastageCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/ValidNumber.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+}

@@ -1,0 +1,96 @@
+﻿
+<form novalidate name="frmMachineSetupEntry" id="setSetupEntry" class="form-horizontal row-border">
+    <input type="hidden" id="countWiseMachineSetup" readonly="readonly" ng-model="MachineSetupID" />
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Count</label>
+                <div class="col-md-6">
+                    <select id="CountList" class="select2-select-00"
+                            ng-model="lstCountList"
+                            ng-change="loadCountToCheckDuplicate(0)"
+                            name="countList"
+                            data-placeholder="--Select Count--"
+                            style="width: 100%;"
+                            ng-options="C.Count as C.Count for C in ListCount" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMachineSetupEntry.$dirty||submitted) && frmMachineSetupEntry.countList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">JOG %</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="jog"
+                           class="form-control"
+                           name="jog" ng-model="Jog" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">R.FRONT %</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="rFront"
+                           class="form-control"
+                           name="rFront" ng-model="RFront" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">R.REAR %</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="rRear"
+                           class="form-control"
+                           name="rRear" ng-model="RRear" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">A.GM</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="aGM"
+                           class="form-control"
+                           name="aGM" ng-model="AGM" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Empty</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="empty"
+                           class="form-control"
+                           name="empty" ng-model="Empty" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">           
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Speed</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="speed"
+                           class="form-control"
+                           name="speed" ng-model="Speed" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>

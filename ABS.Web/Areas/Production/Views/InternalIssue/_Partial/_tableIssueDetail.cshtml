@@ -1,0 +1,57 @@
+﻿<input id="hdoDetailSearch" ng-model="HdoDetailSearch" type="text" class="form-control search" placeholder="Search...">
+
+<table class="table  table-hover general-table">
+    <thead>
+        <tr>
+            <th style="display:none">Set No</th>
+            <th style="display:none">Issue ID</th>
+            <th style="display:none">OperatorID ID</th>
+
+            <th>SL.</th>
+            <th>M/C NO.</th>
+            <th>LOG NO.</th>
+            <th>COUNT</th>
+            <th>YARN LOT</th>
+            <th>ENDS/R OPE</th>
+            <th>OPERATOR NAME</th>
+            <th ng-hide="hidRopeNo">ROPE NUMBER</th>
+            <th ng-hide="hidCanNo">CAN NO.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in issueDetails">
+            <td style="display:none">{{dataModel.SetID}}</td>
+            <td style="display:none">{{dataModel.IssueID}}</td>
+            <td style="display:none">{{dataModel.OperatorID}}</td>
+            <td>{{$index+1}}</td>
+            <td>{{dataModel.McNo}}</td>
+            <td>{{dataModel.LOGNO}}</td>
+            <td>{{dataModel.Count}}</td>
+            <td>{{dataModel.YarnLot}}</td>
+            <td>{{dataModel.TotalENDs}}</td>
+            <td>{{dataModel.OperatorName}}</td>
+            <td ng-hide="hidRopeNo"><input type="text" id="txtGrdBuyerStyle" name="txtGrdBuyerStyle" class="form-control" ng-model="dataModel.RopeNumber" ng-readonly="txtbxRopeReadonly" /></td>
+            <td ng-hide="hidCanNo">
+                <select id="ddlCanNo" style="width:230px;"
+                        ng-model="dataModel.CanID"
+                        name="ddlCanNo"
+                        @*placeholder="-- Select Can --"*@
+                        ng-options="olet.OutputID as olet.OutputName for olet in CanNos" ng-readonly="ddlCanNoReadOnly">
+                    <option>-- Select Can --</option>
+                </select>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListPIDetails).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>
+

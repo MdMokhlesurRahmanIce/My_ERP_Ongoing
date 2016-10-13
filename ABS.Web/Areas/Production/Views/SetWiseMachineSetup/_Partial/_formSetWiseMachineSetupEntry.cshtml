@@ -1,0 +1,88 @@
+﻿
+<form novalidate name="frmSetWiseMachineSetupEntry" id="setSetupEntry" class="form-horizontal row-border">
+    <input type="hidden" id="setSetupMasterID" readonly="readonly" ng-model="SetupID" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Article No</label>
+                @*<div class="col-md-6">
+                    <select id="ArticleList" class="select2-select-00"
+                            ng-model="lstArticleList"
+                            name="articleList"
+                            data-placeholder="--Select Article No--"
+                            style="width: 100%;"
+                            ng-options="A.ItemID as A.ArticleNo for A in ListArticle"
+                            required>
+                        <option></option>
+                    </select>
+                </div>*@
+                <div class="col-md-6" style="display:inline-flex">
+                    <input type="text" id="txtArticleNo" class="form-control" name="txtArticleNo" ng-model="ArticleNo" placeholder="--Select Article No--" readonly="readonly" style="width:100%;margin-right:2px;" />
+                 
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+                <span class="error" ng-show="(frmSetWiseMachineSetupEntry.$dirty||submitted) && frmSetWiseMachineSetupEntry.articleList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Machine</label>
+                <div class="col-md-6">
+                    <select id="MachineList" class="select2-select-00"
+                            ng-model="lstMachineList"
+                            ng-change="callGenerate(0)"
+                            name="machineList"
+                            data-placeholder="--Select Machine--"
+                            style="width: 100%;"
+                            ng-options="M.MachineID as M.MachineName for M in ListMachine"
+                            required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmSetWiseMachineSetupEntry.$dirty||submitted) && frmSetWiseMachineSetupEntry.machineList.$error.required"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Moisture</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="moisture"
+                           class="form-control"
+                           name="moisture" ng-model="Moiture" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">KG Per Min</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="kGPerMin"
+                           class="form-control"
+                           name="kGPerMin" ng-model="KGPreMin" />@*KGPerMin*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Speed</label>
+                    <div class="col-md-6">
+                        <input type="number"
+                               id="speed"
+                               class="form-control"
+                               name="speed" ng-model="Speed" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>

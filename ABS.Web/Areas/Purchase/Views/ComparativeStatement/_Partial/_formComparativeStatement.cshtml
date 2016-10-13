@@ -1,0 +1,63 @@
+﻿
+<form novalidate name="frmComparativeStatement" id="ComparativeStatement" class="form-horizontal row-border">
+
+    <input type="hidden" id="ComparativeStatementID" readonly="readonly" ng-model="ComparativeStatementID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">CS No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="ComparativeStatement"
+                           class="form-control"
+                           readonly
+                           name="ComparativeStatement" ng-model="ComparativeStatementNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">SPR No</label>
+                <div class="col-md-6">
+                    <select id="ddlSPR" class="select2-select-00"
+                            ng-model="SPR"
+                            name="ddlSPR"
+                            ng-change="GetQuotationList()"
+                            data-placeholder="--Select SPR No--"
+                            style="width: 100%" ng-options="spr.RequisitionID as spr.RequisitionNo for spr in listSprNo" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>           
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">CS Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtCSDate"
+                           class="form-control datepicker"
+                           name="dtCSDate" ng-model="CSDate" placeholder="dd-MM-yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmQuotationNo.$dirty||submitted) && frmQuotationNo.dtQuotationDate.$error.required">*</span>
+            </div>
+  
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Remarks</label>
+        <div class="col-md-9">
+            <textarea rows="2" cols="3"
+                      id="txtPurpose"
+                      class="form-control"
+                      name="txtPurpose" ng-model="Description"></textarea>
+        </div>
+    </div>
+
+</form>

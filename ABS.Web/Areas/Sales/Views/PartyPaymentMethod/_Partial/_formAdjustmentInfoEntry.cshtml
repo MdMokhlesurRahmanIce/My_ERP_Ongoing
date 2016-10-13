@@ -1,0 +1,194 @@
+﻿
+<form novalidate name="frmAdjust" id="pPM" class="form-horizontal row-border">
+    @*<div class="row">*@
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-5 control-label" for="input17">Company</label>
+            <div class="col-md-6">
+                <select id="CompanyList_AD" class="select2-select-00"
+                        ng-model="lstCompanyList_AD"
+                        ng-change="getChangedCompanyID_AD()"
+                        name="companyList_AD"
+                        data-placeholder="--Select Company--"
+                        style="width: 100%"
+                        ng-options="com.CompanyID as com.CompanyName for com in listCompany_AD" required>
+                    <option></option>
+                    @*<option ng-repeat="com in listCompany_AD" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xCompanyID_AD" id="companyId_AD" name="companyId_AD" required />*@
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.companyList_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label" for="input17">Buyer</label>
+            <div class="col-md-6">
+                <select id="BuyerList_AD" class="select2-select-00"
+                        ng-model="lstBuyerList_AD"
+                        ng-change="loadBill_AD(0)"
+                        name="buyerList_AD"
+                        data-placeholder="--Select Buyer--"
+                        style="width: 100%"
+                        ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer_AD" required>
+                    <option></option>
+                    @*<option ng-repeat="buy in ListBuyer_AD" value="{{buy.UserID}}">{{buy.UserFirstName}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xUserID_AD" id="buyerId_AD" name="buyerId_AD" required />*@
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.buyerList_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label" for="input17">Bill No</label>
+            <div class="col-md-6">
+                <select id="billList_AD" class="select2-select-00"
+                        ng-model="lstBillList_AD"
+                        ng-change="getChangedBillID_AD()"
+                        name="billList_AD"
+                        data-placeholder="--Select Bill No--"
+                        style="width: 100%"
+                        ng-options="bill.BillMasterId as bill.BillNo for bill in ListBill_AD" required>
+                    <option></option>
+                    @*<option ng-repeat="bill in ListBill_AD" value="{{bill.BillMasterId}}">{{bill.BillNo}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xBillMasterId_AD" id="billMasterId_AD" name="billMasterId_AD" required />*@
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.billList_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">LIB Adjustment Amt</label>
+            <div class="col-md-6">
+                <input type="number"
+                       id="lIBAdjustmentAmount_AD"
+                       class="form-control"
+                       name="lIBAdjustmentAmount_AD" ng-model="LIBAdjustmentAmount_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.lIBAdjustmentAmount_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Rest Realized Amount</label>
+            <div class="col-md-6">
+                <input type="number"
+                       id="restRealizedAmount_AD"
+                       class="form-control"
+                       name="restRealizedAmount_AD" ng-model="RestRealizedAmount_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.restRealizedAmount_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">PAD</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="pAD_AD"
+                       class="form-control"
+                       name="pAD_AD" ng-model="PAD_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.pAD_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Remarks</label>
+            <div class="col-md-6">
+                <textarea rows="3" cols="3"
+                          id="remarks_AD"
+                          class="form-control"
+                          name="remarks_AD" ng-model="Remarks_AD" required></textarea>
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.remarks_AD.$error.required">*</span>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Adjustment Date</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="dtAdjustmentDate_AD"
+                       class="form-control datepicker"
+                       name="dtAdjustmentDate_AD" ng-model="AdjustmentDate_AD" placeholder=" dd/mm/yyyy" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.dtAdjustmentDate_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Rest Realized Amt(%)</label>
+            <div class="col-md-6">
+                <input type="number"
+                       id="restRealizedAmtPercentage_AD"
+                       class="form-control"
+                       name="restRealizedAmtPercentage_AD" ng-model="RestRealizedAmtPercentage_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.restRealizedAmtPercentage_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Conversion Rate(Realized)</label>
+            <div class="col-md-6">
+                <input type="number"
+                       id="conversionRateRealized_AD"
+                       class="form-control"
+                       name="conversionRateRealized_AD" ng-model="ConversionRateRealized_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.conversionRateRealized_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">ERQ</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="eRQ_AD"
+                       class="form-control"
+                       name="eRQ_AD" ng-model="ERQ_AD" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.eRQ_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-11 control-label" style="text-decoration:underline">Adjustment Detail</label>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Charge Name</label>
+            <div class="col-md-6">
+                <select id="chargeName_AD" class="select2-select-00"
+                        ng-model="lstChargeName_AD"
+                        name="chargeName_AD"
+                        ng-change="getChangedComboID_AD(0);btnAddEnable()"
+                        data-placeholder="--Select Charges--"
+                        style="width: 100%"
+                        ng-options="lcn.ComboID as lcn.ComboName for lcn in ListCharge_AD" required>
+                    <option></option>
+                    @*<option ng-repeat="lcn in ListCharge_AD" value="{{lcn.ComboID}}">{{lcn.ComboName}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xComboID_AD" id="comboID_AD" name="comboID_AD" required />*@
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.chargeName_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-5 control-label">Amount</label>
+            <div class="col-md-6">
+                <input type="number"
+                       id="amount_AD"
+                       class="form-control"
+                       name="amount_AD" ng-model="Amount_AD" ng-change="btnAddEnable()" required />
+            </div>
+            <span class="error" ng-show="(frmAdjust.$dirty||submitted) && frmAdjust.amount_AD.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-8 control-label"></label>
+            <div class="col-md-3">
+                <input type="button"
+                       id="addToTist_AD"
+                       class="btn btn-info"
+                       name="addToTist_AD" ng-model="AddToTist_AD" ng-click="AddItemToList()" value="Add To List" ng-disabled="IsDisable" />
+            </div>
+        </div>
+    </div>
+
+</form>

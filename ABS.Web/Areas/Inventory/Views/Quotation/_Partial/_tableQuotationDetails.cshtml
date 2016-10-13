@@ -1,0 +1,84 @@
+﻿@*<input id="hdoDetailSearch" ng-model="HdoDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table  table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <td style="display:none">Item ID</td>
+            <th style="display:none">UnitID</th>
+            <th>
+                <div class="roundedTwo">
+                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
+                </div>
+            </th>            
+            <th>Item Name</th>
+            <th>UnitName</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th>FreightCharge</th>
+            <th>FOB Value</th>
+            <th>Transport Type</th>
+            <th>Loading Location</th>
+            <th>Discharge location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListReqItems">
+            <td style="display:none">{{dataModel.ItemID}}</td>
+            <td style="display:none">{{dataModel.UnitID}}</td>
+            <td>               
+                <div class="roundedTwo">
+                    <input type="checkbox" ng-click="toggleSelection()" ng-model="dataModel.Selected" />
+                </div>
+            </td>     
+            <td>{{dataModel.ItemName}}</td>
+            <td>{{dataModel.UnitName}}</td>
+            <td>{{dataModel.Qty}}</td>
+            <td><input type="number" id="txtUnitPrice" name="txtUnitPrice" class="form-control" ng-model="dataModel.UnitPrice" min="0.00" ng-blur="GetAmount(dataModel)" /></td>                       
+            <td>{{dataModel.Amount}}</td>    
+            <td><input type="number" id="txtFreightCharge" name="txtFreightCharge" class="form-control" ng-model="dataModel.FreightCharge" min="0.00" /></td>         
+            <td><input type="number" id="txtFOVValue" name="txtFOVValue" class="form-control" ng-model="dataModel.FOBValue" min="0.00" /></td>
+            <td>
+                <select id="ddlTransportType"
+                        ng-model="dataModel.TransportTypeID"
+                        name="ddlTransportType"
+                        style="width: 100%" ng-options="Tran.id as Tran.value for Tran in lstTranportType">
+                    <option></option>
+                </select>
+            </td>      
+            <td>
+                <select id="ddlLoadingLocation"
+                        ng-model="dataModel.LoadingLocationID"
+                        name="ddlLoadingLocation"
+                        style="width: 100%" ng-options="coun.CountryID as coun.CountryName for coun in listDischargeLocation">
+                    <option></option>
+                </select>
+            </td>           
+            <td>
+                <select id="ddlDischargeLocation"
+                        ng-model="dataModel.DischargeLocationId"
+                        name="ddlDischargeLocation"
+                        style="width: 100%" ng-options="coun.CountryID as coun.CountryName for coun in listDischargeLocation">
+                    <option></option>
+                </select>
+            </td>   
+            @*<td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                            <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                        </a>
+                    </span>
+                </td>*@
+            </tr>
+        </tbody>
+    </table>
+    <p ng-show="(ListChallanDetails).length == 0" style="color:red">Nothing found!</p>
+
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>

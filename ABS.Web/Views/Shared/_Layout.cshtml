@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="">
+    <meta name="author" content="Administrator">
+    @*<link rel="shortcut icon" href="http://amberit.com.bd/amberImages/favicon.ico">*@
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" type="image/ico">
+
+    <title>@ViewBag.Title | Amber Business Suite</title>
+
+    <!--=== CSS ===-->
+    <!-- Bootstrap -->
+    <link href="~/Themes/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme -->
+    <link href="~/Themes/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Themes/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/Themes/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="~/Themes/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Login -->
+    <link href="~/Themes/assets/css/login.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Themes/assets/css/fontawesome/font-awesome.min.css">
+    <link href="~/Content/angular.treeview.css" rel="stylesheet" />
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="~/Themes/assets/css/fontawesome/font-awesome-ie7.min.css">
+    <![endif]-->
+    <!--[if IE 8]>
+        <link href="~/Themes/assets/css/ie8.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    @*<link href="~/Content/GoogleFont.css" rel="stylesheet" />*@
+    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>*@
+    <link href="~/Content/GoogleFont.css" rel="stylesheet" />
+    <!--=== JavaScript ===-->
+    <script type="text/javascript" src="~/Themes/assets/js/libs/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Themes/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Themes/assets/js/libs/lodash.compat.min.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="~/Themes/assets/js/libs/html5shiv.js"></script>
+    <![endif]-->
+    <!-- Beautiful Checkboxes -->
+    <script type="text/javascript" src="~/Themes/plugins/uniform/jquery.uniform.min.js"></script>
+    <!-- Form Validation -->
+    <script type="text/javascript" src="~/Themes/plugins/validation/jquery.validate.min.js"></script>
+    <!-- Slim Progress Bars -->
+    <script type="text/javascript" src="~/Themes/plugins/nprogress/nprogress.js"></script>
+    <!-- App -->
+    <script type="text/javascript" src="~/Themes/assets/js/login.js"></script>
+    <script>
+        $(document).ready(function () {
+            "use strict";
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "100",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+
+            Login.init(); // Init login JavaScript
+        });
+    </script>
+</head>
+
+<body class="login ng-cloak" ng-app="ABS_App_Lay">
+    <!-- Logo -->
+    <div class="logo">
+        <img src="~/Themes/assets/img/amber-group-logo-v1.png" alt="logo" />
+        <strong>AMBER</strong> BUSINESS SUITE
+    </div>
+    <!-- /Logo -->
+    @RenderBody()
+    <!-- Footer -->
+    <div class="footer">
+        @*<a href="#" class="sign-up">Don't have an account yet? <strong>Sign Up</strong></a>*@
+        <p>Copyright © @DateTime.Now.Year Amber Software Solutions Ltd. </p>
+        @*<a href="http://amber.com.bd/">About</a> | <a href="http://amber.com.bd/">Terms</a>*@
+    </div>
+    <!-- /Footer -->
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/ScriptsNg/Modules/ABS_App.js"></script>
+    @RenderSection("AngularScript", false)
+    <script src="~/ScriptsNg/Controllers/LogoutCtrl.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/ngStorage.js"></script>
+
+    <!-- Dynamic Menu Refferences -->
+    <script src="~/ScriptsNg/Controllers/TopNavigationBarCtrl.js"></script>
+    <script src="~/ScriptsNg/Controllers/TopNavigationNotificationCtrl.js"></script>
+    <script src="~/ScriptsNg/Controllers/sideNavCtrl.js"></script>
+    <script src="~/ScriptsNg/Controllers/DashboardCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/customCodeService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/sideNavService.js"></script>
+    <!-- /Dynamic Menu Refferences -->
+
+</body>
+
+</html>

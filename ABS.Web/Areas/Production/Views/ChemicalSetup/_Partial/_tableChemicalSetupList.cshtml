@@ -1,0 +1,132 @@
+﻿<div ui-grid="gridOptions"
+     ui-grid-resize-columns
+     ui-grid-auto-resize
+     ui-grid-move-columns
+     ui-grid-exporter
+     ui-grid-pinning
+     class="grid"></div>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        <img src="~/Content/img/ng-loader.gif" />
+        {{lblMessage}}
+    </div>
+</div>
+
+<div role="contentinfo" class="ui-grid-pager-panel ng-scope"
+     @*ng-show="grid.options.enablePaginationControls"*@>
+    <div role="navigation" class="ui-grid-pager-container">
+        <div role="menubar" class="ui-grid-pager-control">
+            <!-- Start Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-first" ui-grid-one-bind-title="aria.pageToFirst"
+                    ui-grid-one-bind-aria-label="aria.pageToFirst"
+                    ng-click="pagination.firstPage()"
+                    ng-disabled="cantPageBackward()" title="Page to first" aria-label="Page to first"
+                    disabled="disabled">
+                <div class="first-triangle">
+                    <div class="first-bar"></div>
+                </div>
+            </button>
+
+            <!-- Prev Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-previous"
+                    ui-grid-one-bind-title="aria.pageBack" ui-grid-one-bind-aria-label="aria.pageBack"
+                    ng-click="pagination.previousPage()"
+                    ng-disabled="cantPageBackward()" title="Page back" aria-label="Page back" disabled="disabled">
+                <div class="first-triangle prev-triangle"></div>
+            </button>
+
+            <input type="number" ui-grid-one-bind-title="aria.pageSelected" ui-grid-one-bind-aria-label="aria.pageSelected"
+                   class="ui-grid-pager-control-input ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-min ng-valid-max ng-valid-required"
+                   ng-model="pagination.pageNumber"
+                   min="1" max="{{pagination.getTotalPages()}}" required="" title="Selected page"
+                   aria-label="Selected page">
+
+            <span class="ui-grid-pager-max-pages-number ng-binding"
+                  ng-show="pagination.getTotalPages() > 0">
+                <abbr ui-grid-one-bind-title="paginationOf" title="of">/</abbr>{{pagination.getTotalPages()}}
+            </span>
+
+            <!-- Next Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-next" ui-grid-one-bind-title="aria.pageForward"
+                    ui-grid-one-bind-aria-label="aria.pageForward"
+                    ng-click="pagination.nextPage()"
+                    ng-disabled="cantPageForward()"
+                    title="Page forward" aria-label="Page forward">
+                <div class="last-triangle next-triangle"></div>
+            </button>
+
+            <!-- Last Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-last"
+                    ui-grid-one-bind-title="aria.pageToLast" ui-grid-one-bind-aria-label="aria.pageToLast"
+                    ng-click="pagination.lastPage()" ng-disabled="cantPageToLast()" title="Page to last" aria-label="Page to last">
+                <div class="last-triangle"><div class="last-bar"></div></div>
+            </button>
+        </div><!-- ngIf: grid.options.paginationPageSizes.length > 1 -->
+
+        <div class="ui-grid-pager-row-count-picker ng-scope" @*ng-if="pagination.ddlpageSize.length > 1"*@>
+            <select ng-model="pagination.ddlpageSize"
+                    ng-options="o as o for o in pagination.paginationPageSizes" ng-change="pagination.pageSizeChange()"
+                    class="ng-pristine ng-untouched ng-valid ng-not-empty"></select>
+            <span class="ui-grid-pager-row-count-label ng-binding">&nbsp;items per page</span>
+        </div>
+        <!-- end ngIf: grid.options.paginationPageSizes.length > 1 -->
+        <!-- ngIf: grid.options.paginationPageSizes.length <= 1 -->
+    </div>
+    <div class="ui-grid-pager-count-container">
+        <div class="ui-grid-pager-count">
+            <span ng-show="pagination.totalItems > 0"
+                  class="ng-binding" style="">
+                {{pagination.pageNumber}}<abbr ui-grid-one-bind-title="paginationThrough" title="through">-</abbr>
+                {{pagination.ddlpageSize}} of {{pagination.totalItems}} items
+            </span>
+        </div>
+    </div>
+</div>
+
+@*<input id="custSearchMaster" ng-model="custSearchMaster" type="text" class="form-control search" placeholder="Search...">
+<table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable ">
+    <thead>
+        <tr>
+            <th class="text-center col-md-1">SL.</th>
+            <th class="text-center col-md-3">Color</th>
+            <th class="text-center col-md-2">Quantity</th>
+            <th class="text-center col-md-2">Unit</th>
+            <th style="text-align:right;">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListChemicalSetupGrid ">
+            <td class="col-md-1 hidden">{{dataModel.ChemicalSetupID}}</td>
+            <td class="col-md-1 hidden">{{dataModel.ItemColorID}}</td>
+            <td class="col-md-1">{{$index+1}}</td>
+            <td class="col-md-3">{{dataModel.ColorName}}</td>
+            <td class="col-md-2">{{dataModel.Qty}}</td>
+            <td class="col-md-2">{{dataModel.UnitName}}</td>
+            <td style="text-align:right; color:white">
+                <span class="label label-warning label-mini">
+                    <a ng-href="#" data-toggle="modal" class="bs-tooltip" title="Edit Info" ng-click="EditChemicalSetup(dataModel)">
+                        <i class="icon-pencil"></i>
+                    </a>
+                </span>
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" class="bs-tooltip" title="Delete" ng-click="deleteMasterList(dataModel)">
+                        <i class="icon-trash"></i>
+
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p ng-show="(ListCustomCodeList).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>*@

@@ -1,0 +1,31 @@
+﻿
+
+<form novalidate name="frmFinishing" id="frmFinishing" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Weight/Yds</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxWeightDS"
+                       class="form-control"
+                       name="txtbxWeightDS" ng-model="txtbxWeightDS"
+                       placeholder="Weight/DS" />
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" class="bs-tooltip" title="Consumption Setups">
+                    <i class="icon-search" ng-click="LoadConsumptionCal()"></i>
+                </a>
+            </span>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+</form>
+
+
+

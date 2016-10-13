@@ -1,0 +1,30 @@
+﻿@*<table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable ">
+        <thead>
+            <tr>
+                <th class="text-center col-md-2" ng-repeat="header in ListOperationSetupHeader">
+                    {{header}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>*@
+
+<table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable " ng-if="ListOperationSetup.length>0">
+    <thead>
+        <tr>
+            <th class="text-center col-md-2" colspan="2" ng-repeat="header in ListOperationSetupHeader">
+                {{header}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @*<tr ng-repeat="(x,y) in ListOperationSetup[0]">
+                {{y}}
+            </tr>*@
+
+        <tr ng-repeat="x in ListOperationSetup">
+            <td ng-repeat="(a,b) in x ">{{b}} </td>
+        </tr>
+    </tbody>
+</table>

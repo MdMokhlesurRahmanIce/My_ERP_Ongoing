@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "Sales";
+}
+
+<div class="container">
+    <!-- Breadcrumbs line -->
+    <div ng-controller="BreadcrumbCtrl">
+        @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <!--==Delete Modal From System Common==-->
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+        </div>
+    </div>
+    <!--==Delete Modal From System Common==-->
+    <div id="PanelDiv" ng-controller="colorCtrl">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    @*<div class="widget-header">
+                            <h4><i class="icon-reorder"></i> Panel </h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> @*Settings*@ </h4>
+                    </div>
+                    <div class="widget-content">
+                        <div class="tabbable box-tabs">
+                            <ul class="nav nav-tabs nav-tab-default-color">
+                                <li><a href="#UOM_tab" data-toggle="tab">Unit of Measurement</a></li>                                
+                                <li><a href="#Size_tab" data-toggle="tab">Size</a></li>                                
+                                <li class="active"><a href="#Color_tab" data-toggle="tab">Color</a></li>                                
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="Color_tab">
+                                    <div id="ColorDiv" ng-controller="colorCtrl">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_formColor.cshtml")
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div when-scrolled="loadColorRecords(1)">
+                                                            @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_tableColor.cshtml")
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="Size_tab">
+                                    <div id="SizeDiv" ng-controller="sizeCtrl">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_formSize.cshtml")
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div when-scrolled="loadSizeRecords(1)">
+                                                            @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_tableSize.cshtml")
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="UOM_tab">
+                                    <div id="UnitDiv" ng-controller="unitCtrl">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_formUnit.cshtml")
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                            <div class="col-md-6">
+                                                <div class="widget box">
+                                                    <div class="widget-header">
+                                                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                                                        <div class="toolbar no-padding">
+                                                            <div class="btn-group">
+                                                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content">
+                                                        <div when-scrolled="loadUnitRecords(1)">
+                                                            @Html.Partial("~/Areas/Sales/Views/SCU/_Partial/_tableUnit.cshtml")
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- /.col-md-12 -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Sales/ScriptsNg/Controllers/ColorCtrl.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Controllers/SizeCtrl.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Controllers/UnitCtrl.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>
+<script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+}

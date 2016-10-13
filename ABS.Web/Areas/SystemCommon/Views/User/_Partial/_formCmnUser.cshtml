@@ -1,0 +1,655 @@
+﻿
+<form novalidate name="frmUser" id="userForm" class="form-horizontal row-border">
+    <input type="hidden" id="userID" readonly="readonly" ng-model="EditUserID" />
+
+    <div class="widget-content">
+        <div class="tabbable box-tabs">
+            <ul class="nav nav-tabs user-tabs">
+                <li ng-if="UserType == '1'"><a href="#box_tab7" data-toggle="tab"><i class="icon-flag-checkered"></i> Company Ppermission</a></li>
+                <li ng-if="UserType == '1'"><a href="#box_tab5" data-toggle="tab"><i class="icon-flag-checkered"></i> Job Contract</a></li>
+
+                <li><a href="#box_tab6" data-toggle="tab"><i class="icon-briefcase"></i> Ledger</a></li>
+                <li><a href="#box_tab3" data-toggle="tab"><i class="icon-briefcase"></i> Present Address</a></li>
+                <li><a href="#box_tab4" data-toggle="tab"><i class="icon-briefcase"></i> Permanent Address</a></li>
+
+                <li><a href="#box_tab2" data-toggle="tab"><i class="icon-user-md"></i> Personal Info</a></li>
+                <li class="active"><a href="#box_tab1" data-toggle="tab"><i class="icon-key"></i> Account Info</a></li>
+            </ul>
+
+
+            <div class="tab-content">
+                <div class="alert alert-warning fade in alert-dismissable">
+                    <i class="icon-remove close" data-dismiss="alert"></i>
+                    <strong>This is account login details!</strong> Please provide a valid email id, system auto generated password will be send through Email.
+                </div>
+                <div class="tab-pane active" id="box_tab1">
+                    <div class="col-md-6">
+
+                        <div class="form-group hidden">
+                            <label class="col-md-3 control-label">User Type</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                @*<p>UserType: {{ddlUserType}}</p>*@
+                                <select id="userType" class="select2-select-00"
+                                        ng-model="ddlUserType"
+                                        name="userType"
+                                        data-placeholder="--Select Type--"
+                                        style="width: 100%" ng-options="typ.UserTypeID as typ.UserTypeName for typ in ListUserType">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.userType.$dirty && frmUser.userType.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.userType.$dirty && frmUser.userType.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">User Group</label> <span class="red">*</span>
+                            <div class="col-md-7">
+
+                                @*<p>UserType: {{ddlUserGroup}}</p>*@
+                                <select id="userGroup" class="select2-select-00"
+                                        ng-model="ddlUserGroup"
+                                        name="userGroup"
+                                        data-placeholder="--Select Group--"
+                                        style="width: 100%" ng-options="grp.UserGroupID as grp.GroupName for grp in ListUserGroup">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.userGroup.$dirty && frmUser.userGroup.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.userGroup.$dirty && frmUser.userGroup.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Login ID</label><span class="red">*</span>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="loginID"
+                                       class="form-control"
+                                       name="loginID" ng-model="LoginID" required />
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.loginID.$dirty && frmUser.loginID.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.loginID.$dirty && frmUser.loginID.$invalid" class="iconClass" />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Email</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                <input type="email"
+                                       id="email"
+                                       class="form-control"
+                                       name="email" ng-model="Email" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Mobile</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="custMobile"
+                                       class="form-control"
+                                       name="custMobile" ng-model="Phone" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                @*<p>Online Account: {{IsOnlineAccount}}</p>*@
+                                <label class="checkbox">
+                                    <input type="checkbox" class="uniform"
+                                           id="custMobile" value="{{IsOnlineAccount}}"
+                                           ng-model="IsOnlineAccount" checked> Create Online Account?
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Avatar</label>
+                            <div class="col-md-7">
+                                <div class="col-md-4">
+                                    <img ng-src="{{avatar_source|| '../../Content/img/noavatar-male.png'}}" width="60" class="perview-uploader">
+                                    <a href="javascript:void(0)" ng-if="avatarname != null" ng-click="clearFileAvatar()" class="icon-remove-uploader">
+                                        <img src="~/Content/img/delete.png" />
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><strong>Upload Avatar</strong></span>
+                                    <input type="file" id="fileAvatar"
+                                           name="file" accept="image/*" ng-model="picAvatar"
+                                           onchange="angular.element(this).scope().selectFileAvatar(this)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Signature</label>
+                            <div class="col-md-7">
+                                <div class="col-md-4">
+                                    <img ng-src="{{signature_source|| '../../Content/img/signature.png'}}" width="60" class="perview-uploader">
+                                    <a href="javascript:void(0)" ng-if="signaturename != null" ng-click="clearFileSignature()" class="icon-remove-uploader">
+                                        <img src="~/Content/img/delete.png" />
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><strong>Upload Signature</strong></span>
+                                    <input type="file" id="fileSignature"
+                                           name="file" accept="image/*" ng-model="picSignature"
+                                           onchange="angular.element(this).scope().selectFileSignature(this)" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="box_tab2">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Title</label>
+                            <div class="col-md-7">
+                                @*<p>UserType: {{ddlUsertitle}}</p>*@
+                                <select id="userTitle" class="select2-select-00"
+                                        ng-model="ddlUsertitle"
+                                        name="userTitle"
+                                        data-placeholder="--Select Title--"
+                                        style="width: 100%" ng-options="ttl.TitleId as ttl.Title for ttl in listUserTitle">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.userTitle.$dirty && frmUser.userTitle.$valid" Class="iconClass" />
+                                <img src="~/Content/img/Cross.png" ng-show="frmUser.userTitle.$dirty && frmUser.userTitle.$invalid" Class="iconClass" />*@
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">First Name</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="firstName"
+                                       class="form-control"
+                                       name="firstName" ng-model="FirstName" required />
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.firstName.$dirty && frmUser.firstName.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.firstName.$dirty && frmUser.firstName.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Middle Name</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="middleName"
+                                       class="form-control"
+                                       name="middleName" ng-model="MiddleName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Last Name</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="lastName"
+                                       class="form-control"
+                                       name="lastName" ng-model="LastName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Gender</label>
+                            <div class="col-md-5">
+                                @*<p>UserType: {{ddlGender}}</p>*@
+                                <select id="userGender" class="select2-select-00"
+                                        ng-model="ddlGender"
+                                        name="userGender"
+                                        data-placeholder="--Select Gender--"
+                                        style="width: 100%" ng-options="gdr.GenderId as gdr.Gender for gdr in listUserGender">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Religion</label>
+                            <div class="col-md-5">
+                                @*<p>UserType: {{ddlUserReligion}}</p>*@
+                                <select id="userReligion" class="select2-select-00"
+                                        ng-model="ddlUserReligion"
+                                        name="userReligion"
+                                        data-placeholder="--Select Religion--"
+                                        style="width: 100%"
+                                        ng-options="rgn.ReligionId as rgn.Religion for rgn in listUserReligion">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">DOB</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="dob"
+                                       class="form-control datepicker"
+                                       name="dob" ng-model="DOB" placeholder="dd/mm/yyyy" />
+                            </div>
+                            @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.custMobile.$dirty && frmUser.custMobile.$valid" Class="iconClass" />
+                                <img src="~/Content/img/Cross.png" ng-show="frmUser.custMobile.$dirty && frmUser.custMobile.$invalid" Class="iconClass" />*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Father</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="fatherName"
+                                       class="form-control"
+                                       name="fatherName" ng-model="FatherName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Mother</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="motherName"
+                                       class="form-control"
+                                       name="motherName" ng-model="MotherName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Spouse</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="spouseName"
+                                       class="form-control"
+                                       name="spouseName" ng-model="SpouseName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Height</label>
+                            <div class="col-md-3">
+                                <input type="text"
+                                       id="height"
+                                       class="form-control"
+                                       name="height" ng-model="Height" valid-number />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Blood Group</label>
+                            <div class="col-md-7">
+                                @*<p>value: {{ ddlBloodGroup.BloodGroupID }}  text: {{ ddlBloodGroup.BloodGroup }}</p>*@
+                                <select id="bloodGroup" class="select2-select-00"
+                                        ng-model="ddlBloodGroup"
+                                        name="bloodGroup"
+                                        data-placeholder="--Select Blood Group--"
+                                        style="width: 100%"
+                                        ng-options="blopt as blopt.BloodGroup for blopt in listBloodGroup">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Passport No</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="passportNo"
+                                       class="form-control"
+                                       name="passportNo" ng-model="PassportNo" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">National ID</label>
+                            <div class="col-md-7">
+                                <input type="text"
+                                       id="nationalID"
+                                       class="form-control"
+                                       name="nationalID" ng-model="NationalID" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="box_tab3">
+                    @*Present Address*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Country</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                @*<p>Country: {{ddlCountry}}</p>*@
+                                <select id="userCountry" class="select2-select-00"
+                                        ng-model="ddlCountry"
+                                        ng-change="loadRecords_stateforPresentAddress(0)"
+                                        name="userCountry"
+                                        data-placeholder="--Select Country--"
+                                        style="width: 100%"
+                                        ng-options="ctry.CountryID as ctry.CountryName for ctry in listCountryforpresentAddress">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.userCountry.$dirty && frmUser.userCountry.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.userCountry.$dirty && frmUser.userCountry.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">State</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                @*<p>State: {{ddlState}}</p>*@
+                                <select id="userState" class="select2-select-00"
+                                        ng-model="ddlState"
+                                        ng-change="ngchloadRecords_cityforPresentAddress(0)"
+                                        name="userState"
+                                        placeholder="-- Select State --"
+                                        style="width: 100%"
+                                        ng-options="ste.StateID as ste.StateName for ste in listStateforPresent" required>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.userState.$dirty && frmUser.userState.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.userState.$dirty && frmUser.userState.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Address1
+                            </label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                <textarea rows="3" cols="5" id="address1" name="address1" ng-model="PreAddress1" class="auto form-control" required></textarea>
+                            </div>
+
+                            @*<span class="error" ng-show="(frmUser.$dirty||submitted) && frmUser.firstName.$error.required">*</span>*@
+
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.address1.$dirty && frmUser.address1.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.address1.$dirty && frmUser.address1.$invalid" class="iconClass" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                @*<p>Copy?: {{IsDuplicate}}</p>*@
+                                <label class="checkbox">
+                                    <input type="checkbox" class="uniform" ng-click="Duplicate()"
+                                           id="isDuplicate" value="{{IsDuplicate}}"
+                                           ng-model="IsDuplicate"> Address2 is same as Address1
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">City</label> <span class="red">*</span>
+                            <div class="col-md-7">
+                                @*<p>City: {{ddlCity}}</p>*@
+                                <select id="userCity" class="select2-select-00"
+                                        ng-model="ddlCity"
+                                        name="userCity"
+                                        data-placeholder="--Select City--"
+                                        style="width: 100%"
+                                        ng-options="cty.CityID as cty.CityName for cty in listCityforpresentAddress" required>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="frmUser.userCity.$dirty && frmUser.userCity.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.userCity.$dirty && frmUser.userCity.$invalid" class="iconClass" />
+                        </div>
+
+                        @*<div class="form-group">
+                                <label class="col-md-3 control-label">Zip</label>
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           id="zip"
+                                           class="form-control"
+                                           name="zip" ng-model="Zip" />
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Address2</label>
+                            <div class="col-md-7">
+                                <textarea rows="3" cols="5" id="address2" name="address2" ng-model="PreAddress2" class="auto form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*Permanent Address*@
+                <div class="tab-pane" id="box_tab4">
+                    @*Permanent Address*@
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Country</label>
+                            <div class="col-md-7">
+                                @*<p>Country: {{ddlCountry1}}</p>*@
+                                <select id="userCountry1" class="select2-select-00"
+                                        ng-model="ddlCountry1"
+                                        ng-change="loadRecords_stateforPermanentAddress(0)"
+                                        name="userCountry1"
+                                        data-placeholder="--Select Country--"
+                                        style="width: 100%"
+                                        ng-options="ctry.CountryID as ctry.CountryName for ctry in listCountryforpermanent">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">State</label>
+                            <div class="col-md-7">
+                                @*<p>State: {{ddlState1}}</p>*@
+                                <select id="userState1" class="select2-select-00"
+                                        ng-model="ddlState1"
+                                        ng-change="ngchloadRecords_cityforPermanentAddress(0)"
+                                        name="userState1"
+                                        data-placeholder="--Select State--"
+                                        style="width: 100%"
+                                        ng-options="ste.StateID as ste.StateName for ste in listStateforPermanentAddress">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">
+                                Address1
+                            </label>
+                            <div class="col-md-7">
+                                <textarea rows="3" cols="5" id="address1_1" name="address1_1" ng-model="ParAddress1" class="auto form-control"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                @*<p>Copy?: {{IsDuplicate1}}</p>*@
+                                <label class="checkbox">
+                                    <input type="checkbox"
+                                           class="uniform"
+                                           ng-click="Duplicate1()"
+                                           id="isDuplicate1"
+                                           value="{{IsDuplicate1}}"
+                                           ng-model="IsDuplicate1"> Address2 is same as Address1
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">City</label>
+                            <div class="col-md-7">
+                                @*{{ddlCity1}}*@
+                                <select id="userCity1" class="select2-select-00"
+                                        ng-model="ddlCity1"
+                                        name="userCity1"
+                                        data-placeholder="--Select City--"
+                                        style="width: 100%"
+                                        ng-options="cty.CityID as cty.CityName for cty in listCityforpremanentAddress">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                <label class="col-md-3 control-label">Zip</label>
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           id="zip1"
+                                           class="form-control"
+                                           name="zip1" ng-model="Zip1" />
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Address2</label>
+                            <div class="col-md-7">
+                                <textarea rows="3" cols="5" id="address2_2" name="address2_2" ng-model="ParAddress2" class="auto form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="box_tab5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Department</label>
+                            <div class="col-md-7">
+                                @*<p>Country: {{ddlDepartment}}</p>*@
+                                <select id="userdepartment" class="select2-select-00"
+                                        ng-model="ddlDepartment"
+                                        name="userdepartment"
+                                        data-placeholder="--Select Department--"
+                                        style="width: 100%"
+                                        ng-options="dpt.OrganogramID as dpt.OrganogramName for dpt in listDepartment">
+                                    <option></option>
+                                </select>
+                            </div>
+                            @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.userdepartment.$dirty && frmUser.userdepartment.$valid" Class="iconClass" />
+                                <img src="~/Content/img/Cross.png" ng-show="frmUser.userdepartment.$dirty && frmUser.userdepartment.$invalid" Class="iconClass" />*@
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Contract Type</label>
+                            <div class="col-md-7">
+                                @*<p>Country: {{ddlContractType}}</p>*@
+                                <select id="userContractType" class="select2-select-00"
+                                        ng-model="ddlContractType"
+                                        name="userContractType"
+                                        data-placeholder="--Select Type--"
+                                        style="width: 100%"
+                                        ng-options="jct.JobContractTypeID as jct.JobContractType for jct in listJobContractType">
+                                    <option></option>
+                                </select>
+                            </div>
+                            @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.userContractType.$dirty && frmUser.userContractType.$valid" Class="iconClass" />
+                                <img src="~/Content/img/Cross.png" ng-show="frmUser.userContractType.$dirty && frmUser.userContractType.$invalid" Class="iconClass" />*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Designation</label>
+                            <div class="col-md-7">
+                                @*<p>City: {{ddlDesignation}}</p>*@
+                                <select id="userDesignation" class="select2-select-00"
+                                        ng-model="ddlDesignation"
+                                        name="userDesignation"
+                                        data-placeholder="--Select Designation--"
+                                        style="width: 100%"
+                                        ng-options="dsg.UserDesignationID as dsg.DesignationName for dsg in listDesignation">
+                                    <option></option>
+                                </select>
+                            </div>
+                            @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.userDesignation.$dirty && frmUser.userDesignation.$valid" Class="iconClass" />
+                                <img src="~/Content/img/Cross.png" ng-show="frmUser.userDesignation.$dirty && frmUser.userDesignation.$invalid" Class="iconClass" />*@
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="box_tab6">
+                    <div class="col-md-6">
+
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="input17">Ledger</label>
+                            <div class="col-md-7">
+                                <select id="ddlLedger" class="select2-select-00" style="width:230px;" required
+                                        ng-model="ngmLedger"
+                                        name="ddlLedger"
+                                        placeholder="-- Select Ledger --"
+                                        ng-options="lgr.Id as lgr.ACName for lgr in LedgerList">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <img src="~/Content/img/TickMark.png" ng-show="itemGroupForm.ddlLedger.$dirty && itemGroupForm.ddlLedger.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="itemGroupForm.ddlLedger.$dirty && itemGroupForm.ddlLedger.$invalid" class="iconClass" />
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="box_tab7">
+                    <div class="col-md-6">
+                        <label class="col-md-5 control-label" for="input17">Company Permission</label>
+                        <div class="col-md-7">
+                            <div class="form-group">
+
+                                <ngdropdownmultiselect control="ngDropdownMultiselectControlo">
+                                    <div ng-dropdown-multiselect="" options="companylist" selected-model="SelectCompnayList" checkboxes="true">
+                                    </div>
+                                </ngdropdownmultiselect>
+                            </div>@*<span class="red">*</span>*@
+                        </div>
+                        @*<img src="~/Content/img/TickMark.png" ng-show="frmUser.loginID.$dirty && frmUser.loginID.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmUser.loginID.$dirty && frmUser.loginID.$invalid" class="iconClass" />*@
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <span id="saveupdate" class="btn btn-success margin-right-btn" ng-click="AddDefultCompany()">
+                            @*<i class="icon-adn">defult company </i>*@ Add Company
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Defult Company</label>
+                            <div class="col-md-7">
+                                @*<p>UserType: {{ddlUserType}}</p>*@
+                                <select id="defultCompany" class="select2-select-00"
+                                        ng-model="defultCompany"
+                                        name="defultCompany"
+                                        data-placeholder="--Select Company--"
+                                        style="width: 100%" ng-options="com.id as com.label for com in selectedList">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div> <!-- /.tabbable portlet-tabs -->
+
+
+</form>
+<style type="text/css">
+    .btn .caret, .ui-state-default .caret, .ui-widget-content .ui-state-default .caret, .ui-widget-header .ui-state-default .caret, .ColVis_MasterButton .caret, .fc-state-default .caret {
+        border-top-color: #333333 !important;
+        margin-top: 0;
+        margin-left: 125px !important;
+        vertical-align: middle;
+    }
+</style>

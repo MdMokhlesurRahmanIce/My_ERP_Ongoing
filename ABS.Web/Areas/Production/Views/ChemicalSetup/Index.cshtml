@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Dying Checmical Prepartion";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="DyingChemicalPreparationCtrl">
+        <!-- Breadcrumbs line -->
+
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frmEntry" class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/ChemicalSetup/_Partial/_formChemicalSetup.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div id="frmDetail" class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListDetail}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add New Rows" ng-click="AddDetails()" ng-disabled="frmPrdDyingChemicalSetupAdd.$invalid" />
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Production/Views/ChemicalSetup/_Partial/_tableChemicalSetupDetailList.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <div id="frmList" class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/ChemicalSetup/_Partial/_tableChemicalSetupList.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/DyingChemicalPreparationCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/commonComboBoxGetDataService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/ValidNumberCustom.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/commonComboBoxGetDataService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/ChemicalSetupService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

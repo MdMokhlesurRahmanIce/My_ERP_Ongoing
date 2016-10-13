@@ -1,0 +1,53 @@
+﻿
+<form novalidate name="frmOrganogram" id="organogram" class="form-horizontal row-border">
+    <input type="hidden" id="menuPermissionID " readonly="readonly" ng-model="MenuPermissionID " />
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="input17"> Group</label>
+        <div class="col-md-3">
+            <select id="userGroupDropDown" class="select2-select-00"
+                    ng-model="ddlUserGroupMaster"   ng-change="SetInputUserGroup(ddlUserGroupMaster)"
+                    name="userGroupDropDown" data-placeholder="--Select User Group--"
+                    style="width: 100%" ng-options="grp.UserGroupID as grp.GroupName for grp in ListUserGroup" >
+                <option></option>
+            </select>
+        </div>
+        <label class="col-md-1 control-label" for="input17"> User</label>
+        <div class="col-md-3">
+            <select id="userDropDown" class="select2-select-00"
+                    ng-model="ddlUserMaster" ng-change="SetInputUser(ddlUserMaster)"
+                    name="userDropDown" data-placeholder="--Select User--"
+                    style="width: 100%" ng-options="usr.UserID as usr.UserFullName for usr in ListUser">
+                <option></option>
+            </select>
+        </div>
+        <label class="col-md-1 control-label" for="input17"> Organogram</label>
+        <div class="col-md-3">
+            <select id="organogramDropDown" class="select2-select-00"
+                    ng-model="ddlOrganogramMaster" ng-change="SetInputOrganogram(ddlOrganogramMaster)"
+                    name="organogramDropDown" data-placeholder="--Select Organogram--"
+                    style="width: 100%" ng-options="org.OrganogramID as org.OrganogramName for org in ListOrganogram">
+                <option></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group" ng-controller="menuCtrl">
+        <label class="col-md-1 control-label" for="input"> Module</label>
+        <div class="col-md-11">
+            <select id="moduleDropDown" class="select2-select-00"
+                    ng-model="ddlModule" ng-change="SetInputModule(ddlModule)"
+                    name="moduleDropDown" data-placeholder="--Select Module--"
+                    style="width: 100%" ng-options="mdl.ModuleID as mdl.ModuleName for mdl in ListModuleForPermission">
+                <option></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group hidden">
+        <label class="col-md-1 control-label" for="input"> Status</label>
+        <div class="col-md-11">
+            <select id="statusDropDown" class="select2-select-00 col-md-12" ng-model="ddlStatus" name="statusDropDown">
+                <option></option>
+                <option ng-repeat="olet in ListStatus" value="{{olet.StatusID}}">{{olet.StatusName}}</option>
+            </select>
+        </div>
+    </div>
+</form>

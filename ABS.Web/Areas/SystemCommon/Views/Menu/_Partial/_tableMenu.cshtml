@@ -1,0 +1,54 @@
+﻿
+<input id="custSearch" ng-model="custSearch" type="text" class="form-control search" placeholder="Search...">
+<table class="table  table-hover table-striped">
+    <thead class="grid-top-panel">
+        <tr>
+
+            <th style="display:none">ModuleID</th>
+            <th style="display:none">Company</th>
+            <th>SL.</th>
+            <th>Code</th>
+            <th>Sequence</th>
+            <th>Module</th>
+            <th>Name</th>
+            <th>Path</th>
+            <th style="text-align:right;">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListMenues | filter:custSearch">
+            <td style="display:none">{{dataModel.MeuID}}</td>
+            <td style="display:none">{{dataModel.CompanyName}}</td>
+            <td>{{$index+1}}</td>
+            <td>{{dataModel.CustomCode}}</td>
+            <td>{{dataModel.Sequence}}</td>
+            <td>{{dataModel.ModuleName}}</td>
+            <td>{{dataModel.MenuName}}</td>
+            <td>{{dataModel.MenuPath}}</td>
+            <td style="text-align:right; color:white">
+                <span class="label label-warning label-mini">
+                    <a ng-href="#menuModal" data-toggle="modal" class="bs-tooltip" title="Edit Info" ng-click="getMenuForEdit(dataModel)">
+                        <i class="icon-pencil"></i>
+                    </a>
+                </span>
+                <span class="label label-danger label-mini">
+                    <a href="#" class="bs-tooltip" title="Delete" ng-click="delete(dataModel)">
+                        <i class="icon-trash"></i>
+                    </a>
+                </span>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListMenues | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        @*<img src="~/Content/img/ng-loader.gif" />*@
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

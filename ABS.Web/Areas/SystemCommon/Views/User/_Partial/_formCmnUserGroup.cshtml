@@ -1,0 +1,26 @@
+﻿
+<form novalidate name="frmUserGroup" id="userForm" class="form-horizontal row-border">
+    <input type="hidden" id="userGroupID" readonly="readonly" ng-model="UserGroupID" />
+
+    <div class="form-group">
+        <label class="col-md-3 control-label">Group Name</label>
+        <div class="col-md-7">
+            <input type="text"
+                   id="groupName"
+                   class="form-control"
+                   name="groupName" ng-model="GroupName" required />
+        </div>
+        @*<span class="error" ng-show="(frmUserGroup.$dirty||submitted) && frmUserGroup.groupName.$error.required">*</span>*@
+
+        <img src="~/Content/img/TickMark.png" ng-show="frmUserGroup.groupName.$dirty && frmUserGroup.groupName.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmUserGroup.groupName.$dirty && frmUserGroup.groupName.$invalid" Class="iconClass" />
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-3 control-label"></label>
+        <div class="col-md-7">
+            <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmUserGroup.$invalid" />
+            <input type="button" id="save" class="btn btn-success" value="Save" ng-click="save()" ng-disabled="frmUserGroup.$invalid" />
+        </div>
+    </div>
+</form>

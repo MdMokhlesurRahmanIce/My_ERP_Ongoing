@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Login Box -->
+<div class="box" ng-controller="loginCtrl">
+    <div class="loggedloader" ng-show="IsLogged">
+        <img ng-show="success" src="../Content/img/icon_success.png" />
+        <img ng-show="error" src="../Content/img/icon_error.png" />
+        {{lblrmessage}}
+    </div>
+    <div ng-show="IsVisible">
+        <div class="content">
+            <!-- Login Formular -->
+            <form class="form-vertical login-form" method="post" name="frmLogin" novalidate>
+                <!-- Title -->
+                <h3 class="form-title">Sign In to your Account</h3>
+                <!-- Error Message -->
+                <div class="alert fade in alert-danger" style="display: none;">
+                    <i class="icon-remove close" data-dismiss="alert"></i>
+                    Enter any username and password.
+                </div>
+                <!-- Input Fields -->
+                <div class="form-group">
+                    <!--<label for="username">Username:</label>-->
+                    <div class="input-icon">
+                        <i class="icon-user"></i>
+                        <input type="text" name="username"
+                               ng-model="UserLogin"
+                               class="form-control input-small"
+                               placeholder="Username"
+                               autofocus="autofocus"
+                               data-rule-required="true"
+                               data-msg-required="Please enter your username." />
+                    </div>
+                    @*<span class="error" ng-show="(frmLogin.$dirty||submitted) && frmLogin.username.$error.required"></span>*@
+                </div>
+                <div class="form-group">
+                    <!--<label for="password">Password:</label>-->
+                    <div class="input-icon">
+                        <i class="icon-lock"></i>
+                        <input type="password" name="password"
+                               ng-model="Password"
+                               class="form-control input-small"
+                               placeholder="Password"
+                               data-rule-required="true"
+                               data-msg-required="Please enter your password." />
+                    </div>
+                    @*<span class="error" ng-show="(frmLogin.$dirty||submitted) && frmLogin.password.$error.required"></span>*@
+                </div>
+                <!-- /Input Fields -->
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" class="uniform" name="remember"> Remember me
+                    </label>
+                    <button type="submit" class="submit btn btn-primary pull-right"
+                            ng-click="submitLogin()"
+                            ng-disabled="frmLogin.$invalid">
+                        Sign In <i class="icon-angle-right"></i>
+                    </button>
+                </div>
+            </form>
+            <!-- /Login Formular -->
+            <!-- Register Formular (hidden by default) -->
+            <form class="form-vertical register-form" action="index.html" method="post" style="display: none;">
+                <!-- Title -->
+                <h3 class="form-title">Sign Up for Free</h3>
+                <!-- Input Fields -->
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="icon-user"></i>
+                        <input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="icon-lock"></i>
+                        <input type="password" name="password" class="form-control" placeholder="Password" id="register_password" data-rule-required="true" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="icon-ok"></i>
+                        <input type="password" name="password_confirm" class="form-control" placeholder="Confirm Password" data-rule-required="true" data-rule-equalTo="#register_password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="icon-envelope"></i>
+                        <input type="text" name="Email" class="form-control" placeholder="Email address" data-rule-required="true" data-rule-email="true" />
+                    </div>
+                </div>
+                <div class="form-group spacing-top">
+                    <label class="checkbox"><input type="checkbox" class="uniform" name="remember" data-rule-required="true" data-msg-required="Please accept ToS first."> I agree to the <a href="javascript:void(0);">Terms of Service</a></label>
+                    <label for="remember" class="has-error help-block" generated="true" style="display:none;"></label>
+                </div>
+                <!-- /Input Fields -->
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="back btn btn-default pull-left">
+                        <i class="icon-angle-left"></i> Back</i>
+                    </button>
+                    <button type="submit" class="submit btn btn-primary pull-right">
+                        Sign Up <i class="icon-angle-right"></i>
+                    </button>
+                </div>
+            </form>
+            <!-- /Register Formular -->
+        </div> <!-- /.content -->
+        <!-- Forgot Password Form -->
+        <div class="inner-box">
+            <div class="content">
+                <!-- Close Button -->
+                <i class="icon-remove close hide-default"></i>
+                <!-- Link as Toggle Button -->
+                <a href="#" class="forgot-password-link">Forgot Password?</a>
+                <!-- Forgot Password Formular -->
+                <form class="form-vertical forgot-password-form hide-default" method="post" novalidate name="frmRecovery" id="recobveryForm">
+                    @*novalidate name="frmUser" id="userForm" class="form-horizontal row-border">*@
+                    <!-- Input Fields -->
+                    <div class="form-group">
+                        <!--<label for="email">Email:</label>-->
+                        <div class="input-icon">
+                            <i class="icon-envelope"></i>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   class="form-control input-small"
+                                   placeholder="Enter email address"
+                                   data-rule-required="true"
+                                   data-rule-email="true"
+                                   data-msg-required="Please enter your email."
+                                   ng-model="RecEmail" required />
+                        </div>
+
+                        @*<img src="~/Content/img/TickMark.png" ng-show="frmRecovery.email.$dirty && frmRecovery.email.$valid" Class="iconClass" />
+                        <img src="~/Content/img/Cross.png" ng-show="frmRecovery.email.$dirty && frmRecovery.email.$invalid" Class="iconClass" />*@
+
+                    </div>
+                    <!-- /Input Fields -->
+                    <button type="submit" class="submit btn btn-default btn-block" ng-click="submitRecovery()" ng-disabled="frmRecovery.$invalid" >
+                        Reset your Password
+                    </button>
+                </form>
+                <!-- /Forgot Password Formular -->
+                <!-- Shows up if reset-button was clicked -->
+                <div class="forgot-password-done hide-default">
+                    <i class="icon-ok success-icon"></i> <!-- Error-Alternative: <i class="icon-remove danger-icon"></i> -->
+                    <span>Great. We have sent you an email.</span>
+                </div>
+            </div> <!-- /.content -->
+        </div>
+        <!-- /Forgot Password Form -->
+    </div>
+</div>
+
+<!-- /Login Box -->
+<!-- Single-Sign-On (SSO) -->
+@*<div class="single-sign-on">
+        <span>or</span>
+        <button class="btn btn-facebook btn-block">
+            <i class="icon-facebook"></i> Sign in with Facebook
+        </button>
+        <button class="btn btn-twitter btn-block">
+            <i class="icon-twitter"></i> Sign in with Twitter
+        </button>
+        <button class="btn btn-google-plus btn-block">
+            <i class="icon-google-plus"></i> Sign in with Google
+        </button>
+    </div>*@
+<!-- /Single-Sign-On (SSO) -->
+
+@section AngularScript{
+    <script src="~/ScriptsNg/Controllers/AuthenticationCtrl.js"></script>
+    <script src="~/ScriptsNg/Service/AuthenticationSrvc.js"></script>
+}

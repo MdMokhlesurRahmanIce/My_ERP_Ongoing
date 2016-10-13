@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Item Group Settings";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="itemGroupController">
+
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div id="ItemGroupDiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#GroupModal" data-toggle="modal" ng-click="clear(itemGroupForm)">
+                                        <i class="icon-plus-sign"></i> New Group
+                                    </span>
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/SystemCommon/Views/ItemGroup/_Partial/_tableCmnItemGroup.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Modal dialog -->
+                <div class="modal fade" id="GroupModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="icon-folder-open"></i> {{PageTitle}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("~/Areas/SystemCommon/Views/ItemGroup/_Partial/_formItemGroup.cshtml")
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <div class="modal fade" id="drpModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="icon-folder-open"></i> {{drpPageTitle}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                @Html.Partial("~/Areas/SystemCommon/Views/ItemGroup/_Partial/_drpModal.cshtml")
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <div class="clearfix"></div>
+            </div> <!-- /.row -->
+        </div>
+        <!-- /Page Content -->
+
+    </div>
+    <!-- /.container -->
+</div>
+@section AngularScript{
+
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/ItemGroupCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/ItemGroupService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Directive.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

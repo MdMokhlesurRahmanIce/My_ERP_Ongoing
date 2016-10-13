@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Stock View";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="StockViewCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span>
+                                    <a href="javascript:void(0);" ng-href="#ItemModal" data-toggle="modal" class="btn btn-info" title="Item info">
+                                        <b>Add Parameter</b>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        @Html.Partial("~/Areas/Inventory/Views/StockView/_Partial/_formStockView.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="IsListShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("/Areas/Inventory/Views/StockView/_Partial/_tableStockView.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+    </div>
+    </div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Inventory/ScriptsNg/Controllers/StockViewCtrl.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Service/StockEntryService.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>       
+        <script src="~/Areas/Token/TokenController.js"></script>
+    }

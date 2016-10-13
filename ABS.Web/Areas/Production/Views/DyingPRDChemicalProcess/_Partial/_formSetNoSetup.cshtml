@@ -1,0 +1,40 @@
+﻿<!-- Modal dialog -->
+<div class="modal fade" id="SetNoModel">
+    <div class="modal-dialog modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-folder-open"></i> {{ListTitleSetNoModel}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label"> Set</label>
+                    <div class="col-md-7">
+                        @*extra-settings="example14settings"*@
+                        <ngDropdownMultiselect control="ngDropdownMultiselectControlo">
+                            <div class="col-md-7" ng-dropdown-multiselect="" options="ListMultiSetNo" selected-model="ListMultiSetNoModel" checkboxes="true">
+                            </div>
+                        </ngDropdownMultiselect>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <label class="col-md-1 control-label"></label>
+                    <div class="col-md-11">
+                        <input type="button" id="btnSubmitSetNoModel" ng-click="SubmitSetNoModel(0)" class="btn btn-info margin-right-btn " value="Submit" />
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<style type="text/css">
+    .btn .caret, .ui-state-default .caret, .ui-widget-content .ui-state-default .caret, .ui-widget-header .ui-state-default .caret, .ColVis_MasterButton .caret, .fc-state-default .caret {
+        border-top-color: #333333 !important;
+        margin-top: 0;
+        margin-left: 107px !important;
+        vertical-align: middle;
+    }
+</style>

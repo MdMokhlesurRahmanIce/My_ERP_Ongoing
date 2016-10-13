@@ -1,0 +1,188 @@
+﻿
+<form novalidate name="frmApprovalSetup" id="approvalSetup" class="form-horizontal row-border">
+    <input type="hidden" id="workFlowID" readonly="readonly" ng-model="WorkFlowID" />
+    <input type="hidden" id="workFlowDetailID" readonly="readonly" ng-model="WorkFlowDetailID" />
+    <input type="hidden" id="hIndex" readonly="readonly" ng-model="hfIndex" />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Menu</label>
+                <div class="col-md-7">
+                    <select id="ddlMenu" class="select2-select-00"
+                            ng-model="lstMenuList"
+                            name="ddlMenu"
+                            data-placeholder="--Select Menu--"
+                            style="width: 100%" ng-options="mnu.MenuID as mnu.MenuName for mnu in ListMenues" required>
+                        <option></option>
+                        @*<option ng-repeat="mnu in ListMenues" value="{{mnu.MenuID}}">{{mnu.MenuName}}</option>*@
+                    </select>
+                </div>
+
+
+                <span class="error" ng-show="(frmApprovalSetup.$dirty||submitted) && frmApprovalSetup.ddlMenu.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-7">
+                    <label class="checkbox">
+                        <input type="checkbox" class="uniform"
+                               id="chkIsActive" name="chkIsActive" ng-model="IsActiveChkBox" checked> Is Active?
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company</label>
+                <div class="col-md-7">
+                    <select id="ddlCompany" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            name="ddlCompany"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%" ng-options="com.CompanyID as com.CompanyName for com in ListCompany" required>
+                        @*ng-disabled="!bool"*@
+
+                        <option></option>
+                        @*<option ng-repeat="com in ListCompany" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmApprovalSetup.$invalid||submitted) && frmApprovalSetup.ddlCompany.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-7">
+                    <label class="checkbox">
+                        <input type="checkbox" class="uniform"
+                               ng-true-value="1" ng-false-value="0" ng-model="IsApprovalDetailChkBox"
+                               id="chkIsApprovalDetail" name="chkIsApprovalDetail"> Is Approval Detail?
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="IsApprovalDetailChkBox == '0'">
+        <div class="col-md-12">
+            <hr />
+            <h3>Approval Team setup</h3>
+            <hr />
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Branch</label>
+                    @*<div class="col-md-7">
+                            <select id="ddlBranch" class="select2-select-00"
+                                    ng-model="lstOrganogramList"
+                                    name="ddlBranch"
+                                    data-placeholder="--Select Branch--"
+                                    style="width: 100%" ng-options="org.OrganogramID as org.OrganogramName for org in ListOrganogram" required>
+                                <option></option>
+
+                            </select>
+                        </div>*@
+                    <div class="col-md-7">
+                        <input type="text"
+                               @*style="width:230px;"*@
+                               id="txtBranch"
+                               class="form-control"
+                               placeholder="Branch"
+                               name="txtbxBranch" ng-model="txtbxBranch" />
+                    </div>
+                    <span class="label label-success label-mini">
+                        <a href="javascript:void(0);" ng-href="#drpModal" data-toggle="modal" class="bs-tooltip" title="Select Branch">
+                            <i class="icon-search"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Teams</label>
+                    <div class="col-md-7">
+                        <select id="drpTeams" class="select2-select-00"
+                                ng-model="drpTeams"
+                                name="drpTeams"
+                                data-placeholder="--Select Team--"
+                                style="width: 100%" ng-options="org.TeamID as org.TeamName for org in teams" ng-change="GetTeamsUserByTemID()">
+                            <option></option>
+
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="IsApprovalDetailChkBox == '1'">
+
+        <div class="col-md-12">
+            <hr />
+            <h3>Approval Detail setup</h3>
+            <hr />
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Status</label>
+                    <div class="col-md-7">
+                        <select id="ddlStatus" class="select2-select-00"
+                                ng-model="lstStatusList"
+                                name="ddlStatus"
+                                data-placeholder="--Select Status--"
+                                style="width: 100%" ng-options="st.StatusID as st.StatusName for st in ListStatus">
+                            <option></option>
+                            @*<option ng-repeat="st in ListStatus" value="{{st.StatusID}}">{{st.StatusName}}</option>*@
+                        </select>
+                    </div>
+                    @*<span class="error" ng-show="(frmApprovalSetup.$dirty||submitted) && frmApprovalSetup.ddlStatus.$error.required">*</span>*@
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Status By</label>
+                    <div class="col-md-7">
+                        <select id="ddlStatusBy" class="select2-select-00"
+                                ng-model="lstStatusByList"
+                                name="ddlStatusBy"
+                                data-placeholder="--Select Status By--"
+                                style="width: 100%" ng-options="stb.UserID as stb.UserFullName for stb in ListStatusBy">
+                            @*ng-disabled="!bool"*@
+
+                            <option></option>
+                            @*<option ng-repeat="stb in ListStatusBy" value="{{stb.UserID}}">{{stb.UserFullName}}</option>*@
+
+                        </select>
+                    </div>
+                    @*<span class="error" ng-show="(frmApprovalSetup.$dirty||submitted) && frmApprovalSetup.ddlStatusBy.$error.required">*</span>*@
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Sequence</label>
+                    <div class="col-md-7">
+                        <input type="number"
+                               id="txtSequence"
+                               class="form-control"
+                               name="txtSequence" ng-model="Sequence" min="0" />
+                    </div>
+                    @*<span class="error" ng-show="(frmApprovalSetup.$dirty||submitted) && frmApprovalSetup.txtSequence.$error.required">*</span>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="IsApprovalDetailChkBox == '1'">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-10 control-label"></label>
+                <div class="col-md-2">
+                    <input type="button" id="add" class="btn btn-success" value="Add" ng-click="add()" ng-disabled="frmApprovalSetup.$invalid" />
+                    <input type="button" id="clearDetail" class="btn btn-danger" value="Clear" ng-click="ClearDetail()" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

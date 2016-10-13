@@ -1,0 +1,125 @@
+﻿<form novalidate name="frmQuotation" id="Quotation" class="form-horizontal row-border">
+
+    <input type="hidden" id="QuotationNoID" readonly="readonly" ng-model="QuotationNoID" />
+
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"> No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="QuotationNo"
+                           class="form-control"
+                           readonly
+                           name="QuotationNo" ng-model="CustomQuotationNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">SPR No</label>
+                <div class="col-md-6">
+                    <select id="ddlSPR" class="select2-select-00"
+                            ng-model="SPR"
+                            name="ddlSPR"
+                            ng-change="GetRequisitionItemList()"
+                            data-placeholder="--Select SPR No--"
+                            style="width: 100%" ng-options="spr.RequisitionID as spr.RequisitionNo for spr in listSprNo" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Supplier</label>
+                <div class="col-md-6">
+                    <select id="ddlSupplier" class="select2-select-00"
+                            ng-model="Supplier"
+                            name="ddlSupplier"
+                            @*ng-change="LoadItemBySPRNoChange()"*@
+                            data-placeholder="--Select Supplier--"
+                            style="width: 100%" ng-options="user.UserID as user.UserFullName for user in UserLst" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Quotation Type</label>
+                <div class="col-md-6">
+                    <select id="QuotationType" class="select2-select-00"
+                            ng-model="QuotType"
+                            name="QuotationType"
+                            data-placeholder="--Select Quotation Type--"
+                            style="width: 100%" ng-options="ord.ComboID as ord.ComboName for ord in listOrderType">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Quotation Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtQuotationDate"
+                           class="form-control datepicker"
+                           name="dtQuotationDate" ng-model="QuotationDate" placeholder="dd-MM-yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmQuotationNo.$dirty||submitted) && frmQuotationNo.dtQuotationDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">SPR Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="SPRDt"
+                           class="form-control"
+                           readonly
+                           name="SPRDt" ng-model="SPRDate" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Currency</label>
+                <div class="col-md-6">
+                    <select id="ddlCurrency" class="select2-select-00"
+                            ng-model="CurrencyID"
+                            name="ddlCurrency"
+                            data-placeholder="--Select Currency--"
+                            style="width: 100%" ng-options="cur.Id as cur.CurrencyName for cur in Currency">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Delivery Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="Deldate"
+                           class="form-control"
+                           name="Deldate" ng-model="DeliveryDate" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Description</label>
+        <div class="col-md-9">
+            <textarea rows="2" cols="3"
+                      id="txtPurpose"
+                      class="form-control"
+                      name="txtPurpose" ng-model="Purpose"></textarea>
+        </div>
+    </div>
+
+</form>

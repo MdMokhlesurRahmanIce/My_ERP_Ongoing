@@ -1,0 +1,59 @@
+﻿
+<div class="modal fade" id="ModalConsumption">
+    @*<div class="modal-dialog">*@
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-cogs"></i> {{ConsumptionModalTitle}}</h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="modal-body no-padding">
+               
+               
+                <div class="clearfix"></div>
+                <br />
+                    @*<form novalidate name="frmModalConsumption" id="frmMWY" class="form-horizontal row-border"></form>*@
+                    <div ui-grid="gridOptionsCnsumption"
+                         ui-grid-resize-columns
+                         ui-grid-auto-resize
+                         ui-grid-move-columns
+                         ui-grid-exporter
+                         ui-grid-pinning class="grid"></div>
+                </div>
+            <div class="modal-footer modal-footer-ext">
+
+                <br />
+                <div class="col-md-5">                   
+                        <input type="text"
+                               style="width: 100%"
+                               id="txtbxmodalDescrpiton"
+                               class="form-control"
+                               name="txtbxmodalDescrpiton" ng-model="txtbxmodalDescrpiton"
+                               placeholder="Description" />
+                 
+
+                </div>
+                <div class="col-md-5">
+                   
+                        <input type="text"
+                               style="width: 100%"
+                               id="txtbxmodalNote"
+                               class="form-control"
+                               name="txtbxmodalNote" ng-model="txtbxmodalNote"
+                               placeholder="Note" />
+                    
+
+                </div>
+                <div class="col-md-2">
+                    <span id="save" class="btn btn-success margin-right-btn" ng-click="SaveConsumption()">
+                        <i class="icon-save"></i> Save
+                    </span>
+                    </div>
+                    <div class="clearfix" style="padding-bottom:10px;"></div>
+
+                </div>
+        </div>
+    </div>
+</div>
+

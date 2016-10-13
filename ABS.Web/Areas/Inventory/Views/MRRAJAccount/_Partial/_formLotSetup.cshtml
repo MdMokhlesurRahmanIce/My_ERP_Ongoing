@@ -1,0 +1,103 @@
+﻿
+
+<div class="modal fade" id="LotSetupModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{LotSetup}}</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate name="frmLotSetupModal" id="LotSetupModal" class="form-horizontal row-border">
+                    <input type="hidden" id="LotID" readonly="readonly" />
+                   
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Lot No </label>
+                                    <div class="col-md-7">
+                                        <input type="text"
+                                               id="txtLotNo"
+                                               class="form-control"
+                                               name="txtLotNo" ng-model="LotNo" min="0" required />
+                                    </div>
+                                    <span class="error" ng-show="(frmLotSetupModal.$invalid||submitted) && frmLotSetupModal.txtLotNo.$error.required">*</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Decription </label>
+                                    <div class="col-md-7">
+                                        <input type="text"
+                                               id="txtLotDecription"
+                                               class="form-control"
+                                               name="txtLotDecription" ng-model="LotDecription" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="col-md-7">
+                                        <input type="button" id="Add" class="btn btn-success margin-right-btn" value="{{btnLotModal}}" ng-click="SaveLot()" ng-disabled="frmLotSetupModal.$invalid" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Lot Type </label>
+                                    <div class="col-md-7">
+                                        <select id="ddlLotType" class="select2-select-00"
+                                                ng-model="lstLotTypeList"
+                                                name="ddlLotType"
+                                                data-placeholder="--Select Lot Type--"
+                                                ng-change="LotTypeChanges()"
+                                                style="width: 100%" ng-options="g.LotTypeID as g.LotTypeName for g in listLotType" required>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <span class="error" ng-show="(frmLotSetupModal.$dirty||submitted) && frmLotSetupModal.ddlLotType.$error.required">*</span>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Batch </label>
+                                    <div class="col-md-7">
+                                        <select id="ddlBatchInLot" class="select2-select-00"
+                                                ng-model="lstBatchInLotList"
+                                                name="ddlBatchInLot"
+                                                data-placeholder="--Select Batch Type--"
+                                                ng-change="BatchInLotChanges()"
+                                                style="width: 100%" ng-options="g.BatchID as g.BatchNo for g in listBatchInLot">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    @*<span class="error" ng-show="(frmLotSetupModal.$dirty||submitted) && frmLotSetupModal.ddlLotType.$error.required">*</span>*@
+                                </div>
+
+                            </div>
+                        </div>
+                     
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

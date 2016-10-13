@@ -1,0 +1,61 @@
+﻿
+
+    <table class="table  table-hover general-table">
+        <thead>
+            <tr>
+               
+                <th style="display:none">Item ID</th>
+                <td style="display:none">Unit ID</td>
+                <td style="display:none">Lot ID</td>
+                <td style="display:none">Batch ID</td>               
+                <th>SL.</th>
+                <th>Item</th>
+                <th>unit</th>
+                <th>Lot No</th>
+                <th>Batch</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="dataModel in ListRequisitionDetails">
+                <td style="display:none">{{dataModel.ItemID}}</td>
+                <td style="display:none">{{dataModel.UnitID}}</td>
+                <td style="display:none">{{dataModel.LotID}}</td>
+                <td style="display:none">{{dataModel.BatchID}}</td>               
+                <td>{{$index+1}}</td>            
+                <td>{{dataModel.ItemName}}</td>
+                <td>{{dataModel.UnitName}}</td>
+                <td>{{dataModel.LotNo}}</td>
+                <td>{{dataModel.BatchNo}}</td>
+                <td>{{dataModel.Qty}}</td>
+                <td>{{dataModel.UnitPrice}}</td>
+                <td>{{dataModel.Amount}}</td>
+                <td style="text-align:right; color:white">
+
+                    <span class="label label-warning label-mini">
+                        <a ng-href="#RequisitionDetailModal" data-toggle="modal" class="bs-tooltip" title="Edit Info" ng-click="EditRequisitionItems(dataModel)">
+                            <i class="icon-pencil"></i>
+                        </a>
+                    </span>
+
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                            <i class="icon-trash" ng-click="deleteRowDetail($index)"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>

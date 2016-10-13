@@ -1,0 +1,111 @@
+﻿
+
+<div class="modal fade" id="BatchSetupModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{BatchSetup}}</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate name="frmBatchSetupModal" id="BatchSetupModal" class="form-horizontal row-border">
+                    <input type="hidden" id="BatchID" readonly="readonly" />
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Manufacture date </label>
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           id="dtManufacDate"
+                                           class="form-control datepicker"
+                                           name="dtManufacDate" ng-model="ManufactureDate" placeholder="dd-MM-yyyy" value="{{ManufactureDate | date:'dd-MM-yyyy'}}" required />
+                                </div>
+                                <span class="error" ng-show="(frmBatchSetupModal.$dirty||submitted) && frmBatchSetupModal.dtManufacDate.$error.required">*</span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Batch No</label>
+                                <div class="col-md-7">
+                                    <input type="number"
+                                           id="txtBatchNo"
+                                           class="form-control"
+                                           name="txtBatchNo" ng-model="BatchNo" min="0" required />
+                                </div>
+                                <span class="error" ng-show="(frmBatchSetupModal.$invalid||submitted) && frmBatchSetupModal.txtBatchNo.$error.required">*</span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-7">
+                                    <input type="button" id="Add" class="btn btn-success margin-right-btn" value="{{btnBatchModal}}" ng-click="SaveBatch()" ng-disabled="frmBatchSetupModal.$invalid" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Expaire date </label>
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           id="dtExpaireDate"
+                                           class="form-control datepicker"
+                                           name="dtExpaireDate" ng-model="ExpaireDate" placeholder="dd-MM-yyyy" value="{{ExpaireDate | date:'dd-MM-yyyy'}}" required />
+                                </div>
+                                <span class="error" ng-show="(frmBatchSetupModal.$dirty||submitted) && frmBatchSetupModal.dtExpaireDate.$error.required">*</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Decription </label>
+                                <div class="col-md-7">
+                                    <input type="text"
+                                           id="txtBatchDecription"
+                                           class="form-control"
+                                           name="txtBatchDecription" ng-model="BatchDecription" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="input17">Batch Type </label>
+                                <div class="col-md-7">
+                                    <select id="ddlBatchType" class="select2-select-00"
+                                            ng-model="lstBatchTypeList"
+                                            name="ddlBatchType"
+                                            data-placeholder="--Select Batch Type--"
+                                            ng-change="BatchTypeChanges()"
+                                            style="width: 100%" ng-options="g.BatchTypeID as g.BatchTypeName for g in listBatchType" required>
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <span class="error" ng-show="(frmBatchSetupModal.$dirty||submitted) && frmBatchSetupModal.ddlBatchType.$error.required">*</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

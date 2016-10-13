@@ -1,0 +1,65 @@
+﻿
+<form novalidate name="frmUnitOfMeasurement" id="unitOfMeasurementForm" class="form-horizontal row-border">
+    <input type="hidden" id="UOMID" readonly="readonly" ng-model="UOMID" />
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Select UOM Group</label>
+        <div class="col-md-7">
+            <select id="uOMGroup"
+                    class="select2-select-00"
+                    name="uomgroup"
+                    ng-model="UOMGroup"
+                    data-placeholder="--Select Group--"
+                    ng-options="ug.UOMGroupID as ug.UOMGroupName for ug in  listUOMGroup" required>
+                <option></option>
+            </select>
+        </div>
+        <span class="error" ng-show="(frmUnitOfMeasurement.$dirty||submitted) && frmUnitOfMeasurement.uomgroup.$error.required">*</span>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Custom Code</label>
+        <div class="col-md-7">
+            <input type="text"
+                   id="customCode"
+                   class="form-control"
+                   name="customCode" ng-model="CustomCode" required ng-disabled="true" />
+        </div>
+        <span class="error" ng-show="(frmUnitOfMeasurement.$dirty||submitted) && frmUnitOfMeasurement.customCode.$error.required">*</span>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">UOM Name</label>
+        <div class="col-md-7">
+            <input type="text"
+                   id="uOMName"
+                   class="form-control"
+                   name="uOMName" ng-model="UOMName" required />
+        </div>
+        @*<span class="error" ng-show="(frmSales.$dirty ||submitted) && frmCustomer.$error.email">Invalid type..!</span>*@
+        <span class="error" ng-show="(frmUnitOfMeasurement.$dirty ||submitted) && frmUnitOfMeasurement.uOMName.$error.required">*</span>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">UOM Short Name</label>
+        <div class="col-md-7">
+            <input type="text"
+                   id="uOMShortName"
+                   class="form-control"
+                   name="uOMShortName" ng-model="UOMShortName" required />
+        </div>
+        <span class="error" ng-show="(frmUnitOfMeasurement.$dirty||submitted) && frmUnitOfMeasurement.uOMShortName.$error.required">*</span>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-7">
+            <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmUnitOfMeasurement.$invalid" />
+            <input type="button" id="save" class="btn btn-success" value="{{btnUnitOfMeasurementSaveText}}" ng-click="save()" ng-disabled="frmUnitOfMeasurement.$invalid" />
+        </div>
+    </div>
+</form>

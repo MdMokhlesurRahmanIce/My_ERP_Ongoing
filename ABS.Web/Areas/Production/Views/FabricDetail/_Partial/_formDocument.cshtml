@@ -1,0 +1,49 @@
+﻿<form novalidate name="frmDocument" id="frmDocument" class="form-horizontal row-border">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Doc Name</label>
+            <div class="col-md-4">
+                <input type="text" style="width: 100%"  id="txtDocName"  class="form-control"  name="txtDocName" ng-model="txtDocName" placeholder="Doc Name" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input">Path</label>
+            <div class="col-md-4">
+                <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+            </div>
+            <div class="col-md-4" style="text-align:right; ">
+                <input style="padding: 1px 20px !important;" type="button" id="btnAdd" class="btn btn-success " value="Add" ng-click="AddDocument()" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable">
+            <thead>
+                <tr>
+                    <th class="text-center col-md-2">SL.</th>
+                    <th class="text-center col-md-4">Document Name</th>
+                    <th class="text-center col-md-4">Image</th> 
+                    <th style="text-align:right;">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dataModel in DocumentList  | orderBy:'IsDeleted' "  ng-if="!dataModel.IsDeleted" >
+                    <td class="text-center col-md-2">{{$index+1}}</td>
+                    <td class="text-center col-md-4">{{dataModel.DocName}}</td>
+                    <td class="text-center col-md-4">{{dataModel.DocumentName}}</td>
+                    <td style="text-align:right; color:white">
+                        <span class="label label-danger label-mini">
+                            <a href="#" class="bs-tooltip" title="Delete" ng-click="deleteDocument(dataModel)">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+

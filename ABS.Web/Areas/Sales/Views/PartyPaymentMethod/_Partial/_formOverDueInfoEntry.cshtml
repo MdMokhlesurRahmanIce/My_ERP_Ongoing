@@ -1,0 +1,206 @@
+﻿
+<form novalidate name="frmOverDue" id="pPM" class="form-horizontal row-border">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Company</label>
+                <div class="col-md-6">
+                    <select id="CompanyList_OD" class="select2-select-00"
+                            ng-model="lstCompanyList_OD"
+                            ng-change="getChangedCompanyID_OD()"
+                            name="companyList_OD"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany_OD" required>
+                        <option></option>
+                        @*<option ng-repeat="com in listCompany_OD" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xCompanyID_OD" id="companyId_OD" name="companyId_OD" required />*@
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.companyList_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Bill No</label>
+                <div class="col-md-6">
+                    <select id="billList_OD" class="select2-select-00"
+                            ng-model="lstBillList_OD"
+                            ng-change="getChangedBillID_OD()"
+                            name="billList_OD"
+                            data-placeholder="--Select Bill No--"
+                            style="width: 100%"
+                            ng-options="bill.BillMasterId as bill.BillNo for bill in ListBill_OD" required>
+                        <option></option>
+                        @*<option ng-repeat="bill in ListBill_OD" value="{{bill.BillMasterId}}">{{bill.BillNo}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xBillMasterId_OD" id="billMasterId_OD" name="billMasterId_OD" required />*@
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.billList_OD.$error.required">*</span>
+            </div> 
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Maturity Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtMaturityDate_OD"
+                           class="form-control datepicker"
+                           name="dtMaturityDate_OD" ng-model="MaturityDate_OD" ng-click="setTotalODDaysParty_OD()" ng-keyup="setTotalODDaysParty_OD()" ng-change="setTotalODDaysParty_OD()" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.dtMaturityDate_OD.$error.required">*</span>
+            </div> 
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Payment Recieved Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtPaymentRecievedDate_OD"
+                           class="form-control datepicker"
+                           name="dtPaymentRecievedDate_OD" ng-model="PaymentRecievedDate_OD" ng-click="setTotalODDaysBank_OD()" ng-keyup="setTotalODDaysBank_OD()" ng-change="setTotalODDaysBank_OD()" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.dtPaymentRecievedDate_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Payment Value</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="paymentValue_OD"
+                           class="form-control"
+                           name="paymentValue_OD" ng-model="PaymentValue_OD" ng-keyup="setShortFall_OD()" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.paymentValue_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total OD Days(Party)</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="totalODDaysParty_OD"
+                           class="form-control"
+                           name="totalODDaysParty_OD" ng-model="TotalODDaysParty_OD" readonly required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.totalODDaysParty_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total OD Interest(Party)</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="totalODInterestParty_OD"
+                           class="form-control"
+                           name="totalODInterestParty_OD" ng-model="TotalODInterestParty_OD" readonly required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.totalODInterestParty_OD.$error.required">*</span>
+            </div> 
+            
+            <div class="form-group">
+                <label class="col-md-5 control-label">OD Adjustment</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="oDAdjustment_OD"
+                           class="form-control"
+                           name="oDAdjustment_OD" ng-model="ODAdjustment_OD" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.oDAdjustment_OD.$error.required">*</span>
+            </div>          
+
+        </div>
+
+        <div class="col-md-6"> 
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Party Name</label>
+                <div class="col-md-6">
+                    <select id="BuyerList_OD" class="select2-select-00"
+                            ng-model="lstBuyerList_OD"
+                            ng-change="loadBill_OD(0)"
+                            name="buyerList_OD"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%"
+                            ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer_OD" required>
+                        <option></option>
+                        @*<option ng-repeat="buy in ListBuyer_OD" value="{{buy.UserID}}">{{buy.UserFirstName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xUserID_OD" id="buyerId_OD" name="buyerId_OD" required />*@
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.buyerList_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Payment Mode</label>
+                <div class="col-md-6">
+                    <select id="paymentMode_OD" class="select2-select-00"
+                            ng-model="lstpaymentMode_OD"
+                            name="paymentMode_OD"
+                            ng-change="getChangedComboID_OD(0)"
+                            data-placeholder="--Select Payment Mode--"
+                            style="width: 100%"
+                            ng-options="lpm.ComboID as lpm.ComboName for lpm in ListPaymentMode_OD" required>
+                        <option></option>
+                        @*<option ng-repeat="lpm in ListPaymentMode_OD" value="{{lpm.ComboID}}">{{lpm.ComboName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xComboID_OD" id="comboID_OD" name="comboID_OD" required />*@
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.paymentMode_OD.$error.required">*</span>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-5 control-label">Payment Issue Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtPaymentIssueDate_OD"
+                           class="form-control datepicker"
+                           name="dtPaymentIssueDate_OD" ng-model="PaymentIssueDate_OD" ng-click="setTotalODDaysParty_OD()" ng-keyup="setTotalODDaysParty_OD()" ng-change="setTotalODDaysParty_OD()" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.dtPaymentIssueDate_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Adjustment Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtAdjustmentDate_OD"
+                           class="form-control datepicker"
+                           name="dtAdjustmentDate_OD" ng-model="AdjustmentDate_OD" ng-click="setTotalODDaysBank_OD()" ng-keyup="setTotalODDaysBank_OD()" ng-change="setTotalODDaysBank_OD()" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.dtAdjustmentDate_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Shortfall</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="shortfall_OD"
+                           class="form-control"
+                           name="shortfall_OD" ng-model="Shortfall_OD" readonly required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.shortfall_OD.$error.required">*</span>
+            </div>   
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total OD Days(Bank)</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="totalODDaysBank_OD"
+                           class="form-control"
+                           name="totalODDaysBank_OD" ng-model="TotalODDaysBank_OD" readonly required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.totalODDaysBank_OD.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total OD Interest(Bank)</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="totalODInterestBank_OD"
+                           class="form-control"
+                           name="totalODInterestBank_OD" ng-model="TotalODInterestBank_OD" readonly required />
+                </div>
+                <span class="error" ng-show="(frmOverDue.$dirty||submitted) && frmOverDue.totalODInterestBank_OD.$error.required">*</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,48 @@
+﻿ 
+<div class="form-group"  ng-if="ListMrrDetails.length>0" >
+    <label class="col-md-1 control-label defaultAlign">Time</label>
+    <div class="col-md-3">
+        <input type="time" id="Time" class="form-control" name="Time" ng-model="Time" placeholder="Time" />
+    </div>
+</div>
+<div class="row"></div>
+<table @*class="table  table-hover general-table col-md-12"*@
+       class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable"
+
+       ng-if="ListMrrDetails.length>0">
+    <thead class="grid-top-panel">
+        <tr>
+            <th class="text-center col-md-3">Process</th>
+            <th class="text-center col-md-3">Operation</th>
+            <th class="text-center col-md-3">Current Qty</th>
+            <th class="text-center col-md-3">Unit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListMrrDetails">
+            <td class="col-md-3">
+                    <select id="dyingProcessDropDown"
+                            ng-model="dataModel.DyingProcessID"
+                            name="DyingProcessDropDown" data-tags="false"
+                            data-placeholder="--Select Tank--"
+                            style="width: 100%;    min-height: 25px;"
+                             ng-options="item.DyingProcessID as item.ProcessName for item in ProcessTypeList "></select>
+            </td>
+            <td class="col-md-3">
+                    <select id="dyingOperationDropDown"
+                            ng-model="dataModel.OperationID"
+                            name="DyingOperationDropDown" data-tags="false"
+                            data-placeholder="--Select Operation--"
+                            style="width: 100%;    min-height: 25px;"
+                            ng-options="item.OperationID as item.OperationName for item in OperationList"></select>
+            </td>
+            <td class="col-md-3">
+                <input type="text" id="Quantity" name="Quantity" class="form-control" ng-model="dataModel.Quantity" />
+            </td>
+            <td class="col-md-3">
+                <input type="text" id="UnitID" name="UnitID" class="form-control" ng-model="dataModel.UnitID"  />
+            </td>
+        </tr>
+
+    </tbody>
+</table>

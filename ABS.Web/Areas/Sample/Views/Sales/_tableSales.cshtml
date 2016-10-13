@@ -1,0 +1,46 @@
+﻿<div class="col-md-12">
+    <input id="saleSearch" ng-model="saleSearch" type="text" class="form-control search" placeholder="Search...">
+
+    <table class="table  table-hover general-table">
+        <thead>
+            <tr>
+                <th style="display:none">SaleID</th>
+                <th>Sale Type</th>
+                <th>Sale No</th>
+                <th>Sale Date</th>
+                <th style="text-align:right;">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dataModel in listSales|filter:saleSearch">
+                <td style="display:none">{{dataModel.SaleID}}</td>
+                <td>{{dataModel.SaleType}}</td>
+                <td>{{dataModel.SaleNo}}</td>
+                <td>{{dataModel.SaleDate | date : 'MM/dd/yyyy'}}</td>
+                <td style="text-align:right; color:white">
+                    <span class="label label-warning label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Edit Info">
+                            <i class="fa fa-pencil" ng-click="getSale(dataModel)"></i>
+                        </a>
+                    </span>
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" class="bs-tooltip" title="Delete" ng-click="delete(dataModel)">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p ng-show="(listSales | filter:saleSearch).length == 0" style="color:red">Nothing found!</p>
+
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            @*<img src="~/Content/img/ng-loader.gif" />*@
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>
+</div>

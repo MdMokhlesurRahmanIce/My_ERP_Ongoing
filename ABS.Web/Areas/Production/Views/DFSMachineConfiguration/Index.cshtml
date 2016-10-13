@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Dying, Finishing & Sizing Machine Configurtion";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="DFSMachineConfigurationCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitleMaster}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                                @*<input type="button" id="reset" class="btn btn-danger margin-right-btn" value="Reset" ng-click="clear()" />
+                                <input type="button" id="Show" class="btn btn-info margin-right-btn" value="{{btnShowList}}" ng-click="ShowHide()" />
+                                <input type="button" id="save" class="btn btn-success margin-right-btn" value="{{btnSaveText}}" ng-if="UserCommonEntity.EnableInsert" ng-show="IsShowSave" ng-click="Save()" ng-disabled="IsSaveDisable" />
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="IsfrmShow">
+                        @Html.Partial("~/Areas/Production/Views/DFSMachineConfiguration/_Partial/_formDFSMachineConfiguration.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row" ng-show="IsShowDetail">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitleDetail}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add New Row" ng-click="AddItemToList()" ng-disabled="frmWastageEntry.$invalid" />
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Production/Views/DFSMachineConfiguration/_Partial/_tableDFSMachineConfigurationDetail.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col-md-12 -->
+        <div class="row" ng-hide="IsHidden">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleMaster}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/DFSMachineConfiguration/_Partial/_tableDFSMachineConfigurationMaster.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+    </div>
+</div>
+<!-- /Page Content -
+
+<!-- /Page Content -->
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/DFSMachineConfigurationCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+}
+
+
+
+
+

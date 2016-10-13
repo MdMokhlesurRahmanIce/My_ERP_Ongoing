@@ -1,0 +1,7 @@
+﻿
+<ul class="fileCollection">
+    <li ng-repeat="dataModel in ListFileDetails|filter:FileDetailSearch">
+        {{dataModel.DocumentName}}
+        <a href="{{dataModel.FullDocumentPath}}" title="Open in a new Tab" target="_blank"><img src="~/Content/img/openinnewtab.png" /></a>
+    </li>
+</ul>

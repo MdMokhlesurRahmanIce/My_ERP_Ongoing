@@ -1,0 +1,151 @@
+﻿
+<form novalidate name="frmOpeningStock" id="openingStockNo" class="form-horizontal row-border">
+    <input type="hidden" id="mrrID" readonly="readonly" ng-model="MrrID" />  
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Stock No </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtOpeningStockNo"
+                           class="form-control"
+                           name="txOpeningStockNo" ng-model="HMRRNo" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"> Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtOpeningStockDate"
+                           class="form-control datepicker"
+                           name="dtOpeningStockDate" ng-model="OpeningStockDate" required />
+                </div>
+                <span class="error" ng-show="(frmOpeningStock.$dirty||submitted) && frmOpeningStock.dtOpeningStockDate.$error.required">*</span>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4">
+
+             
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Remarks </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtRemarks"
+                           class="form-control"
+                           name="txtRemarks" ng-model="Remarks" />
+                </div>
+            </div> 
+
+
+
+            @*<div class="form-group" ng-show="IsSPRType">
+                    <label class="col-md-5 control-label">L/C No </label>
+                    <div class="col-md-6">
+
+                        <select id="ddlLCNo" class="select2-select-00"
+                                ng-model="LCNo"
+                                name="ddlLCNo"
+                                data-placeholder="--Select LC No--"
+                                style="width: 100%" ng-options="lc.POID as lc.LCorVoucherorLcafNo for lc in listLCNo" ng-disabled="true" ng-readonly="true">
+                            <option></option>
+                        </select>
+
+                    </div>
+                </div>*@
+
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Description </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+            </div> 
+
+
+        </div>
+
+        <div class="col-md-4">
+             
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Stock By</label> 
+
+                <div class="col-md-7">
+                    <select id="ddlStockBy" class="select2-select-00"
+                            ng-model="ngmStockByList"
+                            name="ddlStockBy"
+                            data-placeholder="--Select Stock By--"
+                            style="width: 100%" ng-options="sgt.UserID as sgt.UserFullName for sgt in listStockBy" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmOpeningStock.$dirty||submitted) && frmOpeningStock.ddlStockBy.$error.required">*</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    @*<div class="row">
+        <div class="col-md-12">
+
+            <div class="form-group">
+                <label class="col-md-1 control-label" style="width:11%;">Remarks </label>
+
+                <div class="col-md-10">
+                    <textarea rows="2" cols="3"
+                              id="txtRemarks"
+                              class="form-control"
+                              name="txtRemarks" ng-model="Remarks" style="width:103.5%;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Item Code</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtItemCode"
+                           class="form-control"
+                           name="txtItemCode" ng-model="ItemCode" ng-blur="getItmDetailsByItmCode()" />
+
+                    <div class="loadmore_ddl">
+                        <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                            <img src="~/Content/img/ng-loader.gif" />
+                            {{lblMessageForSampleNo}}
+                        </div>
+                    </div>
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+
+                <span>
+                    <input type="button" id="Add" class="btn btn-info margin-right-btn" value="Add" ng-click="AddItem()" />
+                </span>
+            </div>
+        </div>
+    </div>
+</form>

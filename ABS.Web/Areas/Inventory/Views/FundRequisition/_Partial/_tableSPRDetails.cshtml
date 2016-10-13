@@ -1,0 +1,52 @@
+﻿
+
+<table class="table  table-hover general-table">
+        <thead>
+            <tr>
+                <th style="display:none">ItemID</th>
+                <td style="display:none">UnitID</td>
+                <th>SL No:</th>               
+                <th>Item</th>
+                <th>Origin Country</th>
+                <th>HS Code</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Currency</th>    
+                <th>Amount</th>             
+                @*<th style="text-align:right">Delete</th>*@             
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dataModel in ListRequisitionItems">
+                <td style="display:none">{{dataModel.ItemID}}</td>
+                <td style="display:none">{{dataModel.UnitID}}</td>
+                <td>{{ $index + 1 }}</td>
+                <td>{{dataModel.ItemName}}</td>
+                <td>{{dataModel.UOMName}}</td>
+                <td>{{dataModel.RequisitionQty}}</td>
+                <td>{{dataModel.IssuedQty}}</td>
+                <td>{{dataModel.PendingIssueQty}}</td>
+                <td>{{dataModel.UnitPrice}}</td>
+                <td><input type="number" id="txtIssueQty" min="0"  style="width:150px" name="txtIssueQty" ng-blur="GetIssueAmount(dataModel)" class="form-control" ng-model="dataModel.IssueQty" /></td>
+                 <td>{{dataModel.Amount|number:2}}</td>
+                <td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                            <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p ng-show="(ListRequisitionItems).length == 0" style="color:red">Nothing found!</p>
+
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>

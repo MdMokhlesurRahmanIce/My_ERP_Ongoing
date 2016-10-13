@@ -1,0 +1,71 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-m">
+    <thead class="grid-top-panel" style="width:100%">
+        <tr>
+            <th>Chemical</th>
+            <th>Required&nbsp;Qty</th>
+            <th>Supplier</th>
+            <th>Batches</th>
+            <th>Unit</th>
+            <th>Inputed&nbsp;Qty</th>
+            <th>Current&nbsp;Stock</th>
+            @*<th>Unit&nbsp;Price</th>*@
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody style="width:100%">
+        <tr ng-repeat="dataModel in tempChemList" style="width:100%">
+            <td>{{dataModel.ItemName}}</td>
+            <td>{{dataModel.MinQty}} - {{dataModel.MaxQty}}</td>@*{{dataModel.MinQty"}}-*@
+            <td>
+                <div style="width:100px">
+                    <select id="ddlSupplierList" class="select2-select"
+                            ng-model="dataModel.SupplierID"
+                            name="ddlSupplierList"
+                            data-placeholder="--Select Supplier--"
+                            ng-change="loadCurrentStock(dataModel)"
+                            style="width: 100%" ng-options=" user.SupplierID as user.SupplierName for user in dataModel.Supplier">
+                        <option>--Select Supplier--</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <select id="ddlBatchList" class="select2-select"
+                            ng-model="dataModel.BatchID"
+                            name="ddlBatchList"
+                            data-placeholder="--Select Batches--"
+                            ng-change="loadCurrentStock(dataModel)"
+                            style="width: 100%"
+                            ng-options="user.BatchID as user.BatchNo for user in dataModel.Batch">
+                        <option>--Select Batches--</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <input type="hidden" id="UnitList" name="UnitList" class="form-control" ng-model="dataModel.UnitID" />
+                {{dataModel.UOMName}}
+            </td>
+            <td><input type="number" id="Qty" name="Qty" class="form-control" ng-model="dataModel.Qty" ng-change="CalculateStock(dataModel)" ng-readonly="dataModel.IsQtyReadOnly" /></td>
+            <td><input type="number" id="CurrentStock" name="CurrentStock" class="form-control" ng-model="dataModel.CurrentStock" readonly /></td>
+            <td><input type="hidden" id="UnitPrice" name="UnitPrice" class="form-control" ng-model="dataModel.UnitPrice" readonly /></td>
+            @*<td>
+                    <div style="width:100px">
+                        <select id="UnitList"
+                                ng-model="dataModel.UnitID"
+                                name="UnitList"
+                                style="width: 100%"
+                                ng-options="Un.UOMID as Un.UOMName for Un in ListUOMD">
+                            <option></option>
+                        </select>
+                    </div>
+                </td>*@
+            @*<td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                            <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                        </a>
+                    </span>
+                </td>*@
+        </tr>
+    </tbody>
+</table>

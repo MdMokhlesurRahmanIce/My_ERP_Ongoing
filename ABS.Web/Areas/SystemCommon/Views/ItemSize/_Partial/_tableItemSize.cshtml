@@ -1,0 +1,41 @@
+﻿
+<input id="itemSizeSearch" ng-model="itemSizeSearch" type="text" class="form-control search" placeholder="Search...">
+
+<table class="table  table-hover table-striped">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">SizeID</th>
+            <th>Name</th>
+            <th style="text-align:right;">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in listItemSize|filter:itemSizeSearch">
+            <td style="display:none">{{dataModel.SizeID}}</td>
+            <td>{{dataModel.SizeName}}</td>
+            <td style="text-align:right; color:white">
+                <span class="label label-warning label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Edit Info">
+                        <i class="icon-pencil" ng-click="getItemSize(dataModel)"></i>
+                    </a>
+                </span>
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" class="bs-tooltip" title="Delete" ng-click="delete(dataModel)">
+                        <i class="icon-trash"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListItemSize | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        @*<img src="~/Content/img/ng-loader.gif" />*@
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

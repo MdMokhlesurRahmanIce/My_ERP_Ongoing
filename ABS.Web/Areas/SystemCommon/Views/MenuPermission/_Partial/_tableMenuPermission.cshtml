@@ -1,0 +1,53 @@
+﻿
+<input id="custSearch" ng-model="custSearch" type="text" class="form-control search" placeholder="Search...">
+<table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable ">
+    <thead class="grid-top-panel">
+        <tr>
+            @*<th class="text-center col-md-1">
+                    <div><span><input type="checkbox" ng-model="checkAllRow" ng-click="checkAllRowClick(checkAllRow)"></span></div>
+                </th>*@
+            <th class="text-center col-md-1">SL.</th>
+            @*<th class="text-center col-md-4">Module</th>*@
+            <th class="text-center col-md-6">Menu</th>
+            <th class="text-center col-md-1" id="chkEnableAllView"><input type="checkbox" class="uniform" ng-model="EnableAllView" ng-click="EnableAllViewClicked(EnableAllView)" />   View  </th>
+            <th class="text-center col-md-1" id="chkEnableAllInsert"><input type="checkbox" class="uniform" ng-model="EnableAllInsert" ng-click="EnableAllInsertClicked(EnableAllInsert)" /> insert</th>
+            <th class="text-center col-md-1" id="chkEnableAllUpdate"> <input type="checkbox" class="uniform" ng-model="EnableAllUpdate" ng-click="EnableAllUpdateClicked(EnableAllUpdate)" /> Update</th>
+            <th class="text-center col-md-1" id="chkEnableAllDelete"> <input type="checkbox" class="uniform" ng-model="EnableAllDelete" ng-click="EnableAllDeleteClicked(EnableAllDelete)" /> Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListPermission | filter:custSearch">
+            @*<td class="checkbox-column col-md-1 ">
+                    <div><span><input type="checkbox" ng-model="checkRow" ng-click="checkRowClick($index,checkRow)"></span></div>
+                </td>*@
+            <td class="col-md-1">{{$index+1}}</td>
+            @*<td class="col-md-4">{{dataModel.ModuleName}}</td>*@
+            <td class="col-md-6">{{dataModel.MenuName}}</td>
+            <td class="checkbox-column col-md-1">
+                @*<div class="checker"><span class="checked"><input class="uniform" type="checkbox"></span></div>*@
+                <div><span><input type="checkbox" ng-model="dataModel.EnableView" ng-click="gridViewCheckBoxClicked(dataModel.EnableView)"></span></div>
+            </td>
+            <td class="checkbox-column col-md-1 ">
+                <div><span><input type="checkbox" ng-model="dataModel.EnableInsert" ng-click="gridCheckBoxClicked(dataModel.EnableInsert)"></span></div>
+            </td>
+            <td class="checkbox-column col-md-1">
+                <div><span><input type="checkbox" ng-model="dataModel.EnableUpdate" ng-click="gridUpdateCheckBoxClicked(dataModel.EnableUpdate)"></span></div>
+            </td>
+            <td class="checkbox-column col-md-1">
+                <div><span><input type="checkbox" ng-model="dataModel.EnableDelete" ng-click="gridDeleteCheckBoxClicked(dataModel.EnableDelete)"></span></div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListPermission | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

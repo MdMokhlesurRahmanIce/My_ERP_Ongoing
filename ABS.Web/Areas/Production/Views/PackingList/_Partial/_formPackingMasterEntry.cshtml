@@ -1,0 +1,146 @@
+﻿<form novalidate name="frmPackingList" id="frmPackingList" class="form-horizontal row-border">
+    <input type="hidden" id="PackingID" readonly="readonly" ng-model="PackingID" />
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Packing No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="PackingNo"
+                       class="form-control"
+                       name="PackingNo" ng-model="PackingNo" placeholder="New Packing No" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">PI No</label>
+            <div class="col-md-7">
+                <select id="PIList" class="select2-select-00"
+                        ng-model="PIID"
+                        name="PIList"
+                        ng-change="loadPIBasedData(PIID)"
+                        data-placeholder="--Select PI No--"
+                        style="width: 100%;"
+                        ng-options="A.PIID as A.PINO for A in ListPINo"
+                        required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmPackingList.$dirty||submitted) && frmPackingList.PIList.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Article No</label>
+            @*<div class="col-md-7">
+                <select id="ArticleList" class="select2-select-00"
+                        ng-model="ItemID"
+                        name="articleList"
+                        ng-change="loadStyleNo(ItemID)"
+                        data-placeholder="--Select Article No--"
+                        style="width: 100%;"
+                        ng-options="A.ItemID as A.ArticleNo for A in ListArticle"
+                        required>
+                    <option></option>
+                </select>
+            </div>*@
+            <div class="col-md-7" style="display:inline-flex">
+                <input type="text" id="txtArticleNo" class="form-control" name="txtArticleNo" ng-model="ArticleNo" placeholder="--Select Article No--" readonly="readonly" style="width:98%;margin-right:2px;" />
+               
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+            <span class="error" ng-show="(frmPackingList.$dirty||submitted) && frmPackingList.articleList.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Style No</label>
+            <div class="col-md-7">
+                <select id="drpStyleNO" class="select2-select-00" style="width:100%;"
+                        ng-model="FinishingMRRID"
+                        name="drpStyleNo"
+                        data-placeholder="-- Select Style No --"
+                        ng-options="ig.FinishingMRRID as ig.FinishingMRRNo for ig in Styles" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmPackingList.$dirty||submitted) && frmPackingList.drpStyleNo.$error.required">*</span>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">CI No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="cINo"
+                       class="form-control"
+                       name="cINo" ng-model="CINO" placeholder="Commercial Invoice No" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Buyer</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="Buyer"
+                       class="form-control"
+                       name="Buyer" ng-model="BuyerName" placeholder="Buyer" readonly />
+                @*<input type="hidden"ng-model="BuyerID" />*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Export LC No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="exLCNo"
+                       class="form-control"
+                       name="exLCNo" ng-model="ExportLCNo" placeholder="Export LC No" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">LC No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="LCNo"
+                       class="form-control"
+                       name="LCNo" ng-model="LCNo" placeholder="LC No" readonly />
+                @*<input type="hidden" ng-model="LCID" />*@
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Packing Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="PackingDate"
+                       class="form-control datepicker"
+                       name="PackingDate" ng-model="PackingDate" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Remarks</label>
+            <div class="col-md-7">
+                <textarea cols="3" rows="5"
+                       style="width: 100%"
+                       id="Remarks"
+                       class="form-control"
+                       name="Remarks" ng-model="Remarks"
+                       placeholder="Remarks"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "HR Shift";
+}
+
+<div class="container" ng-controller="shiftCtrl">
+
+    <div ng-hide="pageValue" class="ng-hide">
+        <!--Logged User-->
+        <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+        <!--Logged Company-->
+        <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+    </div>
+
+    <!-- Breadcrumbs line -->
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="Dashboard">Dashboard</a>
+            </li>
+            <li class="current">
+                <a href="Shift" title="">Shift</a>
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> Shift</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#shiftModal" data-toggle="modal" ng-click="clear()">
+                                <i class="icon-shield"></i> Add Shift
+                            </span>
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div when-scrolled="loadRecordsUser(1)" class="scroller" data-height="390px" data-always-visible="1" data-rail-visible="0">
+
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div> <!-- /.row -->
+    <!-- /Page Content -->
+    <div class="row">
+        <!-- Modal dialog -->
+        <div class="modal fade" id="shiftModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><i class="icon-user"></i> All Shift</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div> <!-- /.row -->
+</div>
+<!-- /.container -->
+
+
+@section AngularScript{
+    <script src="~/Areas/HRPayroll/ScriptsNg/Controllers/ShiftCtrl.js"></script>
+    <script src="~/Areas/HRPayroll/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/HRPayroll/ScriptsNg/Directives/Scroller.js"></script>
+}

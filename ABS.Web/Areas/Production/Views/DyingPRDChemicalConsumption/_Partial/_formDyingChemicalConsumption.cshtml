@@ -1,0 +1,90 @@
+﻿<form novalidate name="frmPrdDyingConsumptionMaster" id="prdDyingConsumptionMaster" class="form-horizontal row-border">
+    <input type="hidden" id="dyingConsumptionID" readonly="readonly" ng-model="DyingConsumptionID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Set No</label>
+                <div class="col-md-7">
+                    <select id="ddlSetNo" class="select2-select-00" ng-model="ddlSetNo" name="ddlSetNo" data-placeholder="--Select Set No--" style="width:100%" required ng-change="ChangeSetNo(ddlSetNo)"
+                            ng-options="item as item.DyingSetNo for item in ListSetNo track by item.DyingSetID">
+                        <option></option>
+                    </select>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingConsumptionMaster.ddlSetNo.$dirty && frmPrdDyingConsumptionMaster.ddlSetNo.$valid" class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingConsumptionMaster.ddlSetNo.$dirty && frmPrdDyingConsumptionMaster.ddlSetNo.$invalid" class="iconClass" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Indigo Start</label>
+                <div class="col-md-7">
+                    <input type="text" id="indigoStart" class="form-control" name="IndigoStart" ng-model="indigoStart" placeholder="Indigo Start" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Indigo Stop</label>
+                <div class="col-md-7">
+                    <input type="text" id="indigoStop" class="form-control" name="indigoStop" ng-model="indigoStop" placeholder="Indigo Stop" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Article No</label>
+                <div class="col-md-7">
+                    <input type="text" id="articleNo" class="form-control" name="articleNo" ng-model="articleNo" placeholder="Article No" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Black Start</label>
+                <div class="col-md-7">
+                    <input type="text" id="blackStart" class="form-control" name="blackStart" ng-model="blackStart" placeholder="Start" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Black Stop</label>
+                <div class="col-md-7">
+                    <input type="text" id="blackStop" class="form-control" name="blackStop" ng-model="blackStop" placeholder="Stop" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Operation</label>
+                <div class="col-md-7">
+                    <select id="ddlOperation" class="select2-select-00" ng-model="ddlOperation" name="ddlOperation" data-placeholder="--Select Operation--" style="width:100%"
+                            ng-options="item as item.OperationName for item in ListProcess track by item.OperationID">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label ">Department</label>
+                <div class="col-md-7">
+                    <input type="text" id="department" class="form-control" name="department" ng-model="departmentName" placeholder="Department" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Date</label>
+                <div class="col-md-7">
+                    <input type="text" id="Date" name="Date" ng-model="Date" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="clearfix"></div>

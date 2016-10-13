@@ -1,0 +1,61 @@
+﻿<form novalidate name="frmWastageEntry" id="WastageEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="WastageID" readonly="readonly" ng-model="WastageID" />
+    <div class="row">
+        <div class="col-md-4">
+            @*<div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Department</label>
+                <div class="col-md-7">
+                    <select id="ddlDepartment" class="select2-select-00"
+                            ng-model="DepartmentID"
+                            name="ddlDepartment" data-placeholder="--Select Department--"
+                            style="width: 100%" ng-options="com.OrganogramID as com.OrganogramName for com in ListDept" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmWastageEntry.$dirty||submitted) && frmWastageEntry.ddlDepartment.$error.required">*</span>
+            </div>*@
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Department</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="department"
+                           class="form-control"
+                           placeholder="Department"
+                           name="department" ng-model="Department" readonly/>
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-href="#drpModalDept" data-toggle="modal" class="bs-tooltip" title="Select Department" ng-click="loadDepartmentRecords()">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtDate"
+                           class="form-control datepicker"
+                           name="dtDate" ng-model="WastageDate" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmWastageEntry.$dirty||submitted) && frmWastageEntry.dtDate.$error.required">*</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Remarks</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="Remarks"
+                           class="form-control"
+                           name="Remarks" ng-model="Remarks" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

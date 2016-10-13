@@ -1,0 +1,40 @@
+﻿
+<form novalidate name="frmColor" id="colorForm" class="form-horizontal row-border">
+    <input type="hidden" id="itemColorID" readonly="readonly" ng-model="ItemColorID" />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Custom Code</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="customCode"
+                           class="form-control"
+                           name="customCode" ng-model="CustomCode" readonly/>
+                </div>
+                @*<span class="error" ng-show="(frmColor.$dirty||submitted) && frmColor.customCode.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Color Name</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="colorName"
+                           class="form-control"
+                           name="colorName" ng-model="ColorName" />
+                </div>
+                @*<span class="error" ng-show="(frmColor.$dirty ||submitted) && frmColor.colorName.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Color Code</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="colorCode"
+                           class="form-control"
+                           name="colorCode" ng-model="ColorCode"/>
+                </div>
+                @*<span class="error" ng-show="(frmColor.$dirty ||submitted) && frmColor.colorCode.$error.required">*</span>*@
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+﻿
+<table class="table  table-hover general-table">
+    <thead>
+        <tr>
+
+            <th>SL.</th>
+            <th style="display:none"> BeamIssueID</th>
+            <th style="display:none"> SetID</th>
+            <th>Item Name</th>
+            <th>Set NO</th>
+            <th>Set length</th>
+            <th>Is Issued Size</th>
+            <th>Size Issue Date</th>
+            <th>Size Issue Remarks</th>
+
+            <th>Is Received Weaving</th>
+            <th>Weaving Receive Date</th>
+            <th>Weaving Received Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in SizingBeamIssueMaster">
+            <td>{{$index+1}}</td>
+            <td style="display:none">{{dataModel.BeamIssueID}}</td>
+            <td style="display:none">{{dataModel.SetID}}</td>
+            <td>{{dataModel.ItemName}}</td>
+            <td>{{dataModel.SetNo}}</td>
+            <td>{{dataModel.CSetlength}}</td>
+            <td>{{dataModel.IsIssuedSizeStatus}}</td>
+            <td>{{dataModel.ConSizeIssueDate}}</td>
+            <td>{{dataModel.SizeIssueRemarks}}</td>
+
+            <td>{{dataModel.IsReceivedWeavingStatus}}</td>
+            <td>{{dataModel.ConWeavingReceiveDate}}</td>
+            <td>{{dataModel.WeavingReceivedRemarks}}</td>
+
+            <td style="text-align:right; color:white">
+
+                <span class="label label-danger label-mini">
+                    <a href="#" class="bs-tooltip" title="Select" ng-click="GetSizeBeamIssueDetail(dataModel)">
+                        <i class="icon-check"></i>
+                    </a>
+                </span>
+
+            </td>
+
+
+
+
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Chemical Process";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="DyingPRDChemicalProcessCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+        </div>
+        <!-- /Page Header -->
+        <!-- Master Part Begin -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()"><i class="icon-refresh"></i> Reset</span>
+                                <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()"><i id="Icon-Show" class="icon-search"></i>{{btnShowList}}</span>
+                                <span id="save" class="btn btn-success margin-right-btn">
+                                    <i id="Icon-Save" class="icon-save"></i> {{btnSaveText}}
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frmEntry" class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/DyingPRDChemicalProcess/_Partial/_formDyingChemicalProcess.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <!-- Master Part End -->
+    </div>
+    Nothing Else Matter
+</div>
+@*</div>*@
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Controllers/DyingPRDChemicalProcessCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/DyingPRDChemicalProcessService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/commonComboBoxGetDataService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+
+}

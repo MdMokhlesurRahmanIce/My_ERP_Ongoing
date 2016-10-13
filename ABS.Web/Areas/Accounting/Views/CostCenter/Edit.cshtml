@@ -1,0 +1,117 @@
+﻿@model ABS.Models.AccCostCenterInfo
+
+
+
+<div class="container">
+
+
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href='@Url.Action("Index", "Dashboard", new { area = "Accounting" })'>Dashboard</a>
+
+            </li>
+            <li class="current">
+                <a href='@Url.Action("Create", "CostCenter", new { area = "Accounting" })'>Cost Center</a>
+
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    @using (Ajax.BeginForm("Edit", "CostCenter", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessForm" }, new { @class = "form-horizontal" }))
+    {
+    <!-- /form -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i>Cost Center</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @if (Convert.ToBoolean(@ViewBag.UserViewPrivilige))
+                                {
+                                    <a class="btn btn-info margin-right-btn glyphicon glyphicon-arrow-left" href=@Url.Content("~/Accounting/CostCenter") data-toggle="tooltip" title="Back to List">Show List</a>
+                                }
+                                <button type="submit" class="btn btn-success margin-right-btn glyphicon glyphicon-ok" title="Save">Save</button>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+
+
+                                        <div class="form-group">
+
+                                            <div class="col-sm-4 control-label">
+                                                @Html.LabelFor(model => model.CostCenterName)
+                                            </div>
+                                            <div class="col-sm-8">
+                                                @Html.HiddenFor(model => model.Id)
+                                                @Html.TextBoxFor(model => model.CostCenterName, new { @class = "form-control input-sm" })
+                                                @Html.ValidationMessageFor(model => model.CostCenterName)
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+@section AngularScript
+{
+    
+}
+
+
+
+
+

@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Menu List";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="menuCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#menuModal" data-toggle="modal" ng-click="clear()">
+                                    <i class="icon-user"></i> Add New Menu
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding scroller" when-scrolled="loadRecords(1)" data-height="430px" data-always-visible="1" data-rail-visible="0">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Menu/_Partial/_tableMenu.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="menuModal">
+                <div class="modal-dialog modal-dialog-ext">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-user"></i> {{PageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/Menu/_Partial/_formMenu.cshtml")
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmMenu.$invalid" />
+                            <input type="button" id="save" class="btn btn-success" value="{{btnSaveUpdateText}}" ng-click="save()" ng-disabled="frmMenu.$invalid" />
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+ </div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/MenuCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Service/menuService.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+
+    }
+

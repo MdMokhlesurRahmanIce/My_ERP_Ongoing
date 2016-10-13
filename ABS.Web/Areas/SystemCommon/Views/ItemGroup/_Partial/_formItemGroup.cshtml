@@ -1,0 +1,116 @@
+﻿
+
+
+<form novalidate name="itemGroupForm" id="itemGroupForm" class="form-horizontal row-border">
+    <input type="hidden" id="itemGroupID" readonly="readonly" ng-model="ItemGroupID" />
+    <input type="hidden" id="ParentID" readonly="readonly" ng-model="ParentID" />
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input17">Item Type</label>
+        <div class="col-md-6">
+            <select id="ddlitemtype" class="select2-select-00" style="width:230px;" required
+                    ng-model="ddlitemtype"
+                    name="ddlitemtype"
+                    placeholder="-- Select Item Type --"
+                    ng-change="LoadParentesByItemType()" ng-click="SetParentText()" ng-options="ig.ItemTypeID as ig.ItemTypeName for ig in ItemTypes">
+                <option></option>
+            </select>
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="itemGroupForm.ddlitemtype.$dirty && itemGroupForm.ddlitemtype.$valid" class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="itemGroupForm.ddlitemtype.$dirty && itemGroupForm.ddlitemtype.$invalid" class="iconClass" />
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label"> Parent</label>
+        <div class="col-md-6">
+            @*<select id="ddlItemGroup" class="select2-select-00" style="width:230px;"
+                        ng-model="ddlItemGroup"
+                        name="ddlItemGroup"
+                        placeholder="-- Select Parent --"
+                        ng-options="olet.ItemGroupID as olet.ItemGroupName for olet in itemGroupes">
+                    <option></option>
+                </select>*@
+            <input type="text"
+                   style="width:230px;"
+                   id="txtParent"
+                   class="form-control"
+                   placeholder="Group Name"
+                   name="txtParent" ng-model="txtParent" readonly />
+        </div>
+        <span class="label label-success label-mini">
+            <a href="javascript:void(0);" ng-href="#drpModal" data-toggle="modal" class="bs-tooltip" title="Item Parent">
+                <i class="icon-search"></i>
+            </a>
+        </span>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label"> Group Code</label>
+        <div class="col-md-6">
+            <input type="text"
+                   style="width:230px;"
+                   id="txtbxGroupCode"
+                   class="form-control"
+                   placeholder="Group Code"
+                   name="txtbxGroupCode" ng-model="txtbxGroupCode" ng-blur="CheckGroupCode()" />
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="itemGroupForm.modgroupName.$dirty && itemGroupForm.modgroupName.$valid" class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="itemGroupForm.modgroupName.$dirty && itemGroupForm.modgroupName.$invalid" class="iconClass" />
+    </div>
+    @*data-placeholder="--Select--"*@
+    <div class="form-group">
+        <label class="col-md-4 control-label"> Group Name</label>
+        <div class="col-md-6">
+            <input type="text"
+                   style="width:230px;"
+                   id="modgroupName"
+                   class="form-control"
+                   placeholder="Group Name"
+                   name="modgroupName" ng-model="ModGroupName" required />
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="itemGroupForm.modgroupName.$dirty && itemGroupForm.modgroupName.$valid" class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="itemGroupForm.modgroupName.$dirty && itemGroupForm.modgroupName.$invalid" class="iconClass" />
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input17">Ledger</label>
+        <div class="col-md-6">
+            <select id="ddlLedger" class="select2-select-00" style="width:230px;"  
+                    ng-model="ngmLedger"
+                    name="ddlLedger"
+                    placeholder="-- Select Ledger --"
+                    ng-options="lgr.Id as lgr.ACName for lgr in LedgerList">
+                <option></option>
+            </select>
+        </div>
+        @*<img src="~/Content/img/TickMark.png" ng-show="itemGroupForm.ddlLedger.$dirty && itemGroupForm.ddlLedger.$valid" class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="itemGroupForm.ddlLedger.$dirty && itemGroupForm.ddlLedger.$invalid" class="iconClass" />*@
+    </div> 
+
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input17"></label>
+        <div class="col-md-6">
+            <label class="checkbox">
+                <input type="checkbox"
+                       id="cIsActive" name="cIsActive" ng-model="cIsActive" ng-checked="checkVal"> Is Active?
+            </label>
+
+            @*<label class="checkbox-inline">
+                    <input type="checkbox" id="isActive" name="isActive" ng-model="cIsActive" /> IsActive
+                </label>*@
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-6">
+            <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear(itemGroupForm)">
+                <i class="icon-refresh"></i> Reset
+            </span>
+            <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="itemGroupForm.$invalid">
+                <i class="icon-save"></i> {{btnSaveUpdateText}}
+            </span>
+        </div>
+    </div>
+</form>

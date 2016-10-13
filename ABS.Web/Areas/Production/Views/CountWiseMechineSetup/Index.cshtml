@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Count Wise Machine Setup";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="countWiseMachineSetupCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div id="DeliveryOrderDiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                                    @*<input type="button" id="reset" class="btn btn-danger margin-right-btn" value="Reset" ng-click="clear()" />
+                                    <input type="button" id="Show" class="btn btn-info margin-right-btn" value="{{btnShowText}}" ng-click="ShowHide()" />
+                                    <input type="button" id="save" class="btn btn-success margin-right-btn" value="{{btnSaveText}}" ng-if="UserCommonEntity.EnableInsert" ng-click="save()" ng-show="IsSaveShow" ng-disabled="frmMachineSetupEntry.$invalid" />
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsfrmShow">
+                            @Html.Partial("~/Areas/Production/Views/CountWiseMechineSetup/_Partial/_formMachineSetupEntry.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            <div class="row" ng-hide="IsHidden">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleSetMaster}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Production/Views/CountWiseMechineSetup/_Partial/_tableMachineSetupList.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/CountWiseMachineSetupCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+}

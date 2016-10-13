@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Loan Quality Control (QC)";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="qCCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div id="PIDiv">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </span>
+
+                                    @*<span id="show" class="btn btn-info margin-right-btn" ng-href="#PIModal" data-toggle="modal" ng-click="loadActivePIRecords(0)">
+                                            <i class="icon-search"></i> {{btnPIShowText}}
+                                        </span>*@
+
+                                    <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                        <i class="icon-search" ng-show="IsListIcon"></i> <i ng-show="IsCreateIcon" class="icon-plus-sign"></i> {{btnQCShowText}}
+                                    </span>
+
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmQC.$invalid">
+                                        <i class="icon-save"></i> {{btnQCSaveText}}
+                                    </span>
+
+
+                                    @*<input type="button" id="reset" class="btn btn-danger margin-right-btn" value="Reset" ng-click="clear()" />*@
+                                    @*<input type="button" id="Show" class="btn btn-info margin-right-btn" value="{{btnQCShowText}}" ng-click="ShowHide()"   />*@
+                                    @* <input type="button" id="save" class="btn btn-success margin-right-btn" value="{{btnQCSaveText}}" ng-click="save()" ng-disabled="frmQC.$invalid" />*@
+
+
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding" ng-show="IsShow">
+                            @Html.Partial("~/Areas/Inventory/Views/QC/_Partial/_formQC.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            <div class="row" ng-hide="IsHiddenDetail">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleQCDeatails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+
+                            @Html.Partial("~/Areas/Inventory/Views/QC/_Partial/_tableQCDetailsInfo.cshtml")
+
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+
+            <div class="row" ng-hide="IsHidden">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleQCMasters}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+
+                            @Html.Partial("~/Areas/Inventory/Views/QC/_Partial/_tableQCMastrsInfo.cshtml")
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+
+            <div class="row">
+                <!-- Modal dialog -->
+                <div class="modal fade" id="FileModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><i class="icon-folder-open"></i> QC Documents</h4>
+                            </div>
+                            <div class="modal-body no-padding">
+
+                                @Html.Partial("~/Areas/Sales/Views/LC/_Partial/_tableFilesInfo.cshtml")
+
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </div> <!-- /.row -->
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    @*@Html.Partial("~/Areas/Inventory/Views/QC/_Partial/_tableSampleNoInfoModal.cshtml")*@
+                </div> <!-- /.col-md-12 -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </div>
+    </div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Inventory/ScriptsNg/Controllers/QCCtrl.js"></script>
+        @*<script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>*@
+        <script src="~/Areas/Inventory/ScriptsNg/Service/QCService.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Scripts/CustomToastrMessage.js"></script>
+
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+    }

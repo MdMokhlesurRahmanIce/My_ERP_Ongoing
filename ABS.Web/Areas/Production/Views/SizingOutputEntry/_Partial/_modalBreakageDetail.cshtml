@@ -1,0 +1,71 @@
+﻿<div class="modal fade" id="BrekageDetailModal">
+    @*<div class="modal-dialog">*@
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-cogs"></i> {{BrekageModalHeading}}</h4>
+            </div>
+            <div class="modal-body no-padding">
+                <form novalidate name="frmBreaksDetail" id="frmBreaksDetail" class="form-horizontal row-border">
+                    <input type="hidden" id="itemWYId" readonly="readonly" ng-model="itemWYId" />
+                    <div class="col-md-12" style="padding:0px;">
+
+                        <div class="clearfix"></div>
+                        <div style="padding-top:4px;">
+                            @*<input id="custSearch" ng-model="custSearch" type="text" class="form-control search" placeholder="Search...">*@
+                            <table class="table  table-hover general-table">
+                                <thead class="grid-top-panel">
+                                    <tr>
+                                        <th style="display:none">BWS ID</th>
+                                        <th>Breaks Type</th>
+                                        <th>Number of Breakage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataModel in ListBreakTypes | filter:custSearch">
+                                        <td style="display:none">{{dataModel.BWSID}}</td>
+                                        <td style="display:none">{{dataModel.BreakageType}}</td>
+                                        <td>{{dataModel.BWSName}}</td>
+                                        <td><input type="number" id="NoOfBreakage" name="NoOfBreakage" class="form-control" ng-model="dataModel.NoOfBreakage" ng-change="TotalMachineBreaks(dataModel)" /></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>{{TotalBreaks}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            @*<p ng-show="(ListOrganogram | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+                            <div class="loadmore">
+                                <div ng-show="loaderMore" ng-class="result">
+                                    {{lblMessage}}
+                                </div>
+                                <div ng-show="scrollended" ng-class="result">
+                                    {{lblMessage}}
+                                </div>
+                            </div>
+
+                            <br />*@
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class=" col-md-12">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" id="saveBreakage" data-dismiss="modal" class="btn btn-success" value="{{btnSaveMachineBreaks}}" ng-click="saveMachineBrekages()" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ClearBreakage()">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

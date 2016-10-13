@@ -1,0 +1,78 @@
+﻿
+<form novalidate name="frmModule" id="modForm" class="form-horizontal row-border">
+    <input type="hidden" id="modID" readonly="readonly" ng-model="ModID" />
+
+    @*data-placeholder="--Select--"*@
+    <div class="form-group">
+        <label class="col-md-4 control-label"> Name</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="modName"
+                   class="form-control"
+                   name="modName" ng-model="ModName" required />
+        </div>
+
+        <img src="~/Content/img/TickMark.png" ng-show="frmModule.modName.$dirty && frmModule.modName.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmModule.modName.$dirty && frmModule.modName.$invalid" Class="iconClass" />
+        @*<span class="error" ng-show="(frmModule.$dirty||submitted) && frmModule.modName.$error.required">*</span>*@
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Code</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="code"
+                   class="form-control"
+                   name="code" ng-model="ModCode" required />
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="frmModule.code.$dirty && frmModule.code.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmModule.code.$dirty && frmModule.code.$invalid" Class="iconClass" />
+        @*<span class="error" ng-show="(frmModule.$dirty ||submitted) && frmModule.code.$error.required">*</span>*@
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Description</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="modDesc"
+                   class="form-control" ng-model="ModDesc" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">Sequence</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="modSequence"
+                   class="form-control" ng-model="Modequence" />
+        </div>
+        <br>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label">URL Path</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="modPath"
+                   class="form-control" ng-model="Modepath" />
+        </div>
+        <br>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input"> Icon</label>
+        <div class="col-md-6">
+            <select id="ModeIconDropDown" class="select2-select-00" style="width:100%;"
+                    ng-model="ddlModeIcon"
+                    name="modeIconDropDown"
+                    data-placeholder="--Select Icon--">
+                <option></option>
+                <option style="float:left;" class="icon-cogs" value="icon-cogs">icon-cogs </option>
+                <option style="float:left;" class="icon-angle-right" value="icon-angle-right">icon-angle-right</option>
+                <option style="float:left;" class="icon-shopping-cart" value="icon-shopping-cart">icon-shopping-cart  </option>
+                <option style="float:left;" class="icon-bar-chart" value="icon-bar-chart">icon-bar-chart  </option>
+                <option style="float:left;" class="icon-truck" value="icon-truck">icon-truck</option>
+                <option style="float:left;" class="icon-hdd" value="icon-hdd">icon-hdd  </option>
+                <option style="float:left;" class="icon-usd" value="icon-usd">icon-usd  </option>
+                <option style="float:left;" class="icon-coffee" value="icon-coffee">icon-coffee</option>
+                <option style="float:left;" class="icon-qrcode" value="icon-qrcode">icon-qrcode</option>
+                <option style="float:left;" class="icon-male" value="icon-male">icon-male"</option>
+            </select>
+        </div>
+    </div>
+</form>

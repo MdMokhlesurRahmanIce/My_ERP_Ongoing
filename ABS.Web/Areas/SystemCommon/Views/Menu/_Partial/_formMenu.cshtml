@@ -1,0 +1,104 @@
+﻿
+<form novalidate name="frmMenu" id="menuForm" class="form-horizontal row-border">
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="form-group"> 
+        <label class="col-md-2 control-label"> Name</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="menuName"
+                   class="form-control"
+                   name="menuName" ng-model="MenuName" />
+        </div>
+        <label class="col-md-2 control-label" for="input"> Module</label>
+        <div class="col-md-3">
+            <select id="moduleDropDown" class="select2-select-00" style="width:100%;"
+                    ng-model="ddlModule"  data-placeholder="--Select Module--" ng-change="ModuleChange(ddlModule)"
+                    name="moduleDropDown" ng-options="mdl.ModuleID as mdl.ModuleName for mdl in ListModule">
+                <option></option> 
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        
+        <label class="col-md-2 control-label"> Code</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="code"
+                   class="form-control"
+                   name="code" ng-model="MenuCode" />
+        </div>
+        <label class="col-md-2 control-label">Sequence</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="sequence"
+                   class="form-control" ng-model="Sequence" />
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Menu Path</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="menuPath"
+                   class="form-control" ng-model="MenuPath" />
+        </div>
+        <label class="col-md-2 control-label">Report Name</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="reportName"
+                   class="form-control" ng-model="ReportName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">Report Path</label>
+        <div class="col-md-3">
+            <input type="text"
+                   id="reportPath"
+                   class="form-control" ng-model="ReportPath" />
+        </div>
+        <label class="col-md-2 control-label" for="input"> Parent</label>
+        <div class="col-md-3">
+            <select id="menuesDropDown" class="select2-select-00" style="width:100%;"
+                    ng-model="ddlMenu" data-placeholder="--Select Parent--"
+                    name="menuesDropDown"  ng-options="mdl.MenuID as mdl.MenuName for mdl in ListParentMenu" >
+                <option></option>
+                @*<option ng-show="olet.ParentID==0 || olet.ParentID==null " ng-repeat="olet in ListParentMenu" value="{{olet.MenuID}}">{{olet.MenuName}}</option>*@
+            </select>
+        </div>
+
+    </div>
+    <div class="form-group">
+       
+        <label class="col-md-2 control-label" for="input"> Menu Type</label>
+        <div class="col-md-3">
+            <select id="menuTypeDropDown" class="select2-select-00" style="width:100%;"
+                    ng-model="ddlMenuType"
+                    name="menuTypeDropDown">
+                <option></option>
+                <option ng-repeat="olet in ListMenuType" value="{{olet.MenuTypeID}}">{{olet.MenuTypeName}}</option>
+            </select>
+        </div>
+
+        <label class="col-md-2 control-label" for="input"> Menu Icon</label>
+        <div class="col-md-3">
+            <select id="MenuIconDropDown" class="select2-select-00" style="width:100%;"
+                    ng-model="ddlMenuIcon"
+                    name="menuIconDropDown"
+                    data-placeholder="--Select Icon--">
+                <option></option>
+                <option style="float:left;" class="icon-cogs" value="icon-cogs">icon-cogs  </option>
+                <option style="float:left;" class="icon-angle-right" value="icon-angle-right">icon-angle-right</option>
+                <option style="float:left;" class="icon-shopping-cart" value="icon-shopping-cart">icon-shopping-cart  </option>
+                <option style="float:left;" class="icon-bar-chart" value="icon-bar-chart">icon-bar-chart  </option>
+                <option style="float:left;" class="icon-truck" value="icon-truck">icon-truck  </option>
+                <option style="float:left;" class="icon-hdd" value="icon-hdd">icon-hdd  </option>
+                <option style="float:left;" class="icon-usd" value="icon-usd">icon-usd  </option>
+                <option style="float:left;" class="icon-coffee" value="icon-coffee">icon-coffee</option>
+                <option style="float:left;" class="icon-qrcode" value="icon-qrcode">icon-qrcode</option>
+                <option style="float:left;" class="icon-male" value="icon-male">icon-male"</option>
+            </select>
+        </div>
+    </div>
+  
+</form>

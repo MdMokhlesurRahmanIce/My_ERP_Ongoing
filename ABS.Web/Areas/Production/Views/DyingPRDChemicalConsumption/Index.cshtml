@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Chemical Consumption";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="DyingPRDChemicalConsumptionCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frmEntry" class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/DyingPRDChemicalConsumption/_Partial/_formDyingChemicalConsumption.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div id="frmDetail" class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListDetail}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add New Rows" ng-click="AddItemToList()" ng-disabled="frmPrdDyingConsumptionMaster.$invalid" />
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Production/Views/DyingPRDChemicalConsumption/_Partial/_tableDyingChemicalConsumptionDetails.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <div id="frmList" class="row">
+            @*ng-hide="IsHidden"*@
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListMaster}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/DyingPRDChemicalConsumption/_Partial/_tableDyingChemicalConsumption.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!--Modal PopUP -->
+        <div class="row">
+            <div class="col-md-8 no-padding">
+                @Html.Partial("~/Areas/Production/Views/DyingPRDChemicalConsumption/_Partial/_formChemicalInfoModal.cshtml")
+
+
+            </div>
+        </div><!--Popup-->
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/DyingPRDChemicalConsumptionCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/DyingPRDChemicalConsumptionService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/commonComboBoxGetDataService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

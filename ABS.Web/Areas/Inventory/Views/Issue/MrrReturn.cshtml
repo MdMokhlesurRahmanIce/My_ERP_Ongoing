@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Mrr Return";
+}
+
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="IssueCtrl">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()"><i class="icon-refresh"></i> Reset </span>
+                                <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                    <i ng-show="IsListIcon" class="icon-search"></i>
+                                    <i ng-show="IsCreateIcon" class="icon-plus-sign"></i>
+                                    {{btnShowText}}
+                                </span>
+                                <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="IsInvalid">
+                                    <i class="icon-save"></i> {{btnSaveText}}
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Inventory/Views/Issue/_Partial/_formIssueMaster.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col-md-12 -->
+
+        <div class="row" ng-show="IsShowD">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitlePIDeatails}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        <div>
+                            @Html.Partial("~/Areas/Inventory/Views/Issue/_Partial/_tableIssueDetails.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+
+        <div class="row" ng-hide="IsHidden">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleQCMasters}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+
+                        @Html.Partial("~/Areas/Inventory/Views/Issue/_Partial/_tableIssueMasterInfo.cshtml")
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="HDOMasterModal">
+                <div class="modal-dialog modal-dialog-ext">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-folder-open"></i> {{PanelTitle}}</h4>
+                        </div>
+                        <div class="modal-body no-padding">
+                            @Html.Partial("~/Areas/Inventory/Views/SPR/_Partial/_tableItemInfoModal.cshtml")
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Inventory/ScriptsNg/Controllers/IssueCtrl.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Service/IssueService.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Scripts/CustomToastrMessage.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+    }

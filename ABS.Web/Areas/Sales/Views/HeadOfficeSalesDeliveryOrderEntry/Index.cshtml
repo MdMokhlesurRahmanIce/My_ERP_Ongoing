@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "Head Office Sales Delivery Order";
+}
+<div class="col-sm-12" ng-controller="tokenCtrl">
+    <div class="container" ng-controller="headOfficeSalesDeliveryOrderEntryCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div id="DeliveryOrderDiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <!--Start Code For Approval Setting-->
+                                    <span class="pull-left" ng-show="PageDisplay">
+                                        <span ng-show="{{IsApproved}}" id="addUser" class="btn btn-success">
+                                            <a href="" ng-href="#approveNotificationModal" data-toggle="modal" title="Approve">
+                                                <i class="icon-ok-sign"></i> Approve
+                                            </a>
+                                        </span>
+                                        <span ng-show="{{IsDelained}}" id="addUser" class="btn btn-warning margin-right-btn">
+                                            <a href="" ng-href="#declainedNotificationModal" data-toggle="modal" title="Decline">
+                                                <i class="icon-remove-sign"></i> Decline
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <!--End Code For Approval Setting-->
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </span>
+
+                                    <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                        <i class="icon-search"></i> {{btnSaleShowText}}
+                                    </span>
+                                    <span id="revise" class="btn btn-primary margin-right-btn" ng-click="revise()" ng-if="UserCommonEntity.EnableInsert" 
+                                          ng-hide="IsHideRevise" ng-disabled="frmHeadOfficeDeliveryOrder.$invalid">
+                                        <i class="icon-save"></i> {{btnSaleReviseText}}
+                                    </span>
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-if="UserCommonEntity.EnableInsert" 
+                                          ng-hide="IsHideSave" ng-disabled="frmHeadOfficeDeliveryOrder.$invalid">
+                                        <i class="icon-save"></i> {{btnSaleSaveText}}
+                                    </span>
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsfrmShow">
+                            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_formDeliveryOrder.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            <div class="row" ng-show="IsShowM">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleLCMaster}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tableLCMasterInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+            <div class="row" ng-show="IsShowD">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleLCDetails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tableLCDetailsInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+            <div class="row" ng-show="IsShowR">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleLCDetails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add New" ng-disabled="IsbtnAddDisable" ng-click="AddItemToList()" />
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tableRevisedPIDetails.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+            <div class="row" ng-hide="IsHidden">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleDOMaster}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tableDOMasterInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+            <div class="row">
+                @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tablePIDetailsInfo.cshtml")
+            </div>
+            <div class="row">
+                @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_modalProduct.cshtml")
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="approveNotificationModal" style="z-index:1260 !important;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-ok-sign"></i> {{APModalPageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"> Comments:</label>
+                                <div class="col-md-7">
+                                    @*<input type="text" id="comments" class="form-control" ng-model="commentsModle" name="comments" />*@
+                                    <textarea rows="3" cols="5" id="comments" ng-model="commentsModle" name="comments" class="auto form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="btnapprovalSubmitt" class="btn btn-info margin-right-btn " value="Submit" ng-click="ApprovedMethod()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>        
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="declainedNotificationModal" style="z-index:1260 !important;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-remove-sign"></i> {{DCModalPageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"> Comments:</label>
+                                <div class="col-md-7">
+                                    @*<input type="text" id="comments" class="form-control" ng-model="commentsDeclained" name="comments" />*@
+                                    <textarea rows="3" cols="5" id="comments" ng-model="commentsModle" name="comments" class="auto form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="btnDeclainedSubmitt" class="btn btn-info margin-right-btn " value="Submit" ng-click="DeclinedMethod()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Sales/ScriptsNg/Controllers/HeadOfficeSalesDeliveryOrderEntryCtrl.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Directives/Scroller.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

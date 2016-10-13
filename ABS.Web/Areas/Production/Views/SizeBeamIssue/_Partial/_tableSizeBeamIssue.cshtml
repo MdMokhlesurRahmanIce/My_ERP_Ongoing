@@ -1,0 +1,62 @@
+﻿
+<table class="table  table-hover general-table">
+    <thead>
+        <tr>
+
+            <th>SL.</th>
+           
+            <th style="display:none"> OutputID</th>
+            <th style="display:none"> BeamIssue DetailID</th>
+            
+            <th >Flange No.</th>
+            <th>Length (Yds)</th>
+            <th>B.S. Date</th>
+            <th>B/M Date</th>
+            <th ng-hide="rLoom">Loom</th>
+            <th ng-hide="rbfDate">B/F Date</th>
+            <th ng-hide="rtotalFabric"> Total Fabric</th>
+            <th ng-hide="rremark"> Remarks</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in SizingMrrMasterDetail">
+            <td>{{$index+1}}</td>
+            <td style="display:none">{{OutputID}}</td>
+            <td style="display:none">{{BeamIssueDetailID}}</td>
+            <td>{{dataModel.FlangeNo}}</td>
+            <td>{{dataModel.LengthYds}}</td>
+            <td>
+                <input type="date" id="bsDatae" name="bsDatae" class="form-control" data-date-format="DD MMMM YYYY" ng-model="dataModel.BSDate" />
+            </td>
+            <td>
+                <input type="date" id="bmDate" name="bmDate" class="form-control" ng-model="dataModel.BMDate" />
+            </td>
+           
+            <td ng-hide="dLoom">
+                <select id="drpLoom" style="width:100%;"
+                        ng-model="dataModel.LoomID"
+                        name="drpLoom"
+                        placeholder="-- Select Loom --"
+                        ng-options="ig.MachineConfigID as ig.MachineName for ig in Looms">
+                    <option></option>
+                </select>
+            </td>
+            <td>
+                <input type="date" id="bfDate" name="bfDate" class="form-control" ng-model="dataModel.BFDate" ng-hide="tbfDate" />
+            </td>
+            <td>
+                <input type="number" id="totalFabric" name="totalFabric" class="form-control" ng-model="dataModel.Totalfabric" ng-hide="ttotalFabric" />
+            </td>
+            <td>
+                <input type="text" id="txgbxRemark" name="txgbxRemark" class="form-control" ng-model="dataModel.Remarks" ng-hide="tremark" />
+            </td>
+            
+
+        </tr>
+    </tbody>
+</table>
+
+
+
+

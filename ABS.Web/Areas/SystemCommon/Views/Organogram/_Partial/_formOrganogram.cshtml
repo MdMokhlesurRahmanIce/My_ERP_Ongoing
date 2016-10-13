@@ -1,0 +1,104 @@
+﻿
+<form novalidate name="frmOrganogram" id="organogram" class="form-horizontal row-border">
+    <input type="hidden" id="organogramID" readonly="readonly" ng-model="OrganogramID" />
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input17"> Company</label>
+        <div class="col-md-6">
+            @*<p>Company: {{ddlCompany}}</p>*@
+            <select id="CompanyDropDown" class="select2-select-00"
+                    ng-model="ddlCompany"
+                    name="companyDropDown"
+                    data-placeholder="--Select Company--"
+                    style="width: 100%" ng-options="cmp.CompanyID as cmp.CompanyName for cmp in ListCompany"
+                    required >
+                <option></option>
+            </select>
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="frmOrganogram.companyDropDown.$dirty && frmOrganogram.companyDropDown.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmOrganogram.companyDropDown.$dirty && frmOrganogram.companyDropDown.$invalid" Class="iconClass" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="input17"> Parent Organogram</label>
+        <div class="col-md-6">
+            @*<p>Parent: {{ddlParent}}</p>*@
+            <select id="parentDropDown" class="select2-select-00"
+                    ng-model="ddlParent"
+                    name="parentDropDown"
+                    data-placeholder="--Select Parent Organogram--"
+                    style="width: 100%" ng-options="org.OrganogramID as org.OrganogramName for org in ListParentOrganogram" >
+                <option></option>
+            </select>
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="frmOrganogram.parentDropDown.$dirty && frmOrganogram.parentDropDown.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmOrganogram.parentDropDown.$dirty && frmOrganogram.parentDropDown.$invalid" Class="iconClass" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Organogram Name</label>
+        <div class="col-md-6">
+            <input type="text" id="organogramName" class="form-control"
+                   name="organogramName"
+                   ng-model="OrganogramName" required />
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="frmOrganogram.organogramName.$dirty && frmOrganogram.organogramName.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmOrganogram.organogramName.$dirty && frmOrganogram.organogramName.$invalid" Class="iconClass" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label">Code</label>
+        <div class="col-md-6">
+            <input type="text"
+                   id="customCode"
+                   class="form-control"
+                   name="customCode"
+                   ng-model="CustomCode" required />
+        </div>
+        <img src="~/Content/img/TickMark.png" ng-show="frmOrganogram.customCode.$dirty && frmOrganogram.customCode.$valid" Class="iconClass" />
+        <img src="~/Content/img/Cross.png" ng-show="frmOrganogram.customCode.$dirty && frmOrganogram.customCode.$invalid" Class="iconClass" />
+    </div>
+
+    <div class="form-group" ng-hide="true">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-6">
+            <label class="checkbox-inline">
+                <input type="checkbox" id="isDefault" class="uniform" name="isDefault" ng-model="IsDefault" /> IsDefault
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="isCostCenter" class="uniform" name="isCostCenter" ng-model="IsCostCenter" /> Is CostCenter?
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-7">
+            <label class="checkbox">
+                <input type="checkbox" class="uniform"
+                       id="IsBranch" name="IsBranch" ng-model="IsBranch" ng-click="IsBranchChecked(IsBranch)" > Is Branch?
+            </label>
+            <label class="checkbox">
+                <input type="checkbox" class="uniform"
+                       id="IsDepartment" name="IsDepartment" ng-model="IsDepartment" ng-click="IsDepartmentChecked(IsDepartment)"> Is Department?
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group" ng-hide="true">
+        <label class="col-md-4 control-label"> Process</label>
+        <div class="col-md-6">
+            <input type="text" id="ProcessOutput" class="form-control" name="ProcessOutput" ng-model="ProcessOutput" />
+        </div>
+    </div>
+
+    <div class="form-group" ng-hide="true">
+        <label class="col-md-4 control-label" for="input"> Status</label>
+        <div class="col-md-6">
+            <select id="statusDropDown" class="select2-select-00" style="width:230px;" ng-model="ddlStatus" name="statusDropDown">
+                <option></option>
+                <option ng-repeat="olet in ListStatus" value="{{olet.StatusID}}">{{olet.StatusName}}</option>
+            </select>
+        </div>
+    </div>
+</form>

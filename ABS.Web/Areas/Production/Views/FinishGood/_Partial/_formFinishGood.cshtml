@@ -1,0 +1,516 @@
+﻿
+<form novalidate name="frmFinishGood" id="frmFinishGood" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Article No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtArticaleNo"
+                       class="form-control"
+                       name="txtArticaleNo" ng-model="txtArticaleNo"
+                       placeholder="Article No" required />
+            </div>
+            <img src="~/Content/img/TickMark.png" ng-show="frmFinishGood.txtArticaleNo.$dirty && frmFinishGood.txtArticaleNo.$valid" class="iconClass" />
+            <img src="~/Content/img/Cross.png" ng-show="frmFinishGood.txtArticaleNo.$dirty && frmFinishGood.txtArticaleNo.$invalid" class="iconClass" />
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Group</label>
+            <div class="col-md-7">
+                <input type="hidden" id="hdAcDetailID" readonly="readonly" ng-model="AcDetailID" />
+                <select id="drpItemGroup" class="select2-select-00" style="width:100%;"
+                        ng-model="drpItemGroup"
+                        name="drpItemGroup"
+                        placeholder="-- Select Item Group --"
+                        ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes" ng-click="SetAccDetailID(drpItemGroup)" required>
+                    <option></option>
+                </select>
+            </div>
+            <img src="~/Content/img/TickMark.png" ng-show="frmFinishGood.drpItemGroup.$dirty && frmFinishGood.drpItemGroup.$valid" class="iconClass" />
+            <img src="~/Content/img/Cross.png" ng-show="frmFinishGood.drpItemGroup.$dirty && frmFinishGood.drpItemGroup.$invalid" class="iconClass" />
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Warp Count</label>
+            <div class="col-md-7">
+                <input type="hidden" id="hddrpWarpYarnCount" readonly="readonly" ng-model="drpWarpYarnCount" />
+                <input type="text" style="width: 100%" id="drpWarpYarnCountName" class="form-control" name="drpWarpYarnCountName" ng-model="drpWarpYarnCountName" placeholder="Warp Count" readonly="readonly"  />
+                @*<select id="drpWarpYarnCount" class="select2-select-00" style="width:100%;" 
+                        ng-model="drpWarpYarnCount"
+                        name="drpWarpYarnCount"
+                        placeholder="-- Select Warp count --"
+                        ng-options="ig.YarnID as ig.YarnCount for ig in Warps" ng-change="LoadWarpYarnByYarnID()">
+                    <option></option>
+                </select>*@
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Warp & Yarn Setups">
+                    <i class="icon-search" ng-click="LoadWarpCountList()"></i>
+                </a>
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Weft Count</label>
+            <div class="col-md-7">
+                <input type="hidden" id="hddrpWeftCount" readonly="readonly" ng-model="drpWeftCount" />
+                <input type="text" style="width: 100%" id="drpWeftCountName" class="form-control" name="drpWeftCountName" ng-model="drpWeftCountName" placeholder="Weft Count" readonly="readonly" />
+                @*<select id="drpWeftCount" class="select2-select-00" style="width:100%;"
+                        ng-model="drpWeftCount"
+                        name="drpWeftCount"
+                        placeholder="-- Select Weft Count --"
+                        ng-options="ig.YarnID as ig.YarnCount for ig in Wefts" ng-change="LoadWeftYarnByYarnID()">
+                    <option></option>
+                </select>*@
+            </div>
+
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" @*ng-href="#WarpYarnSetUpModal"*@ data-toggle="modal" class="bs-tooltip" title="Warp & Yarn Setups">
+                    <i class="icon-search" ng-click="LoadWeftCountList()"></i>
+                </a>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">FINI Weight</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtFiniWeight"
+                       class="form-control"
+                       name="txtFiniWeight" ng-model="txtFiniWeight"
+                       placeholder="FINI Weight" />
+                @*<div class="col-md-7">
+                        <select id="drpdwnFiniWeight" class="select2-select-00" style="width:100%;"
+                                ng-model="drpdwnFiniWeight"
+                                name="drpdwnFiniWeight"
+                                placeholder="-- Select FINI Weight --"
+                                ng-options=" ig.FinishingWeigthID as ig.FinishingWeigth for ig in finishWeights">
+                            <option></option>
+                        </select>
+                    </div>*@
+                @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtbxItemName.$error.required">*</span>*@
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Color</label>
+            <div class="col-md-7">
+                <select id="drpColor" class="select2-select-00" style="width:100%;"
+                        ng-model="drpColor"
+                        name="drpColor"
+                        placeholder="-- Select Color --"
+                        ng-options="ig.ItemColorID as ig.ColorName for ig in Colors">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Greige EPI</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxGEPI"
+                       class="form-control"
+                       name="txtbxGEPI" ng-model="txtbxGEPI"
+                       placeholder="EPI" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Greige PPI</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxGPPI"
+                       class="form-control"
+                       name="txtbxGPPI" ng-model="txtbxGPPI"
+                       placeholder="Greige PPI" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">CW</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxCutablewidth"
+                       class="form-control"
+                       name="txtbxCutablewidth" ng-model="txtbxCutablewidth"
+                       placeholder="Cutable Width" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Length (Yds)</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxLength"
+                       class="form-control"
+                       name="txtbxLength" ng-model="txtbxLength"
+                       placeholder="Length (Yds)" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Fini Process</label>
+            <div class="col-md-7">
+                @*<select id="drpdwnFinishProcess" class="select2-select-00" style="width:100%;"
+                        ng-model="drpdwnFinishProcess"
+                        name="drpdwnFinishProcess"
+                        placeholder="-- Select Finish Process --"
+                        ng-options="ig.FinishTypeID as ig.FinishTypeName for ig in finishProcesses">
+                    <option></option>
+                </select>*@
+
+
+                <ngdropdownmultiselect control="ngDropdownMultiselectControlo">
+                    <div ng-dropdown-multiselect="" options="finishProcesses" selected-model="ListMultiProcessModel" checkboxes="true">
+                    </div>
+                </ngdropdownmultiselect>
+            </div>
+
+
+        </div>
+
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Total Ends</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxTotalEnds"
+                       class="form-control"
+                       name="txtbxTotalEnds" ng-model="txtbxTotalEnds"
+                       placeholder="Total Ends" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Warp Ratio</label>
+            @*<div class="col-md-7">
+                    <select id="drpWarpRatio" class="select2-select-00" style="width:100%;"
+                            ng-model="drpWarpRatio"
+                            name="drpWarpRatio"
+                            ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes">
+                        <option>--Select--</option>
+                    </select>
+                </div>*@
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpRatio"
+                       class="form-control"
+                       name="txtbxWarpRatio" ng-model="txtbxWarpRatio"
+                       placeholder="Warp Ratio" readonly />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            
+            <label class="col-md-4 control-label">Weft Ratio</label>
+            @*<div class="col-md-7">
+                    <select id="drpWeftRatio" class="select2-select-00" style="width:100%;"
+                            ng-model="drpWeftRatio"
+                            name="drpWeftRatio"
+                            ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes">
+                        <option>--Select--</option>
+                    </select>
+                </div>*@
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeftRatio"
+                       class="form-control"
+                       name="txtbxWeftRatio" ng-model="txtbxWeftRatio"
+                       placeholder="Weft Ratio" readonly />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Coating</label>
+            <div class="col-md-7">
+                <select id="drpCoating" class="select2-select-00" style="width:100%;"
+                        ng-model="drpCoating"
+                        name="drpCoating"
+                        placeholder="-- Select Coating --"
+                        ng-options="ig.CoatingID as ig.CoatingName for ig in Coats">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">SP Coating</label>
+            <div class="col-md-7">
+                <select id="drpSpeCoating" class="select2-select-00" style="width:100%;"
+                        ng-model="drpSpeCoating"
+                        name="drpSpeCoating"
+                        placeholder="-- Select Special Coating --"
+                        ng-options="ig.CoatingID  as ig.CoatingName  for ig in SpeCoats">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Overdyed</label>
+            <div class="col-md-7">
+                <select id="drpOverDyed" class="select2-select-00" style="width:100%;"
+                        ng-model="drpOverDyed"
+                        name="drpOverDyed"
+                        placeholder="-- Select Overdyed --"
+                        ng-options="ig.OverDyedlID as ig.OverDyedName for ig in OverDyeds">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Weft Color</label>
+            <div class="col-md-7">
+                <select id="drpWeftColor" class="select2-select-00" style="width:100%;"
+                        ng-model="drpWeftColor"
+                        name="drpWeftColor"
+                        placeholder="-- Select Weft Color --"
+                        ng-options="ig.ItemColorID as ig.ColorName for ig in weftColors">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Weave</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeave"
+                       class="form-control"
+                       name="txtbxWeave" ng-model="txtbxWeave"
+                       placeholder="Weave" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Flange No.</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxFlangeNo"
+                       class="form-control"
+                       name="txtbxFlangeNo" ng-model="txtbxFlangeNo"
+                       placeholder="Flange No." />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        
+
+        
+        
+
+        
+       
+
+        @*<div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Weight/Yds:</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxWeightDS"
+                           class="form-control"
+                           name="txtbxWeightDS" ng-model="txtbxWeightDS"
+                           placeholder="Weight/DS" />
+                </div>
+            </div>*@
+
+
+    </div>
+    <div class="col-md-4">
+
+        @*<div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Fabric Name</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           style="width: 100%"
+                           id="txbxFabricName"
+                           class="form-control"
+                           name="txbxFabricName" ng-model="txbxFabricName"
+                           placeholder="Fabric Name" required />
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmFinishGood.txbxFabricName.$dirty && frmFinishGood.txbxFabricName.$valid" class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmFinishGood.txbxFabricName.$dirty && frmFinishGood.txbxFabricName.$invalid" class="iconClass" />
+
+            </div>*@
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Set No.</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxSetNo"
+                       class="form-control"
+                       name="txtbxSetNo" ng-model="txtbxSetNo"
+                       placeholder="Set No." />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Weft Supplier</label>
+            <div class="col-md-7">
+                <select id="drpWeftSupplier" class="select2-select-00" style="width:100%;"
+                        ng-model="drpWeftSupplier"
+                        name="drpWeftSupplier"
+                        placeholder="-- Select Weft Supplier --"
+                        ng-options="ig.UserID as ig.UserName for ig in Suppliers">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Warp Lot</label>
+            @*<div class="col-md-7">
+                    <select id="drpWarpLot" class="select2-select-00" style="width:100%;"
+                            ng-model="drpWarpLot"
+                            name="drpWarpLot"
+                            ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes">
+                        <option>--Select--</option>
+                    </select>
+                </div>*@
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpLot"
+                       class="form-control"
+                       name="txtbxWarpLot" ng-model="txtbxWarpLot"
+                       placeholder="Warp Lot" readonly />
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Weft Lot</label>
+            @*<div class="col-md-7">
+                    <select id="drpWeftLot" class="select2-select-00" style="width:100%;"
+                            ng-model="drpWeftLot"
+                            name="drpWeftLot"
+                            ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes">
+                        <option>--Select--</option>
+                    </select>
+                </div>*@
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeftLost"
+                       class="form-control"
+                       name="txtbxWeftLost" ng-model="txtbxWeftLost"
+                       placeholder="Weft Lot" readonly />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer Name</label>
+            <div class="col-md-7">
+                <select id="drpBuyerName" class="select2-select-00" style="width:100%;"
+                        ng-model="drpBuyerName"
+                        name="drpBuyerName"
+                        placeholder="-- Select Buyer Name --"
+                        ng-options="ig.UserID as ig.UserName for ig in Buyers">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer ref</label>
+            <div class="col-md-7">
+                <select id="drpBuyerRef" class="select2-select-00" style="width:100%;"
+                        ng-model="drpBuyerRef"
+                        name="drpBuyerRef"
+                        placeholder="-- Select Buyer ref --"
+                        ng-options="ig.UserID as ig.UserName for ig in BuyerRefs">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Note</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txbxNote"
+                       class="form-control"
+                       name="txbxNote" ng-model="txbxNote"
+                       placeholder="Note" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Description</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxDescripion"
+                       class="form-control"
+                       name="txtbxDescripion" ng-model="txtbxDescripion"
+                       placeholder="Description" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">HS Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxHSCODE"
+                       class="form-control"
+                       name="txtbxHSCODE" ng-model="txtbxHSCODE"
+                       placeholder="HS Code" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Construction</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxConstruction"
+                       class="form-control"
+                       name="txtbxConstruction" ng-model="txtbxConstruction"
+                       placeholder="Construction" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+<style type="text/css">
+    .btn .caret, .ui-state-default .caret, .ui-widget-content .ui-state-default .caret, .ui-widget-header .ui-state-default .caret, .ColVis_MasterButton .caret, .fc-state-default .caret {
+        border-top-color: #333333 !important;
+        margin-top: 0;
+        margin-left: 80px !important;
+        vertical-align: middle;
+    }
+</style>

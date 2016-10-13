@@ -1,0 +1,59 @@
+﻿@*<input id="sizeDetailSearch" ng-model="SizeDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table  table-hover general-table right-bottom-scroll-s">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Article No</th>
+            <th>Set No</th>
+            <th>Req Weight</th>
+            <th>Fini Weight</th>
+            <th>Greige EPIxPPI</th>
+            <th>Fini EPI</th>
+            <th>Fini PPI</th>
+            <th>Cutable Width</th>
+            <th>Fini Width</th>
+            <th>W.&nbsp;Reqd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Fini L Shrinkage</th>
+            <th>Fini W Shrinkage</th>
+            <th>Fini Skew</th>
+            <th>Is&nbsp;Percent</th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListShrinkage">
+            <td>{{dataModel.ArticleNo}}</td>
+            <td>{{dataModel.SetNo}}</td>
+            <td>{{dataModel.ReqWeight}}</td>
+            <td><input type="number" id="FiniWeight" name="FiniWeight" class="form-control" ng-model="dataModel.FiniWeight" /></td>
+            <td>{{dataModel.GreigeEPIPPI | number:2}}</td>
+            <td><input type="number" id="FiniEPI" name="FiniEPI" class="form-control" ng-model="dataModel.FiniEPI" /></td>
+            <td><input type="number" id="FiniPPI" name="FiniPPI" class="form-control" ng-model="dataModel.FiniPPI" /></td>
+            <td>{{dataModel.CuttableWidth}}</td>
+            <td><input type="number" id="FiniWidth" name="FiniWidth" class="form-control" ng-model="dataModel.FiniWidth" /></td>
+            <td>{{dataModel.WReqd}}</td>
+            <td><input type="number" id="LShrinkage" name="LShrinkage" class="form-control" ng-model="dataModel.LShrinkage" /></td>
+            <td><input type="number" id="WShrinkage" name="WShrinkage" class="form-control" ng-model="dataModel.WShrinkage" /></td>
+            <td><input type="number" id="FiniSkew" name="FiniSkew" class="form-control" ng-model="dataModel.FiniSkew" /></td>
+            <td><input type="checkbox" id="IsFSPercent" name="IsFSPercent" class="roundedTwo" ng-model="dataModel.IsFSPercent" /></td>
+            @*<td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                            <i class="icon-trash" ng-click="DeleteShrinkage($index)"></i>
+                        </a>
+                    </span>
+                </td>*@
+
+        </tr>
+    </tbody>
+</table>
+@*<p ng-show="(ListSizeDetails | filter:SizeDetailSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>*@

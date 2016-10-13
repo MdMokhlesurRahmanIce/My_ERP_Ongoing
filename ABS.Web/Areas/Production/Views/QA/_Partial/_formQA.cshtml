@@ -1,0 +1,84 @@
+﻿<form novalidate name="frmQualityAssuarance" id="frmQualityAssuarance" class="form-horizontal row-border">
+    <input type="hidden" id="QAID" readonly="readonly" ng-model="QAID" />
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Article No</label>
+            @*<div class="col-md-7">
+                <select id="ArticleList" class="select2-select-00"
+                        ng-model="ItemID"
+                        name="articleList"
+                        data-placeholder="--Select Article No--"
+                        style="width: 100%;"
+                        ng-options="A.ItemID as A.ArticleNo for A in ListArticle"
+                        required>
+                    <option></option>
+                </select>
+            </div>*@
+            <div class="col-md-7" style="display:inline-flex">
+                <input type="text" id="txtArticleNo" class="form-control" name="txtArticleNo" ng-model="ArticleNo" placeholder="--Select Article No--" readonly="readonly" style="width:100%;margin-right:2px;" />
+                
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Article No">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+            <span class="error" ng-show="(frmQualityAssuarance.$dirty||submitted) && frmQualityAssuarance.articleList.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> QA Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="QADate"
+                       class="form-control datepicker"
+                       name="QADate" ng-model="QADate" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> From Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="FromDate"
+                       class="form-control datepicker"
+                       name="FromDate" ng-model="FromDate" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Remarks</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="Remarks"
+                       class="form-control"
+                       name="Remarks" ng-model="Remarks"
+                       placeholder="Remarks" />
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> To Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="ToDate"
+                       class="form-control datepicker"
+                       name="ToDate" ng-model="ToDate" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>

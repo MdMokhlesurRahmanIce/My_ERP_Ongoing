@@ -1,0 +1,12 @@
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\ABS.Data.dll.config
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\ABS.Data.dll
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\ABS.Data.pdb
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\ABS.Models.dll
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\EntityFramework.dll
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\ABS.Models.pdb
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\EntityFramework.xml
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\obj\Debug\ABS.Data.csprojResolveAssemblyReference.cache
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\obj\Debug\ABS.Data.dll
+E:\ABS\AMBER_BUSINES_SUITE\Development\Applications\ABS-DEV\ABS.Data\obj\Debug\ABS.Data.pdb

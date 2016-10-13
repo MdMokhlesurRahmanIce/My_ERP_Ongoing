@@ -1,0 +1,24 @@
+﻿
+<form novalidate name="frmSale" id="saleForm" class="form-horizontal row-border">
+    <div class="col-md-12">
+        <div>
+            <input type="hidden" id="saleID" readonly="readonly" ng-model="SaleID" />
+            @Html.Label("Sale Type")
+            @Html.TextBox(" ", null, new { @class = "form-control", type = "number", id = "saleType", ng_model = "SaleType" })
+            @*<input type="number" id="saleType" ng-model="SaleType" class="form-control" />*@
+            @Html.Label("Sale No")
+            @Html.TextBox(" ", null, new { @class = "form-control", type="text", id="saleNo", ng_model="SaleNo" })            
+            @Html.Label("Sale Date")
+            @Html.TextBox(" ", null, new { @class = "form-control", type="date", id="saleNo", ng_model="SaleDate" })
+            <br />
+        </div>
+    </div>
+    <div class="col-md-12">
+        
+            <input type="button" id="reset" value="Reset" ng-click="clear()" ng-disabled="frmSale.$invalid" />
+            @*<input type="button" id="save" value="Save" ng-click="save()" ng-disabled="frmCustomer.$invalid" />*@
+            <input type="button" id="save" value={{btnSaleSaveText}} ng-click="save()" />
+        
+    </div><br />
+</form>
+

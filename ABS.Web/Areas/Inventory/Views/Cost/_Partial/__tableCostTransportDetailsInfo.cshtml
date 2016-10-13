@@ -1,0 +1,85 @@
+﻿
+
+<div class="row">   </div>
+
+<div class="row">
+    <div class="form-group" style="font-weight:bold;">
+        <div class="col-md-1"> SL. No </div>
+        <div class="col-md-2">Vehicle </div>
+        <div class="col-md-1"> No Of Vehicle </div>
+        <div class="col-md-1">
+            Goods Qty per
+            Vehicle
+        </div>
+        <div class="col-md-1"> Unit </div>
+        <div class="col-md-1">Price Per Vehicle </div>
+        <div class="col-md-2">Amount</div>
+        <div class="col-md-2">Delete</div>
+    </div>
+</div> 
+<div class="row" style="border-bottom:1px solid #ccc; margin:2px; margin-bottom:8px;"> </div>
+<div class="row" style=" margin-bottom: 2px;" ng-repeat="Transport in TransportDetail">
+    <div class="form-group">
+        <div class="col-md-1">
+            {{$index+1}}
+            <input type="hidden" id="TransportCostDetailID" readonly="readonly" ng-model="TransportCostDetailID" />
+        </div>
+        <div class="col-md-2">
+
+            <select style="width:100%" class="form-control" ng-model="Transport.VehicleID" ng-options="c.VehicleID as c.VehicleName for c in listVehicle ">
+                <option style="text-align:center" value="">---- Select ----</option>
+            </select>
+
+        </div>
+        <div class="col-md-1">
+            <input type="text" id="txtNoOfVehicle" class="form-control" name="txtNoOfVehicle" ng-model="Transport.NoOfVehicle" />
+        </div>
+        <div class="col-md-1"> <input type="text" id="txtGoodsQtyPerVehicle" class="form-control" name="txtGoodsQtyPerVehicle" ng-model="Transport.GoodsQtyPerVehicle" />  </div>
+        <div class="col-md-1">
+            <select style="width:100%" class="form-control" ng-model="Transport.TaxID" ng-options="c.TaxID as c.TaxName for c in listPurchaseTax ">
+                <option style="text-align:center" value="">---- Select ----</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-1">
+            <input type="text" id="txtFarePerVehicle" class="form-control" name="txtFarePerVehicle" ng-model="Transport.FarePerVehicle" />
+        </div>
+
+
+        <div class="col-md-2">
+            <input type="text" id="txtAmount" class="form-control" name="txtAmount" ng-model="Transport.Amount" />
+        </div>
+
+
+        <div class="col-md-2">
+
+            <span class="label label-danger label-mini">
+                <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                    <i class="icon-trash" ng-click="RowRemoveTransport($index)"></i>
+                </a>
+            </span>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-group">
+            <span>
+
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <span>
+                <br />
+                <input type="button" id="Add" class="btn btn-info margin-right-btn" value="Add New Row" ng-click="addNewRowTransport()" />
+            </span>
+        </div>
+    </div>
+</div>
+
+

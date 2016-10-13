@@ -1,0 +1,181 @@
+﻿
+<form novalidate name="frmFactoryDeliveryOrder" id="deliveryOrderForm" class="form-horizontal row-border">
+    <input type="hidden" id="deliveryOrderID" readonly="readonly" ng-model="DeliveryOrderID" />
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Company</label>
+            <div class="col-md-6">
+                @*<p>Company: {{lstCompanyList}}</p>*@
+                <select id="CompanyList" class="select2-select-00"
+                        ng-model="lstCompanyList"
+                        ng-change="loadDeptdll(0)"
+                        name="companyList"
+                        data-placeholder="--Select Company--"
+                        style="width: 100%"
+                        ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                    <option></option>
+                    @*<option ng-repeat="com in listCompany" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xCompanyID" id="companyId" name="companyId" required />*@
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.companyList.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">H. O. DO No</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="hodoNo"
+                       class="form-control"
+                       name="hodoNo" ng-model="HoDONo" ng-change="getHDoDetails(HoDONo)" required />
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Show HDO">
+                    <i class="icon-search" ng-click="CallAllDOMasterRecords()"></i>
+                </a>
+            </span>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.HoDONo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer Name</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="userFirstName"
+                       class="form-control"
+                       name="userFirstName" ng-model="BuyerName" readonly />
+                <input type="hidden" ng-model="UserID" id="buyerId" name="buyerId" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.buyerId.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Delivery To</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="deliveredTo"
+                       class="form-control"
+                       name="deliveredTo" ng-model="DeliveredTo" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.deliveredTo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Delivery From</label>
+            <div class="col-md-6">
+                <select id="DeptList" class="select2-select-00"
+                        ng-model="lstDeptList"
+                        @*ng-change="ChengeDeptId()"*@
+                        name="deptList"
+                        data-placeholder="--Select Delivery Location--"
+                        style="width: 100%"
+                        ng-options="Dept.OrganogramID as Dept.OrganogramName for Dept in listDept" required>
+                    <option></option>
+                    @*<option ng-repeat="Dept in listDept" value="{{Dept.OrganogramID}}">{{Dept.OrganogramName}}</option>*@
+                </select>
+                @*<input type="hidden" ng-model="xDeptID" id="deptId" name="deptId" required />*@
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.deptList.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer Contact Name</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="txtBuyerContactName"
+                       class="form-control"
+                       name="txtBuyerContactName" ng-model="BuyerContactName" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.txtBuyerContactName.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer Contact Phone No</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="txtBuyerContactPhoneNo"
+                       class="form-control"
+                       name="txtBuyerContactPhoneNo" ng-model="BuyerContactPhoneNo" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.txtBuyerContactPhoneNo.$error.required">*</span>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">FDO NO</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="fdoNo"
+                       class="form-control" style="font-weight:bold; color:red !important;"
+                       name="fdoNo" ng-model="FDONo" placeholder="New" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">DO Date</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="dtdoNo"
+                       class="form-control"
+                       name="dtdoNo" ng-model="HDODate" placeholder="@DateTime.Today.ToString("dd/MM/yyyy")" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Bill/Invoice No</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="InvoiceNo"
+                       class="form-control"
+                       name="invoiceNo" ng-model="InvoiceNo" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.invoiceNo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Bill/Invoice Date</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="dtInvoice"
+                       class="form-control datepicker"
+                       name="dtInvoice" ng-model="DtInvoice" placeholder="dd/mm/yyyy" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.dtInvoice.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Covered Van No</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="txtTruckNo"
+                       class="form-control"
+                       name="txtTruckNo" ng-model="TruckNo" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.txtTruckNo.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Driver Name</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="txtDriverName"
+                       class="form-control"
+                       name="txtDriverName" ng-model="DriverName" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.txtDriverName.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Driver Phone No</label>
+            <div class="col-md-6">
+                <input type="text"
+                       id="txtDriverPhoneNo"
+                       class="form-control"
+                       name="txtDriverPhoneNo" ng-model="DriverPhoneNo" required />
+            </div>
+            <span class="error" ng-show="(frmFactoryDeliveryOrder.$dirty||submitted) && frmFactoryDeliveryOrder.txtDriverPhoneNo.$error.required">*</span>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+</form>

@@ -1,0 +1,99 @@
+﻿@*<input id="loomDataDetailSearch" ng-model="LoomDataDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table  table-hover general-table right-bottom-scroll-l">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Shift</th>
+            <th>Machine</th>
+            <th>Set No</th>
+            <th>Article No</th>
+            <th>Color</th>
+            <th>Warp Stop</th>
+            <th>Warp CMPX</th>
+            <th>Weft Stop</th>
+            <th>Weft CMPX</th>
+            <th>Other Stop</th>
+            <th>START ATT</th>
+            <th>RPM</th>
+            <th>Problem</th>
+            <th></th>
+            <th>Effy(%)</th>
+            <th>Run Time</th>
+            <th>Prodn/Yds</th>
+            <th>Operator</th>
+            <th>Duty Officer</th>
+            <th>Is Released</th>
+            <th>Remarks</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in LoomDataDetailList|filter:LoomDataDetailSearch">
+            <td>{{dataModel.ShiftName}}</td>
+            <td>{{dataModel.MachineConfigNo}}</td>
+            <td>{{dataModel.SetNo}}</td>
+            <td>{{dataModel.ArticleNo}}</td>
+            <td>{{dataModel.ColorName}}</td>
+            <td><input type="number" id="WarpStop" name="WarpStop" class="form-control" ng-model="dataModel.WarpStop" /></td>
+            <td><input type="number" id="WarpCMPX" name="WarpCMPX" class="form-control" ng-model="dataModel.WarpCMPX" /></td>
+            <td><input type="number" id="WeftStop" name="WeftStop" class="form-control" ng-model="dataModel.WeftStop" /></td>
+            <td><input type="number" id="WeftCMPX" name="WeftCMPX" class="form-control" ng-model="dataModel.WeftCMPX" /></td>
+            <td><input type="number" id="OtherStop" name="OtherStop" class="form-control" ng-model="dataModel.OtherStop" /></td>
+            <td><input type="number" id="StartATT" name="StartATT" class="form-control" ng-model="dataModel.StartATT" /></td>
+            <td><input type="number" id="RPM" name="RPM" class="form-control" ng-model="dataModel.RPM" /></td>
+            <td><input type="text" style="text-align:center" id="totalStop" name="totalStop" class="form-control" ng-model="dataModel.TotalStop" readonly /></td>
+            <td>
+                <span class="label label-success label-mini" @*ng-show="dataModel.IsModalShow"*@>
+                    <a href="javascript:void(0);" ng-href="#MachineStopModal" data-toggle="modal" class="bs-tooltip" title="Machine Detail">
+                        <i class="icon-search" ng-click="LoadMachineDetail(dataModel); LoadMachineStopCauses(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+            <td><input type="number" id="Efficiency" name="Efficiency" class="form-control" ng-model="dataModel.Efficiency" /></td>
+            <td><input type="number" id="RunTime" name="RunTime" class="form-control" ng-model="dataModel.RunTime" /></td>
+            <td><input type="number" id="Prodn" name="Prodn" class="form-control" ng-model="dataModel.Prodn" /></td>
+            <td>
+                <div style="width:100px">
+                    <select id="ddlOperatorList"
+                            ng-model="dataModel.OperatorID"
+                            name="ddlOperatorList"
+                            data-placeholder="--Select Operator--"
+                            style="width: 100%"
+                            ng-options="Op.UserID as Op.UserFullName for Op in listOperator">
+                        <option>--Select Operator--</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <select id="ddlDutyOfficerList"
+                            ng-model="dataModel.ShiftEngineerID"
+                            name="ddlDutyOfficerList"
+                            style="width: 100%"
+                            ng-options="Du.UserID as Du.UserFullName for Du in listOfficer">
+                        <option>--Select Duty Officer--</option>
+                    </select>
+                </div>
+            </td>
+            <td><input type="checkbox" id="IsReleased" name="IsReleased" class="roundedTwo" ng-model="dataModel.IsReleased" /></td>
+            <td><input type="text" id="Remarks" name="Remarks" class="form-control" ng-model="dataModel.Remarks" /></td>
+            <td style="text-align:right; color:white" ng-show="IsbtnAddDelShow">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="DeleteMainDetail($index)"></i>
+                    </a>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+@*<p ng-show="(LoomDataDetailList | filter:LoomDataDetailSearch).length == 0" style="color:red">Nothing found!</p>*@
+
+@*<div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>*@

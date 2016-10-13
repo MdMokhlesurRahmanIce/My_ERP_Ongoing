@@ -1,0 +1,233 @@
+﻿
+<form novalidate name="frmDocuments" id="pPM" class="form-horizontal row-border">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Company</label>
+                <div class="col-md-6">
+                    <select id="CompanyList_Doc" class="select2-select-00"
+                            ng-model="lstCompanyList_Doc"
+                            ng-change="getChangedCompanyID_Doc()"
+                            name="companyList_Doc"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany_Doc" required>
+                        <option></option>
+                        @*<option ng-repeat="com in listCompany_Doc" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xCompanyID_Doc" id="companyId_Doc" name="companyId_Doc" required />*@
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.companyList_Doc.$error.required">*</span>
+            </div>           
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Party Name</label>
+                <div class="col-md-6">
+                    <select id="BuyerList_Doc" class="select2-select-00"
+                            ng-model="lstBuyerList_Doc"
+                            ng-change="loadLCRecords_Doc(0)"
+                            name="buyerList_Doc"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%"
+                            ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer_Doc" required>
+                        <option></option>
+                        @*<option ng-repeat="buy_Doc in ListBuyer_Doc" value="{{buy_Doc.UserID}}">{{buy_Doc.UserFirstName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xUserID_Doc" id="buyerId_Doc" name="buyerId_Doc" required />*@
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.buyerList_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Delivery Quantity</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="deliveryQuantity_Doc"
+                           class="form-control"
+                           name="deliveryQuantity_Doc" ng-model="DeliveryQuantity_Doc" min="0" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.deliveryQuantity_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Documents No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="documentsNo_Doc"
+                           class="form-control"
+                           name="documentsNo_Doc" ng-model="DocumentsNo_Doc" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.documentsNo_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Delivery Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtShipmentDate_Doc"
+                           class="form-control datepicker"
+                           name="dtShipmentDate_Doc" ng-model="ShipmentDate_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtShipmentDate_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Docs Sent Date(Party)</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtDocsSentDateParty_Doc"
+                           class="form-control datepicker"
+                           name="dtDocsSentDateParty_Doc" ng-model="DocsSentDateParty_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtDocsSentDateParty_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Negotiating Bank</label>
+                <div class="col-md-6">
+                    <select id="bankList_Doc" class="select2-select-00"
+                            ng-model="lstBankList_Doc"
+                            ng-change="getChangedBankID_Doc()"
+                            name="bankList_Doc"
+                            data-placeholder="--Select Bank--"
+                            style="width: 100%"
+                            ng-options="Bank.BankID as Bank.BankName for Bank in ListBank_Doc" required>
+                        <option></option>
+                        @*<option ng-repeat="Bank_Doc in ListBank_Doc" value="{{Bank_Doc.BankID}}">{{Bank_Doc.BankName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xBankID_Doc" id="bankId_Doc" name="bankId_Doc" required />*@
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.bankList_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Submission Date(Party Bank)</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtSubmissionDatePartyBank_Doc"
+                           class="form-control datepicker"
+                           name="dtSubmissionDatePartyBank_Doc" ng-model="SubmissionDatePartyBank_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtSubmissionDatePartyBank_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Ref Bill No</label>
+                <div class="col-md-6">
+                    <input type="text"
+       id="refBillNo_Doc"
+       class="form-control"
+       name="refBillNo_Doc" ng-model="RefBillNo_Doc" ng-keyup="loadBillToCheckDuplicate_Doc(0)" required />@* ng-checked="loadBillToCheckDuplicate_Doc(0)" ng-change="loadBillToCheckDuplicate_Doc(0)"*@ 
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.refBillNo_Doc.$error.required">*</span>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Ref No</label> @*CustomCode*@
+                <div class="col-md-6">
+                    <input type="text"
+                           id="refNo_Doc"
+                           class="form-control"
+                           name="refNo_Doc" ng-model="RefNo_Doc" placeholder="New" readonly />
+                </div>
+                @*<span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.refNo_Doc.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">LC NO</label>
+                <div class="col-md-6">
+                    <select id="LCList_Doc" class="select2-select-00"
+                            ng-model="lstLCList_Doc"
+                            ng-change="loadBank_Doc()"
+                            name="lCList_Doc"
+                            data-placeholder="--Select LC--"
+                            style="width: 100%"
+                            ng-options="lc.LCID as lc.LCNo for lc in ListLCNo_Doc" required>
+                        <option></option>
+                        @*<option ng-repeat="lc_Doc in ListLCNo_Doc" value="{{lc_Doc.LCID}}">{{lc_Doc.LCNo}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xLCID_Doc" id="lcId_Doc" name="lcId_Doc" required />*@
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.lCList_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Documents Type</label>
+                <div class="col-md-6">
+                    <select id="documentsType_Doc" class="select2-select-00"
+                            ng-model="lstDocumentsType_Doc"
+                            name="documentsType_Doc"
+                            ng-change="getChangedComboID_Doc(0)"
+                            data-placeholder="--Select Docs Type--"
+                            style="width: 100%"
+                            ng-options="DocType.ComboID as DocType.ComboName for DocType in ListDocType_Doc" required>
+                        <option></option>
+                        @*<option ng-repeat="ltd_Doc in ListDocType_Doc" value="{{ltd_Doc.ComboID}}">{{ltd_Doc.ComboName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xComboID_Doc" id="comboID_Doc" name="comboID_Doc" required />*@
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.documentsType_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Document Value</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="documentValue_Doc"
+                           class="form-control"
+                           name="documentValue_Doc" ng-model="DocumentValue_Doc" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.documentValue_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Documents Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtDocumentsDate_Doc"
+                           class="form-control datepicker"
+                           name="dtDocumentsDate_Doc" ng-model="DocumentsDate_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtDocumentsDate_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Docs Recieve Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtDocsRecieveDate_Doc"
+                           class="form-control datepicker"
+                           name="dtDocsRecieveDate_Doc" ng-model="DocsRecieveDate_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtDocsRecieveDate_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Party Acceptance Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtPartyAcceptanceDate_Doc"
+                           class="form-control datepicker"
+                           name="dtPartyAcceptanceDate_Doc" ng-model="PartyAcceptanceDate_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtPartyAcceptanceDate_Doc.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Bank Acceptance Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtBankAcceptanceDate_Doc"
+                           class="form-control datepicker"
+                           name="dtBankAcceptanceDate_Doc" ng-model="BankAcceptanceDate_Doc" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmDocuments.$dirty||submitted) && frmDocuments.dtBankAcceptanceDate_Doc.$error.required">*</span>
+            </div>
+
+        </div>
+    </div>
+
+</form>

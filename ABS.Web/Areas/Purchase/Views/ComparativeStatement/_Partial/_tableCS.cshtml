@@ -1,0 +1,52 @@
+﻿<table class="table  table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <td style="display:none">QuotationID</td> 
+            <td style="display:none">PartyID</td>     
+             
+            <th></th>                   
+            <th>Party Name</th>
+            <th>QuotationNo</th>
+            <th>QuotationDate</th>
+            <th>DeliveryDate</th>
+            <th>Amount</th>
+            <th>Remarks</th>    
+            <th style="text-align:right">Action</th>          
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListQuotation">
+            <td style="display:none">{{dataModel.QuotationID}}</td>
+            <td style="display:none">{{dataModel.PartyID}}</td>
+           
+            <td>
+                <div class="roundedTwo">
+                    <input type="checkbox" ng-click="checkAll(dataModel)" ng-model="dataModel.Selected" />
+                </div>
+            </td>
+            <td>{{dataModel.PartyName}}</td>
+            <td>{{dataModel.QuotationNo}}</td>
+            <td>{{dataModel.QuotationDate | date:'dd-MM-yy' }}</td>
+            <td>{{dataModel.DeliveryDate | date:'dd-MM-yy' }}</td>
+            <td>{{dataModel.UnitPrice}}</td>
+            <td>{{dataModel.Remarks}}</td>
+            <td style="text-align:right">
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Detail">
+                        <i class="glyphicon glyphicon-search" ng-click="loadQuotationDetailPop_Records(dataModel)">&nbsp;Detail</i>
+                    </a>
+                </span>
+            </td>         
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListQuotation).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

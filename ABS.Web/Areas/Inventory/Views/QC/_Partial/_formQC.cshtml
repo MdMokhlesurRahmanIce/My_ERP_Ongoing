@@ -1,0 +1,252 @@
+﻿
+<form novalidate name="frmQC" id="qC" class="form-horizontal row-border">
+    <input type="hidden" id="qCNO" readonly="readonly" ng-model="MrrQcID" />
+    <input type="hidden" id="qCNO" readonly="readonly" ng-model="MrrQcNo" />
+
+    <input type="hidden" id="qCTypeID" readonly="readonly" ng-model="QCTypeID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" ng-show="IsQCFromSpr">QC No</label>
+                <label class="col-md-3 control-label" ng-show="IsQCFromSprLoan">Loan QC No</label>
+
+                <div class="col-md-8">
+                    <input type="text"
+                           id="qCNo"
+                           class="form-control"
+                           name="qCNo" ng-model="HQCNO" placeholder="New" ng-readonly="true" /> @*//     validation problem*@
+                    </div>
+                    @*<span class="error" ng-show="(frmPI.$dirty||submitted) && frmPI.pINo.$error.required">*</span>*@
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" ng-show="IsQCFromSpr">QC Date</label>
+                    <label class="col-md-3 control-label" ng-show="IsQCFromSprLoan">Loan QC Date</label>
+
+                    <div class="col-md-8">
+                        <input type="text"
+                               id="dtqCDate"
+                               class="form-control datepicker"
+                               name="dtqCDate" ng-model="QCDate" required @*ng-disabled="true"*@ @*readonly="readonly"*@ />
+                    </div>
+                    <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.dtqCDate.$error.required">*</span>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-3 control-label" for="input17" ng-show="IsQCFromSpr">GRR No</label>
+                    <label class="col-md-3 control-label" for="input17" ng-show="IsQCFromSprLoan">Loan GRR No</label>
+
+                    <div class="col-md-8">
+                        <select id="ddlGRRNo" class="select2-select-00"
+                                ng-model="lstGRRNoList"
+                                name="ddlGRRNo"
+                                data-placeholder="--Select GRR No--"
+                                ng-change="getItemDetailByGrrNo()"
+                                style="width: 100%" ng-options="g.GrrID as g.GrrNo for g in listGRRNo" required>
+                            <option></option>
+                            @*<option ng-repeat="lsp in listSalesPerson" value="{{lsp.UserID}}">{{lsp.UserFullName}}</option>*@
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlGRRNo.$error.required">*</span>
+                </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" ng-show="IsQCFromSpr">GRR Date</label>
+                <label class="col-md-3 control-label" ng-show="IsQCFromSprLoan">Loan GRR Date</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="dtGRRDate"
+                           class="form-control datepicker"
+                           name="dtGRRDate" ng-model="GRRDate" required ng-disabled="true" readonly="readonly" />
+                </div>
+                <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.dtGRRDate.$error.required">*</span>
+            </div>
+
+        
+
+
+                @*<div class="form-group">
+                    <label class="col-md-3 control-label" for="input">Attachment</label>
+                    <div class="col-md-8">
+                        <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" required />
+                    </div>
+                </div>*@
+
+            </div>
+
+            <div class="col-md-4">
+       
+                 
+                <div class="form-group" ng-show="IsQCFromSpr">
+                    <label class="col-md-4 control-label" for="input17">Supplier</label>
+                    <div class="col-md-7">
+                        <select id="ddlSupplier" class="select2-select-00"
+                                ng-model="lstSupplierList"
+                                name="ddlSupplier"
+                                data-placeholder="--Select Supplier--"
+                                style="width: 100%" ng-options="sgt.UserID as sgt.UserFullName for sgt in listSupplier" ng-required="IsQCFromSpr" ng-readonly="true">
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlSupplier.$error.required">*</span>
+                </div>
+
+                <div class="form-group" ng-show="IsQCFromSprLoan">
+                    <label class="col-md-4 control-label" for="input17">From Company </label>
+                    <div class="col-md-7">
+                        <select id="ddlCompany" class="select2-select-00"
+                                ng-model="lstCompanyList"
+                                name="ddlCompany"
+                                data-placeholder="--Select Company--"
+                                style="width: 100%"
+                                ng-options="com.CompanyID as com.CompanyName for com in listCompany" ng-required="IsQCFromSprLoan" ng-readonly="true">
+                            <option></option>
+                        </select>
+
+                    </div>
+                    <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlCompany.$error.required">*</span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17" ng-show="IsQCFromSpr">SPR No</label>
+                    <label class="col-md-4 control-label" for="input17" ng-show="IsQCFromSprLoan">Loan Order No</label>
+                    <div class="col-md-7">
+                        <select id="ddlSPRNo" class="select2-select-00"
+                                ng-model="ngmSPRNOList"
+                                name="ddlSPRNo"
+                                data-placeholder="--Select SPR No--"
+                                style="width: 100%" ng-options="spt.RequisitionID as spt.RequisitionNo for spt in SPRNOList" ng-readonly="true" @*required*@>
+                            <option></option>
+                        </select>
+                    </div>
+                    @*<span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlSPR_PO_LC.$error.required">*</span>*@
+                </div>
+
+
+                <div class="form-group" ng-show="IsQCFromSpr">
+                    <label class="col-md-4 control-label" for="input17">PO No</label>
+                    <div class="col-md-7">
+                        <select id="ddlPONo" class="select2-select-00"
+                                ng-model="ngmPONoList"
+                                name="ddlPONo"
+                                @*ng-change="LoadSPRPOLCDateByNo()"*@
+                                data-placeholder="--Select PO No--"
+                                style="width: 100%" ng-options="spl.POID as spl.PONo for spl in PONoList" ng-readonly="true" @*required*@>
+                            <option></option>
+                            @*<option ng-repeat="sgt in listSight" value="{{sgt.ComboID}}">{{sgt.ComboName}}</option>*@
+                        </select>
+                    </div>
+                    @*<span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlPONo.$error.required">*</span>*@
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">L/C No</label>
+                    <div class="col-md-7">
+                        <input type="text"
+                               id="txtLCNo"
+                               class="form-control"
+                               name="txtLCNo" ng-model="LCNO" ng-readonly="true" />
+                    </div>
+                    @*<span class="error" ng-show="(frmPI.$dirty||submitted) && frmPI.pINo.$error.required">*</span>*@
+                </div>
+
+             </div>
+
+
+                <div class="col-md-4">
+
+                    @*<div class="form-group">
+                        <label class="col-md-4 control-label" for="input17">PI No</label>
+                        <div class="col-md-7">
+                            <select id="ddlPINo" class="select2-select-00"
+                                    ng-model="ngmPINoList"
+                                    name="ddlPINo"
+                                    data-placeholder="--Select PI No--"
+                                    style="width: 100%" ng-options="spl.PIID as spl.PINo for spl in PINoList" ng-readonly="true">
+                                <option></option>
+                            </select>
+                        </div> 
+                    </div>*@
+
+            
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Challan No</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtChallanNo"
+                                   class="form-control"
+                                   name="txtChallanNo" ng-model="RefChallanNo" ng-readonly="true" />
+                        </div>
+                        @*<span class="error" ng-show="(frmPI.$dirty||submitted) && frmPI.pINo.$error.required">*</span>*@
+                    </div>
+
+
+            
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Manual QC No</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtQCCertificateNo"
+                                   class="form-control"
+                                   name="txtQCCertificateNo" ng-model="QCCertificateNo" ng-blur="ChkDuplicateNo()" ng-required="true" /> @*//     validation problem*@
+                            </div>
+                        <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.txtQCCertificateNo.$error.required">*</span>
+                        </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Description</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtDescription"
+                                   class="form-control"
+                                   name="txtDescription" ng-model="Description" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="input17">QC By</label>
+                        <div class="col-md-7">
+                            <select id="ddlQCBy" class="select2-select-00"
+                                    ng-model="ngmQCByList"
+                                    name="ddlQCBy"
+                                    data-placeholder="--Select QC By--"
+                                    style="width: 100%" ng-options="sgt.UserID as sgt.UserFullName for sgt in listQCBy" required >
+                                <option></option>
+                            </select>
+                        </div>
+                        <span class="error" ng-show="(frmQC.$dirty||submitted) && frmQC.ddlQCBy.$error.required">*</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Remarks </label>
+
+                        <div class="col-md-11">
+                            <textarea rows="2" cols="3"
+                                      id="txtRemarks"
+                                      class="form-control"
+                                      name="txtRemarks" ng-model="Remarks" style="width:97%;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>

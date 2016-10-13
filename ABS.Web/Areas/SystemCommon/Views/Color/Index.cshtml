@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Color Settings";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="colorCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addColor" class="btn btn-info margin-right-btn" ng-href="#colorModal" data-toggle="modal" ng-click="clear()">
+                                    <i class="icon-plus-sign"></i> {{PageTitle}}
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Color/_Partial/_tableColor.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="colorModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-folder-open"></i> {{PageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/Color/_Partial/_formColor.cshtml")
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="save" class="btn btn-primary margin-right-btn" value="{{btnSaveText}}" ng-click="save()" ng-disabled="frmColor.$invalid" />
+                            <input type="button" id="reset" class="btn btn-danger margin-right-btn" value="Reset" ng-click="clear()" />
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="angular-tablescroll.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/ColorCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

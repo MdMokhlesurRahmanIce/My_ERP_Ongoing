@@ -1,0 +1,214 @@
+﻿<form novalidate name="frmFundRequisition" id="FundRequisition" class="form-horizontal row-border">
+
+    <input type="hidden" id="FRID" readonly="readonly" ng-model="FRID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Company  </label>
+            <div class="col-md-7">
+                <select id="ddlCompany" class="select2-select-00"
+                        ng-model="Company"
+                        name="ddlCompany"
+                        data-placeholder="--Select Company--"
+                        style="width: 100%" ng-options="com.CompanyID as com.CompanyName for com in ListCompany" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlCompany.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">FRNo </label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtFRNo"
+                       class="form-control"
+                       name="txtFRNo" ng-model="FRNo" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">SPR No  </label>
+            <div class="col-md-7">
+                <select id="ddlSPRNo" class="select2-select-00"
+                        ng-model="SPRNo"
+                        name="ddlSPRNo"
+                        data-placeholder="--Select SPR No--"
+                        style="width: 100%" ng-options="REQ.RequisitionID as REQ.RequisitionNo for REQ in lstRequisition" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlSPRNo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"> Unit Price </label>
+            <div class="col-md-7">
+                <input type="number"
+                       id="txtUnitPrice"
+                       class="form-control"
+                       name="txtUnitPrice" ng-model="UnitPrice" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Total Value </label>
+            <div class="col-md-7">
+                <input type="number"
+                       id="txtTotalValue"
+                       class="form-control"
+                       name="txtTotalValue" ng-model="TotalValue" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Required Amount </label>
+            <div class="col-md-7">
+                <input type="number"
+                       id="txtRequiredAmount"
+                       class="form-control"
+                       name="txtRequiredAmount" ng-model="RequiredAmount" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Estimated Date </label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="dtEstDate"
+                       class="form-control datepicker"
+                       name="dtEstDate" ng-model="EstimatedDate" placeholder="dd-MM-yyyy" required />
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.dtEstDate.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Advising Bank  </label>
+            <div class="col-md-7">
+                <select id="ddlAdvisingBank" class="select2-select-00"
+                        ng-model="AdvisingBank"
+                        name="ddlAdvisingBank"
+                        data-placeholder="--Select Bank--"
+                        style="width: 100%" ng-options="ban.BankID as ban.BankName for ban in lstBank" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlAdvisingBank.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Purpose </label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtPurpose"
+                          class="form-control"
+                          name="txtPurpose" ng-model="Purpose"></textarea>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Department  </label>
+            <div class="col-md-7">
+                <select id="ddlDepartment" class="select2-select-00"
+                        ng-model="Department"
+                        name="ddlDepartment"
+                        data-placeholder="--Select Department--"
+                        style="width: 100%" ng-options="com.OrganogramID as com.OrganogramName for com in listOrganogramsDepartment" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlDepartment.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> PINo </label>
+            <div class="col-md-7">
+                <select id="ddlPINo" class="select2-select-00"
+                        ng-model="PINo"
+                        name="ddlPINo"
+                        data-placeholder="--Select PINo--"
+                        style="width: 100%" ng-options="com.CompanyID as com.CompanyName for com in ListPINo" required>
+                    <option></option>
+                </select>
+            </div>
+            @*<span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlPINo.$error.required">*</span>*@
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"> Negotiate Order Qty </label>
+            <div class="col-md-7">
+                <input type="number"
+                       id="txtOrderQty"
+                       class="form-control"
+                       name="txtOrderQty" ng-model="OrderQty" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Unit  </label>
+            <div class="col-md-7">
+                <select id="ddlUnit" class="select2-select-00"
+                        ng-model="Unit"
+                        name="ddlUnit"
+                        data-placeholder="--Select Unit--"
+                        style="width: 100%" ng-options="com.UOMID as com.UOMName for com in LstUnits" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlUnit.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Currency  </label>
+            <div class="col-md-7">
+                <select id="ddlCurrency" class="select2-select-00"
+                        ng-model="Currency"
+                        name="ddlCurrency"
+                        data-placeholder="--Select Currency--"
+                        style="width: 100%" ng-options="com.Id as com.CurrencyName for com in LstCurrency" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.ddlCurrency.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Fund available date </label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="dtDate"
+                       class="form-control datepicker"
+                       name="dtDate" ng-model="AvailableDate" placeholder="dd-MM-yyyy" required />
+            </div>
+            <span class="error" ng-show="(frmFundRequisition.$dirty||submitted) && frmFundRequisition.dtDate.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"> Avg lead time </label>
+            <div class="col-md-7">
+                <input type="number"
+                       id="txtLeadTime"
+                       class="form-control"
+                       name="txtLeadTime" ng-model="LeadTime" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Break Down Of Expense </label>
+            <div class="col-md-7">
+                <textarea id="txtExpense" rows="5" cols="5"
+                          class="form-control"
+                          name="txtExpense" ng-model="Expense"></textarea>
+
+            </div>
+        </div>
+    </div>
+</form>

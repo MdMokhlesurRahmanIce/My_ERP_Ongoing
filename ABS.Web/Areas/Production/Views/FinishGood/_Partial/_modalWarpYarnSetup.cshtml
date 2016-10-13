@@ -1,0 +1,153 @@
+﻿
+<div class="modal fade" id="WarpYarnSetUpModal">
+    @*<div class="modal-dialog">*@
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-cogs"></i> {{ModalHeading}}</h4>
+            </div>
+            <div class="modal-body">
+                <form novalidate name="frmMWY" id="frmMWY" ng-model="frmMWY" class="form-horizontal row-border">
+                    <input type="hidden" id="itemWYId" readonly="readonly" ng-model="itemWYId" />
+                    <div class="col-md-12" style="padding:0px;">
+
+                        <div class="col-md-12">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Yarn:</label>
+                                    <div class="col-md-9">
+                                        <select id="drpMYarn" class="select2-select-00" style="width:120%;"
+                                                placeholder="--Select Yarn--"
+                                                ng-model="drpMYarn"
+                                                name="drpMYarn"
+                                                ng-options="ig.ItemID as ig.ItemName for ig in ItemYrns" ng-change="LoadLots()" required>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                    <img src="~/Content/img/TickMark.png" ng-show="frmMWY.drpMYarn.$dirty && frmMWY.drpMYarn.$valid" class="iconClass" />
+                                    <img src="~/Content/img/Cross.png" ng-show="frmMWY.drpMYarn.$dirty && frmMWY.drpMYarn.$invalid" class="iconClass" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Lot:</label>
+                                    <div class="col-md-9">
+                                        <select id="drMpLot" class="select2-select-00" style="width:120%;"
+                                                placeholder="--Select Lot--"
+                                                ng-model="drMpLot"
+                                                name="drMpLot"
+                                                ng-options="ig.LotID as ig.LotNo for ig in Lots">
+                                            <option></option>
+                                        </select>
+
+                                    </div>
+                                    @*<img src="~/Content/img/TickMark.png" ng-show="frmMWY.drMpLot.$dirty && frmMWY.drMpLot.$valid" class="iconClass" />
+                            <img src="~/Content/img/Cross.png" ng-show="frmMWY.drMpLot.$dirty && frmMWY.drMpLot.$invalid" class="iconClass" />*@
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Ratio:</label>
+                                    <div class="col-md-9">
+                                        <input type="number"
+                                               id="txtMRation"
+                                               placeholder="--Ratio--"
+                                               class="form-control"
+                                               name="txtMRation" ng-model="txtMRation" style="width:120%;" required />
+                                    </div>
+                                    <img src="~/Content/img/TickMark.png" ng-show="frmMWY.txtMRation.$dirty && frmMWY.txtMRation.$valid" class="iconClass" />
+                                    <img src="~/Content/img/Cross.png" ng-show="frmMWY.txtMRation.$dirty && frmMWY.txtMRation.$invalid" class="iconClass" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-11" style="padding-left:70px;">
+                            @*<input type="button" id="saveSM" class="btn btn-primary" value="{{btnMWYAdd}}" ng-click="AddWarpYarn()" ng-disabled="frmMWY.$invalid" />*@
+
+                            <span id="save" class="btn btn-success margin-right-btn" ng-click="AddWarpYarn()" ng-disabled="frmMWY.$invalid">
+                                <i class="icon-plus"></i> {{btnMWYAdd}}
+                            </span>
+
+                            @*<input type="button" id="saveRM" class="btn btn-danger margin-right-btn" value="{{btnMWrpYarnReset}}" ng-click="savemY()" />*@
+
+                            <span id="reset" class="btn btn-danger margin-right-btn" ng-click="ClearAllModal()">
+                                <i class="icon-refresh"></i> Reset
+                            </span>
+                            <br />
+
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="padding-top:4px;">
+
+                            <input id="custSearch" ng-model="custSearch" type="text" class="form-control search" placeholder="Search...">
+                            <table class="table  table-hover general-table">
+                                <thead>
+                                    <tr>
+
+
+                                        <th>SL.</th>
+                                        <th>Yarn</th>
+                                        <th>Lot</th>
+                                        <th>Ratio</th>
+                                        <th style="text-align:right;">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataModel in ListWarpYarn | filter:custSearch">
+
+                                        <td>{{$index+1}}</td>
+                                        <td>{{dataModel.YarnName}}</td>
+                                        <td>{{dataModel.LotName}}</td>
+                                        <td>{{dataModel.Ratio}}</td>
+
+
+                                        <td style="text-align:right; color:white">
+
+                                            <span class="label label-danger label-mini">
+                                                <a href="#" class="bs-tooltip" title="Delete" ng-click="deleteWarpYarn(dataModel)">
+                                                    <i class="icon-trash"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p ng-show="(ListOrganogram | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+                            <div class="loadmore">
+                                <div ng-show="loaderMore" ng-class="result">
+                                    @*<img src="~/Content/img/ng-loader.gif" />*@
+                                    {{lblMessage}}
+                                </div>
+                                <div ng-show="scrollended" ng-class="result">
+                                    {{lblMessage}}
+                                </div>
+                            </div>
+
+                            <br />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class=" col-md-12">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" id="save" class="btn btn-success" value="{{btnSaveWarpYan}}" ng-click="saveWarpYarn()" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

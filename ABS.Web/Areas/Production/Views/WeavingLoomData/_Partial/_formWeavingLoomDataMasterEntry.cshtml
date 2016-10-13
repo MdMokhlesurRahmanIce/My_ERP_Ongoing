@@ -1,0 +1,59 @@
+﻿<form novalidate name="frmWeavingLoomDataMasterEntry" id="WeavingLoomDataEntry" class="form-horizontal row-border">
+    <input type="hidden" id="loomRecordID" readonly="readonly" ng-model="LoomRecordID" />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="input17">Shift</label>
+                <div class="col-md-8">
+                    <select id="ddlShiftList" class="select2-select-00"
+                            ng-model="ShiftID"
+                            name="ddlShiftList" data-placeholder="--Select Shift--"
+                            ng-change="OnChangeShift()"
+                            style="width: 100%" ng-options="S.ShiftID as S.ShiftName for S in listShifts" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmWeavingLoomDataMasterEntry.$dirty||submitted) && frmWeavingLoomDataMasterEntry.ShiftID.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="input17">Line</label>
+                <div class="col-md-8">
+                    <select id="ddlLineList" class="select2-select-00"
+                            ng-model="LineID"
+                            name="ddlLineList" data-placeholder="--Select Line--"
+                            @*ng-change="loadSetInfoRecords(lstSetNoList)"*@
+                            style="width: 100%" ng-options="L.LineID as L.LineName for L in listLine">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmWeavingLoomDataMasterEntry.$dirty||submitted) && frmWeavingLoomDataMasterEntry.LineID.$error.required">*</span>*@
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Remarks</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="txtRemarks"
+                           class="form-control"
+                           name="txtRemarks" ng-model="Remarks" />
+                </div>
+                @*<span class="error" ng-show="(frmWeavingLoomDataMasterEntry.$dirty||submitted) && frmWeavingLoomDataMasterEntry.txtDescription.$error.required">*</span>*@
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Date</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="dtDate"
+                           class="form-control datepicker"
+                           name="dtDate" ng-model="ProductionDate" placeholder=" dd/mm/yyyy" required />
+                </div>
+                @*<span class="error" ng-show="(frmWeavingLoomDataMasterEntry.$dirty||submitted) && frmWeavingLoomDataMasterEntry.dtDate.$error.required">*</span>*@
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,219 @@
+﻿@using UIHtmlHelper
+@model ViewModelVoucherMaster
+
+
+
+<div class="container">
+
+
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href='@Url.Action("Index", "Dashboard", new { area = "Accounting" })'>Dashboard</a>
+
+            </li>
+            <li class="current">
+                <a href='@Url.Action("Create", "CashVoucherFo", new { area = "Accounting" })'>Cash Payment Voucher (FO)</a>
+
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    @using (Ajax.BeginForm("Edit", "CashVoucherFo", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccessForm" }, new { @class = "form-horizontal" }))
+    {
+        @Html.HiddenFor(model=>model.CompanyId)
+    <!-- /form -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i>Cash Payment Voucher(Factory Office)</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @if (Convert.ToBoolean(@ViewBag.UserViewPrivilige))
+                                {
+                                    <a class="btn btn-info margin-right-btn glyphicon glyphicon-arrow-left" href=@Url.Content("~/Accounting/CashVoucher") data-toggle="tooltip" title="Back to List">Show List</a>
+                                }
+                                <button type="submit" class="btn btn-success margin-right-btn glyphicon glyphicon-ok" title="Save">Save</button>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.CompanyId)
+                                    </div>
+
+                                    <div class="col-sm-8">
+
+                                        @Html.SimpleDropDownFor(model => model.CompanyId, @Url.Content("~/Accounting/ACDetails/GetAllCompanyList/"),
+     new { @class = "form-control input-sm", disabled = "disabled" })
+
+                                        @Html.ValidationMessageFor(model => model.CompanyId)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.VoucherNo)
+                                    </div>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.VoucherNo, new { @class = "form-control input-sm", @readonly = "readonly", @style = "color:red; font-weight:bold;" })
+                                        @Html.ValidationMessageFor(model => model.VoucherNo)
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.Narration)
+                                    </div>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.Narration, new { @class = "form-control input-sm" })
+                                        @Html.ValidationMessageFor(model => model.Narration)
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.VoucherTypeName)
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        @*@Html.SimpleDropDownFor(model => model.VoucherTypeId, "~/Accounts/CashVoucher/GetVoucherType/?Id=1",
+                                            new { @class = "form-control input-sm",Selected=true, @disabled = "disabled" , @style = "color:red; font-weight:bold;" })*@
+                                        @Html.TextBoxFor(model => model.VoucherTypeName, new { @Value = "Cash Payment Voucher (FO)", disabled = "disabled", @class = "form-control input-sm", @style = "color:red; font-weight:bold;" })
+                                        @Html.ValidationMessageFor(model => model.VoucherTypeName)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.VoucherDateStr)
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            @Html.TextBoxFor(model => model.VoucherDateStr, new
+                                {
+                                    @class = "form-control datetimepicker11"
+
+                                })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">
+                                        @Html.LabelFor(model => model.PaymentTo)
+                                    </div>
+                                    <div class="col-sm-8">
+                                        @Html.TextBoxFor(model => model.PaymentTo, new { @class = "form-control input-sm" })
+                                        @Html.ValidationMessageFor(model => model.PaymentTo)
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <hr />
+                        <div class="formStaticInfo tableGridStructure">
+                            <h2>Cash Payment Voucher Detail</h2>
+                            <div class="table-responsive">
+                                <table class="table" id="tbl">
+                                    <thead>
+                                        <tr>
+                                            <th>Ledger Name</th>
+                                            <th>Cost Center</th>
+                                            <th>Debit</th>
+                                            <th>Credit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="voucherRows">
+                                        @if (Model.VoucherDetails != null)
+                                        {
+                                            foreach (var item in Model.VoucherDetails)
+                                            {
+                                                Html.RenderPartial("_CashVoucherDetailEdit", item);
+                                            }
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><button class="AddRow btn btn-success pull-left btn-sm" data-url=@Url.Content("~/Accounting/CashVoucherFo/BlankResultRow/") data-container="voucherRows">Add New Row</button></td>
+                                            <td class="text-right">Total Amount</td>
+                                            <td>@Html.TextBoxFor(model => model.TotalDebitAmount, new { @class = "form-control input-sm", @readonly = "readonly", @style = "color:red; font-weight:bold;" })</td>
+                                            <td>@Html.TextBoxFor(model => model.TotalCreditAmount, new { @class = "form-control input-sm", @readonly = "readonly", @style = "color:red; font-weight:bold;" })</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+@section AngularScript
+{
+    <script type="text/javascript">
+        $(function () {
+            $(".datetimepicker11").datepicker({
+                format: "dd/mm/yyyy",
+                todayHighlight: true,
+                autoclose: true
+            });
+
+
+        });
+
+    </script>
+}
+
+
+
+
+

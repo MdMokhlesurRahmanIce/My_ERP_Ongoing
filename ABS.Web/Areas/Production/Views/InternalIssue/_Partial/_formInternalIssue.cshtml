@@ -1,0 +1,222 @@
+﻿
+
+<form novalidate name="frmFinishGood" id="frmFinishGood" class="form-horizontal row-border">
+    <input type="hidden" id="hidIssueId" readonly="readonly" ng-model="hidIssueId" />
+    <input type="hidden" id="departmentId" readonly="readonly" ng-model="departmentId" />
+    <input type="hidden" id="BalMRRID" readonly="readonly" ng-model="BalMRRID" />
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Artical No.</label>
+            @*<div class="col-md-7">
+                <select id="drpArticalNO" class="select2-select-00" style="width:100%;"
+                        ng-model="drpArticalNO"
+                        name="drpArticalNO"
+                        placeholder="-- Artical No. --"
+                        ng-options=" ig.ItemID  as ig.ArticalNo  for ig in Articals" ng-change="GetSetNoByArticalNo()">
+                    <option></option>
+                </select>
+            </div>*@
+            <div class="col-md-7" style="display:inline-flex">
+                <input type="text" id="txtArticleNo" class="form-control" name="txtArticleNo" ng-model="ArticleNo" placeholder="--Select Article No--" readonly="readonly" style="width:100%;margin-right:2px;" />
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtbxItemName.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Total Ends</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxTotalEnds"
+                       class="form-control"
+                       name="txtbxTotalEnds" ng-model="txtbxTotalEnds"
+                       placeholder="Total Ends" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Set Length</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxSetLength"
+                       class="form-control"
+                       name="txtbxSetLength" ng-model="txtbxSetLength"
+                       placeholder="Set Length" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Ball Issue Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxBallIssueDate"
+                       class="form-control datepicker"
+                       name="txtbxBallIssueDate" ng-model="txtbxBallIssueDate" ng-readonly="txtbxBallIssueDateReadOnly" ng-disabled="txtbxBallIssueDateReadOnly" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Dying Receive Remark</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtDyingReceiveRemark"
+                          class="form-control"
+                          name="txtDyingReceiveRemark" ng-model="txtDyingReceiveRemark" ng-readonly="txtbxDyingReceiveRemarkReadOnly"></textarea>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> LCB Issue Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxLCBIssueDate"
+                       class="form-control datepicker"
+                       name="txtbxLCBIssueDate" ng-model="txtbxLCBIssueDate" ng-readonly="txtbxLCBIssueDateReadOnly" ng-disabled="txtbxLCBIssueDateReadOnly" />
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Set No</label>
+            <div class="col-md-7">
+                <select id="drpSetNo" class="select2-select-00" style="width:100%;"
+                        ng-model="drpSetNo"
+                        name="drpSetNo"
+                        placeholder="-- Select Set No --"
+                        ng-options="ig.SetID as ig.SetNo for ig in setNos" ng-change="GetSetDetailsBySetNo()">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Supplier</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxSupplier"
+                       class="form-control"
+                       name="txtbxSupplier" ng-model="txtbxSupplier"
+                       placeholder="Supplier" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Color</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxColor"
+                       class="form-control"
+                       name="txtbxColor" ng-model="txtbxColor"
+                       placeholder="Color" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Ball Remark</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtAreBallRemark"
+                          class="form-control"
+                          name="txtAreBallRemark" ng-model="txtAreBallRemark" ng-readonly="txtAreBallRemarkReadOnly"></textarea>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Dying Issue Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxDyingIssueDate"
+                       class="form-control datepicker"
+                       name="txtbxDyingIssueDate" ng-model="txtbxDyingIssueDate" ng-readonly="txtbxDyingIssueDateReadOnly" ng-disabled="txtbxDyingIssueDateReadOnly" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">LCB Remark</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtbxLcbRemark"
+                          class="form-control"
+                          name="txtbxLcbRemark" ng-model="txtbxLcbRemark" ng-readonly="txtbxLcbRemarkReadOnly"></textarea>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Count</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxCount"
+                       class="form-control"
+                       name="txtbxCount" ng-model="txtbxCount"
+                       placeholder="Count" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Ratio</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxRatio"
+                       class="form-control"
+                       name="txtbxRatio" ng-model="txtbxRatio"
+                       placeholder="Ratio" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Lease Repeat</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxLeaseRepeat"
+                       class="form-control"
+                       name="txtbxLeaseRepeat" ng-model="txtbxLeaseRepeat"
+                       placeholder="Lease Repeat" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Dying Receive Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxDyingReceiveDate"
+                       class="form-control datepicker"
+                       name="txtbxDyingReceiveDate" ng-model="txtbxDyingReceiveDate" ng-readonly="txtbxDyingReceiveDateReadOnly" ng-disabled="txtbxDyingReceiveDateReadOnly" />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Dying Issue Remark</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtbxDyingIssueRemark"
+                          class="form-control"
+                          name="txtbxDyingIssueRemark" ng-model="txtbxDyingIssueRemark" ng-readonly="txtbxDyingIssueRemarkReadOnly"></textarea>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+

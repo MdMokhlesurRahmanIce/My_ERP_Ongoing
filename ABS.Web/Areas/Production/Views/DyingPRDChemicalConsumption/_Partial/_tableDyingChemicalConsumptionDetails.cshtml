@@ -1,0 +1,85 @@
+﻿<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        <img src="~/Content/img/ng-loader.gif" />
+        {{lblMessage}}
+    </div>
+</div>
+
+<table class="table  table-hover general-table col-md-12"     ng-if="ListConsumptionDetails.length>0" >
+    <thead class="grid-top-panel">
+        <tr>
+            <th class="text-center col-md-2">Tank</th>
+            <th class="text-center col-md-2" >Operation</th>
+            <th class="text-center col-md-2" >Temp</th>
+            <th class="text-center col-md-2">Chemical</th>
+            <th class="text-center col-md-2">Volume</th>
+            <th class="text-center col-md-2" style="display:none;" >Unit</th>
+            <th style="text-align:right;">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListConsumptionDetails" ng-show="!dataModel.IsDeleted">
+            <td class="col-md-2">
+                <div style="width:100px">
+                    <select id="ddlMachinePart"
+                            ng-model="dataModel.MachinePartID"
+                            name="ddlMachinePart" data-tags="false"
+                            data-placeholder="--Select Tank--"
+                            style="width: 100%"  
+                            ng-options="item.MachinePartID as item.MachinePartName for item in ListTank">
+                    </select>
+                </div>
+            </td>
+            <td class="col-md-2">
+                <div style="width:100px">
+                    <select id="ddlOperations"
+                            ng-model="dataModel.OperationID"
+                            name="ddlOperations" data-tags="false"
+                            data-placeholder="--Select Operation--"
+                            style="width: 100%"
+                            ng-options="item.OperationID as item.OperationName for item in ListOperations"></select>
+                </div>
+            </td>
+            <td class="col-md-2">
+                <input type="text" id="temp" name="temp" class="form-control" ng-model="dataModel.Temp"  />
+            </td>
+
+            <td class="col-md-2"  >
+                <div style="display:inline-flex;">
+                    <input class="form-control" type="hidden" id="hdchemical" name="hdchemical" style="float:left" ng-model="dataModel.ConsumptionChemicalMID" />
+                    <input class="form-control col-md-8" type="text"  readonly="readonly" id="chemical" name="checmical" style="float:left" ng-model="dataModel.ConsumptionChemicalSum" />
+                    <span class="col-md-3 label label-success label-mini" style="float:right" ng-click="GetChemicalPopUp(dataModel,dataModel.ConsumptionChemicalMID,dataModel.DyingConsumptionDetailID)" >
+                        <a href="javascript:void(0);" ng-href="#chemicalInfoModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="bs-tooltip" title="Machine Detail">
+                            <i class="icon-search"></i>
+                        </a>
+                    </span>
+                </div>
+               
+            </td>
+            <td class="col-md-2">
+                <input type="text" id="Volume" name="Volume" class="form-control" ng-model="dataModel.Volume" />
+            </td>
+            <td class="col-md-2" style="display:none;">
+                <div style="width:100px">
+                    <select id="ddlUOM"  
+                            ng-model="dataModel.UOMID"
+                            name="ddlUOM" data-tags="false"
+                            data-placeholder="--Select Unit--"
+                            style="width: 100%"
+                            ng-options="item.UOMID as item.UOMName for item in ListUOM">
+                        <option></option>
+                    </select>
+                    
+                </div>
+            </td>
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="#" class="bs-tooltip" title="Delete" ng-click="deleteDetails(dataModel)">
+                        <i class="icon-trash"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+         
+    </tbody>
+</table>

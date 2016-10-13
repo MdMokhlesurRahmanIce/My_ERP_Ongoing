@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Letter Of Credit";
+}
+<div class="col-sm-12" ng-controller="tokenCtrl">
+    <div class="container" ng-controller="LCCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                    <i class="icon-refresh"></i> Reset
+                                </span>
+                                <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                    <i class="icon-search" ng-show="IsListIcon"></i>
+                                    <i ng-show="IsCreateIcon" class="icon-plus-sign"></i> {{btnSaleShowText}}
+                                </span>
+
+                                <span id="save" class="btn btn-success margin-right-btn" ng-if="UserCommonEntity.EnableInsert" ng-click="save()"
+                                      ng-disabled="frmLC.$invalid" ng-hide="IsHideSave">
+                                    <i class="icon-save"></i> {{btnSaleSaveText}}
+                                </span>
+                                <span class="btn btn-xs widget-collapse">
+                                    <i class="icon-angle-down"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Sales/Views/LC/_Partial/_formLC.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row" ng-show="IsPIListShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        <div when-scrolled="loadPIRecords(1)">
+                            @Html.Partial("~/Areas/Sales/Views/LC/_Partial/_tablePIInfo.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row" ng-hide="IsHidden">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleLCMaster}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Sales/Views/LC/_Partial/_tableLCMasterInfo.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row">
+            @Html.Partial("~/Areas/Sales/Views/HeadOfficeSalesDeliveryOrderEntry/_Partial/_tablePIDetailsInfo.cshtml")
+        </div>
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="FileModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-folder-open"></i> LC Documents</h4>
+                        </div>
+                        <div class="modal-body no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/LC/_Partial/_tableFilesInfo.cshtml")
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Sales/ScriptsNg/Controllers/LCCtrl.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Sales/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

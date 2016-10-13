@@ -1,0 +1,144 @@
+﻿<div class="modal fade" id="MachineStopModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="col-md-12 modal-header">
+                <div class="modal-title">
+                    <div class="col-md-6">
+                        <i class="icon-cogs"></i> {{ModalMachineHeading}}
+                    </div>
+                    <div class="col-md-6" style="text-align:right">
+                        <span id="save" class="btn btn-success margin-right-btn" ng-click="AddMachineStop()" ng-disabled="frmMacStop.$invalid">
+                            <i class="icon-plus"></i> {{btnAddMachineStop}}
+                        </span>
+                        <span id="reset" class="btn btn-danger margin-right-btn" ng-click="ClearStopModalForm()">
+                            <i class="icon-refresh"></i> Reset
+                        </span>
+                        @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                    </div><br />
+                </div>
+            </div>
+            <div class="modal-body no-padding">
+                <form name="frmMacStop" class="form-horizontal row-border" novalidate>
+                    <input type="hidden" id="itemWYId" readonly="readonly" ng-model="itemWYId" />
+                    <div class="col-md-12" style="padding:0px;">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Stop Time:</label>
+                                    <div class="col-md-7">
+                                        <input type="time"
+                                               id="txtStopTime"
+                                               class="form-control"
+                                               name="txtStopTime" placeholder="HH:mm:ss" ng-model="StopTime" ng-change="OnChangeMachineTime()" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Start Time:</label>
+                                    <div class="col-md-7">
+                                        <input type="time"
+                                               id="txtStartTime"
+                                               class="form-control"
+                                               name="txtStartTime" placeholder="HH:mm:ss" ng-model="StartTime" ng-change="OnChangeMachineTime()" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Causes:</label>
+                                    <div class="col-md-7">
+                                        <select id="ddlCauses" class="select2-select-00" style="width:120%;"
+                                                data-placeholder="--Select Cause--"
+                                                ng-model="BWSID"
+                                                name="ddlCauses"
+                                                ng-options="ig.BWSID as ig.BWSName for ig in CauseList" required>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">Description:</label>
+                                    <div class="col-md-7">
+                                        <input type="text"
+                                               id="txtCauses"
+                                               class="form-control"
+                                               name="txtCauses" ng-model="StopDescription" style="width:120%;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="clearfix"></div>
+                        <div style="margin-top:10px;">
+                            @*<input id="custSearch" ng-model="custSearch" type="text" class="form-control search" placeholder="Search...">*@
+                            <table class="table  table-hover general-table">
+                                <thead>
+                                    <tr>
+                                        <th>SL.</th>
+                                        <th>Stop Time</th>
+                                        <th>Start Time</th>
+                                        <th>Stop Duration(Min)</th>
+                                        <th style="display:none">BWS ID</th>
+                                        <th>Cause</th>
+                                        <th>Description</th>
+                                        <th style="text-align:right;">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataModel in ListMachineStop | filter:custSearch">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{dataModel.StopTime}}</td>
+                                        <td>{{dataModel.StartTime}}</td>
+                                        <td>{{dataModel.StopInMin}}</td>
+                                        <td style="display:none">{{dataModel.BWSID}}</td>
+                                        <td>{{dataModel.BWSName}}</td>
+                                        <td>{{dataModel.Description}}</td>
+                                        <td style="text-align:right; color:white">
+                                            <span class="label label-success label-mini">
+                                                <a href="#" class="bs-tooltip" title="Edit" ng-click="EditMachineStop(dataModel)">
+                                                    <i class="icon-edit"></i>
+                                                </a>
+                                            </span>
+                                            <span class="label label-danger label-mini">
+                                                <a href="#" class="bs-tooltip" title="Delete" ng-click="DeleteMachineStop(dataModel)">
+                                                    <i class="icon-trash"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            @*<p ng-show="(ListOrganogram | filter:custSearch).length == 0" style="color:red">Nothing found!</p>
+
+                            <div class="loadmore">
+                                <div ng-show="loaderMore" ng-class="result">
+                                    {{lblMessage}}
+                                </div>
+                                <div ng-show="scrollended" ng-class="result">
+                                    {{lblMessage}}
+                                </div>
+                            </div>
+
+                            <br />*@
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class=" col-md-12">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" id="saveMachineStop" data-dismiss="modal" class="btn btn-success" value="{{btnSaveMachineStop}}" ng-click="saveMachineStop()" ng-disabled="MachineSave" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ChangeMachinebtnState()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

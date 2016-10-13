@@ -1,0 +1,93 @@
+﻿
+
+<form novalidate name="frmCmnCustomCode" id="cmnCustomCode" class="form-horizontal row-border">
+    <input type="hidden" id="recordID " readonly="readonly" ng-model="RecordID " />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <label class="control-label"> Menu</label>
+                <select id="MenuDropDown" ng-model="ddlMenuMaster" class="select2-select-00 col-md-12" name="menuDropDown" >
+                    <option ng-repeat="olet in ListMenues" value="{{olet.MenuID}}">{{olet.MenuName}}</option>
+                </select>
+            </div>
+           
+            <div class="col-md-3">
+                <label class="control-label"> Company</label>
+                <select id="CompanyDropDown" ng-model="ddlCompanyMaster" class="select2-select-00 col-md-12" name="companyDropDown">
+                    <option ng-repeat="olet in ListCompany" value="{{olet.CompanyID}}">{{olet.CompanyName}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Branch</label>
+                <select id="BranchDropDown" ng-model="ddlBranchMaster" class="select2-select-00 col-md-12" name="branchDropDown">
+                    <option ng-repeat="olet in ListBranch" value="{{olet.OrganogramID}}">{{olet.OrganogramName}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Prefix</label>
+                <input type="text" id="Prefix" class="form-control" name="Prefix" ng-model="Prefix" />
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Suffix</label>
+                <input type="text" id="Suffix" class="form-control" name="Suffix" ng-model="Suffix" />
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-6  ">
+                    <input class="col-md-3" style="margin: 30px 1px 0 0;" type="checkbox" id="chkIsCompany" name="chkIsCompany" ng-model="IsCompany" />
+                    <label class="control-label " style="margin: 19px 0 0 0;" > Is Company?</label>
+                </div>
+                <div class="col-md-6">
+                    <input class="col-md-3" style="margin: 30px 1px 0 0;" type="checkbox" id="IsOrganogramCode" name="IsOrganogramCode" ng-model="IsOrganogramCode" />
+                    <label class="control-label" style="margin: 19px 0 0 0;" > Is Active?</label>
+                </div>
+                
+            </div>
+            @*<div class="squaredFour">
+                <input type="checkbox" value="None" id="squaredFour" name="check" />
+                <label for="squaredFour"> DES</label>
+            </div>*@
+            
+        </div> <!-- /.col-md-12 -->
+    </div>
+    <hr class="hrCustomClass" />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <label class="control-label"> Parameter</label>
+                <select id="ParameterDropDown" ng-model="ddlParameter" class="select2-select-00 col-md-12" name="parameterDropDown">
+                    @*  <option ng-repeat="olet in ListMenu" value="{{olet.MenuID}}">{{olet.MenuName}}</option>*@
+                    <option value="-1">--Select--</option>
+                    <option value="Prefix">Prefix</option>
+                    <option value="Suffix">Suffix</option>
+                    <option value="Day">Day</option>
+                    <option value="Month">Month</option>
+                    <option value="Year">Year</option>
+                    <option value="IsCompanyRequired">IsCompanyRequired</option>
+                    <option value="AutoNo">AutoNo</option>
+                </select>
+               
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Sequence</label>
+                <input type="text" id="Sequence" class="form-control" name="Sequence" ng-model="Sequence" />
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Length</label>
+                <input type="text" id="Length" class="form-control" name="Length" ng-model="Length" />
+            </div>
+            <div class="col-md-3">
+                <label class="control-label"> Separator</label>
+                <input type="text" id="Seperator" class="form-control" name="Seperator" ng-model="Seperator" />
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <input type="button" id="btnAdd" class="btn btn-success " value="Add" ng-click="AddCustomCodeDetails(ddlParameter)" />
+                <input type="button" id="reset" class="btn btn-danger" value="Clear" ng-click="clearDetailsParameter()" />
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+</form>

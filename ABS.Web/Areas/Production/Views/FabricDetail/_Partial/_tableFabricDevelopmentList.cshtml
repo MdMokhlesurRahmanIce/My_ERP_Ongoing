@@ -1,0 +1,89 @@
+﻿
+<div ui-grid="gridOptionsFg"
+     ui-grid-resize-columns
+     ui-grid-auto-resize
+     ui-grid-move-columns
+     ui-grid-exporter
+     ui-grid-pinning class="grid"></div>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        <img src="~/Content/img/ng-loader.gif" />
+        {{lblMessage}}
+    </div>
+</div>
+
+<div role="contentinfo" class="ui-grid-pager-panel ng-scope"
+     @*ng-show="grid.options.enablePaginationControls"*@>
+    <div role="navigation" class="ui-grid-pager-container">
+        <div role="menubar" class="ui-grid-pager-control">
+            <!-- Start Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-first" ui-grid-one-bind-title="aria.pageToFirst"
+                    ui-grid-one-bind-aria-label="aria.pageToFirst"
+                    ng-click="paginationFg.firstPageFg()"
+                    ng-disabled="cantPageBackward()" title="Page to first" aria-label="Page to first"
+                    disabled="disabled">
+                <div class="first-triangle">
+                    <div class="first-bar"></div>
+                </div>
+            </button>
+
+            <!-- Prev Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-previous"
+                    ui-grid-one-bind-title="aria.pageBack" ui-grid-one-bind-aria-label="aria.pageBack"
+                    ng-click="paginationFg.previousPageFg()"
+                    ng-disabled="cantPageBackward()" title="Page back" aria-label="Page back" disabled="disabled">
+                <div class="first-triangle prev-triangle"></div>
+            </button>
+
+            <input type="number" ui-grid-one-bind-title="aria.pageSelected" ui-grid-one-bind-aria-label="aria.pageSelected"
+                   class="ui-grid-pager-control-input ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-min ng-valid-max ng-valid-required"
+                   ng-model="paginationFg.pageNumberFg"
+                   min="1" max="{{paginationFg.getTotalPagesFg()}}" required="" title="Selected page"
+                   aria-label="Selected page">
+
+            <span class="ui-grid-pager-max-pages-number ng-binding"
+                  ng-show="paginationFg.getTotalPagesFg() > 0">
+                <abbr ui-grid-one-bind-title="paginationOf" title="of">/</abbr>{{paginationFg.getTotalPagesFg()}}
+            </span>
+
+            <!-- Next Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-next" ui-grid-one-bind-title="aria.pageForward"
+                    ui-grid-one-bind-aria-label="aria.pageForward"
+                    ng-click="paginationFg.nextPageFg()"
+                    ng-disabled="cantPageForward()"
+                    title="Page forward" aria-label="Page forward">
+                <div class="last-triangle next-triangle"></div>
+            </button>
+
+            <!-- Last Page -->
+            <button type="button" role="menuitem" class="ui-grid-pager-last"
+                    ui-grid-one-bind-title="aria.pageToLast" ui-grid-one-bind-aria-label="aria.pageToLast"
+                    ng-click="paginationFg.lastPageFg()" ng-disabled="cantPageToLast()" title="Page to last" aria-label="Page to last">
+                <div class="last-triangle"><div class="last-bar"></div></div>
+            </button>
+        </div><!-- ngIf: grid.options.paginationPageSizes.length > 1 -->
+
+        <div class="ui-grid-pager-row-count-picker ng-scope" @*ng-if="pagination.ddlpageSize.length > 1"*@>
+            <select ng-model="paginationFg.ddlpageSizeFg"
+                    ng-options="o as o for o in paginationFg.paginationPageSizesFg" ng-change="paginationFg.pageSizeChangeFg()"
+                    class="ng-pristine ng-untouched ng-valid ng-not-empty"></select>
+            <span class="ui-grid-pager-row-count-label ng-binding">&nbsp;items per page</span>
+        </div>
+        <!-- end ngIf: grid.options.paginationPageSizes.length > 1 -->
+        <!-- ngIf: grid.options.paginationPageSizes.length <= 1 -->
+    </div>
+    <div class="ui-grid-pager-count-container">
+        <div class="ui-grid-pager-count">
+            <span ng-show="paginationFg.totalItemsFg > 0"
+                  class="ng-binding" style="">
+                {{paginationFg.pageNumberFg}}<abbr ui-grid-one-bind-title="paginationThrough" title="through">-</abbr>
+                {{paginationFg.ddlpageSizeFg}} of {{paginationFg.totalItemsFg}} items
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+

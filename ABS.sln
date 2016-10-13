@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Web", "ABS.Web\ABS.Web.csproj", "{B3C65E87-6C4F-4A1B-B42C-ACBEB123081B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Web.Tests", "ABS.Web.Tests\ABS.Web.Tests.csproj", "{266716CD-2EA0-4B4C-B573-55EA6D4646E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Utility", "ABS.Utility\ABS.Utility.csproj", "{07B48FAA-D263-4935-8570-06F43E586530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Service", "ABS.Service\ABS.Service.csproj", "{AA41F2B6-2627-4853-BB6C-8F8594B42562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Models", "ABS.Models\ABS.Models.csproj", "{A45B046A-6790-4CAD-80B1-0F86F6999E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Data", "ABS.Data\ABS.Data.csproj", "{60B41D4A-2813-4313-86D9-7B0CFCA128AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABS.Reports", "ABS.Reports\ABS.Reports.csproj", "{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ABS.ModelingProject", "ABS.ModelingProject\ABS.ModelingProject.modelproj", "{7E218FD4-85AA-409B-8DBA-2E53D183C4D0}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://118.179.215.42:8080/tfs/erp-assl
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ABS.Web\\ABS.Web.csproj
+		SccProjectName1 = ABS.Web
+		SccLocalPath1 = ABS.Web
+		SccProjectUniqueName2 = ABS.Web.Tests\\ABS.Web.Tests.csproj
+		SccProjectName2 = ABS.Web.Tests
+		SccLocalPath2 = ABS.Web.Tests
+		SccProjectUniqueName3 = ABS.Utility\\ABS.Utility.csproj
+		SccProjectName3 = ABS.Utility
+		SccLocalPath3 = ABS.Utility
+		SccProjectUniqueName4 = ABS.Models\\ABS.Models.csproj
+		SccProjectName4 = ABS.Models
+		SccLocalPath4 = ABS.Models
+		SccProjectUniqueName5 = ABS.Service\\ABS.Service.csproj
+		SccProjectName5 = ABS.Service
+		SccLocalPath5 = ABS.Service
+		SccProjectUniqueName6 = ABS.Data\\ABS.Data.csproj
+		SccProjectName6 = ABS.Data
+		SccLocalPath6 = ABS.Data
+		SccProjectUniqueName7 = ABS.Reports\\ABS.Reports.csproj
+		SccProjectName7 = ABS.Reports
+		SccLocalPath7 = ABS.Reports
+		SccProjectUniqueName8 = ABS.ModelingProject\\ABS.ModelingProject.modelproj
+		SccProjectName8 = ABS.ModelingProject
+		SccLocalPath8 = ABS.ModelingProject
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3C65E87-6C4F-4A1B-B42C-ACBEB123081B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C65E87-6C4F-4A1B-B42C-ACBEB123081B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C65E87-6C4F-4A1B-B42C-ACBEB123081B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C65E87-6C4F-4A1B-B42C-ACBEB123081B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{266716CD-2EA0-4B4C-B573-55EA6D4646E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{266716CD-2EA0-4B4C-B573-55EA6D4646E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{266716CD-2EA0-4B4C-B573-55EA6D4646E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{266716CD-2EA0-4B4C-B573-55EA6D4646E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B48FAA-D263-4935-8570-06F43E586530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B48FAA-D263-4935-8570-06F43E586530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B48FAA-D263-4935-8570-06F43E586530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B48FAA-D263-4935-8570-06F43E586530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA41F2B6-2627-4853-BB6C-8F8594B42562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA41F2B6-2627-4853-BB6C-8F8594B42562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA41F2B6-2627-4853-BB6C-8F8594B42562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA41F2B6-2627-4853-BB6C-8F8594B42562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45B046A-6790-4CAD-80B1-0F86F6999E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45B046A-6790-4CAD-80B1-0F86F6999E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45B046A-6790-4CAD-80B1-0F86F6999E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45B046A-6790-4CAD-80B1-0F86F6999E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B41D4A-2813-4313-86D9-7B0CFCA128AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B41D4A-2813-4313-86D9-7B0CFCA128AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B41D4A-2813-4313-86D9-7B0CFCA128AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B41D4A-2813-4313-86D9-7B0CFCA128AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E218FD4-85AA-409B-8DBA-2E53D183C4D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E218FD4-85AA-409B-8DBA-2E53D183C4D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E218FD4-85AA-409B-8DBA-2E53D183C4D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E218FD4-85AA-409B-8DBA-2E53D183C4D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,166 @@
+﻿<form novalidate name="frmDC" id="dCEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="dCID" readonly="readonly" ng-model="DCID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Company</label>
+                <div class="col-md-7">
+                    <select id="CompanyList" class="select2-select-00"
+                            ng-model="lstCompanyList" ng-change="loadFDONoRecords(lstCompanyList)"
+                            name="CompanyList" data-placeholder="--Select Company--"
+                            style="width: 100%" ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.CompanyList.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Select Bank</label>
+                <div class="col-md-7">
+                    <select id="BankList" class="select2-select-00"
+                            ng-model="lstBankList"
+                            name="BankList"
+                            data-placeholder="--Select Bank--"
+                            style="width: 100%" ng-options="bank.BankID as bank.BankName for bank in ListBank" required>
+                        <option></option>
+                        @*<option ng-repeat="bank in ListBank" value="{{bank.BankID}}">{{bank.BankName}}</option>*@
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.BankList.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total Quantity</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtTotalQuantity"
+                           class="form-control"
+                           name="txtTotalQuantity" ng-model="TotalFDOQty" ng-readonly="true" />
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">FDO NO</label>
+                <div class="col-md-7">
+                    <select id="FDOList" class="select2-select-00"
+                            ng-model="lstFDONo" ng-change="loadTotalFDOQty(lstFDONo)"
+                            name="FDOList"
+                            data-placeholder="--Select FDO--"
+                            style="width: 100%" required>
+                        <option></option>
+                        <option ng-repeat="fdono in listFDO" value="{{fdono.FDOMasterID}}">{{fdono.FDONo}}</option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.FDOList.$error.required">*</span>*@
+            </div>
+
+            @*ng-change="loadPendingPIRecords(lstBuyerList)"*@
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">DC NO</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDCNo"
+                           class="form-control" style="font-weight:bold; color:red !important;"
+                           name="txtDCNo" ng-model="DCNo" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtDCDate"
+                           class="form-control datepicker"
+                           name="dtDCDate" ng-model="DCDate" placeholder="dd/mm/yyyy" ng-disabled="true" />
+                </div>
+                @*<span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.dtDCDate.$error.required">*</span>*@
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group" style="text-align:left">
+                <label class="col-md-12 control-label">Total Factory Delivery Order Quantity (Yds)</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group" style="text-align:left;">
+                <label class="col-md-3 control-label" id="totalFDOQty">{{ShowTotalFDOQty}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Truck NO</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtTruckNo"
+                           class="form-control"
+                           name="txtTruckNo" ng-model="TruckNo" readonly />
+                </div>
+                <span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.txtTruckNo.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Quantity (Yds)</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtQTY"
+                           class="form-control"
+                           name="txtQTY" ng-model="QuantityYds" readonly />
+                </div>
+                <span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.txtQTY.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Roll No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtRollNo"
+                           class="form-control"
+                           name="txtRollNo" ng-model="Roll" readonly />
+                </div>
+                <span class="error" ng-show="(frmDC.$dirty||submitted) && frmDC.txtRollNo.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-5 control-label"></label>
+                <div class="col-md-7">
+                    <input type="button"
+                           id="txtAddToTist"
+                           class="btn btn-info"
+                           name="txtAddToTist" ng-click="AddItemToList()" value="Add To List" />
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="button"
+                               id="txtAddToTist"
+                               class="btn btn-info"
+                               name="txtAddToTist" ng-click="AddItemToList()" value="Add To List" />
+                    </div>
+                </div>
+            </div>*@
+    </div>
+    
+</form>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="035ddce4-e7d6-41f3-aa63-b23965ba0fbd" name="Create Proforma Invoice Entry" linkedPackageId="0f7a19a6-c343-439a-ab44-62c7a9b87e9a" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="3db48ae0-385b-432a-8c9e-c5106299952c">
+      <elementDefinition Id="247fc0bf-1bd8-4562-9cf6-36260ba5bc09" />
+      <body>Load PI Company</body>
+      <annotatedElements>
+        <opaqueActionMoniker Id="ae1c1c59-eb08-4841-926c-472d07d841ff" LastKnownName="Company" />
+      </annotatedElements>
+    </comment>
+    <comment Id="2090dfa9-ee48-4567-8308-64d22579b770">
+      <elementDefinition Id="d6a79da2-7f3e-4d1f-955e-dd759210996a" />
+      <body>Save PI</body>
+      <annotatedElements>
+        <activityFinalNodeMoniker Id="27f60a11-fb05-4ee7-a134-0c1a7b220538" LastKnownName="ActivityFinal1" />
+      </annotatedElements>
+    </comment>
+    <comment Id="1cf05a9a-07ff-49d8-8734-750843f0b69b">
+      <elementDefinition Id="b204d931-1ef2-4583-be7e-fdb8f56af8b6" />
+      <annotatedElements>
+        <opaqueActionMoniker Id="ca77992a-45ad-4131-ba26-090d49a067f6" LastKnownName="Shipment" />
+      </annotatedElements>
+    </comment>
+    <comment Id="f56d2b37-89e5-4acc-a594-eb979220b285">
+      <elementDefinition Id="d535ef1e-0615-4fc6-8d7c-0cdad1e4af42" />
+      <body>Load Buyer from database</body>
+      <annotatedElements>
+        <opaqueActionMoniker Id="110a8123-bacd-4238-a8a7-9970fa0e8efa" LastKnownName="Buyer" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="c9fdb849-f41f-476b-815d-a91c901b7c53">
+      <profileInstance Id="cc47a6b3-378e-4f1d-b926-161b18c11799" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="d3443318-345c-4d75-bacd-96ce5fa62134">
+      <profileInstance Id="dfc8b59a-8698-4433-bb8f-879ddcbc9e9e" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="4936cbfe-21ca-4d22-a9b5-6147c72f9d48" name="Create Proforma Invoice Entry" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="a3b3cd37-aba7-407a-acd9-926acf47e1c7" />
+        <nodes>
+          <initialNode Id="7ccf7f0b-f46c-40b1-94b1-12920129d41e" name="Initial1" isLeaf="false">
+            <elementDefinition Id="68824868-2b48-42ca-8b33-e483a051fb28" />
+          </initialNode>
+          <opaqueAction Id="ae1c1c59-eb08-4841-926c-472d07d841ff" name="Company" isLeaf="false">
+            <elementDefinition Id="c4be52d7-3783-4d41-9c45-2af1ebc4634d" />
+          </opaqueAction>
+          <activityFinalNode Id="27f60a11-fb05-4ee7-a134-0c1a7b220538" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="7c5594ff-019f-4c36-a18e-cd4cf8e9a006" />
+          </activityFinalNode>
+          <opaqueAction Id="ca77992a-45ad-4131-ba26-090d49a067f6" name="Shipment" isLeaf="false">
+            <elementDefinition Id="4707d082-6fac-45d4-bb19-dac16f0ffae2" />
+          </opaqueAction>
+          <opaqueAction Id="110a8123-bacd-4238-a8a7-9970fa0e8efa" name="Buyer" isLeaf="false">
+            <elementDefinition Id="ab50108d-604c-4ec8-bebb-0590b1029b1a" />
+          </opaqueAction>
+          <opaqueAction Id="ccabc90c-ce1b-4477-ba50-eec63e6a0785" name="Bank" isLeaf="false">
+            <elementDefinition Id="ce4f2f6f-8e7f-4b32-9123-8687a7de35b5" />
+            <flowNodeTargets>
+              <controlFlow Id="a841c347-2be8-4a0f-b7ce-b00edb02465b" isLeaf="false">
+                <opaqueActionMoniker Id="78d377a3-b52b-487a-a6ed-ae527fbbd1c0" LastKnownName="Branch" />
+                <elementDefinition Id="393e31f6-dd60-44bd-b223-2cf952db181d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="78d377a3-b52b-487a-a6ed-ae527fbbd1c0" name="Branch" isLeaf="false">
+            <elementDefinition Id="6392c552-47a9-483d-80ec-56c0609d5a87" />
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="0f7a19a6-c343-439a-ab44-62c7a9b87e9a" name="ABS.ModelingProject">
+    <elementDefinition Id="df6a8abd-797e-4c9a-9a8b-99da00f99985" />
+  </package>
+</activityRootModel>

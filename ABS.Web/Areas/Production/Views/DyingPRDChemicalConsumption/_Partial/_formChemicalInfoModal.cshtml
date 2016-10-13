@@ -1,0 +1,102 @@
+﻿<div class="modal fade" id="chemicalInfoModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content modal-Custom-content modal-Custom">
+            <div class="col-md-12 modal-header">
+                <div class="modal-title">
+                    <div class="col-md-6">
+                        <span>
+                            <i class="icon-cogs"></i> Chemical Info
+                        </span>
+                    </div>
+                    <div class="col-md-6" style="text-align:right">
+                        <span id="save" class="btn btn-success margin-right-btn modal-header-btn" ng-click="Done()">
+                            <i class="icon-thumbs-up"></i> Done
+                        </span>
+                        <span id="reset" class="btn btn-danger margin-right-btn modal-header-right-btn" ng-click="Refresh()">
+                            <i class="icon-refresh"></i> Refresh
+                        </span>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="modal-body modal-Custom-Body no-padding">
+                <form name="frmchemicalConsumptionDetailsModal" class="form-horizontal row-border" novalidate>
+                    <input type="hidden" id="consumptionChemicaMlID" readonly="readonly" />
+                    <div class="col-md-12" style="padding:0px;">
+                        <table class="table  table-hover col-md-12 right-bottom-scroll-l" style="background-color:#f9f9f9 !important" ng-if="ListChemicalItem.length>0">
+                            <thead class="grid-top-panel">
+                                <tr>
+                                    <th class="text-center col-md-4">Chemical</th>
+                                    <th class="text-center col-md-3">Supplier</th>
+                                    <th class="text-center col-md-3">Batch</th>
+                                    <th class="text-center col-md-2">Quantity</th>
+                                    <th class="text-center col-md-3">Current&nbsp;Stock</th>
+                                    <th class="text-center col-md-3">Unit</th>
+                                    @*<th class="text-center col-md-1">Unit</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dataModel in ListChemicalItem">
+                                    <td class="col-md-4">
+                                        {{dataModel.ItemName}}
+                                    </td>
+                                    <td class="col-md-3" ng-if="dataModel.ItemID==0"></td>
+                                    <td class="col-md-3" ng-if="dataModel.ItemID!=0">
+                                        <div style="width:100px">
+                                            <select id="ddlSupplierList" class="select2-select"
+                                                    ng-model="dataModel.SupplierID"
+                                                    name="ddlSupplierList"
+                                                    data-placeholder="--Select Supplier--"
+                                                    ng-change="loadCurrentStock(dataModel)"
+                                                    style="width: 100%" ng-options=" user.SupplierID as user.SupplierName for user in dataModel.Supplier">
+                                                <option>--Select Supplier--</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-3" ng-if="dataModel.ItemID!=0">
+                                        <div style="width:100px">
+                                            <select id="ddlBatchList" class="select2-select"
+                                                    ng-model="dataModel.BatchID"
+                                                    name="ddlBatchList"
+                                                    data-placeholder="--Select Batches--"
+                                                    ng-change="loadCurrentStock(dataModel)"
+                                                    style="width: 100%"
+                                                    ng-options="user.BatchID as user.BatchNo for user in dataModel.Batch">
+                                                <option>--Select Batches--</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td class="col-md-2">
+                                        <input type="text" quantity="temp" name="Quantity" class="form-control modalQty" ng-change="CalculateStock(dataModel); SumQuantity(dataModel.Quantity)" ng-model="dataModel.Quantity" ng-readonly="dataModel.IsQtyReadOnly" />
+                                    </td>
+                                    <td class="col-md-3" ng-if="dataModel.ItemID!=0">
+                                        <input type="number" id="CurrentStock" name="CurrentStock" class="form-control" ng-model="dataModel.CurrentStock" readonly />
+                                    </td>
+                                    <td style="display:none">
+                                        <input type="hidden" id="UnitPrice" name="UnitPrice" class="form-control" ng-model="dataModel.UnitPrice" readonly />
+                                    </td>
+                                    <td class="col-md-3" ng-if="dataModel.ItemID!=0">
+                                        <input type="hidden" id="UnitList" name="UnitList" class="form-control" ng-model="dataModel.UnitID" />
+                                        {{dataModel.UOMName}}
+                                    </td>
+                                    <td class="col-md-2" ng-if="dataModel.ItemID==0"></td>
+                                    @*<td class="col-md-1">
+                                            <input type="text"   name="rr" class="form-control modalQty" ng-model="dataModel.Quantity" />
+                                        </td>*@
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

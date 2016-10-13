@@ -1,0 +1,186 @@
+﻿<form novalidate name="frmPrdDyingMRRMaster" id="prdDyingMRRMaster" class="form-horizontal row-border">
+    <input type="hidden" id="dyingMRRID " readonly="readonly" ng-model="DyingMRRID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Article No</label>
+                <div class="col-md-7" style="display:inline-flex" >
+                    @*<select id="ddlArticleNo" class="select2-select-00" ng-model="ddlCode" name="ddlArticleNo" data-placeholder="--Select Article--" required ng-change="LoadSetNo(ddlCode.ItemID)"
+                            ng-options="item as item.ArticleNo for item in ListArticleNo track by item.ItemID" style="width:80%;">
+                        <option></option>
+                    </select>*@
+                    <input type="hidden" id="hdddlArticleNo" readonly="readonly" ng-model="ddlCode" />
+                    <input type="text" id="ddlArticleNo" class="form-control" name="ddlArticleNo" ng-model="ddlCodeName" placeholder="Article" readonly="readonly" style="width:90%;margin-right:2px;" />
+                    <span class="label label-success label-mini" >
+                        <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                            <i class="icon-search"></i>
+                        </a>
+                    </span>
+                </div>
+                <div class="loadmore_ddl">
+                    <div ng-show="loadLoadingProcessArticleNo" ng-class="result">
+                        <img src="~/Content/img/ng-loader.gif" />
+                        {{LoadingMessage}}
+                    </div>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingMRRMaster.ddlArticleNO.$dirty && frmPrdDyingMRRMaster.ddlArticleNO.$valid" class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingMRRMaster.ddlArticleNO.$dirty && frmPrdDyingMRRMaster.ddlArticleNO.$invalid" class="iconClass" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Set No</label>
+                <div class="col-md-5" style="display:inline-block !important;">
+                    <input type="text" id="setNo" class="form-control" name="setNo" ng-model="setNo" placeholder="set No" />
+                    @*<select id="ddlSetNo" class="select2-select-00" ng-model="ddlSetNO" name="ddlSetNO" data-placeholder="--Select Process--" style="width:100%" required ng-change="SetNoChanged(ddlSetNO)"
+                                ng-options="item as item.DyingSetNo for item in ListSetNo track by item.DyingSetID">
+                            <option></option>
+                        </select>*@
+                </div>
+
+                <div class="col-md-1" style="display:inline-block !important;">
+                    <span class="label label-success label-mini">
+                        <a href="#" class="bs-tooltip" ng-click="InvokeSetModal(0)" title="Show Set No">
+                            <i class="icon-search"></i>
+                        </a>
+                    </span>
+                </div>
+                <div class="loadmore_ddl">
+                    <div ng-show="loadLoadingProcessSetNo" ng-class="result">
+                        <img src="~/Content/img/ng-loader.gif" />
+                        {{LoadingMessage}}
+                    </div>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingMRRMaster.ddlSetNO.$dirty && frmPrdDyingMRRMaster.ddlSetNO.$valid" class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingMRRMaster.ddlSetNO.$dirty && frmPrdDyingMRRMaster.ddlSetNO.$invalid" class="iconClass" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign"> Date </label>
+                <div class="col-md-7">
+                    <input type="text" id="consumptionDate" name="ConsumptionDate" ng-model="ConsumptionDate" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Buyer</label>
+                <div class="col-md-7">
+                    <input type="text" id="buyerName" class="form-control" name="BuyerName" ng-model="buyer" placeholder="Buyer" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">PI No</label>
+                <div class="col-md-7">
+                    <input type="text" id="PINO" class="form-control" name="PINO" ng-model="PINO" placeholder="PI NO" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Supplier</label>
+                <div class="col-md-7">
+                    <input type="text" id="Supplier" class="form-control" name="Supplier" ng-model="supplier" placeholder="Supplier" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Machine</label>
+                <div class="col-md-7">
+                    <select id="ddlMachine" class="select2-select-00" ng-model="ddlMachine" name="ddlMachine" data-placeholder="--Select Machine--" style="width:100%" required ng-change="MachineChanged(ddlMachine)"
+                            ng-options="item as item.MachineConfigNo for item in ListMachine track by item.MachineConfigID">
+                        <option></option>
+                    </select>
+
+                </div>
+                <div class="loadmore_ddl">
+                    <div ng-show="loadLoadingProcessMachine" ng-class="result">
+                        <img src="~/Content/img/ng-loader.gif" />
+                        {{LoadingMessage}}
+                    </div>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingMRRMaster.ddlMachine.$dirty && frmPrdDyingMRRMaster.ddlMachine.$valid" class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingMRRMaster.ddlMachine.$dirty && frmPrdDyingMRRMaster.ddlMachine.$invalid" class="iconClass" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Reff. No</label>
+                <div class="col-md-7">
+                    <select id="ddlRefferenceNoDropdown" class="select2-select-00" ng-model="ddlRefferenceNo" name="ddlRefferenceNoDropdown" data-placeholder="--Select Reference--" style="width:100%" required
+                            ng-options="item as item.DyingSetNo for item in ListRefferenceNo track by item.DyingSetID">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Shift</label>
+                <div class="col-md-7">
+                    <select id="Shift" class="select2-select-00" ng-model="Shift" name="Shift" data-placeholder="--Select Shift--" style="width:100%" required
+                            ng-options="item as item.ShiftName for item in ListShift track by item.ShiftID">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Start Time</label>
+                <div class="col-md-7">
+                    <input type="time" id="StartTime" class="form-control" name="StartTime" ng-model="StartTime" placeholder="StartTime" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">End Time</label>
+                <div class="col-md-7">
+                    <input type="time" id="EndTime" class="form-control" name="EndTime" ng-model="EndTime" placeholder="EndTime" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Speed</label>
+                <div class="col-md-7">
+                    <input type="text" id="Speed" class="form-control" name="Speed" ng-model="Speed" placeholder="Speed" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Motiure</label>
+                <div class="col-md-7">
+                    <input type="text" id="Motiure" class="form-control" name="Motiure" ng-model="Moiture" placeholder="Motiure" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">KGPreMin</label>
+                <div class="col-md-7">
+                    <input type="text" id="Min" class="form-control" name="Min" ng-model="KGPreMin" placeholder="Min" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="clearfix"></div>
+
+
+

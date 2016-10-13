@@ -1,0 +1,105 @@
+﻿<form novalidate name="frmPrdDyingOperationSetup" id="prdDyingOperationSetup" class="form-horizontal row-border">
+    <input type="hidden" id="operationSetupID " readonly="readonly" ng-model="OperationSetupID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">ADML Code</label>
+                <div class="col-md-7">
+                    <select id="DOperationcolorDropdown" class="select2-select-00" ng-model="ddlCode" name="colorDropdown" data-placeholder="--Select Code--"
+                            ng-options="item as item.ArticleNo for item in CodeList track by item.ItemID"
+                            style="width: 100%" required>
+                        <option></option>
+                    </select>
+                    <div class="loadmore_ddl">
+                        <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                            <img src="~/Content/img/ng-loader.gif" />
+                            {{lblMessageForSampleNo}}
+                        </div>
+                    </div>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingOperationSetup.colorDropdown.$dirty && frmPrdDyingOperationSetup.colorDropdown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingOperationSetup.colorDropdown.$dirty && frmPrdDyingOperationSetup.colorDropdown.$invalid" Class="iconClass" />
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Operation</label>
+                <div class="col-md-7">
+                    <select id="dyingOperationDropDown" class="select2-select-00" ng-model="ddlDyingOperation" name="DyingOperationDropDown" data-placeholder="--Select Operation--"
+                            ng-options="item as item.OperationName for item in OperationList track by item.OperationID"
+                            style="width: 100%" required>
+                        <option></option>
+                    </select>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingOperationSetup.DyingOperationDropDown.$dirty && frmPrdDyingOperationSetup.DyingOperationDropDown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingOperationSetup.DyingOperationDropDown.$dirty && frmPrdDyingOperationSetup.DyingOperationDropDown.$invalid" Class="iconClass" />
+            </div>
+            <div class="form-group" ng-hide="IsChemical">
+                <label class="col-md-4 control-label">Max Qty</label>
+                <div class="col-md-7">
+                    <input type="text" id="maxQty" class="form-control" name="MaxQty" ng-model="MaxQty" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)" />
+                </div>
+            </div>		
+            <div class="form-group" ng-show="IsChemical">
+                <label class="col-md-4 control-label">Item</label>
+                <div class="col-md-7">
+                    <select id="itemDropdown" class="select2-select-00" ng-model="ddlItem" name="ItemDropdown" data-placeholder="--Select Item--"
+                            ng-options="item as item.ConcatedProperty for item in ItemList track by item.ItemID"
+                            style="width: 100%">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Process Type</label>
+                <div class="col-md-7">
+                    <select id="dyingProcessDropDown" class="select2-select-00" ng-model="ddlProcessType" name="DyingProcessDropDown" data-placeholder="--Select Process--"
+                            ng-options="item as item.ProcessName for item in ProcessTypeList track by item.DyingProcessID"
+                            style="width: 100%" ng-click="DyingProcessDDLChanged(ddlProcessType)" required>
+                        <option></option>
+                    </select>
+                </div>
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingOperationSetup.DyingProcessDropDown.$dirty && frmPrdDyingOperationSetup.DyingProcessDropDown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingOperationSetup.DyingProcessDropDown.$dirty && frmPrdDyingOperationSetup.DyingProcessDropDown.$invalid" Class="iconClass" />
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Is Chemical</label>
+                <div class="col-md-7">
+                    <input type="checkbox" class="roundedTwo" id="chkChemical" name="ChkChemical" ng-model="IsChemical"> Chemical
+                    @*<label class="checkbox-inline" id="CheckBoxID">
+                        <input type="checkbox" class="uniform" id="chkChemical" name="ChkChemical" ng-model="IsChemical" ng-click="checkBoxClicked(IsChemical)"> Chemical
+                    </label>*@
+                </div>
+            </div>
+            <div class="form-group" ng-hide="IsChemical">
+                <label class="col-md-4 control-label">Min Qty</label>
+                <div class="col-md-7">
+                    <input type="text" id="MinQty" class="form-control" name="MinQty" ng-model="MinQty" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-7">
+                    <textarea id="masterQty" rows="3" cols="3" class="form-control" name="Prefix" ng-model="Description"></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label"> </label>
+                <div class="col-md-7">
+                    @*<input type="button" id="btnAdd" class="btn btn-success " value="Add" ng-click="AddList()" ng-disabled="frmPrdDyingOperationSetup.$invalid" />*@
+                    <input type="button" id="reset" class="btn btn-danger" value="Clear" ng-click="ClearParams(frmPrdDyingOperationSetup)" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+     
+    </div>
+</form>
+<div class="clearfix"></div>
+
+
+

@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Internal Issue";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="InternalIssueController">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div id="internalIssueDive">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+                                    @*<span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear(frmFinishGood)">
+                                            <i class="icon-refresh"></i> Reset
+                                        </span>*@
+                                    <span id="btnShowlist" ng-hide="btnShowlist" class="btn btn-success margin-right-btn" ng-click="showHide()" ng-disabled="frmFinishGood.$invalid">
+                                        <i class="icon-search"></i> {{btnShowHide}}
+                                    </span>
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmFinishGood.$invalid">
+                                        <i class="icon-save"></i> {{btnSaveUpdateText}}
+                                    </span>
+
+
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-hide="hidformInternalIssue">
+                            @Html.Partial("~/Areas/Production/Views/InternalIssue/_Partial/_formInternalIssue.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            <div class="row" ng-hide="hidSetIssueBySetwise">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Production/Views/InternalIssue/_Partial/_tableIssueDetail.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-hide="hidInternalIssueDetail">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Production/Views/InternalIssue/_Partial/_tableInternalIssueDetial.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Item Modal-->
+            <div class="row">
+                @Html.Partial("~/Areas/SystemCommon/Views/PublicPartialViews/_ProductionItemModal.cshtml")
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+
+    <script src="~/Areas/Production/ScriptsNg/Controllers/InternalIssueCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/InternalIssueService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+    <!-- / Item Master Modal Refference -->
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/PublicService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/AttrEnter.js"></script>
+}
+

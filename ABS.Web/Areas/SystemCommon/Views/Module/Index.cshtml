@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Module";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="moduleCtrl">
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#moduleModal" data-toggle="modal" ng-click="reset(frmUser)">
+                                    <i class="icon-plus-sign"></i> Create Module
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-content no-padding scroller" when-scrolled="loadRecordsModule(1)" data-height="440px" data-always-visible="1" data-rail-visible="0">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Module/_Partial/_tableModule.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="moduleModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-folder-open"></i> {{PageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/Module/_Partial/_formModule.cshtml")
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmModule.$invalid" />
+                                    <input type="button" id="save" class="btn btn-success" value="{{btnSaveUpdateText}}" ng-click="save()" ng-disabled="frmModule.$invalid" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/ModuleCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/moduleService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+
+    <script src="~/Areas/Token/TokenController.js"></script>
+}
+

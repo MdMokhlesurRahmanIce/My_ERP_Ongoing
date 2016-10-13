@@ -1,0 +1,149 @@
+﻿<form novalidate name="frmFebricInspection" id="frmFebricInspection" class="form-horizontal row-border">
+    <input type="hidden" id="MachineConfigID" readonly="readonly" ng-model="MachineConfigID" />
+    <input type="hidden" id="FinishingMRRID" readonly="readonly" ng-model="FinishingMRRID" />
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+    <input type="hidden" id="SetID" readonly="readonly" ng-model="SetID" />
+    <input type="hidden" id="WeavingMRRID" readonly="readonly" ng-model="WeavingMRRID" />
+    <input type="hidden" id="SizeMRRID" readonly="readonly" ng-model="SizeMRRID" />
+    <input type="hidden" id="InspactionID" readonly="readonly" ng-model="InspactionID" />
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Style No</label>
+            <div class="col-md-7">
+                <select id="drpStyleNO" class="select2-select-00" style="width:100%;"
+                        ng-model="FinishingMRRID"
+                        name="drpStyleNo"
+                        data-placeholder="-- Select Style No --"
+                        ng-options="ig.FinishingMRRID as ig.FinishingMRRNo for ig in Styles" ng-change="getFabricIspectionByStyle()" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFebricInspection.$dirty||submitted) && frmFebricInspection.drpStyleNo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Color</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxColor"
+                       class="form-control"
+                       name="txtbxColor" ng-model="txtbxColor"
+                       placeholder="Color" readonly />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Plate No</label>
+            <div class="col-md-7">
+                <select id="drpPlateNo" class="select2-select-00" style="width:100%;"
+                        ng-model="drpPlateNo"
+                        name="drpPlateNo"
+                        data-placeholder="-- Plate No --"
+                        ng-options="ig.OrganogramID as ig.OrganogramName for ig in Plates" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFebricInspection.$dirty||submitted) && frmFebricInspection.drpPlateNo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">ADML Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxADMLCode"
+                       class="form-control"
+                       name="txtbxADMLCode" ng-model="txtbxADMLCode"
+                       placeholder="ADML Code" readonly />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">        
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label">Machine No</label>
+            <div class="col-md-7">
+                <select id="drpMachineNo" class="select2-select-00" style="width:100%;"
+                        ng-model="drpMachineNo"
+                        name="drpMachineNo"
+                        data-placeholder="-- Machine No --"
+                        ng-options="ig.MachineID  as ig.MachineName  for ig in Machines" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmFebricInspection.$dirty||submitted) && frmFebricInspection.drpMachineNo.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Set No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxSetNo"
+                       class="form-control"
+                       name="txtbxSetNo" ng-model="txtbxSetNo"
+                       placeholder="Set No" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Shift</label>
+            <div class="col-md-7">
+                <select id="drpShift" class="select2-select-00" style="width:100%;"
+                        ng-model="drpShift"
+                        name="drpShift"
+                        data-placeholder="-- Select Shift --"
+                        ng-options="ig.ShiftID  as ig.ShiftName  for ig in Shifts">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Operator</label>
+            <div class="col-md-7">
+                <select id="drpOperator" class="select2-select-00" style="width:100%;"
+                        ng-model="drpOperator"
+                        name="drpOperator"
+                        data-placeholder="-- Select Operator --"
+                        ng-options="ig.UserID as ig.UserFullName for ig in Operators">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">         
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxDate"
+                       class="form-control datepicker"
+                       name="txtbxDate" ng-model="txtbxDate" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Remarks</label>
+            <div class="col-md-7">
+                <textarea cols="3" rows="5"
+                       id="Remarks"
+                       class="form-control"
+                       name="Remarks" ng-model="Remarks"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>

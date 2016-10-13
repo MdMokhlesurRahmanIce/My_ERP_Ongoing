@@ -1,0 +1,78 @@
+﻿<form novalidate name="frmCodewiseMachineSetup" id="CodewiseMachineSetupEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="machineSetupID" readonly="readonly" ng-model="MachineSetupID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Article No</label>
+                @*<div class="col-md-7">
+                    <select id="ArticleList" class="select2-select-00"
+                            ng-model="lstArticleList"
+                            name="articleList"
+                            data-placeholder="--Select Article No--"
+                            style="width: 100%;"
+                            ng-options="A.ItemID as A.ArticleNo for A in ListArticle"
+                            required>
+                        <option></option>
+                    </select>
+                </div>*@
+                <div class="col-md-7" style="display:inline-flex">
+                    <input type="text" id="txtArticleNo" class="form-control" name="txtArticleNo" ng-model="ArticleNo" placeholder="--Select Article No--" readonly="readonly" style="width:100%;margin-right:2px;" />
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+                <span class="error" ng-show="(frmCodewiseMachineSetup.$dirty||submitted) && frmCodewiseMachineSetup.articleList.$error.required">*</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Selvedge</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtSelvedge"
+                           class="form-control"
+                           name="txtSelvedge" ng-model="Selvedge" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Brackrest</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtBrackrest"
+                           class="form-control"
+                           name="txtBrackrest" ng-model="Brackrest" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Shed Angel</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtShedAngel"
+                           class="form-control"
+                           name="txtShedAngel" ng-model="ShadeAngle" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">HF Hight</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtHFHight"
+                           class="form-control"
+                           name="txtHFHight" ng-model="SFHight" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

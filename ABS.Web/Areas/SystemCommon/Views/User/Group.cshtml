@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "User Group";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="userGroupCtrl">
+
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{DataPanelTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#userModal" data-toggle="modal" ng-click="clear()">
+                                    <i class="icon-plus-sign"></i> New Group
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/SystemCommon/Views/User/_Partial/_tableCmnUserGroup.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="userModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-user"></i> {{PanelTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/User/_Partial/_formCmnUserGroup.cshtml")
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+<!-- /.container -->
+
+
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/UserGroupCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

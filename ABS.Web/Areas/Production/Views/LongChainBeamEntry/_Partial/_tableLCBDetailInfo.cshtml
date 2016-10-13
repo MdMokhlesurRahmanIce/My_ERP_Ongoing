@@ -1,0 +1,175 @@
+﻿@*<input id="LCBDetailSearch" ng-model="LCBDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table  table-hover general-table right-bottom-scroll-s">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">LCBMRRDetailID</th>
+            <th style="display:none">LCBMRRID</th>
+            <th style="display:none">OutputUnitID</th>
+            <th style="display:none">LCBMachineStopMasterID</th>
+            <th style="display:none">LCBBreakageMasterID</th>
+            <th style="display:none">ShiftID</th>
+            <th style="display:none">OperatorID</th>
+            <th style="display:none">ShiftEngineerID</th>
+            <th>LCB Beam No</th>
+            <th>Machine</th>
+            <th>Length/Beam</th>
+            <th>Shift</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>MC Speed</th>
+            <th>Total Stop</th>
+            <th></th>
+            <th>Total Breakage</th>
+            <th></th>
+            <th>Operator</th>
+            <th>Duty Officer</th>
+            <th>Remarks</th>
+            <th>Date</th>
+            <th ng-show="IsbtnAddDelShow">Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListLCBDetails|filter:LCBDetailSearch">
+            <td style="display:none">{{dataModel.LCBMRRDetailID}}</td>
+            <td style="display:none">{{dataModel.LCBMRRID}}</td>
+            <td style="display:none">{{dataModel.OutputUnitID}}</td>
+            <td style="display:none">{{dataModel.LCBMachineStopMasterID}}</td>
+            <td style="display:none">{{dataModel.LCBBreakageMasterID}}</td>
+            <td style="display:none">{{dataModel.ShiftID}}</td>
+            <td style="display:none">{{dataModel.OperatorID}}</td>
+            <td style="display:none">{{dataModel.ShiftEngineerID}}</td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlBeamNo"
+                            ng-model="dataModel.OutputUnitID"
+                            name="ddlBeamNo" data-tags="false"
+                            ng-change="ModalShowHide(dataModel)"
+                            data-placeholder="--Select Beam--"
+                            style="width: 100%"
+                            ng-options="BN.OutputID as BN.OutputNo for BN in listBeamNo">
+                        <option>--Select Beam--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlMachine"
+                            ng-model="dataModel.MachineID"
+                            name="ddlMachine" data-tags="false"
+                            ng-change="ModalShowHide(dataModel)"
+                            @*data-placeholder="--Select Beam--"*@
+                            style="width: 100%"
+                            ng-options="M.MachineID as M.MachineName for M in ListMachine">
+                        <option>--Select Machine--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="number" id="beamLength" name="beamLength" class="form-control" ng-model="dataModel.BeamLength" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlShiftList"
+                            ng-model="dataModel.ShiftID"
+                            name="ddlShiftList"
+                            ng-change="ModalShowHide(dataModel)"
+                            style="width: 100%"
+                            ng-options="S.ShiftID as S.ShiftName for S in listShifts">
+                        <option>--Select Shift--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="time" id="beginTime" name="beginTime" class="form-control" ng-model="dataModel.BeginTime" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <input type="time" id="endTime" name="endTime" class="form-control" ng-model="dataModel.EndTime" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <input type="number" id="machineSpeed" name="machineSpeed" class="form-control" ng-model="dataModel.MachineSpeed" />
+            </td>
+
+            <td>
+                <input type="text" id="totalStop" name="totalStop" class="form-control" ng-model="dataModel.TotalStop" readonly />
+            </td>
+            <td>
+                <span class="label label-success label-mini" ng-show="dataModel.IsModalShow">
+                    <a href="javascript:void(0);" ng-href="#MachineStopModal" data-toggle="modal" class="bs-tooltip" title="Machine Detail">
+                        <i class="icon-search" ng-click="LoadMachineDetail(dataModel); LoadMachineStopCauses(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <input type="text" id="totalBreakage" name="totalBreakage" class="form-control" ng-model="dataModel.TotalBreakage" readonly />
+            </td>
+
+            <td>
+                <span class="label label-success label-mini" ng-show="dataModel.IsModalShow">
+                    <a href="javascript:void(0);" ng-href="#BrekageDetailModal" data-toggle="modal" class="bs-tooltip" title="Breakage Detail">
+                        <i class="icon-search" ng-click="LoadBreakageDetail(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlOperatorList"
+                            ng-model="dataModel.OperatorID"
+                            name="ddlOperatorList"
+                            data-placeholder="--Select Operator--"
+                            style="width: 100%"
+                            ng-options="Op.UserID as Op.UserFullName for Op in listOperator">
+                        <option>--Select Operator--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlDutyOfficerList"
+                            ng-model="dataModel.ShiftEngineerID"
+                            name="ddlDutyOfficerList"
+                            style="width: 100%"
+                            ng-options="Du.UserID as Du.UserFullName for Du in listOfficer">
+                        <option>--Select Duty Officer--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="text" id="remarks" name="remarks" class="form-control" ng-model="dataModel.Description" />
+            </td>
+
+            <td>
+                <input type="date" id="dDate" name="dDate" class="form-control" ng-model="dataModel.DDate" />
+            </td>
+
+            <td style="text-align:right; color:white" ng-show="IsbtnAddDelShow">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="DeleteMainDetail($index)"></i>
+                    </a>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+@*<p ng-show="(ListLCBDetails | filter:LCBDetailSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>*@

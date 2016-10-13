@@ -1,0 +1,33 @@
+﻿
+
+<table class="table  table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>  
+            <th>SL</th>
+            <th>Item</th>
+            <th>Unit</th>
+            <th>Quntity</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th>Freight Charge</th>
+            <th>FOBValue</th>
+            <th>Loading Location</th>
+            <th>Discharge Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in QuotaionItemInfo">
+        <td>{{$index+1}}</td>
+        <td>{{dataModel.ItemName}}</td>
+        <td>{{dataModel.UOMName}}</td>
+        <td>{{dataModel.Qty}}</td>
+        <td>{{dataModel.UnitPrice}}</td>
+        <td>{{dataModel.Amount}}</td>
+        <td>{{dataModel.FreightCharge}}</td>
+        <td>{{dataModel.FOBValue}}</td>
+        <td>{{dataModel.DischargeLocation}}</td>
+        <td>{{dataModel.LoadingLocation}}</td>
+    </tr>
+       
+    </tbody>
+</table>

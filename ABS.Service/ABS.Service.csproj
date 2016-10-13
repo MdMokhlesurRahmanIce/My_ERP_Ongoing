@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AA41F2B6-2627-4853-BB6C-8F8594B42562}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ABS.Service</RootNamespace>
+    <AssemblyName>ABS.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounting\Factories\PreCostingMgt.cs" />
+    <Compile Include="Accounting\Factories\BillOfMaterialMgt.cs" />
+    <Compile Include="Accounting\Factories\FinishingProcessPriceMgt.cs" />
+    <Compile Include="Accounting\Interfaces\iPreCostingMgt.cs" />
+    <Compile Include="Accounting\Interfaces\iBillOfMaterialMgt.cs" />
+    <Compile Include="Accounting\Interfaces\iFinishingProcessPriceMgt.cs" />
+    <Compile Include="AllServiceClasses\AllServiceClasses.cs" />
+    <Compile Include="GlobalMgt\Factories\GlobalMgt.cs" />
+    <Compile Include="GlobalMgt\Interfaces\iGlobalMgt.cs" />
+    <Compile Include="Inventory\Factories\CostMgt.cs" />
+    <Compile Include="Inventory\Factories\FundRequisitionMgt.cs" />
+    <Compile Include="Inventory\Factories\MRRAccountMgt.cs" />
+    <Compile Include="Inventory\Factories\MRRAJAccountMgt.cs" />
+    <Compile Include="Inventory\Factories\MRRAJMgt.cs" />
+    <Compile Include="Inventory\Factories\OpeningStockMgt.cs" />
+    <Compile Include="Inventory\Factories\InvPIMgt.cs" />
+    <Compile Include="Inventory\Factories\ChallanMgt.cs" />
+    <Compile Include="Inventory\Factories\MRRMgt.cs" />
+    <Compile Include="Inventory\Factories\QCMgt.cs" />
+    <Compile Include="Inventory\Factories\IssueMgt.cs" />
+    <Compile Include="Inventory\Factories\SPRMgt.cs" />
+    <Compile Include="Inventory\Factories\StockInfoMgt.cs" />
+    <Compile Include="Inventory\Factories\StockEntryMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iCostMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iFundRequisitionMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iMRRAccountMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iMRRAJAccountMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iMRRAJMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iOpeningStockMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iQuotationChallanMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iInvPIMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iChallanMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iMRRMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iQCMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iIssueMgt .cs" />
+    <Compile Include="Inventory\Interfaces\iSPRMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iStockInfoMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iStockEntryMgt .cs" />
+    <Compile Include="LocalSales\Factories\CmnLocalSalesMgt.cs" />
+    <Compile Include="LocalSales\Interfaces\iCmnLocalSalesMgt.cs" />
+    <Compile Include="MenuMgt\iMenuMgt.cs" />
+    <Compile Include="MenuMgt\MenuMgt.cs" />
+    <Compile Include="Commercial\Factories\DCMgt.cs" />
+    <Compile Include="Commercial\Interfaces\iDCMgt.cs" />
+    <Compile Include="Inventory\Factories\GRRMgt.cs" />
+    <Compile Include="Inventory\Interfaces\iGRRMgt.cs" />
+    <Compile Include="MenuMgt\WorkFLowMgt.cs" />
+    <Compile Include="Production\Factories\BallWarpingMgt.cs" />
+    <Compile Include="Production\Factories\ChemiclePreparationMgt.cs" />
+    <Compile Include="Production\Factories\CodewiseMachineSetupMgt.cs" />
+    <Compile Include="Production\Factories\DFSMachineConfigMgt.cs" />
+    <Compile Include="Production\Factories\DyingPRDChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Factories\DyingChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Factories\DyingOperationSetupMgt.cs" />
+    <Compile Include="Production\Factories\CountWiseMechineSetupMgt.cs" />
+    <Compile Include="Production\Factories\DyingPRDChemicalProcessMgt.cs" />
+    <Compile Include="Production\Factories\FebricInspectionMgt.cs" />
+    <Compile Include="Production\Factories\FinishingChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Factories\InternalIssueMgt.cs" />
+    <Compile Include="Production\Factories\LongChainBeamMgt.cs" />
+    <Compile Include="Production\Factories\MachineMaintenanceOrderMgt.cs" />
+    <Compile Include="Production\Factories\MachineMaintenanceReleaseMgt.cs" />
+    <Compile Include="Production\Factories\OutputUnitMgt.cs" />
+    <Compile Include="Production\Factories\DefectTypeMgt.cs" />
+    <Compile Include="Production\Factories\BreakageWastageStopMgt.cs" />
+    <Compile Include="Production\Factories\ChemicalSetupMgt.cs" />
+    <Compile Include="Production\Factories\ConsumptionMgt.cs" />
+    <Compile Include="Production\Factories\PackingListMgt.cs" />
+    <Compile Include="Production\Factories\PrdLineSetupMgt.cs" />
+    <Compile Include="Production\Factories\ProductionDDLMgt.cs" />
+    <Compile Include="Production\Factories\QAMgt.cs" />
+    <Compile Include="Production\Factories\SizingChamicaleConsumptionMgt.cs" />
+    <Compile Include="Production\Factories\SizeBeamIssueMgt.cs" />
+    <Compile Include="Production\Factories\SizingChemicalSetupMgt.cs" />
+    <Compile Include="Production\Factories\SetWiseMachineSetupMgt.cs" />
+    <Compile Include="Production\Factories\SetSetupMgt.cs" />
+    <Compile Include="Production\Factories\ProductionEntryMgt.cs" />
+    <Compile Include="Production\Factories\WastageEntryMgt.cs" />
+    <Compile Include="Production\Factories\WeavingGrieageReceiveMgt.cs" />
+    <Compile Include="Production\Factories\WeavingLoomDataMgt.cs" />
+    <Compile Include="Production\Factories\SizingOutputEntryMgt.cs" />
+    <Compile Include="Production\Factories\WeavingMachineMgt.cs" />
+    <Compile Include="Production\Interfaces\iChemiclePreparationMgt.cs" />
+    <Compile Include="Production\Interfaces\iDyingPRDChemicalProcessMgt.cs" />
+    <Compile Include="Production\Interfaces\iFebricInspection.cs" />
+    <Compile Include="Production\Interfaces\iFinishingChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Interfaces\iBallWarpingMgt.cs" />
+    <Compile Include="Production\Interfaces\iCodewiseMachineSetupMgt.cs" />
+    <Compile Include="Production\Interfaces\iDyingPRDChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Interfaces\iDyingChemicalConsumptionMgt.cs" />
+    <Compile Include="Production\Interfaces\iDyingOperationSetupMgt.cs" />
+    <Compile Include="Production\Interfaces\iInternalIssue.cs" />
+    <Compile Include="Production\Interfaces\iOutputUnitMgt.cs" />
+    <Compile Include="Production\Interfaces\iDefectTypeMgt.cs" />
+    <Compile Include="Production\Interfaces\iBreakageWastageStopMgt.cs" />
+    <Compile Include="Production\Interfaces\iChemicalSetupMgt.cs" />
+    <Compile Include="Production\Interfaces\iConsumptionMgt.cs" />
+    <Compile Include="Production\Interfaces\iPrdLineSetupMgt.cs" />
+    <Compile Include="Production\Interfaces\iProductionDDLMgt.cs" />
+    <Compile Include="Production\Interfaces\iQAMgt.cs" />
+    <Compile Include="Production\Interfaces\iSizeBeamIssueMgt.cs" />
+    <Compile Include="Production\Interfaces\iWeavingGrieageReceiveMgt.cs" />
+    <Compile Include="Production\Interfaces\iWeavingMachineConfigurationMgt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Purchase\Factories\ComparativeStatementMgt.cs" />
+    <Compile Include="Purchase\Factories\PurchaseOrderMgt.cs" />
+    <Compile Include="Purchase\Factories\QuotationMgt.cs" />
+    <Compile Include="Purchase\Interfaces\iComparativeStatementMgt.cs" />
+    <Compile Include="Purchase\Interfaces\iPurchaseOrderMgt.cs" />
+    <Compile Include="Purchase\Interfaces\iQuotationChallanMgt.cs" />
+    <Compile Include="Sales\Factories\HeadOfficeSalesDeliveryOrderMgt.cs" />
+    <Compile Include="Sales\Factories\FactorySalesDeliveryOrderMgt.cs" />
+    <Compile Include="Sales\Factories\LCMgt.cs" />
+    <Compile Include="Sales\Factories\PartyMgt.cs" />
+    <Compile Include="Sales\Factories\BookingMgt.cs" />
+    <Compile Include="Sales\Factories\PIMgt.cs" />
+    <Compile Include="Sales\Factories\PartyPaymentMethodMgt.cs" />
+    <Compile Include="Sales\Interfaces\iDeliveryOrderMgt.cs" />
+    <Compile Include="Sales\Interfaces\iLCMgt.cs" />
+    <Compile Include="Sales\Interfaces\iPartyMgt.cs" />
+    <Compile Include="Sales\Interfaces\iBookingMgt.cs" />
+    <Compile Include="Sales\Interfaces\iPPMMgt.cs" />
+    <Compile Include="Sales\Interfaces\iPIMgt.cs" />
+    <Compile Include="SystemCommon\Factories\PublicApiMgt.cs" />
+    <Compile Include="SystemCommon\Factories\TeamSetupMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnTransactionTypesMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnCompanyMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnFinishGoodMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnYarnMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnItemGroupMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnMenuMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnCustomCodeMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnModulePermissionMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnMenuPermissionMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnOrganogramMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnRawMaterialMgt.cs" />
+    <Compile Include="SystemCommon\Factories\ApprovalSetupMgt.cs" />
+    <Compile Include="SystemCommon\Factories\SystemCommonDDL.cs" />
+    <Compile Include="SystemCommon\Factories\CmnModuleMgt.cs" />
+    <Compile Include="SystemCommon\Factories\CmnUserMgt.cs" />
+    <Compile Include="SystemCommon\Factories\ColorMgt_EF.cs" />
+    <Compile Include="SystemCommon\Factories\ItemSizeMgt.cs" />
+    <Compile Include="SystemCommon\Factories\UnitOfMeasurementMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iPublicApiMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iTeamSetupMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnTransactionTypeMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnCustomCodeMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnItemGroupMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnModulePermissionMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnMenuPermissionMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnOrganogramMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnRawMaterial.cs" />
+    <Compile Include="SystemCommon\Interfaces\iFinishGood.cs" />
+    <Compile Include="SystemCommon\Interfaces\iApprovalSetupMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iSystemCommonDDL.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnMenuMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnModuleMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnCompanyMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iCmnUserMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iColorMgt_EF.cs" />
+    <Compile Include="SystemCommon\Interfaces\iItemSizeMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iUnitOfMeasurementMgt.cs" />
+    <Compile Include="SystemCommon\Interfaces\iYarnMgt.cs" />
+    <Compile Include="UserFactory\UserAuthentications.cs" />
+    <Compile Include="UserFactory\UserAuthorizations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HRPayroll\" />
+    <Folder Include="Planning\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ABS.Data\ABS.Data.csproj">
+      <Project>{60b41d4a-2813-4313-86d9-7b0cfca128aa}</Project>
+      <Name>ABS.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ABS.Models\ABS.Models.csproj">
+      <Project>{a45b046a-6790-4cad-80b1-0f86f6999e7e}</Project>
+      <Name>ABS.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ABS.Utility\ABS.Utility.csproj">
+      <Project>{07b48faa-d263-4935-8570-06f43e586530}</Project>
+      <Name>ABS.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

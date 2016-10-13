@@ -1,0 +1,179 @@
+﻿
+<form novalidate name="frmHeadOfficeDeliveryOrder" id="deliveryOrderForm" class="form-horizontal row-border">
+    <input type="hidden" id="deliveryOrderID" readonly="readonly" ng-model="HDOID" />
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company</label>
+                <div class="col-md-6">
+                    <select id="CompanyList" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            ng-change="onChangedCompany()"
+                            name="companyList"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                        <option></option>
+                        @*<option ng-repeat="com in listCompany" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xCompanyID" id="companyId" name="companyId" required />*@
+                </div>
+                <span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.companyList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">DO NO</label>
+                <div class="col-md-6">
+                    <input type="text" style="font-weight:bold; color:red !important;"
+                           readonly placeholder="New"
+                           id="doNo"
+                           class="form-control"
+                           name="doNo" ng-model="HDONo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">DO Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtdoNo"
+                           class="form-control"
+                           name="dtdoNo" ng-model="HDODate" placeholder="dd/mm/yyyy" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Buyer</label>
+                <div class="col-md-6">
+                    @*when-scrolled="loadBuyerRecords(1)"*@
+                    <select id="BuyerList" class="select2-select-00"
+                            ng-model="lstBuyerList"
+                            ng-change="loadLCRecords(0)"
+                            name="buyerList"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%;"
+                            ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer"
+                            required>
+                        @*ng-click="loadLCRecords(0)"*@
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.buyerList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">LC NO</label>
+                <div class="col-md-6">
+                    <select id="LCList" class="select2-select-00"
+                            ng-model="lstLCList"
+                            ng-change="CallloadLCInfo(0)"
+                            name="lCList"
+                            data-placeholder="--Select LC--"
+                            style="width: 100%"
+                            ng-options="lc.LCID as lc.LCNo for lc in ListLCNo" required>
+                        <option></option>
+                        @*<option ng-repeat="lc in ListLCNo" value="{{lc.LCID}}">{{lc.LCNo}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xLCID" id="lcId" name="lcId" required />*@
+                </div>
+                <span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.lCList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">UP No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="upNo"
+                           class="form-control"
+                           name="upNo" ng-model="UpNo" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">ADO NO</label>
+                <div class="col-md-6">
+                    <select id="AdoNoList" class="select2-select-00"
+                            ng-model="lstAdoNoList"
+                            ng-change="loadRecords_pt(0)"
+                            name="adoNoList"
+                            data-placeholder="--Select ADO--"
+                            style="width: 100%">
+                        <option></option>
+                        <option ng-repeat="ado in ListAdoNo" value="{{ado.AdoID}}">{{ado.AdoNo}}</option>
+                    </select>
+                    <input type="hidden" ng-model="xAdoID" id="adoID" name="adoID" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">ADO Quantity(Kg)</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="adoQty"
+                           class="form-control"
+                           name="adoQty" ng-model="AdoQty" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">BTB LC NO</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="btbLcNo"
+                           class="form-control"
+                           name="btbLcNo" ng-model="BtbLcNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">BTB LC Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtbtbLC"
+                           class="form-control datepicker"
+                           name="dtbtbLC" ng-model="B2BLCDate" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Beneficiary</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="beneficiary"
+                           class="form-control"
+                           name="beneficiary" ng-model="Beneficiary" required />
+                </div>
+                <span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.beneficiary.$error.required">*</span>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Remarks</label>
+                <div class="col-md-9">
+                    <textarea rows="3" cols="3"
+                              id="remarks"
+                              class="form-control"
+                              name="remarks" ng-model="Remarks" required></textarea>
+                </div>
+                <span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.remarks.$error.required">*</span>
+            </div>
+        </div>
+    </div>
+
+    @*<input type="hidden" ng-model="IsDisableSave" name="isDisableSave" id="isDisableSave" required />*@
+    @*<span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.remarks.$error.required">*</span>*@
+    @*<span class="error" ng-show="(frmHeadOfficeDeliveryOrder.$dirty||submitted) && frmHeadOfficeDeliveryOrder.isDisableSave.$error.required"></span>*@
+
+    @*</div>*@
+</form>

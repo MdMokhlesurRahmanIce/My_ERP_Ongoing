@@ -1,0 +1,30 @@
+﻿<div ng-if="UserCommonEntity.EnableSavebtn">
+    <span id="reset" class="btn btn-danger margin-right-btn" ng-if="UserCommonEntity.EnableReset" ng-click="CmnMethod(UserCommonEntity.Reset,5)"><i class="icon-refresh"></i> Reset</span>
+    <span id="Show" class="btn btn-info margin-right-btn" ng-if="UserCommonEntity.EnableShow" ng-click="CmnMethod(UserCommonEntity.ShowHide,4)"><i id="Icon-Show" class="icon-search"></i> {{UserCommonEntity.btnShowList}}</span>
+    <span id="save" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableSave" ng-disabled="UserCommonEntity.IsbtnSaveDisable">
+        <i class="icon-save"></i> Save
+    </span>
+    <span id="saveupdate" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableSaveUpdate" ng-disabled="UserCommonEntity.IsbtnSaveDisable">
+        <i class="icon-save" ng-if="UserCommonEntity.SaveIcon"></i><i class="icon-edit" ng-if="UserCommonEntity.EditIcon"></i> {{UserCommonEntity.btnSaveText}}
+    </span>
+    <span id="update" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableModify" ng-disabled="UserCommonEntity.IsbtnSaveDisable">
+        <i class="icon-edit"></i> Update
+    </span>
+    <span id="reset" class="btn btn-primary margin-right-btn" ng-click="#"><i class="icon-print"></i> Print</span>
+    <span class="btn btn-xs widget-collapse" ng-model="message"><i class="icon-angle-down"></i></span>
+</div>
+<div ng-if="UserCommonEntity.EnableSavefrm">
+    <span id="reset" class="btn btn-danger margin-right-btn" ng-if="UserCommonEntity.EnableReset" ng-click="CmnMethod(UserCommonEntity.Reset,5)"><i class="icon-refresh"></i> Reset</span>
+    <span id="Show" class="btn btn-info margin-right-btn" ng-if="UserCommonEntity.EnableShow" ng-click="CmnMethod(UserCommonEntity.ShowHide,4)"><i id="Icon-Show" class="icon-search"></i> {{UserCommonEntity.btnShowList}}</span>
+    <span id="save" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableSave" ng-disabled="{{UserCommonEntity.frmName}}">
+        <i class="icon-save"></i> Save
+    </span>
+    <span id="saveupdate" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableSaveUpdate" ng-disabled="{{UserCommonEntity.frmName}}">
+        <i class="icon-save" ng-if="UserCommonEntity.SaveIcon"></i><i class="icon-edit" ng-if="UserCommonEntity.EditIcon"></i> {{UserCommonEntity.btnSaveText}}
+    </span>
+    <span id="update" class="btn btn-success margin-right-btn" ng-click="CmnMethod(UserCommonEntity.Save,3)" ng-if="UserCommonEntity.EnableModify" ng-disabled="{{UserCommonEntity.frmName}}">
+        <i class="icon-edit"></i> Update
+    </span>
+    <span id="reset" class="btn btn-primary margin-right-btn" ng-click="#"><i class="icon-print"></i> Print</span>
+    <span class="btn btn-xs widget-collapse" ng-model="message"><i class="icon-angle-down"></i></span>
+</div>

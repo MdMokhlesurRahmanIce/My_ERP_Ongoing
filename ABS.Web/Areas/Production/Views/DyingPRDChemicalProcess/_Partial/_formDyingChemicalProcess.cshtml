@@ -1,0 +1,163 @@
+﻿<form novalidate name="frmPrdDyingMRRMaster" id="prdDyingMRRMaster" class="form-horizontal row-border">
+    <input type="hidden" id="dyingMRRID " readonly="readonly" ng-model="DyingMRRID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Set No</label>
+                <div class="col-md-7">
+                    <select id="SelectmodelSetNo" class="select2-select-00"
+                            ng-model="modelSetNo"
+                            name="selectmodelSetNo"
+                            data-placeholder="--Select Set No--"
+                            style="width: 100%"
+                            ng-change="SetChanged(modelSetNo)"
+                            ng-options="item.SetID as item.SetNo for item in ListSetNo" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPrdDyingMRRMaster.$dirty||submitted) && frmPrdDyingMRRMaster.ListSetNo.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign"  >Article No</label>
+                <div class="col-md-7"> 
+                    <input type="hidden" id="modelItemID " readonly="readonly"  ng-model="modelItemID" />
+                    <input type="text" id="modelArticleNo" class="form-control" name="ModelArticleNo" ng-model="modelArticleNo" placeholder="Article No" readonly="readonly" />
+                </div> 
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign"> Date </label>
+                <div class="col-md-7">
+                    <input type="text" id="consumptionDate" name="ConsumptionDate" ng-model="modelConsumptionDate" class="form-control datepicker" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Buyer</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelBuyerName" class="form-control" name="ModelBuyerName" ng-model="modelBuyerName" placeholder="Buyer" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">PI No</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelPINo" class="form-control" name="ModelPINo" ng-model="modelPINo" placeholder="PI NO" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Supplier</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelSupplierName" class="form-control" name="ModelSupplierName" ng-model="modelSupplierName" placeholder="Supplier" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Machine</label>
+                <div class="col-md-7"> 
+                    <select id="SelectmodelMachine" class="select2-select-00"
+                            ng-model="modelMachine"
+                            name="selectmodelMachine"
+                            data-placeholder="--Select Machine--"
+                            style="width: 100%"
+                            ng-change="SetChanged(modelSetNo)"
+                            ng-options="item.MachineID as item.MachineName for item in ListMachine" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPrdDyingMRRMaster.$dirty||submitted) && frmPrdDyingMRRMaster.ListMachine.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Reff. No</label>
+                <div class="col-md-7">
+                    <select id="SelectmodelReference" class="select2-select-00"
+                            ng-model="modelReference"
+                            name="selectmodelReference"
+                            data-placeholder="--Select Reference--"
+                            style="width: 100%"
+                            ng-options="item.DyingSetID as item.DyingSetNo for item in ListReference" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Shift</label>
+                <div class="col-md-7"> 
+                    <select id="SelectmodelShift" class="select2-select-00"
+                            ng-model="modelShift"
+                            name="selectmodelShift"
+                            data-placeholder="--Select Shift--"
+                            style="width: 100%" 
+                            ng-options="item.ShiftID as item.ShiftName for item in ListShift" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Start Time</label>
+                <div class="col-md-7">
+                    <input type="time" id="modelStartTime" class="form-control" name="ModelStartTime" ng-model="modelStartTime" placeholder="StartTime" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">End Time</label>
+                <div class="col-md-7">
+                    <input type="time" id="modelEndTime" class="form-control" name="ModelEndTime" ng-model="modelEndTime" placeholder="EndTime" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Speed</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelSpeed" class="form-control" name="ModelSpeed" ng-model="modelSpeed" placeholder="Speed" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">Motiure</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelMoiture" class="form-control" name="ModelMoiture" ng-model="modelMoiture" placeholder="Motiure" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label defaultAlign">KGPreMin</label>
+                <div class="col-md-7">
+                    <input type="text" id="modelKGPreMin" class="form-control" name="ModelKGPreMin" ng-model="modelKGPreMin" placeholder="Min" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="clearfix"></div>
+
+
+

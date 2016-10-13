@@ -1,0 +1,188 @@
+﻿<form novalidate name="frmBallWarpingEntry" id="BallWarpingEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="balMRRID" readonly="readonly" ng-model="BalMRRID" />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Set No</label>
+                <div class="col-md-7">
+                    <select id="ddlSetNoList" class="select2-select-00"
+                            ng-model="lstSetNoList"
+                            name="ddlSetNoList" data-placeholder="--Select Set No--"
+                            ng-change="loadSetInformation(lstSetNoList)"
+                            style="width: 100%" ng-options="com.SetID as com.SetNo for com in listSetNo" required>
+                        <option></option>
+                        @*<option ng-repeat="com in listCompany" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                    </select>
+
+
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.ddlSetNoList.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Article No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtArticleNo"
+                           class="form-control"
+                           name="txtArticleNo" ng-model="ArticleNo" required readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtLCNo.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Set Length</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtSetLength"
+                           class="form-control"
+                           name="txtSetLength" ng-model="SetLength" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtSetLength.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Color</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtColor"
+                           class="form-control"
+                           name="txtColor" ng-model="ColorName" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtColor.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Buyer</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtBuyer"
+                           class="form-control"
+                           name="txtBuyer" ng-model="BuyerName" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtBuyer.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtDescription.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Yarn Count</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtYarnCount"
+                           class="form-control"
+                           name="txtYarnCount" ng-model="YarnCount" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtYarnCount.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Lot</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtLot"
+                           class="form-control"
+                           name="txtLot" ng-model="YarnRatioLot" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtLot.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">No Of Ball</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtNoOfBall"
+                           class="form-control"
+                           name="txtNoOfBall" ng-model="NoOfBall" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtNoOfBall.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Lease Reapet</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtLeaseReapet"
+                           class="form-control"
+                           name="txtLeaseReapet" ng-model="LeaseReapet" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtLeaseReapet.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">PI NO</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtPINO"
+                           class="form-control"
+                           name="txtPINO" ng-model="PINO" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtPINO.$error.required">*</span>
+            </div>
+
+            @*<div class="form-group">
+                <div class="col-md-7">
+                    <input type="button"
+                           id="txtAddToTist"
+                           class="btn btn-info"
+                           name="txtAddToTist" ng-click="AddItemToList()" value="ADD" />
+                </div>
+            </div>*@
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Total Ends</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtTotalEnds"
+                           class="form-control"
+                           name="txtTotalEnds" ng-model="TotalEnds" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtTotalEnds.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Yarn Ratio</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtYarnRatio"
+                           class="form-control"
+                           name="txtYarnRatio" ng-model="YarnRatio" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtYarnRatio.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Ends/Creel</label>
+                <div class="col-md-7">
+                    <input type="number" min="0"
+                           id="txtEndsPerCreel"
+                           class="form-control"
+                           name="txtEndsPerCreel" ng-model="EndsPerCreel" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtEndsPerCreel.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Supp. Name</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtSupplierName"
+                           class="form-control"
+                           name="txtSupplierName" ng-model="SupplierName" readonly />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.txtSupplierName.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtDate"
+                           class="form-control datepicker"
+                           name="dtDate" ng-model="BalMRRDate" date-parser="dd/MM/yyyy" placeholder=" dd/mm/yyyy" />
+                </div>
+                <span class="error" ng-show="(frmBallWarpingEntry.$dirty||submitted) && frmBallWarpingEntry.dtDate.$error.required">*</span>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="df6a8abd-797e-4c9a-9a8b-99da00f99985"
+  name="ABS.ModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="247fc0bf-1bd8-4562-9cf6-36260ba5bc09">
+      <body>Load PI Company</body>
+      <annotatedElements>
+        <opaqueActionMoniker
+          Id="c4be52d7-3783-4d41-9c45-2af1ebc4634d"
+          LastKnownName="Company"
+          LastKnownLocation="ABS.ModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="d6a79da2-7f3e-4d1f-955e-dd759210996a">
+      <body>Save PI</body>
+      <annotatedElements>
+        <activityFinalNodeMoniker
+          Id="7c5594ff-019f-4c36-a18e-cd4cf8e9a006"
+          LastKnownName="ActivityFinal1"
+          LastKnownLocation="ABS.ModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="b204d931-1ef2-4583-be7e-fdb8f56af8b6">
+      <annotatedElements>
+        <opaqueActionMoniker
+          Id="4707d082-6fac-45d4-bb19-dac16f0ffae2"
+          LastKnownName="Shipment"
+          LastKnownLocation="ABS.ModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="d535ef1e-0615-4fc6-8d7c-0cdad1e4af42">
+      <body>Load Buyer from database</body>
+      <annotatedElements>
+        <opaqueActionMoniker
+          Id="ab50108d-604c-4ec8-bebb-0590b1029b1a"
+          LastKnownName="Buyer"
+          LastKnownLocation="ABS.ModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="5d566a01-0c57-4ea4-a2cf-05cbee3834ff"
+        name="Class1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="dfd97dd6-e6d8-4d8b-9883-9a00bf482c8e"
+        name="Actor1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="03e4100f-ade6-44ec-8211-afd76635756c"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="2e30a417-aa33-4bf7-821f-3b7368f304cc"
+        name="Activity"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="ff5007d3-f923-4c12-8c3c-fbdd0df47b76"
+            name="Initial1"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="a3b3cd37-aba7-407a-acd9-926acf47e1c7"
+        name="Create Proforma Invoice Entry"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="68824868-2b48-42ca-8b33-e483a051fb28"
+            name="Initial1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="c4be52d7-3783-4d41-9c45-2af1ebc4634d"
+            name="Company"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="7c5594ff-019f-4c36-a18e-cd4cf8e9a006"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <opaqueAction
+            Id="4707d082-6fac-45d4-bb19-dac16f0ffae2"
+            name="Shipment"
+            isLeaf="false" />
+          <opaqueAction
+            Id="ab50108d-604c-4ec8-bebb-0590b1029b1a"
+            name="Buyer"
+            isLeaf="false" />
+          <opaqueAction
+            Id="ce4f2f6f-8e7f-4b32-9123-8687a7de35b5"
+            name="Bank"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="393e31f6-dd60-44bd-b223-2cf952db181d"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="6392c552-47a9-483d-80ec-56c0609d5a87"
+                  LastKnownName="Branch"
+                  LastKnownLocation="ABS.ModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction
+            Id="6392c552-47a9-483d-80ec-56c0609d5a87"
+            name="Branch"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

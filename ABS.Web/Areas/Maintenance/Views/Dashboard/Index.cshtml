@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Maintenance";
+}
+
+
+<div ng-hide="pageValue" class="ng-hide">
+    <!--Logged User-->
+    <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" />
+    <!--Logged Company-->
+    <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" />
+</div>
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="dashboardCtrl">
+        <!-- Breadcrumbs line -->
+
+
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+            <div class="page-title">
+                @if (HttpContext.Current.Session != null || HttpContext.Current.Session["UserID"] != null)
+                {
+                    <h3>Welcome, @Session["UserFirstName"].ToString()</h3>
+                    <span>Your Company, @Session["CompanyName"].ToString()! </span>
+                }
+            </div>
+            <!-- Page Stats -->
+            <ul class="page-stats">
+                <li>
+                    <div class="summary">
+                        <span>New orders</span>
+                        <h3>17,561</h3>
+                    </div>
+                    <div id="sparkline-bar" class="graph sparkline hidden-xs">20,15,8,50,20,40,20,30,20,15,30,20,25,20</div>
+                    <!-- Use instead of sparkline e.g. this:
+                    <div class="graph circular-chart" data-percent="73">73%</div>
+                    -->
+                </li>
+                <li>
+                    <div class="summary">
+                        <span>My balance</span>
+                        <h3>$21,561.21</h3>
+                    </div>
+                    <div id="sparkline-bar2" class="graph sparkline hidden-xs">20,15,8,50,20,40,20,30,20,15,30,20,25,20</div>
+                </li>
+            </ul>
+            <!-- /Page Stats -->
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--=== Statboxes ===-->
+        <div class="row row-bg">
+            <!-- .row-bg -->
+            <div class="col-sm-6 col-md-3">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content">
+                        <div class="visual cyan">
+                            <div class="statbox-sparkline">30,20,15,30,22,25,26,30,27</div>
+                        </div>
+                        <div class="title">Clients</div>
+                        <div class="value">4 501</div>
+                        <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                    </div>
+                </div> <!-- /.smallstat -->
+            </div> <!-- /.col-md-3 -->
+            <div class="col-sm-6 col-md-3">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content">
+                        <div class="visual green">
+                            <div class="statbox-sparkline">20,30,30,29,22,15,20,30,32</div>
+                        </div>
+                        <div class="title">Feedbacks</div>
+                        <div class="value">714</div>
+                        <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                    </div>
+                </div> <!-- /.smallstat -->
+            </div> <!-- /.col-md-3 -->
+            <div class="col-sm-6 col-md-3 hidden-xs">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content">
+                        <div class="visual yellow">
+                            <i class="icon-dollar"></i>
+                        </div>
+                        <div class="title">Total Profit</div>
+                        <div class="value">$42,512.61</div>
+                        <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                    </div>
+                </div> <!-- /.smallstat -->
+            </div> <!-- /.col-md-3 -->
+            <div class="col-sm-6 col-md-3 hidden-xs">
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content">
+                        <div class="visual red">
+                            <i class="icon-user"></i>
+                        </div>
+                        <div class="title">Visitors</div>
+                        <div class="value">2 521 719</div>
+                        <a class="more" href="javascript:void(0);">View More <i class="pull-right icon-angle-right"></i></a>
+                    </div>
+                </div> <!-- /.smallstat -->
+            </div> <!-- /.col-md-3 -->
+        </div> <!-- /.row -->
+        <!-- /Statboxes -->
+        <!-- /Page Content -->
+    </div>
+    <!-- /.container -->
+</div>
+
+
+@section AngularScript{
+    @*<script src="~/Areas/SystemCommon/ScriptsNg/Controllers/DashboardCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Service/dashboardService.js"></script>*@
+
+    <script src="~/Areas/Maintenance/ScriptsNg/Controllers/DashboardCtrl.js"></script>
+    <script src="~/Areas/Maintenance/ScriptsNg/Service/dashboardService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

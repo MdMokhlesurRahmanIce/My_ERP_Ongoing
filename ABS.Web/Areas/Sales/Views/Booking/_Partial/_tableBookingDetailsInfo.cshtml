@@ -1,0 +1,55 @@
+﻿@*<input id="hdoDetailSearch" ng-model="HdoDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">PI ID</th>
+            <td style="display:none">Item ID</td>
+            <td style="display:none">Company ID</td>
+            <th>Article No</th>
+            <th>Description</th>
+            <th>C. Width</th>
+            <th>Delivery Start Date</th>
+            <th>Delivery Finish Date</th>
+            <th>Quantity (Yds)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListBookingDetails">
+            <td style="display:none">{{dataModel.PIID}}</td>
+            <td style="display:none">{{dataModel.ItemID}}</td>
+            <td style="display:none">{{dataModel.CompanyID}}</td>
+            <td> {{dataModel.ArticleNo}}</td>
+            <td>{{dataModel.Description}}</td>
+            <td>{{dataModel.CuttableWidth}}</td>
+            <td>
+                <input type="text" datepicker-popup="dd/MM/yyyy" ng-model="dataModel.DeliveryStartDate" is-open="openedSD[$index]"
+                       ng-required="true" />
+            </td>  
+            <td>
+                <input type="text" datepicker-popup="dd/MM/yyyy" ng-model="dataModel.DeliveryFinishDate" is-open="opened[$index]"
+                       ng-required="true" />
+            </td>
+            <td><input type="number" id="txtGrdQuantity" name="txtGrdQuantity" class="form-control" style="width:100px;" ng-model="dataModel.Quantity" min="0.00"  required/></td>
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot></tfoot>
+</table>
+<p ng-show="(ListPIDetails).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

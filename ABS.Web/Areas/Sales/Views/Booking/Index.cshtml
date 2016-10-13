@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Production Booking";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="bookingCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div id="PIDiv">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </span>
+
+                                    @*<span id="show" class="btn btn-info margin-right-btn" ng-href="#PIModal" data-toggle="modal" ng-click="loadActivePIRecords(0)">
+                                            <i class="icon-search"></i> {{btnPIShowText}}
+                                        </span>*@
+
+                                    <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                        <i class="icon-search" ng-show="IsListIcon"></i> <i ng-show="IsCreateIcon" class="icon-plus-sign"></i> {{btnPIShowText}}
+                                    </span>
+
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-if="UserCommonEntity.EnableInsert" ng-click="save()"
+                                          ng-show="IsbtSaveReviseShow" ng-disabled="frmBooking.$invalid">
+                                        <i class="icon-save"></i> {{btnPISaveText}}
+                                    </span>
+
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsShow">
+                            @Html.Partial("~/Areas/Sales/Views/Booking/_Partial/_formBooking.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+
+            <div class="row" ng-hide="IsHidden">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleActivePIMasters}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+
+                            @Html.Partial("~/Areas/Sales/Views/Booking/_Partial/_tableBookingMasterInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+
+
+            <div class="row" ng-hide="IsHiddenDetail">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitlePIDeatails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @Html.Partial("~/Areas/Sales/Views/Booking/_Partial/_tableBookingDetailsInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+        <!-- /Modal Item Master(Sample) -->
+        <div class="row">
+            @Html.Partial("~/Areas/Sales/Views/PI/_Partial/_tableSampleNoInfoModal.cshtml")
+        </div> <!-- /.row -->
+        @*<!-- /Modal PI Master -->
+            <div class="row">
+                @Html.Partial("~/Areas/Sales/Views/PI/_Partial/_tableActivePIMastrsInfo.cshtml")
+            </div> <!-- /.row -->*@
+
+    </div>
+</div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Sales/ScriptsNg/Controllers/BookingCtrl.js"></script>
+        <script src="~/Areas/Sales/ScriptsNg/Service/CrudService.js"></script>
+        <script src="~/Areas/Sales/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Scripts/CustomToastrMessage.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+    }

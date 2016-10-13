@@ -1,0 +1,123 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-s">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Beam No</th>
+            <th>Roll No</th>
+            <th>Greige Length</th>
+            <th>Unit</th>
+            <th>Piece</th>
+            <th>Defect Point</th>
+            <th>Gross Wt</th>
+            <th>Net Wt</th>
+            <th>Remarks</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in FebricInspectionDetailsList">
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxBeamNo"
+                           class="form-control"
+                           name="txtbxBeamNo" ng-model="dataModel.BeamNo"
+                           placeholder="Beam No" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="text"
+                           style="width: 100%"
+                           id="RollNo"
+                           class="form-control"
+                           name="RollNo" ng-model="dataModel.RollNo"
+                           placeholder="Beam No" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxGreigeLenth"
+                           class="form-control"
+                           name="txtbxGreigeLenth" ng-model="dataModel.GreigeLength"
+                           placeholder="Greige Length" />
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="UnitList"
+                            ng-model="dataModel.UnitID"
+                            name="unitList" data-tags="false"
+                            data-placeholder="--Select Unit--"
+                            style="width: 100%"
+                            ng-options="U.UOMID as U.UOMName for U in ListUOM"></select>
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxPiece"
+                           class="form-control"
+                           name="txtbxPiece" ng-model="dataModel.Piece"
+                           placeholder="Piece" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <select id="ddlMachinePart"
+                            ng-model="dataModel.DefectPoint"
+                            name="ddlMachinePart" data-tags="false"
+                            data-placeholder="--Select Tank--"
+                            style="width: 100%"
+                            ng-options="item.DefectPointID as item.DefectName for item in DefectPoints"></select>
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxGrossWt"
+                           class="form-control"
+                           name="txtbxGrossWt" ng-model="dataModel.GrossWt"
+                           placeholder="Gross Wt" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtbxNet"
+                           class="form-control"
+                           name="txtbxNet" ng-model="dataModel.NetWt"
+                           placeholder="Net Wt" />
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <input type="text"
+                           style="width: 100%"
+                           id="txtbxRemark"
+                           class="form-control"
+                           name="txtbxRemark" ng-model="dataModel.Remarks"
+                           placeholder="Remarks" />
+                </div>
+            </td>
+
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>

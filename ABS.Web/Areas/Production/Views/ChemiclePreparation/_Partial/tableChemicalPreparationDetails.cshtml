@@ -1,0 +1,51 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-m">
+    <thead class="grid-top-panel" style="width:100%">
+        <tr>
+            <th>Chemical</th>
+            <th>Min Qty</th>
+            <th>Max Qty</th>
+            <th>Unit</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="width:100%">
+        <tr ng-repeat="dataModel in ChemDetailList" style="width:100%">
+            <td>
+                <div style="width:100px">
+                    <select id="ddlChemical"
+                            ng-model="dataModel.ChemicalID"
+                            name="ddlChemical"
+                            ng-change="loadChemicalUnitRecords(dataModel)"
+                            style="width: 100%"
+                            ng-options="S.ItemID as S.ItemName for S in listChemical">
+                        <option></option>
+                    </select>
+                </div>
+            </td>
+            <td><input type="number" id="MinQty" name="MinQty" class="form-control" ng-model="dataModel.MinQty" ng-change="numberChangeEvent(dataModel)" /></td>
+            <td><input type="number" id="MaxQty" name="MaxQty" class="form-control" ng-model="dataModel.MaxQty" ng-change="numberChangeEvent(dataModel)" /></td>
+            <td>
+                <input type="hidden" id="UnitList" name="UnitList" class="form-control" ng-model="dataModel.UnitID" />
+                <input type="text" id="UnitName" name="UnitName" class="form-control" ng-model="dataModel.UOMName" readonly />
+            </td>
+            @*<td>
+                <div style="width:100px">
+                    <select id="UnitList"
+                            ng-model="dataModel.UnitID"
+                            name="UnitList"
+                            style="width: 100%"
+                            ng-options="Un.UOMID as Un.UOMName for Un in ListUOMD">
+                        <option></option>
+                    </select>
+                </div>
+            </td>*@
+            <td style="text-align:right; color:white" @*ng-show="IsbtnAddDelShow"*@>
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

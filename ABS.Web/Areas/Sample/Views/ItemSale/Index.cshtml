@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "Item Sale";
+}
+
+<div class="container" ng-controller="itemSalesCtrl">
+    <!-- Breadcrumbs line -->
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="index.html">Dashboard</a>
+            </li>
+            <li class="current">
+                <a href="pages_calendar.html" title="">Calendar</a>
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> {{PanelTitle}}</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <form novalidate name="frmSales" id="saleForm" class="form-horizontal row-border">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="input17">Outlet</label>
+                            <div class="col-md-7">
+                                <p>Selected Outlet: {{ddlProductOutlet}}</p>
+
+                                <select id="ProductOutlet"
+                                        ng-model="ddlProductOutlet"
+                                        ng-change="loadRecords_pt(0)"
+                                        name="productOutlet"
+                                        data-placeholder="--Select Outlet--"
+                                        style="width: 339px"
+                                        ng-options="olet.OutletID as olet.OutletName for olet in ListProductOutlet" required>
+                                    <option></option>
+                                </select>
+                                <span class="error" ng-show="(frmSales.$dirty||submitted) && frmSales.productOutlet.$error.required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="input18">Product Type</label>
+                            <div class="col-md-7">
+                                <p>Selected Type: {{ddlProductType}}</p>
+                                <select id="ProductType" class="select2-select-00"
+                                        ng-model="ddlProductType"
+                                        ng-change="loadRecords_pr(0)"
+                                        name="productType"
+                                        data-placeholder="--Select Type--"
+                                        style="width: 339px"
+                                        ng-options="type.TypeID as type.TypeName for type in ListProductType">
+                                    <option></option>
+                                </select>
+                                <span class="error" ng-show="(frmSales.$dirty||submitted) && frmSales.productType.$error.required">*</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-7">
+                                <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmSales.$invalid" />
+                                <input type="button" id="save" class="btn btn-success" value="Save" ng-click="save()" ng-disabled="frmSales.$invalid" />
+                            </div>
+                        </div>
+                        @*@Html.Partial("~/Areas/Sample/Views/Customer/_formSale.cshtml")*@
+                    </form>
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+        <div class="col-md-6">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> {{DataPanelTitle}}</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div when-scrolled="loadRecords_pr(1)">
+                        <input id="productSearch" ng-model="productSearch" type="text" class="form-control search" placeholder="Search...">
+
+                        <table class="table  table-hover general-table">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">ProductID</th>
+                                    <th>ProductName</th>
+                                    <th>Price</th>
+                                    @*<th style="text-align:right;">Options</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dataModel in ListProduct|filter:productSearch">
+                                    <td style="display:none">{{dataModel.ProductID}}</td>
+                                    <td>
+                                        @*{{dataModel.ProductName}}*@
+                                        <div class="roundedTwo">
+                                            <input type="checkbox" id="{{dataModel.ProductID}}"
+                                                   value="{{dataModel.ProductID}}"
+                                                   ng-checked="selection.indexOf(dataModel.ProductID) > -1"
+                                                   ng-click="toggleSelection(dataModel.ProductID)" />
+                                            <label for="{{dataModel.ProductID}}"><span>{{dataModel.ProductName}}</span></label>
+                                        </div>
+                                    </td>
+                                    <td>{{dataModel.Price}}</td>
+                                    @*<td style="text-align:right; color:white">
+                                            <span class="label label-warning label-mini">
+                                                <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Edit Info">
+                                                    <i class="icon-pencil" ng-click="getCustomer(dataModel)"></i>
+                                                </a>
+                                            </span>
+                                            <span class="label label-danger label-mini">
+                                                <a href="javascript:void(0);" class="bs-tooltip" title="Delete" ng-click="delete(dataModel)">
+                                                    <i class="icon-trash"></i>
+                                                </a>
+                                            </span>
+                                        </td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p ng-show="(ListProduct | filter:productSearch).length == 0" style="color:red">No Item found!</p>
+
+                        <div class="loadmore">
+                            <div ng-show="loaderMore" ng-class="result">
+                                @*<img src="~/Content/img/ng-loader.gif" />*@
+                                {{lblMessage}}
+                            </div>
+                            <div ng-show="scrollended" ng-class="result">
+                                {{lblMessage}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div> <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> {{SDataPanelTitle}}</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div when-scrolled="loadRecords_pr(1)">
+                        <input id="productSearch" ng-model="sproductSearch" type="text" class="form-control search" placeholder="Search...">
+
+                        <table class="table  table-hover general-table">
+                            <thead>
+                                <tr>
+                                    <th style="display:none">SaleID</th>
+                                    <th>SaleNo</th>
+                                    <th>SaleDate</th>
+                                    <th>Outlet</th>
+                                    <th>Type</th>
+                                    <th>Product</th>
+                                    <th>Net</th>
+                                    <th>Gross[VAT]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dataModel in ListSProduct|filter:sproductSearch">
+                                    <td style="display:none">{{dataModel.SaleID}}</td>
+                                    <td>{{dataModel.SaleNo}}</td>
+                                    <td>{{dataModel.SaleDate | date:'MM/dd/yyyy'}}</td>
+                                    <td>{{dataModel.OutletName}}</td>
+                                    <td>{{dataModel.TypeName}}</td>
+                                    <td>{{dataModel.ProductName}}</td>
+                                    <td>{{dataModel.netPrice}}</td>
+                                    <td>{{dataModel.grossPrice}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p ng-show="(ListSProduct | filter:sproductSearch).length == 0" style="color:red">No Item found!</p>
+                        <div class="loadmore">
+                            <div ng-show="loaderMore" ng-class="result">
+                                @*<img src="~/Content/img/ng-loader.gif" />*@
+                                {{lblMessage}}
+                            </div>
+                            <div ng-show="scrollended" ng-class="result">
+                                {{lblMessage}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- /.container -->
+
+@section AngularScript{
+    <script src="~/Areas/Sample/ScriptsNg/Controllers/ItemSalesCtrl.js"></script>
+    <script src="~/Areas/Sample/ScriptsNg/Service/CrudService.js"></script>
+}

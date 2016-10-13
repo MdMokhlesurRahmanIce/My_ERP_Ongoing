@@ -1,0 +1,48 @@
+﻿<div class="modal-top modal fade" id="CmnDeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="icon-warning-sign icon-cl-warning"></i> Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" ng-model="UserCommonEntity.rowEntity" />
+                <h5>{{UserCommonEntity.DelMsgs}}</h5>
+            </div>
+            <div class="modal-footer">
+                <div class=" col-md-12">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" id="delYes" data-dismiss="modal" ng-if="UserCommonEntity.EnableYes" class="btn btn-success" ng-click="CmnMethod(UserCommonEntity.DelFunc, 1)">Yes</button>
+                        <button type="button" id="delYes" data-dismiss="modal" ng-if="UserCommonEntity.EnableConf" class="btn btn-success" ng-click="IsConfirm()">Yes</button>
+                        <button type="button" id="delNo" data-dismiss="modal" class="btn btn-danger">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="modal-top modal fade" id="CmnDeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="icon-warning-sign icon-cl-warning"></i> Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>{{SelectedItemName}}</h5>
+                    <input type="hidden" ng-model="CmnDelModel" />
+                </div>
+                <div class="modal-footer">
+                    <div class=" col-md-12">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" id="delYes" data-dismiss="modal" ng-if="IsConfShow" class="btn btn-success" ng-click="ConfirmYes()">Yes</button>
+                            <button type="button" id="delYes" data-dismiss="modal" ng-if="IsConfirmShow" class="btn btn-success" ng-click="IsConfirm()">Yes</button>
+                            <button type="button" id="delNo" data-dismiss="modal" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

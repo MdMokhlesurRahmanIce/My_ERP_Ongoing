@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "TransactionType Settings";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="TransactionTypeController">
+
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div id="ItemGroupDiv">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            @Html.Partial("~/Areas/SystemCommon/Views/TransactionType/_Partial/_formTransactionType.cshtml")
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div when-scrolled="loadColorRecords(1)">
+                                @Html.Partial("~/Areas/SystemCommon/Views/TransactionType/_Partial/_tableTransactionType.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/ItemGroupCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/ItemGroupService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

@@ -1,0 +1,38 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-m">
+    <thead class="grid-top-panel" style="width:100%">
+        <tr>
+            <th>Box</th>
+            <th>OperationName</th>
+            <th>SQ. Press</th>
+            <th>Temp</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody style="width:100%">
+        <tr ng-repeat="dataModel in MachineDetail" style="width:100%">
+
+            <td><input type="text" id="MPartName" name="MPartName" class="form-control" ng-model="dataModel.MachinePartName" readonly /></td>
+            <td>
+                <div style="width:100px">
+                    <select id="ddlMachineOperation"
+                            ng-model="dataModel.MachineOperationID"
+                            name="ddlItem"
+                            @*ng-change="ModalShowHide(dataModel)"*@
+                            style="width: 100%"
+                            ng-options="S.MachineOperationID as S.OperationName for S in ListOperation">
+                        <option></option>
+                    </select>
+                </div>
+            </td>
+            <td><input type="number" id="SQPress" name="SQPress" class="form-control" ng-model="dataModel.SQPress" /></td>
+            <td><input type="number" id="Temp" name="Temp" class="form-control" ng-model="dataModel.Temp" /></td>
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,42 @@
+﻿@*<input id="adustmentInfoSearch_AD" ng-model="AdustmentInfoSearch_AD" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table  table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">BA DetailID</th>
+            <th style="display:none">Bank Charge ID</th>
+            <th>Charge Name</th>
+            <th>Amount</th>
+            <th style="text-align:right">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel_AD in ListAdjustmentInfoDetails_AD|filter:AdustmentInfoSearch_AD">
+            <td style="display:none">{{dataModel_AD.BADetailID}}</td>
+            <td style="display:none">{{dataModel_AD.BankChargeID}}</td>
+            <td>{{dataModel_AD.ComboName}}</td>
+            <td>{{dataModel_AD.ChargeAmount}}</td>            
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+        @*<tr>
+            <th>Total Amount</th>
+            <td> {{ChargeAmount}}</td>            
+            <td></td>
+        </tr>*@
+    </tbody>
+</table>
+@*<p ng-show="(ListAdjustmentInfoDetails_AD | filter:AdustmentInfoSearch_AD).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>*@

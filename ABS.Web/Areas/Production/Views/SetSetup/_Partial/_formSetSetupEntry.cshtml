@@ -1,0 +1,250 @@
+﻿
+<form novalidate name="frmSetSetupEntry" id="setSetupEntry" class="form-horizontal row-border">
+    <input type="hidden" id="setSetupMasterID" readonly="readonly" ng-model="SetMasterID" />
+    @*<div class="row">*@
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">PI No</label>
+                <div class="col-md-6">
+                    <select id="PIList" class="select2-select-00"
+                            ng-model="lstPIList"
+                            ng-change="loadItemRecords(1)"                            
+                            @*ng-click="loadItemRecords(1)"*@
+                            name="pIList"
+                            data-placeholder="--Select PI No--"
+                            style="width: 100%;"
+                            ng-options="P.PIID as P.PINO for P in ListPI">
+                        <option></option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Buyer</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="buyerName"
+                           class="form-control"
+                           name="buyerName" ng-model="BuyerName" readonly />
+                    <input type="hidden" id="buyerID" name="buyerID" ng-model="BuyerID" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Article No</label>
+                <div class="col-md-6">                    
+                    <select id="ItemList" class="select2-select-00"
+                            ng-model="lstItemList"
+                            ng-change="loadSelectedItemData(1)"
+                            name="itemList"
+                            data-placeholder="--Select Article No--"
+                            style="width: 100%;"
+                            ng-options="L.ItemID as L.ArticleNo for L in ListItem"
+                            required>
+                        <option></option>
+                    </select>                    
+                </div>
+                <span class="error" ng-show="(frmSetSetupEntry.$dirty||submitted) && frmSetSetupEntry.itemList.$error.required"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">PI Length</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="pILength"
+                           class="form-control"
+                           name="pILength" ng-model="Length" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Set Length</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="setLength"
+                           class="form-control"
+                           name="setLength" ng-model="SetLength" ng-change="SetCalculation()" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Warp Yarn</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="yarnCount"
+                           class="form-control"
+                           name="yarnCount" ng-model="YarnCount" readonly />
+                    <input type="hidden" id="yarnID" name="yarnID" ng-model="YarnID" />
+                    <input type="hidden" id="weftYarnID" name="weftYarnID" ng-model="WeftYarnID" />
+                    <input type="hidden" id="weave" name="weave" ng-model="Weave" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Warp Ratio</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="yarnRatio"
+                           class="form-control"
+                           name="yarnRatio" ng-model="YarnRatio" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Warp Lot</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="yarnRatioLot"
+                           class="form-control"
+                           name="yarnRatioLot" ng-model="YarnRatioLot" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Supplier</label>
+                <div class="col-md-6">
+                    <select id="SuppList" class="select2-select-00"
+                            ng-model="lstSuppList"
+                            @*ng-change="loadSelectedItemData(1)"*@
+                            name="suppList"
+                            data-placeholder="--Select Supplier--"
+                            style="width: 100%;"
+                            ng-options="S.UserID as S.UserName for S in ListSupplier">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">T.Ends</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="ttlEnds"
+                           class="form-control"
+                           name="ttlEnds" ng-model="TotalEnds" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Color</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="color"
+                           class="form-control"
+                           name="color" ng-model="ColorName" readonly />
+                    <input type="hidden" id="colorID" name="colorID" ng-model="ColorID" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">MC Speed</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="mcSpeed"
+                           class="form-control"
+                           name="mcSpeed" ng-model="MachineSpeed" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">No of Ball</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="ballNo"
+                           class="form-control"
+                           name="ballNo" ng-model="BallNo" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">End/Creel</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="endsPerCreel"
+                           class="form-control"
+                           name="endsPerCreel" ng-model="EndsPerCreel" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Lease Repeat</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           id="leaseRepeat"
+                           class="form-control"
+                           name="leaseRepeat" ng-model="LeaseRepeat" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="setDate"
+                           class="form-control datepicker"
+                           name="setDate" ng-model="SetDate" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Reference Set</label>
+                <div class="col-md-6">
+                    <select id="RefSetList" class="select2-select-00"
+                            ng-model="lstRefSetList"
+                            ng-change="getReferenceWiseDate()"
+                            name="refSetList"
+                            data-placeholder="--Select Set No--"
+                            style="width: 100%;"
+                            ng-options="S.SetID as S.SetNo for S in ListRefSet">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Ref Set Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="refSetDate"
+                           class="form-control" @*datepicker*@
+                           name="refSetDate" ng-model="RefSetDate" placeholder=" dd/mm/yyyy" readonly />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Remarks:</label>
+                <div class="col-md-9">
+                    <textarea rows="3" cols="3"
+                              id="remarks"
+                              class="form-control"
+                              name="remarks" ng-model="Remarks"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row" style="text-align:right; margin-right:1%">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="button" id="Generate" class="btn btn-success margin-right-btn" value="Generate" ng-click="callGenerate()" ng-disabled="frmSetSetupEntry.$invalid" />
+                </div>
+            </div>
+        </div>*@
+
+    @*</div>*@
+</form>

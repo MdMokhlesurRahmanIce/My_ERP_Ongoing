@@ -1,0 +1,102 @@
+﻿<form novalidate name="frmStockEntry" id="frmStockEntry" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+    <div class="row">
+        <div class="col-md-6">
+
+            @*<div class="form-group">
+                    <label class="col-md-4 control-label">Item Name</label>
+                    <div class="col-md-7">
+                        <select id="ddlItem" class="select2-select-00" style="width: 100%;"
+                                ng-model="ddlItem"
+                                name="ddlItem"
+                                style="width: 100%" required
+                                ng-options="it.ItemID as it.ItemName for it in items">
+
+                            <option>--Select--</option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmStockEntry.$dirty||submitted) && frmStockEntry.ddlItem.$error.required">*</span>
+                </div>*@
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company </label>
+                <div class="col-md-7">
+                    <select id="ddlCompany" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            ng-change="LoadItemGroupByCompanyID()"
+                            name="ddlCompany"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmBooking.$dirty||submitted) && frmBooking.ddlCompany.$error.required">*</span>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label">Item Group</label>
+                <div class="col-md-7">
+                    <select id="ddlItemGroup" class="select2-select-00"
+                            ng-model="lstSampleNoList"
+                            name="ddlItemGroup"
+                            data-placeholder="--Select Item Group--"
+                            style="width: 100%" ng-options="lsn.ItemGroupID as lsn.ItemGroupName for lsn in listSampleNo">
+                        <option></option>
+                    </select>
+
+                    <div class="loadmore_ddl">
+                        <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                            <img src="~/Content/img/ng-loader.gif" />
+                            {{lblMessageForSampleNo}}
+                        </div>
+                    </div>
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Item Description</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           style="width: 100%"
+                           id="txtItem"
+                           class="form-control"
+                           name="txtItem" ng-model="ItemDescription" required />
+                </div>
+                <span class="error" ng-show="(frmStockEntry.$dirty||submitted) && frmStockEntry.txtQty.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Item Grade</label>
+                <div class="col-md-6">
+                    <select id="ddlGrade" class="select2-select-00" style="width: 100%;"
+                            ng-model="ItemGradeList"
+                            name="ddlGrade"
+                            data-placeholder="--Select--" required>
+                        <option></option>
+                        <option ng-repeat="spt in listGrade" value="{{spt.ItemGradeID}}">{{spt.GradeName}}</option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmStockEntry.$dirty||submitted) && frmStockEntry.ddlLotNo.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Receive Qty</label>
+                <div class="col-md-6">
+                    <input type="number"
+                           style="width: 100%"
+                           id="txtQty"
+                           class="form-control"
+                           name="txtQty" ng-model="Qty" required />
+                </div>
+                <span class="error" ng-show="(frmStockEntry.$dirty||submitted) && frmStockEntry.txtQty.$error.required">*</span>
+            </div>
+        </div>
+    </div>
+</form>

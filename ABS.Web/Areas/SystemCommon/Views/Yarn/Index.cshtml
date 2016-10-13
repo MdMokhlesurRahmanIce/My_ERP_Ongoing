@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Yarn Entry";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="YarnController">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box widget">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmRawMaterial.$invalid">
+                                    <i class="icon-save"></i> {{btnRawMaterialText}}
+                                </span>
+                                <span id="show" class="btn btn-info margin-right-btn" ng-href="#PIModal" data-toggle="modal" ng-click="ShowHide()">
+                                    {{btnRawMaterialShowText}}
+                                </span>
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                    <i class="icon-refresh"></i> Reset
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="MainForm">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Yarn/_Partial/_formYarn.cshtml")
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row" ng-show="grdShowHide">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("/Areas/SystemCommon/Views/Yarn/_Partial/_tableCmnItemMaster.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+    </div>
+</div>
+
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/YarnCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/YarnService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}

@@ -1,0 +1,53 @@
+﻿
+@*{{msg.lastCellEdited}}
+<div ui-grid="gridOptionsSet"
+     ui-grid-resize-columns
+     ui-grid-auto-resize
+     ui-grid-move-columns
+     ui-grid-exporter
+     ui-grid-pinning
+     ui-grid-edit
+     class="grid"></div>*@
+ 
+<table class="table table-hover general-table right-bottom-scroll-s">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Set&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Article&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Color</th>
+            <th>PI&nbsp;No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Set Length</th>
+            <th>Yarn&nbsp;Count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Yarn Ratio</th>
+            <th>Warp&nbsp;Lot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>No.&nbsp;of Ball</th>
+            <th>Supplier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th>Weave</th>
+            <th>Total Ends</th>
+            <th>MC Speed</th>
+            <th>Ends/Creel</th>
+            <th>Lease Repeat</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in tempSetList">
+            <td>{{dataModel.SetNo}}</td>
+            <td>{{dataModel.ArticleNo}}</td>
+            <td>{{dataModel.ColorName}}</td>
+            <td>{{dataModel.PINO}}</td>
+            <td>{{dataModel.SetLength}}</td>
+            <td>{{dataModel.YarnCount}}</td>
+            <td>{{dataModel.YarnRatio}}</td>
+            <td>{{dataModel.YarnRatioLot}}</td>
+            <td>{{dataModel.NoOfBall}}</td>
+            <td>{{dataModel.SupplierName}}</td>
+            <td>{{dataModel.Weave}}</td>
+            <td>{{dataModel.TotalEnds}}</td>
+            <td>{{dataModel.MachineSpeed}}</td>
+            <td>{{dataModel.EndsPerCreel}}</td>
+            <td>{{dataModel.LeaseRepeat}}</td>
+            <td>{{dataModel.Description}}</td>
+        </tr>
+    </tbody>
+</table>

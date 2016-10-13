@@ -1,0 +1,61 @@
+﻿@*<input id="lcDetailSearch" ng-model="LCDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table table-hover general-table right-bottom-scroll">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Article No</th>
+            <th></th>
+            <th>Construction</th>
+            <th>Cuttable Width</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListReviseDetail">
+            <td>{{dataModel.ItemName}}</td>
+            <td>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-href="#ProductModal" data-toggle="modal" class="bs-tooltip" title="New Product">
+                        <i class="icon-search" ng-click="CallAllProductRecords(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+            <td>{{dataModel.Construction}}</td>
+            <td>{{dataModel.CuttableWidth}}</td>
+            <td><input type="number" id="Quantity" name="Quantity" class="form-control" ng-model="dataModel.Quantity" ng-blur="calculationRevisedAmt(dataModel)" /></td>
+            <td><input type="number" id="UnitPrice" name="UnitPrice" class="form-control" ng-model="dataModel.UnitPrice" ng-blur="calculationRevisedAmt(dataModel)" readonly /></td>
+            <td>{{dataModel.Amount}}</td>
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="#" class="bs-tooltip" title="Delete" ng-click="DeleteProductList(dataModel)">
+                        <i class="icon-trash"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Remind Total:</td>
+            <td>{{OldTotalAmount}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td>{{CurrentTotalAmount}}</td>
+        </tr>
+    </tfoot>
+</table>
+@*<p ng-show="(ListReviseDetail | filter:LCDetailSearch).length == 0" style="color:red">Nothing found!</p>*@
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

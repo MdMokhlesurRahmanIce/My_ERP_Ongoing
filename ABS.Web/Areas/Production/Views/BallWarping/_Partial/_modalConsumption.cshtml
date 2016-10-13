@@ -1,0 +1,62 @@
+﻿<div class="modal fade" id="ConsumptionModal">
+    <div class="modal-dialog modal-dialog-ext">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="icon-tasks"></i>{{ModalConsumption}}</h4>
+            </div>
+            <div class="modal-body no-padding">
+                <form novalidate name="frmConsumption" id="frmConsumption" class="form-horizontal row-border">
+                    <div class="col-md-12" style="padding:0px;">
+                        <div class="clearfix"></div>
+                        <div style="padding-top:4px;">
+                            @*<input id="consumptionSearch" ng-model="consumptionSearch" type="text" class="form-control search" placeholder="Search...">*@
+                            <table class="table  table-hover general-table">
+                                <thead>
+                                    <tr>
+                                        <th style="display:none">BallConsumptionID</th>
+                                        <th style="display:none">YarnCountID</th>
+                                        <th style="display:none">SupplierID</th>
+                                        <th style="display:none">LotID</th>
+                                        <th style="display:none">Unit</th>
+                                        <th>Length(Mtr)</th>
+                                        <th>Length(Yds)</th>
+                                        <th>Yarn Count</th>
+                                        <th>Unit</th>
+                                        <th>Constraint</th>
+                                        <th>Consumption In KG</th>
+                                        <th>Remarks</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataModel in ListConsumption | filter:consumptionSearch">
+                                        <td ng-readonly="IsConRead">{{dataModel.LengthM}}</td>
+                                        <td ng-readonly="IsConRead">{{dataModel.LengthYds}}</td>
+                                        <td ng-readonly="IsConRead">{{dataModel.YarnCount}}</td>
+                                        <td ng-readonly="IsConRead">{{dataModel.UOMName}}</td>
+                                        <td ng-readonly="IsConRead">{{dataModel.Constraint}}</td>
+                                        <td ng-readonly="IsConRead">{{dataModel.Qty}}</td>
+                                        <td><input type="text" id="Remarks" name="Remarks" class="form-control" ng-model="dataModel.Remarks" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class=" col-md-12">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="button" id="saveConsumption" data-dismiss="modal" class="btn btn-success" value="{{btnSaveConsumption}}" ng-click="saveConsumption()" ng-disabled="ConsumptionSave" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ChangeConsumptionbtnState()">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

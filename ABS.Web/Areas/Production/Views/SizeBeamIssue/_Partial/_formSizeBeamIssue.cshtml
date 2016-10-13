@@ -1,0 +1,270 @@
+﻿
+<form novalidate name="frmSizeBeamIssue" id="frmSizeBeamIssue" class="form-horizontal row-border">
+    <input type="hidden" id="hidSizeMRRID" readonly="readonly" ng-model="hidSizeMRRID" />
+    <input type="hidden" id="BeamIssueID" readonly="readonly" ng-model="BeamIssueID" />
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Article No:</label>
+            <div class="col-md-7">
+                <select id="drpArticalNo" class="select2-select-00" style="width:100%;"
+                        ng-model="drpArticalNo"
+                        name="drpArticalNo"
+                        data-placeholder="-- Select Article No --"
+                        ng-options="ig.ItemID as ig.ArticalNo for ig in Articals" ng-change="GetSetNoByArticalNo()">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">T Ends</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxTEnds"
+                       class="form-control"
+                       name="txtbxTEnds" ng-model="txtbxTEnds"
+                       placeholder="T Ends" readonly />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Warp Count</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpCount"
+                       class="form-control"
+                       name="txtbxWarpCount" ng-model="txtbxWarpCount"
+                       placeholder="Warp Count" readonly />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Weft Lot</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeftLot"
+                       class="form-control"
+                       name="txtbxWeftLot" ng-model="txtbxWeftLot"
+                       placeholder="Weft Lot" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Color</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxColor"
+                       class="form-control"
+                       name="txtbxColor" ng-model="txtbxColor"
+                       placeholder="Color" readonly />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">PI</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxPI"
+                       class="form-control"
+                       name="txtbxPI" ng-model="txtbxPI"
+                       placeholder="PI" readonly />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Sizing Issue Date:</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxSizingIssueDate"
+                       class="form-control datepicker"
+                       name="txtbxSizingIssueDate" ng-model="txtbxSizingIssueDate" ng-readonly="sizingIssueDate" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Note for Weaving:</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtbxNoteForWeaving"
+                          class="form-control"
+                          name="txtbxNoteForWeaving" ng-model="txtbxNoteForWeaving" ng-readonly="noteForWeaving"></textarea>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Set No:</label>
+            <div class="col-md-7">
+                <select id="drpSetNo" class="select2-select-00" style="width:100%;"
+                        ng-model="drpSetNo"
+                        name="drpSetNo"
+                        data-placeholder="-- Select Set No --"
+                        ng-options="ig.SetID  as ig.SetNo  for ig in setNos" ng-change="GetSetDetailsBySetNo()">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Set Length</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxSetLength"
+                       class="form-control"
+                       name="txtbxSetLength" ng-model="txtbxSetLength"
+                       placeholder="Set Length" readonly />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Warp Supplier</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpSupplier"
+                       class="form-control"
+                       name="txtbxWarpSupplier" ng-model="txtbxWarpSupplier"
+                       placeholder="Warp Supplier" readonly />
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Weft Count</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeftCount"
+                       class="form-control"
+                       name="txtbxWeftCount" ng-model="txtbxWeftCount"
+                       placeholder="Weft Count" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Shade</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxShade"
+                       class="form-control"
+                       name="txtbxShade" ng-model="txtbxShade"
+                       placeholder="Shade" ng-readonly="ngShade" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Note for Sizing</label>
+            <div class="col-md-7">
+                <textarea rows="3" cols="3"
+                          id="txtbxNoteForSizing"
+                          class="form-control"
+                          name="txtbxNoteForSizing" ng-model="txtbxNoteForSizing" ng-readonly="boteForSizing"></textarea>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Machine</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxMachine"
+                       class="form-control"
+                       name="txtbxMachine" ng-model="txtbxMachine"
+                       placeholder="Machine" readonly />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtbxItemName.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Warp Lot</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpLot"
+                       class="form-control"
+                       name="txtbxWarpLot" ng-model="txtbxWarpLot"
+                       placeholder="Set Length" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Warp Ratio</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWarpRatio"
+                       class="form-control"
+                       name="txtbxWarpRatio" ng-model="txtbxWarpRatio"
+                       placeholder="Warp Ratio" readonly />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Weft Ratio</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeftRatio"
+                       class="form-control"
+                       name="txtbxWeftRatio" ng-model="txtbxWeftRatio"
+                       placeholder="Weft Ratio" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Buyer</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxBuyer"
+                       class="form-control"
+                       name="txtbxBuyer" ng-model="txtbxBuyer"
+                       placeholder="Buyer" readonly />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">GPL</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxGPL"
+                       class="form-control"
+                       name="txtbxGPL" ng-model="txtbxGPL"
+                       placeholder="GPL" ng-readonly="ngsizingGPL" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Weaving Receive Date:</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxWeavingReceiveeDate"
+                       class="form-control datepicker"
+                       name="txtbxWeavingReceiveeDate" ng-model="txtbxWeavingReceiveeDate" ng-readonly="weavingReceiveDate" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+

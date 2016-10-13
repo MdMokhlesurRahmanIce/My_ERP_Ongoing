@@ -1,0 +1,92 @@
+﻿<form novalidate name="frmPrdDyingChemicalSetup" id="prdDyingChemicalSetup" class="form-horizontal row-border">
+    <input type="hidden" id="chemicalSetupID " readonly="readonly" ng-model="ChemicalSetupID " />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label "> Color</label>
+                <select id="DyingcolorDropdown" class="select2-select-00" ng-model="ddlColor" name="colorDropdown" data-placeholder="--Select Color--"
+                        ng-options="item as item.ColorName for item in ListColor track by item.ItemColorID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetup.colorDropdown.$dirty && frmPrdDyingChemicalSetup.colorDropdown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetup.colorDropdown.$dirty && frmPrdDyingChemicalSetup.colorDropdown.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Qty</label>
+                <input type="text" id="masterQty" class="form-control" name="masterQty" ng-model="Qty" ng-change="hasDetailsValue()" required />
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetup.masterQty.$dirty && frmPrdDyingChemicalSetup.masterQty.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetup.masterQty.$dirty && frmPrdDyingChemicalSetup.masterQty.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Unit</label>
+                <select id="masterunitDropDown" class="select2-select-00" ng-model="ddlUOM" name="masterunitDropDown" data-placeholder="--Select Unit--"
+                        ng-options="item as item.UOMName for item in ListUOM track by item.UOMID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetup.masterunitDropDown.$dirty && frmPrdDyingChemicalSetup.masterunitDropDown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetup.masterunitDropDown.$dirty && frmPrdDyingChemicalSetup.masterunitDropDown.$invalid" Class="iconClass" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- /.col-md-12 -->
+    </div>
+</form>
+<form novalidate name="frmPrdDyingChemicalSetupAdd" id="prdDyingChemicalSetupADD" class="form-horizontal row-border">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Checmical</label>
+                <select id="chemicalDropdown" class="select2-select-00" ng-model="ddlChemical" name="chemicalDropdown" data-placeholder="--Select Color--"
+                        ng-options="item as item.ArticleNo for item in ListChemical track by item.ItemID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetupAdd.chemicalDropdown.$dirty && frmPrdDyingChemicalSetupAdd.chemicalDropdown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetupAdd.chemicalDropdown.$dirty && frmPrdDyingChemicalSetupAdd.chemicalDropdown.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Qty</label>
+                <input type="text" id="AddQty" class="form-control" name="AddQty" ng-model="QtyAdd"  required />
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetupAdd.AddQty.$dirty && frmPrdDyingChemicalSetupAdd.AddQty.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetupAdd.AddQty.$dirty && frmPrdDyingChemicalSetupAdd.AddQty.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Unit</label>
+                <select id="detailsunitDropDown" class="select2-select-00" ng-model="ddlUOMDetails" name="detailsunitDropDown" data-placeholder="--Select Color--"
+                        ng-options="item as item.UOMName for item in ListUOM track by item.UOMID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmPrdDyingChemicalSetupAdd.detailsunitDropDown.$dirty && frmPrdDyingChemicalSetupAdd.detailsunitDropDown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmPrdDyingChemicalSetupAdd.detailsunitDropDown.$dirty && frmPrdDyingChemicalSetupAdd.detailsunitDropDown.$invalid" Class="iconClass" />
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+    @*<br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <input type="button" id="btnAdd" class="btn btn-success " value="Add" ng-click="AddDetails(ddlChemical,ddlUOMDetails)" ng-disabled="frmPrdDyingChemicalSetupAdd.$invalid" />
+                <input type="button" id="reset" class="btn btn-danger" value="Clear" ng-click="clearDetailsParameter()" />
+            </div>
+        </div>
+    </div>*@
+</form>
+
+
+

@@ -1,0 +1,160 @@
+﻿<form novalidate name="frmRawMaterial" id="frmRawMaterial" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+    <input type="hidden" id="hiditemName" readonly="readonly" ng-model="hiditemName" />
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Item Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtArticaleNo"
+                       class="form-control"
+                       name="txtArticaleNo" ng-model="ArticleNo"
+                       placeholder="Item Code" readonly />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Unit</label>
+            <div class="col-md-7">
+                <select id="drpUOMID" class="select2-select-00"
+                        ng-model="drpUOMID"
+                        name="drpUOMID"
+                        data-placeholder="--Select Unit--"
+                        style="width: 100%" ng-options="unt.UOMID as unt.UOMName for unt in Units">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Brand</label>
+            <div class="col-md-7">
+                <select id="drpBrand" class="select2-select-00"
+                        ng-model="drpBrand"
+                        name="drpBrand"
+                        data-placeholder="--Select Brand--"
+                        style="width: 100%" ng-options="brn.ItemBrandID as brn.BrandName for brn in Brands">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Description</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtDescription"
+                       class="form-control"
+                       name="txtDescription" ng-model="txtDescription"
+                       placeholder="Description" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtDescription.$error.required">*</span>*@
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Group</label>
+            <div class="col-md-7">
+                <select id="drpItemGroup" class="select2-select-00"
+                        ng-model="drpItemGroup"
+                        name="drpItemGroup" ng-change="SetItemName()"
+                        data-placeholder="--Select Group--"
+                        style="width: 100%" ng-options="itm.ItemGroupID as itm.ItemGroupName for itm in itemGroupes">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Color</label>
+            <div class="col-md-7">
+                <select id="drpColor" class="select2-select-00"
+                        ng-model="drpColor"
+                        name="drpColor" 
+                        data-placeholder="--Select Color--"
+                        style="width: 100%" ng-options="col.ItemColorID as col.ColorName for col in Colors">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Model</label>
+            <div class="col-md-7">
+                <select id="drpModel" class="select2-select-00"
+                        ng-model="drpModel"
+                        name="drpModel"
+                        data-placeholder="--Select Model--"
+                        style="width: 100%" ng-options="itl.ItemModelID as itl.ModelName for itl in Models">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Unique Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxUniqueCode"
+                       class="form-control"
+                       name="txtbxUniqueCode" ng-model="txtbxUniqueCode"
+                       placeholder="Unique Code" readonly />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtDescription.$error.required">*</span>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Name</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxItemName"
+                       class="form-control"
+                       name="txtbxItemName" ng-model="txtbxItemName"
+                       placeholder="Item Name" required  />
+            </div>
+            <span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtbxItemName.$error.required">*</span>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Size</label>
+            <div class="col-md-7">
+                <select id="drpSize" class="select2-select-00"
+                        ng-model="drpSize"
+                        name="drpSize"
+                        data-placeholder="--Select Size--"
+                        style="width: 100%" ng-options="its.SizeID as its.SizeName for its in Sizes">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Note</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxNote"
+                       class="form-control"
+                       name="txtbxNote" ng-model="txtbxNote"
+                       placeholder="Note" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Count</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxCount"
+                       class="form-control"
+                       name="txtbxCount" ng-model="txtbxCount"
+                       placeholder="Count"  min="1" />
+                @*ng-change="SetItemName()"*@
+            </div>
+        </div>
+    </div>
+</form>
+
+

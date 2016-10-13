@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ABS.Models.CmnMenu>
+@{
+    Layout = null;
+}
+    @{
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+
+                if (@item.ParentID == 0)
+                {
+                    <li>
+                        <a href="@item.MenuPath"><i class="@item.MenuIconCss"></i>@item.MenuName<span class="label label-info pull-right">@Model.Count(m => m.ParentID == item.MenuID)</span></a>
+
+                        <ul class="sub-menu">
+                            @foreach (var subitem in Model.Where(m => m.ParentID == @item.MenuID))
+                            {
+
+                                <li>
+                                    <a href="@subitem.MenuPath"><i class="@subitem.MenuIconCss"></i>@subitem.MenuName</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            }
+        }
+    }
+
+
+
+
+@*<li>
+    <a href="javascript:void(0);"><i class="icon-bar-chart"></i>Reports<span class="label label-info pull-right">5</span></a>
+    <ul class="sub-menu">
+        <li>
+            <a href="CashPVReportByVoucherNo.aspx"><i class="icon-angle-right"></i>Payment Voucher (Cash)</a>
+        </li>
+        <li>
+            <a href="Bankpayment.aspx"><i class="icon-angle-right"></i>Payment Voucher (Bank)</a>
+        </li>
+        <li>
+            <a href="ReceiptVoucher.aspx"><i class="icon-angle-right"></i>Receipt Voucher</a>
+        </li>
+        <li>
+            <a href="ContraVoucher.aspx"><i class="icon-angle-right"></i>Contra Voucher</a>
+        </li>
+        <li>
+            <a href="JournalVoucher.aspx"><i class="icon-angle-right"></i>Journal Voucher</a>
+        </li>
+        <li>
+            <a href="CashPaymentStatement.aspx"><i class="icon-angle-right"></i>Payment Satement (Cash)</a>
+        </li>
+        <li>
+            <a href="BankPaymentStatement.aspx"><i class="icon-angle-right"></i>Payment Satement (Cash) (Bank)</a>
+        </li>
+        <li>
+            <a href="ReceiptStatement.aspx"><i class="icon-angle-right"></i>Reciept Satement</a>
+        </li>
+        <li>
+            <a href="ContraStatement.aspx"><i class="icon-angle-right"></i>Contra Statement</a>
+        </li>
+    </ul>
+</li>*@
+
+

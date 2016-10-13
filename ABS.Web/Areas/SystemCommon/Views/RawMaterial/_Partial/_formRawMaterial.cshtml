@@ -1,0 +1,192 @@
+﻿<form novalidate name="frmRawMaterial" id="frmRawMaterial" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Item Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtArticaleNo"
+                       class="form-control"
+                       name="txtArticaleNo" ng-model="ArticleNo"
+                       placeholder="Item Code" readonly />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Type</label>
+            <div class="col-md-7">
+                <select id="drpType" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpType"
+                        name="drpType"
+                        placeholder="-- Select Type --"
+                        ng-options="ig.Value as ig.Item for ig in Types" ng-change="LoadParentesByItemType()" ng-click="SetParentText()" ng-readonly="isreadType">
+                    <option></option>
+                </select>
+            </div>
+
+            @*<img src="~/Content/img/TickMark.png" ng-show="frmRawMaterial.drpType.$dirty && frmRawMaterial.drpType.$valid" class="iconClass" />
+            <img src="~/Content/img/Cross.png" ng-show="frmRawMaterial.drpType.$dirty && frmRawMaterial.drpType.$invalid" class="iconClass" />*@
+
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Group</label>
+            <div class="col-md-7">
+                @*<select id="drpItemGroup" class="select2-select-00" style="width:100%;"
+                            ng-model="drpItemGroup"
+                            name="drpItemGroup"
+                            placeholder="-- Select Item Group --"
+                            ng-options="ig.ItemGroupID as ig.ItemGroupName for ig in itemGroupes" required>
+                        <option></option>
+                    </select>
+                    <img src="~/Content/img/TickMark.png" ng-show="frmRawMaterial.drpItemGroup.$dirty && frmRawMaterial.drpItemGroup.$valid" class="iconClass" />
+                    <img src="~/Content/img/Cross.png" ng-show="frmRawMaterial.drpItemGroup.$dirty && frmRawMaterial.drpItemGroup.$invalid" class="iconClass" />*@
+                <input type="text"
+                       style="width:100%"
+                       id=" txtparent"
+                       class="form-control"
+                       placeholder="Group Name"
+                       name="txtParent" ng-model="txtParent" readonly />
+            </div>
+            <span class="label label-success label-mini" ng-show="modelDiv">
+                <a href="javascript:void(0);" ng-href="#drpModal" data-toggle="modal" class="bs-tooltip" title="Item Parent">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Item Name</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtbxItemName"
+                       class="form-control"
+                       name="txtbxItemName" ng-model="txtbxItemName"
+                       placeholder="Item Name" required />
+            </div>
+
+            <img src="~/Content/img/TickMark.png" ng-show="frmRawMaterial.txtbxItemName.$dirty && frmRawMaterial.txtbxItemName.$valid" class="iconClass" />
+            <img src="~/Content/img/Cross.png" ng-show="frmRawMaterial.txtbxItemName.$dirty && frmRawMaterial.txtbxItemName.$invalid" class="iconClass" />
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Unit</label>
+            <div class="col-md-7">
+                <select id="drpUOMID" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpUOMID"
+                        name="drpUOMID"
+                        placeholder="-- Select Unit --"
+                        ng-options="ig.UOMID as ig.UOMName for ig in Units">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Color</label>
+            <div class="col-md-7">
+                <select id="drpColor" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpColor"
+                        name="drpColor"
+                        placeholder="-- Select Color --"
+                        ng-options="ig.ItemColorID as ig.ColorName for ig in Colors">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="col-md-6">
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Brand</label>
+            <div class="col-md-7">
+                <select id="drpBrand" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpBrand"
+                        name="drpBrand"
+                        placeholder="-- Select Brand --"
+                        ng-options="ig.ItemBrandID as ig.BrandName for ig in Brands">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Size</label>
+            <div class="col-md-7">
+                <select id="drpSize" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpSize"
+                        name="drpSize"
+                        placeholder="-- Select Size --"
+                        ng-options="ig.SizeID as ig.SizeName for ig in Sizes">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Model</label>
+            <div class="col-md-7">
+                <select id="drpModel" class="select2-select-00" style="width: 100%;"
+                        ng-model="drpModel"
+                        name="drpModel"
+                        placeholder="-- Select Model --"
+                        ng-options="ig.ItemModelID as ig.ModelName for ig in Models">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Note</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxNote"
+                       class="form-control"
+                       name="txtbxNote" ng-model="txtbxNote"
+                       placeholder="Note" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtbxNote.$error.required">*</span>
+                </div>*@
+
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Description</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtDescription"
+                       class="form-control"
+                       name="txtDescription" ng-model="txtDescription"
+                       placeholder="Description" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtDescription.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Unique Code</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxUniqueCode"
+                       class="form-control"
+                       name="txtbxUniqueCode" ng-model="txtbxUniqueCode"
+                       placeholder="Unique Code" readonly />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtDescription.$error.required">*</span>*@
+        </div>
+
+    </div>
+
+</form>
+<div class="clearfix"></div>

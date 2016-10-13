@@ -1,0 +1,81 @@
+﻿<form novalidate name="frmFinishing" id="frmFinishing" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">M/C:</label>
+            <div class="col-md-7">
+                <select id="drpmc" class="select2-select-00" style="width:100%;"
+                        ng-model="drpmc"
+                        name="drpmc"
+                        ng-options="ig.MachineConfigID as ig.MachineConfigNo for ig in Machines">
+                    <option>--Select Machine--</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+        <label class="col-md-4 control-label" for="input17">G.GSM:</label>
+        <div class="col-md-7">
+            <input type="text"
+                   style="width: 100%"
+                   id="txtbxWeaveingGGSM"
+                   class="form-control"
+                   name="txtbxWeaveingGGSM" ng-model="txtbxWeaveingGGSM"
+                   placeholder="G.GSM" />
+        </div>
+        @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+    </div>
+
+
+    </div>
+    <div class="col-md-4">
+       
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Date:</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="weavingDate"
+                       class="form-control datepicker"
+                       name="weavingDate" ng-model="weavingDate" @*placeholder="dd-MM-yyyy"*@ @*value="{{PIDate | date:'dd-MM-yyyy'}}"*@ />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">G.Width</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeaveingGWidth"
+                       class="form-control"
+                       name="txtbxWeaveingGWidth" ng-model="txtbxWeaveingGWidth"
+                       placeholder="G.Width" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+      
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Length:</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWeaveingLength"
+                       class="form-control"
+                       name="txtbxWeaveingLength" ng-model="txtbxWeaveingLength"
+                       placeholder="Length" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+       
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+

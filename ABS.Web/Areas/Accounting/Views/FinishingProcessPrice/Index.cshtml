@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Finishing Process Price";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="finishingProcessPriceCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+     
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </span>
+
+                                    @*<span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                            <i class="icon-search" ng-show="IsListIcon"></i> <i ng-show="IsCreateIcon" class="icon-plus-sign"></i> {{btnShowText}}
+                                        </span>*@
+
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmFinishingProcessPrice.$invalid">
+                                        <i class="icon-save"></i> {{btnSaveText}}
+                                    </span>
+
+
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsShow">
+
+                            @Html.Partial("~/Areas/Accounting/Views/FinishingProcessPrice/_Partial/_formFinishingProcessPrice.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+
+
+
+
+            <div class="row" ng-hide="IsHiddenDetail">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleDeatails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+                            @*@Html.Partial("~/Areas/Accounting/Views/FinishingProcessPrice/_Partial/_tableFinishingPriceChangeGrid.cshtml")*@
+                            @Html.Partial("~/Areas/Accounting/Views/FinishingProcessPrice/_Partial/_tableFinishingProcessPriceDetailsInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+
+            <div class="row" ng-hide="IsHidden">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleMasters}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding">
+
+                            @Html.Partial("~/Areas/Accounting/Views/FinishingProcessPrice/_Partial/_tableFinishingProcessPriceMastrsInfo.cshtml")
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+
+
+ 
+        <!-- /Page Content -->
+
+
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+
+    <script src="~/Areas/Accounting/ScriptsNg/Controllers/FinishingProcessPriceCtrl.js"></script>
+    <script src="~/Areas/Accounting/ScriptsNg/Service/FinishingProcessPriceService.js"></script>
+
+    <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script>
+
+    <script src="~/Scripts/CustomToastrMessage.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+
+    <script src="~/Areas/Token/TokenController.js"></script>
+
+}

@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbSampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmpMaster">
+          <Key>
+            <PropertyRef Name="EmpMasterID" />
+          </Key>
+          <Property Name="EmpMasterID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ItemSize">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="int" Nullable="false" />
+          <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="TypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ProductOutlet">
+          <Key>
+            <PropertyRef Name="OutletID" />
+          </Key>
+          <Property Name="OutletID" Type="int" Nullable="false" />
+          <Property Name="OutletName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_ProductType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OutletID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Sales">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="int" Nullable="false" />
+          <Property Name="SaleNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="OutletID" Type="int" />
+          <Property Name="TypeID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_SalesItem">
+          <Key>
+            <PropertyRef Name="SaleItemID" />
+          </Key>
+          <Property Name="SaleItemID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="SaleID" Type="int" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="tbl_Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tbl_Product_tbl_ProductType">
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="0..1" />
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tbl_Product">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ProductType_tbl_ProductOutlet">
+          <End Role="tbl_ProductOutlet" Type="Self.tbl_ProductOutlet" Multiplicity="0..1" />
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductOutlet">
+              <PropertyRef Name="OutletID" />
+            </Principal>
+            <Dependent Role="tbl_ProductType">
+              <PropertyRef Name="OutletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sales_tbl_ProductOutlet">
+          <End Role="tbl_ProductOutlet" Type="Self.tbl_ProductOutlet" Multiplicity="0..1" />
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductOutlet">
+              <PropertyRef Name="OutletID" />
+            </Principal>
+            <Dependent Role="tbl_Sales">
+              <PropertyRef Name="OutletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sales_tbl_ProductType">
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="0..1" />
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tbl_Sales">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SalesItem_tbl_Product">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_SalesItem" Type="Self.tbl_SalesItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="tbl_SalesItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SalesItem_tbl_Sales">
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="0..1" />
+          <End Role="tbl_SalesItem" Type="Self.tbl_SalesItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sales">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_SalesItem">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSampleModelStoreContainer">
+          <EntitySet Name="EmpMaster" EntityType="Self.EmpMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Customer" EntityType="Self.tbl_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ItemSize" EntityType="Self.tbl_ItemSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductOutlet" EntityType="Self.tbl_ProductOutlet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ProductType" EntityType="Self.tbl_ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Sales" EntityType="Self.tbl_Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_SalesItem" EntityType="Self.tbl_SalesItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_Product_tbl_ProductType" Association="Self.FK_tbl_Product_tbl_ProductType">
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductType_tbl_ProductOutlet" Association="Self.FK_tbl_ProductType_tbl_ProductOutlet">
+            <End Role="tbl_ProductOutlet" EntitySet="tbl_ProductOutlet" />
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sales_tbl_ProductOutlet" Association="Self.FK_tbl_Sales_tbl_ProductOutlet">
+            <End Role="tbl_ProductOutlet" EntitySet="tbl_ProductOutlet" />
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sales_tbl_ProductType" Association="Self.FK_tbl_Sales_tbl_ProductType">
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SalesItem_tbl_Product" Association="Self.FK_tbl_SalesItem_tbl_Product">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_SalesItem" EntitySet="tbl_SalesItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SalesItem_tbl_Sales" Association="Self.FK_tbl_SalesItem_tbl_Sales">
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+            <End Role="tbl_SalesItem" EntitySet="tbl_SalesItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_ItemSize">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <Property Name="SizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TypeID" Type="Int32" />
+          <NavigationProperty Name="tbl_ProductType" Relationship="Self.FK_tbl_Product_tbl_ProductType" FromRole="tbl_Product" ToRole="tbl_ProductType" />
+          <NavigationProperty Name="tbl_SalesItem" Relationship="Self.FK_tbl_SalesItem_tbl_Product" FromRole="tbl_Product" ToRole="tbl_SalesItem" />
+        </EntityType>
+        <EntityType Name="tbl_ProductOutlet">
+          <Key>
+            <PropertyRef Name="OutletID" />
+          </Key>
+          <Property Name="OutletID" Type="Int32" Nullable="false" />
+          <Property Name="OutletName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_ProductType" Relationship="Self.FK_tbl_ProductType_tbl_ProductOutlet" FromRole="tbl_ProductOutlet" ToRole="tbl_ProductType" />
+          <NavigationProperty Name="tbl_Sales" Relationship="Self.FK_tbl_Sales_tbl_ProductOutlet" FromRole="tbl_ProductOutlet" ToRole="tbl_Sales" />
+        </EntityType>
+        <EntityType Name="tbl_ProductType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OutletID" Type="Int32" />
+          <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_Product_tbl_ProductType" FromRole="tbl_ProductType" ToRole="tbl_Product" />
+          <NavigationProperty Name="tbl_ProductOutlet" Relationship="Self.FK_tbl_ProductType_tbl_ProductOutlet" FromRole="tbl_ProductType" ToRole="tbl_ProductOutlet" />
+          <NavigationProperty Name="tbl_Sales" Relationship="Self.FK_tbl_Sales_tbl_ProductType" FromRole="tbl_ProductType" ToRole="tbl_Sales" />
+        </EntityType>
+        <EntityType Name="tbl_Sales">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="Int32" Nullable="false" />
+          <Property Name="SaleNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="OutletID" Type="Int32" />
+          <Property Name="TypeID" Type="Int32" />
+          <NavigationProperty Name="tbl_ProductOutlet" Relationship="Self.FK_tbl_Sales_tbl_ProductOutlet" FromRole="tbl_Sales" ToRole="tbl_ProductOutlet" />
+          <NavigationProperty Name="tbl_ProductType" Relationship="Self.FK_tbl_Sales_tbl_ProductType" FromRole="tbl_Sales" ToRole="tbl_ProductType" />
+          <NavigationProperty Name="tbl_SalesItem" Relationship="Self.FK_tbl_SalesItem_tbl_Sales" FromRole="tbl_Sales" ToRole="tbl_SalesItem" />
+        </EntityType>
+        <EntityType Name="tbl_SalesItem">
+          <Key>
+            <PropertyRef Name="SaleItemID" />
+          </Key>
+          <Property Name="SaleItemID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="SaleID" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="tbl_Product" Relationship="Self.FK_tbl_SalesItem_tbl_Product" FromRole="tbl_SalesItem" ToRole="tbl_Product" />
+          <NavigationProperty Name="tbl_Sales" Relationship="Self.FK_tbl_SalesItem_tbl_Sales" FromRole="tbl_SalesItem" ToRole="tbl_Sales" />
+        </EntityType>
+        <EntityType Name="tbl_Supplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tbl_Product_tbl_ProductType">
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="0..1" />
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tbl_Product">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SalesItem_tbl_Product">
+          <End Role="tbl_Product" Type="Self.tbl_Product" Multiplicity="0..1" />
+          <End Role="tbl_SalesItem" Type="Self.tbl_SalesItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="tbl_SalesItem">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_ProductType_tbl_ProductOutlet">
+          <End Role="tbl_ProductOutlet" Type="Self.tbl_ProductOutlet" Multiplicity="0..1" />
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductOutlet">
+              <PropertyRef Name="OutletID" />
+            </Principal>
+            <Dependent Role="tbl_ProductType">
+              <PropertyRef Name="OutletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sales_tbl_ProductOutlet">
+          <End Role="tbl_ProductOutlet" Type="Self.tbl_ProductOutlet" Multiplicity="0..1" />
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductOutlet">
+              <PropertyRef Name="OutletID" />
+            </Principal>
+            <Dependent Role="tbl_Sales">
+              <PropertyRef Name="OutletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_Sales_tbl_ProductType">
+          <End Role="tbl_ProductType" Type="Self.tbl_ProductType" Multiplicity="0..1" />
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_ProductType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tbl_Sales">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_SalesItem_tbl_Sales">
+          <End Role="tbl_Sales" Type="Self.tbl_Sales" Multiplicity="0..1" />
+          <End Role="tbl_SalesItem" Type="Self.tbl_SalesItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_Sales">
+              <PropertyRef Name="SaleID" />
+            </Principal>
+            <Dependent Role="tbl_SalesItem">
+              <PropertyRef Name="SaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbSampleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_Customer" EntityType="Self.tbl_Customer" />
+          <EntitySet Name="tbl_ItemSize" EntityType="Self.tbl_ItemSize" />
+          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" />
+          <EntitySet Name="tbl_ProductOutlet" EntityType="Self.tbl_ProductOutlet" />
+          <EntitySet Name="tbl_ProductType" EntityType="Self.tbl_ProductType" />
+          <EntitySet Name="tbl_Sales" EntityType="Self.tbl_Sales" />
+          <EntitySet Name="tbl_SalesItem" EntityType="Self.tbl_SalesItem" />
+          <EntitySet Name="tbl_Supplier" EntityType="Self.tbl_Supplier" />
+          <AssociationSet Name="FK_tbl_Product_tbl_ProductType" Association="Self.FK_tbl_Product_tbl_ProductType">
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SalesItem_tbl_Product" Association="Self.FK_tbl_SalesItem_tbl_Product">
+            <End Role="tbl_Product" EntitySet="tbl_Product" />
+            <End Role="tbl_SalesItem" EntitySet="tbl_SalesItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_ProductType_tbl_ProductOutlet" Association="Self.FK_tbl_ProductType_tbl_ProductOutlet">
+            <End Role="tbl_ProductOutlet" EntitySet="tbl_ProductOutlet" />
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sales_tbl_ProductOutlet" Association="Self.FK_tbl_Sales_tbl_ProductOutlet">
+            <End Role="tbl_ProductOutlet" EntitySet="tbl_ProductOutlet" />
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_Sales_tbl_ProductType" Association="Self.FK_tbl_Sales_tbl_ProductType">
+            <End Role="tbl_ProductType" EntitySet="tbl_ProductType" />
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_SalesItem_tbl_Sales" Association="Self.FK_tbl_SalesItem_tbl_Sales">
+            <End Role="tbl_Sales" EntitySet="tbl_Sales" />
+            <End Role="tbl_SalesItem" EntitySet="tbl_SalesItem" />
+          </AssociationSet>
+          <EntitySet Name="EmpMasters" EntityType="dbSampleModel.EmpMaster" />
+        </EntityContainer>
+        <EntityType Name="EmpMaster">
+          <Key>
+            <PropertyRef Name="EmpMasterID" />
+          </Key>
+          <Property Name="EmpMasterID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSampleModelStoreContainer" CdmEntityContainer="dbSampleEntities">
+          <EntitySetMapping Name="tbl_Customer">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_Customer">
+              <MappingFragment StoreEntitySet="tbl_Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ItemSize">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_ItemSize">
+              <MappingFragment StoreEntitySet="tbl_ItemSize">
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Product">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_Product">
+              <MappingFragment StoreEntitySet="tbl_Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductOutlet">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_ProductOutlet">
+              <MappingFragment StoreEntitySet="tbl_ProductOutlet">
+                <ScalarProperty Name="OutletID" ColumnName="OutletID" />
+                <ScalarProperty Name="OutletName" ColumnName="OutletName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProductType">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_ProductType">
+              <MappingFragment StoreEntitySet="tbl_ProductType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="OutletID" ColumnName="OutletID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Sales">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_Sales">
+              <MappingFragment StoreEntitySet="tbl_Sales">
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="SaleNo" ColumnName="SaleNo" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="OutletID" ColumnName="OutletID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_SalesItem">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_SalesItem">
+              <MappingFragment StoreEntitySet="tbl_SalesItem">
+                <ScalarProperty Name="SaleItemID" ColumnName="SaleItemID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Supplier">
+            <EntityTypeMapping TypeName="dbSampleModel.tbl_Supplier">
+              <MappingFragment StoreEntitySet="tbl_Supplier">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpMasters">
+            <EntityTypeMapping TypeName="dbSampleModel.EmpMaster">
+              <MappingFragment StoreEntitySet="EmpMaster">
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpMasterID" ColumnName="EmpMasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

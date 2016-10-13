@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Quotation Creation";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="quotationCtrl">
+        <!-- Breadcrumbs line -->
+
+        @*<div class="crumbs">
+            <ul id="breadcrumbs" class="breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="">Sales</a>
+                </li>
+                <li class="current">
+                    <a href="" title="">Transaction</a>
+                </li>
+                <li class="current">
+                    <a href="" title="">PI</a>
+                </li>
+            </ul>
+        </div>*@
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div id="PIDiv">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()"><i class="icon-refresh"></i> Reset </span>
+                                    <span id="Show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                        <i ng-show="IsListIcon" class="icon-search"></i>
+                                        <i ng-show="IsCreateIcon" class="icon-plus-sign"></i>
+                                        {{btnShowText}}
+                                    </span>
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="IsInvalid">
+                                        <i class="icon-save"></i> {{btnSaveText}}
+                                    </span>
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsShow">
+                            @Html.Partial("~/Areas/Purchase/Views/Quotation/_Partial/_formQuotation.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+
+
+            <div class="row" ng-show="IsShowD" @*ng-hide="IsHiddenDetail"*@>
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleQuotationDeatails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content no-padding" ng-show="IsShow">
+                            @Html.Partial("~/Areas/Purchase/Views/Quotation/_Partial/_tableQuotationDetails.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+        <!-- /Modal Item Master(Sample) -->
+        <div class="row">
+
+            @*    @Html.Partial("~/Areas/Inventory/Views/Challan/_Partial/_tableSampleNoInfoModal.cshtml")*@
+        </div> <!-- /.row -->
+        <!-- /Modal PI Master -->
+        <div class="row" ng-hide="IsHidden">
+
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleRequisitionMaster}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Purchase/Views/Quotation/_Partial/_tableQuotationMaster.cshtml")
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- /.col-md-12 -->
+
+        </div> <!-- /.row -->
+
+    </div>
+    </div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Purchase/ScriptsNg/Controllers/QuotationCtrl.js"></script>
+        <script src="~/Areas/Purchase/ScriptsNg/Service/QuotationService.js"></script>       
+        @*<script src="~/Areas/Sales/ScriptsNg/Controllers/PICtrl.js"></script>*@
+        <script src="~/Areas/Purchase/ScriptsNg/Service/CrudService.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Scripts/CustomToastrMessage.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+     
+    }

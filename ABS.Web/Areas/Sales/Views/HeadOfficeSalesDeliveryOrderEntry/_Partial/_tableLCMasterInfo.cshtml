@@ -1,0 +1,36 @@
+﻿@*<input id="lcDetailSearch" ng-model="LCDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">LC ID</th>
+            <th>LC No</th>
+            <th>LC Date</th>
+            <th>Amount</th>
+            <th>Shipment Date</th>
+            <th>Overdue Interest(%)</th>
+            <th>Sight</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListLCInfoMaster|filter:LCDetailSearch">
+            <td style="display:none">{{dataModel.LCID}}</td>
+            <td>{{dataModel.LCNo}}</td>
+            <td>{{dataModel.LCDate | date:"dd/MM/yyyy"}}</td>
+            <td>{{dataModel.LCAmount}}</td>
+            <td>{{dataModel.ShipmentDate | date:"dd/MM/yyyy"}}</td>
+            <td>{{dataModel.ODInterest}}</td>
+            <td>{{dataModel.SightName}}</td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListLCInfoMaster | filter:LCDetailSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

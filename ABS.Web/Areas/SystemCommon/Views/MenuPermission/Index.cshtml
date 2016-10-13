@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Permission List";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="MenuPermissionCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="resetTop" class="btn btn-facebook margin-right-btn" value="Reset" ng-click="clear()">
+                                <input type="button" id="Generate" class="btn btn-info margin-right-btn" value="Generate" ng-click="Generate(ddlModule,ListModule)">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        @Html.Partial("~/Areas/SystemCommon/Views/MenuPermission/_Partial/_formMenuPermission.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="saveTop" class="btn btn-success margin-right-btn" value="Save" ng-click="EditCaller(ListPermission)" ng-disabled=" frmdeliveryorder.$invalid">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/SystemCommon/Views/MenuPermission/_Partial/_tableMenuPermission.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+    </div>
+
+</div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Service/menuService.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/MenuPermissionCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/MenuCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+        @*<script src="~/Areas/Token/TokenController.js"></script>*@
+    }

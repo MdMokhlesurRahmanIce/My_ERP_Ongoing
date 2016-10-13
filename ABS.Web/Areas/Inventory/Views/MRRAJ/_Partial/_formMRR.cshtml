@@ -1,0 +1,250 @@
+﻿
+<form novalidate name="frmMRR" id="mRR" class="form-horizontal row-border">
+    <input type="hidden" id="mrrID" readonly="readonly" ng-model="MrrID" />
+ 
+
+    <input type="hidden" id="frmDeptIDByIssueChnge" readonly="readonly" ng-model="FrmDeptIDByIssueChnge" />
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" ng-show="IsMrr">MRR NO </label>
+                <label class="col-md-3 control-label" ng-show="IsIssueReceive">Receive No </label>
+                <label class="col-md-3 control-label" ng-show="IsReturnReceive">Return Receive No </label>
+                <label class="col-md-3 control-label" ng-show="IsLoanReceive"> Loan Receive No </label>
+                 <div class="col-md-8">
+                    <input type="text"
+                           id="mRRNo"
+                           class="form-control"
+                           name="mRRNo" ng-model="HMRRNO" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" ng-show="IsMrr">MRR Date </label>
+                <label class="col-md-3 control-label" ng-show="IsIssueReceive">Receive Date </label>
+                <label class="col-md-3 control-label" ng-show="IsReturnReceive">Return Receive Date </label>
+                <label class="col-md-3 control-label" ng-show="IsLoanReceive">Loan Date </label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="dtmRRDate"
+                           class="form-control datepicker"
+                           name="dtmRRDate" ng-model="MrrDate" ng-required="true" />
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.dtmRRDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group" ng-show="IsMrr">
+                <label class="col-md-3 control-label">Manual MRR No</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="txtManualMRRNo"
+                           class="form-control"
+                           ng-blur="ChkDuplicateNo()"
+                           name="txtManualMRRNo" ng-model="ManualMRRNo" ng-required="IsMrr" />
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.txtManualMRRNo.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="input17" ng-show="IsMrr">MRR By</label>
+                <div class="col-md-8">
+                    <select id="ddlMRRBy" class="select2-select-00"
+                            ng-model="ngmMRRByList"
+                            name="ddlMRRBy"
+                            data-placeholder="--Select MRR By--"
+                            style="width: 100%" ng-options="sgt.UserID as sgt.UserFullName for sgt in listMRRBy" required @*ng-readonly="true"*@>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlMRRBy.$error.required">*</span>
+            </div>
+
+            <div class="form-group" ng-show="IsLoanReceive">
+                <label class="col-md-3 control-label" for="input17">From Company </label>
+                <div class="col-md-8"> 
+                    <select id="ddlCompany" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            @*ng-change="LoadBankAdvisingByCompanyID()"*@
+                            name="ddlCompany"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany" ng-required="IsLoanReceive" ng-readonly="true">
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlCompany.$error.required">*</span>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="col-md-4">
+
+            
+
+
+            <div class="form-group" >
+                <label class="col-md-4 control-label" >SPR No </label>              
+                <div class="col-md-7">
+                    <select id="txtSPRNo" class="select2-select-00"
+                            ng-model="SprNo"
+                            name="txtSPRNo"
+                            data-placeholder="--Select--"
+                            ng-change="GetRequisitionItemList()"
+                            style="width: 100%" ng-options="sprn.RequisitionID as sprn.RequisitionNo for sprn in listSprNo">
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.txtSPRNo.$error.required">*</span>
+            </div>
+
+     @*ng-show="IsMrr">*@
+
+            <div class="form-group" ng-show="CommonFLoanReceiveNMrr">               
+                <label class="col-md-4 control-label" ng-show="IsMrr">SPR Date </label> 
+                
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtsPRDate"
+                           class="form-control datepicker"
+                           name="dtsPRDate" ng-model="SPRDate" ng-disabled="true" ng-readonly="true" />
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.dtsPRDate.$error.required">*</span>*@
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Manual SPR No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtManualSPR"
+                           class="form-control"
+                           name="txtManualSPR" ng-model="ManualSPRNo" ng-disabled="true" ng-readonly="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="CommonFIssueNReturnReceive">
+                <label class="col-md-4 control-label" for="input17"> Department </label>
+
+                <div class="col-md-7">
+
+                    <select id="ddlDept" class="select2-select-00"
+                            ng-model="Dept"
+                            name="ddlDept"
+                            data-placeholder="--Select Department--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in listOrganogramsDepartment" ng-required="CommonFIssueNReturnReceive">
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlDept.$error.required">*</span>
+            </div> 
+
+            <div class="form-group" ng-show="CommonFIssueNReturnReceive">
+                <label class="col-md-4 control-label" for="input17" ng-show="IsIssueReceive">Issue No </label>
+                <label class="col-md-4 control-label" for="input17" ng-show="IsReturnReceive">Return No </label>
+                <div class="col-md-7">
+                    <select id="ddlIssueNo" class="select2-select-00" 
+                            ng-model="lstIssueNoList"
+                            name="ddlIssueNo"
+                            ng-change="getItemDetailByIssueNo()"
+                            data-placeholder="--Select Issue No--"
+                            style="width: 100%" ng-options="g.IssueID as g.IssueNo for g in listIssueNo" ng-required="CommonFIssueNReturnReceive">
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlIssueNo.$error.required">*</span>
+            </div> 
+        </div>
+
+        <div class="col-md-4"> 
+            <div class="form-group" ng-show="IsMrr">
+                <label class="col-md-4 control-label" for="input17">Supplier </label>
+                <div class="col-md-7">
+                    <select id="ddlSupplier" class="select2-select-00"
+                            ng-model="lstSupplierList"
+                            name="ddlSupplier"
+                            data-placeholder="--Select Supplier--"
+                            style="width: 100%" ng-options="sgt.UserID as sgt.UserFullName for sgt in UserLst">
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlSupplier.$error.required">*</span>
+            </div>
+
+            <div class="form-group" ng-show="IsMrr">
+                <label class="col-md-4 control-label" for="input17">Currency </label>
+                <div class="col-md-7">
+                    <select id="ddlCurrency" class="select2-select-00"
+                            ng-model="lstCurrencyList"
+                            name="ddlCurrency"
+                            data-placeholder="--Select Currency--"
+                            style="width: 100%" ng-options="curn.Id as curn.CurrencyName for curn in listCurrency" ng-required="IsMrr" >
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlCurrency.$error.required">*</span>
+            </div>
+
+
+
+            <div class="form-group" ng-show="IsMrr">
+                <label class="col-md-4 control-label">Warehouse</label>
+                <div class="col-md-7">
+
+                    <select id="ddlWarehouse" class="select2-select-00"
+                            ng-model="Warehouse"
+                            name="ddlWarehouse"
+                            data-placeholder="--Select Warehouse--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in listWarehouse" ng-required="IsMrr" >
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmMRR.$dirty||submitted) && frmMRR.ddlWarehouse.$error.required">*</span>
+            </div>
+
+
+          
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="form-group">
+                <label class="col-md-1 control-label">Remarks </label>
+
+                <div class="col-md-11">
+                    <textarea rows="2" cols="3"
+                              id="txtRemarks"
+                              class="form-control"
+                              name="txtRemarks" ng-model="Remarks" style="width:97%;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>

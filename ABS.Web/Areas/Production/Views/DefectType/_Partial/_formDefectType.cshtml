@@ -1,0 +1,51 @@
+﻿<form novalidate name="frmDefectType" id="DefectTypeEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="defectID" readonly="readonly" ng-model="DefectID" />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="input17">Defect Type</label>
+                <div class="col-md-7">
+                    <select id="ddlDefectType" class="select2-select-00"
+                            ng-model="lstDefectTypeList"
+                            name="ddlDefectType"
+                            data-placeholder="--Select Type--"
+                            style="width: 100%" ng-options="sgt.DefectTypeID as sgt.DefectTypeName for sgt in listDefectType" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Defect No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDefectNo"
+                           class="form-control"
+                           name="txtDefectNo" ng-model="DefectNo" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-3 control-label">Defect Name</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDefectName"
+                           class="form-control"
+                           name="txtDefectName" ng-model="DefectName" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Description</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

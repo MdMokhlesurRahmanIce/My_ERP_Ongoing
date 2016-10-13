@@ -1,0 +1,140 @@
+﻿
+
+<form novalidate name="frmSalesInvoice" id="frmSalesInvoice" class="form-horizontal row-border">
+    <input type="hidden" id="SIID" readonly="readonly" ng-model="SIID" />
+    <input type="hidden" id="lblWareHouseID" readonly="readonly" ng-model="lblWareHouseID" />
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Invoice No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxInvoice"
+                       class="form-control"
+                       name="txtbxInvoice" ng-model="txtbxInvoice"
+                       placeholder="Invoice No" required />
+            </div>
+            <img src="~/Content/img/TickMark.png" ng-show="frmFinishGood.txtArticaleNo.$dirty && frmFinishGood.txtArticaleNo.$valid" class="iconClass" />
+            <img src="~/Content/img/Cross.png" ng-show="frmFinishGood.txtArticaleNo.$dirty && frmFinishGood.txtArticaleNo.$invalid" class="iconClass" />
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Sales Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtsalesDate"
+                       class="form-control datepicker"
+                       name="txtsalesDate" ng-model="txtsalesDate" @*placeholder="dd-MM-yyyy"*@ @*value="{{PIDate | date:'dd-MM-yyyy'}}"*@ />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Ware House</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtbxWareHouse"
+                       class="form-control"
+                       name="txtbxWareHouse" ng-model="txtbxWareHouse"
+                       placeholder="Ware House" />
+
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-href="#drpModalDept" data-toggle="modal" class="bs-tooltip" title="Select Warehouse" ng-click="loadDepartmentRecords()">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Buyer</label>
+            <div class="col-md-7">
+                <select id="drpBuyer" class="select2-select-00" style="width:100%;"
+                        ng-model="drpBuyer"
+                        name="drpBuyer"
+                        placeholder="-- Select Buyer --"
+                        ng-options="ig.UserID as ig.UserName for ig in Buyers">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">Sales Person</label>
+            <div class="col-md-7">
+                <select id="drpSalesPerson" class="select2-select-00" style="width:100%;"
+                        ng-model="drpSalesPerson"
+                        name="drpSalesPerson"
+                        placeholder="-- Sales Person --"
+                        ng-options="ig.UserID as ig.UserName for ig in SalesPersons">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label class="col-md-4 control-label">Item Group</label>
+            <div class="col-md-7">
+                <select id="ddlItemGroup" class="select2-select-00"
+                        ng-model="ddlItemGroup"
+                        name="ddlItemGroup"
+                        data-placeholder="--Select Item Group--"
+                        style="width: 100%" ng-options="lsn.ItemGroupID as lsn.ItemGroupName for lsn in ItemGroups">
+                    <option></option>
+                </select>
+
+                <div class="loadmore_ddl">
+                    <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                        <img src="~/Content/img/ng-loader.gif" />
+                        {{lblMessageForSampleNo}}
+                    </div>
+                </div>
+            </div>
+            <span class="label label-success label-mini">
+                <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Item Groups">
+                    <i class="icon-search"></i>
+                </a>
+            </span>
+        </div>
+
+
+    </div>
+    <div class="col-md-4">
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Description</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="txtDescription"
+                       class="form-control"
+                       name="txtDescription" ng-model="txtDescription"
+                       placeholder="Description" />
+            </div>
+            @*<span class="error" ng-show="(frmRawMaterial.$dirty||submitted) && frmRawMaterial.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17"> Delevery Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="txtDeleveryDate"
+                       class="form-control datepicker"
+                       name="txtDeleveryDate" ng-model="txtDeleveryDate" @*placeholder="dd-MM-yyyy"*@ @*value="{{PIDate | date:'dd-MM-yyyy'}}"*@ />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+
+
+

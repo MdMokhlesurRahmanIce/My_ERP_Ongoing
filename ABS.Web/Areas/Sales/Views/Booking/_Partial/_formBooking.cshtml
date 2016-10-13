@@ -1,0 +1,119 @@
+﻿
+<form novalidate name="frmBooking" id="frmBooking" class="form-horizontal row-border">
+    <input type="hidden" id="BookingID" readonly="readonly" ng-model="BookingID" />
+    <input type="hidden" id="pITypeID" readonly="readonly" ng-model="TransactionTypeID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company </label>
+                <div class="col-md-6">
+                    <select id="ddlCompany" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            ng-change="LoadItemGroupByCompanyID()"
+                            name="ddlCompany"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%" ng-disabled="!bool"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmBooking.$dirty||submitted) && frmBooking.ddlCompany.$error.required">*</span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Booking Date </label>
+                <div class="col-md-3">
+                    <input type="text"
+                           id="dtBookingDate"
+                           class="form-control datepicker"
+                           name="dtBookingDate" ng-model="BookingDate" required ng-disabled="true" readonly="readonly" />
+                </div>
+                <span class="error" ng-show="(frmBooking.$dirty||submitted) && frmBooking.dtBookingDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Buyer </label>
+                <div class="col-md-6">
+                    <select id="ddlBuyer" class="select2-select-00"
+                            ng-model="lstBuyerList"
+                            name="ddlBuyer"
+                            data-placeholder="--Select Buyer--"
+                            style="width: 100%" ng-options="buy.UserID as buy.UserFullName for buy in listBuyer" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmBooking.$dirty||submitted) && frmBooking.ddlBuyer.$error.required">*</span>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-4 control-label">Item Group</label>
+                <div class="col-md-6">
+                    <select id="ddlItemGroup" class="select2-select-00"
+                            ng-model="lstSampleNoList"
+                            name="ddlItemGroup"
+                            data-placeholder="--Select Item Group--"
+                            style="width: 100%" ng-options="lsn.ItemGroupID as lsn.ItemGroupName for lsn in listSampleNo">
+                        <option></option>
+                    </select>
+
+                    <div class="loadmore_ddl">
+                        <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                            <img src="~/Content/img/ng-loader.gif" />
+                            {{lblMessageForSampleNo}}
+                        </div>
+                    </div>
+                </div>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Booking No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="bookingNO"
+                           class="form-control"
+                           style="font-weight:bold; color:red !important;"
+                           name="bookingNO" ng-model="BookingNo" placeholder="New" ng-readonly="true" /> @*//     validation problem*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label" for="input17">Buyer Reference</label>
+                    <div class="col-md-6">
+                        <select id="ddlBuyerReference" class="select2-select-00"
+                                ng-model="lstBuyerReferenceList"
+                                name="ddlBuyerReference"
+                                data-placeholder="--Select Buyer Reference--"
+                                style="width: 100%" ng-options="lsp.UserID as lsp.UserFullName for lsp in listBuyerReference" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmBooking.$dirty||submitted) && frmBooking.ddlBuyerReference.$error.required">*</span>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Description</label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               id="description"
+                               class="form-control"
+                               name="description" ng-model="Description" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>

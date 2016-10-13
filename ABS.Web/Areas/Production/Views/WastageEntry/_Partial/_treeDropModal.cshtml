@@ -1,0 +1,26 @@
+﻿<div class="modal fade" id="drpModalDept">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="icon-folder-open"></i> {{drpPageTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ng-tree-ddl">
+                    <div data-angular-treeview="true"
+                         data-tree-id="ngTree"
+                         data-tree-model="Departments"
+                         data-node-id="ID"
+                         data-node-label="Name"
+                         data-ng-click="selectNode(ngTree.currentNode)"
+                         data-ng-dblclick="treedubbleClick(ngTree.currentNode)"
+                         data-node-children="Children">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Weaving Griage Receive";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="WeavingGriageCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frmEntry" class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/WeavingGriageReceive/_Partial/_formWeavingGriageReceive.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="frmList" class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/WeavingGriageReceive/_Partial/_tablePrdWeavingMRRMaster.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -
+
+    <!-- /Page Content -->
+
+</div><!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/WeavingGriageCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+}
+
+
+
+
+

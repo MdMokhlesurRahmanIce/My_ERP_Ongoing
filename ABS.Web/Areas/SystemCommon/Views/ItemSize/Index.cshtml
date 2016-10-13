@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Item Size Setup";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="ItemSizeCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        @Html.Partial("~/Areas/SystemCommon/Views/ItemSize/_Partial/_formItemSize.cshtml")
+                        @*<a href="~/Areas/SystemCommon/Views/ItemSize/_Partial/_formItemSize.cshtml">~/Areas/SystemCommon/Views/ItemSize/_Partial/_formItemSize.cshtml</a>*@
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+            <div class="col-md-6">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div when-scrolled="loadRecords(1)">
+                            @Html.Partial("~/Areas/SystemCommon/Views/ItemSize/_Partial/_tableItemSize.cshtml")
+                            @*<a href="~/Areas/SystemCommon/Views/ItemSize/_Partial/_tableItemSize.cshtml">~/Areas/SystemCommon/Views/ItemSize/_Partial/_tableItemSize.cshtml</a>*@
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/ItemSizeCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+<script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+<script src="~/Areas/Token/TokenController.js"></script>
+}

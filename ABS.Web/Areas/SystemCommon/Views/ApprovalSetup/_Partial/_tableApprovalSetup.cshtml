@@ -1,0 +1,69 @@
+﻿@*<input id="hApprovalSetupSearch" ng-model="HActivePIMasterSearch" type="text" class="form-control search" placeholder="Search...">*@
+
+<table class="table  table-hover table-striped">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">WorkFlowID</th>
+                @*<th style="display:none">WorkFlowDetailID</th>
+                <th style="display:none">StatusID</th>*@
+                <th style="display:none">StatusByID/EmployeeID/UserID</th>
+            <th>SL.</th>
+            <th>Status</th>
+            <th>Status By</th>
+            <th>Sequence</th>
+            <th style="text-align:right;" ng-hide="btnApprovalSetupSaveText == 'Save'">Select</th>
+            <th style="text-align:right;">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in TeamDetails">
+            @*<td style="display:none">{{dataModel.WorkFlowID}}</td>
+                <td style="display:none">{{dataModel.WorkFlowDetailID}}</td>
+                <td style="display:none">{{dataModel.StatusID}}</td>*@
+                <td style="display:none">{{dataModel.EmployeeID}}</td>
+
+            <td>{{ $index + 1 }}</td>
+            <td>
+                <select id="ddlStatus"
+                        ng-model="dataModel.StatusID"
+                        name="ddlStatus"
+                        data-placeholder="--Select Status--"
+                        style="width: 100%" ng-options="st.StatusID as st.StatusName for st in ListStatus">
+                    <option></option>
+                    @*<option ng-repeat="st in ListStatus" value="{{st.StatusID}}">{{st.StatusName}}</option>*@
+                </select>
+            </td>
+            <td>{{dataModel.StatusBy}}</td>
+            <td>{{dataModel.Sequence}}</td>
+
+            <td style="text-align:right; color:white" ng-hide="btnApprovalSetupSaveText == 'Save'">
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-check" ng-click="loadApprovalForUpdateDetails(dataModel)">Select</i>
+                    </a>
+                </span>
+            </td>
+
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-trash" ng-click="deleteStatus($index)"></i>
+                    </a>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(TeamDetails).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>
+
+

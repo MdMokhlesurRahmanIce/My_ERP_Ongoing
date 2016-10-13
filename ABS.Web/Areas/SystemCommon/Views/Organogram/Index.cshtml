@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Organogram List";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="OrganogramCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="show" class="btn btn-info margin-right-btn" ng-href="#organModal" data-toggle="modal" ng-click="clear(frmRawMaterial)">
+                                    <i class="icon-plus-sign"></i> {{PageTitle}}
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Organogram/_Partial/_tableOrganogram.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+        <!-- /Page Content -->
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="organModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-folder-open"></i> {{PageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/Organogram/_Partial/_formOrganogram.cshtml")
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear(frmOrganogram)" />
+                            <input type="button" id="save" class="btn btn-success" value="{{btnSaveUpdateText}}" ng-disabled="frmOrganogram.$invalid" ng-click="save()" />
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/OrganogramCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/menuService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+
+}

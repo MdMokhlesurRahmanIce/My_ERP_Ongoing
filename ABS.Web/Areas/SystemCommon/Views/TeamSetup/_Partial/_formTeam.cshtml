@@ -1,0 +1,68 @@
+﻿
+<form novalidate name="frmTeamSetup" id="teamSetup" class="form-horizontal row-border">
+    <input type="hidden" id="teamID " readonly="readonly" ng-model="TeamID " />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Name</label>
+                <input type="text" id="teamName" class="form-control" name="teamName" ng-model="TeamName" required />
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmTeamSetup.teamName.$dirty && frmTeamSetup.teamName.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmTeamSetup.teamName.$dirty && frmTeamSetup.teamName.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label "> Department</label>
+                <select id="departmentDropdown" class="select2-select-00" ng-model="ddlDepartment" name="departmentDropdown" data-placeholder="--Select Department--"
+                        ng-options="item as item.OrganogramName for item in organogramList track by item.OrganogramID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmTeamSetup.departmentDropdown.$dirty && frmTeamSetup.departmentDropdown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmTeamSetup.departmentDropdown.$dirty && frmTeamSetup.departmentDropdown.$invalid" Class="iconClass" />
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <!-- /.col-md-12 -->
+    </div>
+</form>
+<form novalidate name="frmTeamSetupAdd" id="teamSetupADD" class="form-horizontal row-border">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> User</label>
+                <select id="userDropdown" class="select2-select-00" ng-model="ddlUser" name="userDropdown" data-placeholder="--Select User--"
+                        ng-options="item as item.UserFullName for item in userList track by item.UserID"
+                        style="width: 100%;" required>
+                    <option></option>
+                </select>
+            </div>
+
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmTeamSetupAdd.userDropdown.$dirty && frmTeamSetupAdd.userDropdown.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmTeamSetupAdd.userDropdown.$dirty && frmTeamSetupAdd.userDropdown.$invalid" Class="iconClass" />
+            </div>
+            <div class="col-md-3" style="padding-right: 0px !important">
+                <label class="control-label"> Sequence</label>
+                <input type="text" id="sequence" class="form-control" name="sequence" ng-model="Sequence" required />
+            </div>
+            <div class="col-md-1" style="margin-top: 26px;">
+                <img src="~/Content/img/TickMark.png" ng-show="frmTeamSetupAdd.sequence.$dirty && frmTeamSetupAdd.sequence.$valid" Class="iconClass" />
+                <img src="~/Content/img/Cross.png" ng-show="frmTeamSetupAdd.sequence.$dirty && frmTeamSetupAdd.sequence.$invalid" Class="iconClass" />
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <input type="button" id="btnAdd" class="btn btn-success " value="Add" ng-click="AddDetails(ddlChemical,ddlUOMDetails)" ng-disabled="frmTeamSetupAdd.$invalid" />
+                <input type="button" id="reset" class="btn btn-danger" value="Clear" ng-click="clearDetailsParameter()" />
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div>
+</form>
+

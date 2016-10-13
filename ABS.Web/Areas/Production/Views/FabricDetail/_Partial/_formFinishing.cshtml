@@ -1,0 +1,238 @@
+﻿
+
+<form novalidate name="frmFinishing" id="frmFinishing" class="form-horizontal row-border">
+    <input type="hidden" id="ItemID" readonly="readonly" ng-model="ItemID" />
+
+    <div class="col-md-4">
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">L Shrinkage min:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxfinishingLengthShrinkageMin"
+                       class="form-control"
+                       name="txtbxfinishingLengthShrinkageMin" ng-model="txtbxfinishingLengthShrinkageMin"
+                       placeholder="Length Shrinkage min" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">L Shrinkage Max:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxfinishingLengthShrinkageMax"
+                       class="form-control"
+                       name="txtbxfinishingLengthShrinkageMax" ng-model="txtbxfinishingLengthShrinkageMax"
+                       placeholder="Length Shrinkage max" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Skew(%):</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxfinishingSkew"
+                       class="form-control"
+                       name="txtbxfinishingSkew" ng-model="txtbxfinishingSkew"
+                       placeholder="Skew(%)" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Polystar:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingPolystar"
+                       class="form-control"
+                       name="txtbxFinishingPolystar" ng-model="txtbxFinishingPolystar"
+                       placeholder="Polystar" />
+            </div>
+         
+        </div>*@
+
+
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">T4100 %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxT4100"
+                       class="form-control"
+                       name="txtbxT4100" ng-model="txtbxT4100"
+                       placeholder="T4100(%)" />
+            </div>
+         
+        </div>*@
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Tencel:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxTencel"
+                       class="form-control"
+                       name="txtbxTencel" ng-model="txtbxTencel"
+                       placeholder="Tencel(%)" />
+            </div>
+
+        </div>*@
+
+
+    </div>
+    <div class="col-md-4">
+
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">W Shrinkage Min:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingWidthShrinkageMin"
+                       class="form-control"
+                       name="txtbxFinishingWidthShrinkageMin" ng-model="txtbxFinishingWidthShrinkageMin"
+                       placeholder="Width Shrinkage min" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">W Shrinkage Max:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingWidthShrinkageMax"
+                       class="form-control"
+                       name="txtbxFinishingWidthShrinkageMax" ng-model="txtbxFinishingWidthShrinkageMax"
+                       placeholder="Width Shrinkage Max" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Cotton %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingCotton"
+                       class="form-control"
+                       name="txtbxFinishingCotton" ng-model="txtbxFinishingCotton"
+                       placeholder="Cotton(%)" />
+            </div>           
+
+        </div>*@
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Laycra %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingLaycra"
+                       class="form-control"
+                       name="txtbxFinishingLaycra" ng-model="txtbxFinishingLaycra"
+                       placeholder="Laycra(%)" />
+            </div> 
+        </div>*@
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Viscos %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxViscos"
+                       class="form-control"
+                       name="txtbxViscos" ng-model="txtbxViscos"
+                       placeholder="Viscos(%)" />
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">C4100 %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxC4100"
+                       class="form-control"
+                       name="txtbxC4100" ng-model="txtbxC4100"
+                       placeholder="C4100(%)" />
+            </div>
+        </div>*@
+
+    </div>
+    <div class="col-md-4">
+        
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Finishing EPI:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingEPI"
+                       class="form-control"
+                       name="txtbxFinishingEPI" ng-model="txtbxFinishingEPI"
+                       placeholder="Finishing EPI" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Finishing PPI:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingPPI"
+                       class="form-control"
+                       name="txtbxFinishingPPI" ng-model="txtbxFinishingPPI"
+                       placeholder="Finishing PPI" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Finishing Width</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingWidth"
+                       class="form-control"
+                       name="txtbxFinishingWidth" ng-model="txtbxFinishingWidth"
+                       placeholder="Finishing Width" />
+            </div>
+            @*<span class="error" ng-show="(frmFinishing.$dirty||submitted) && frmFinishing.txtArticaleNo.$error.required">*</span>*@
+        </div>
+
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Spandex %:</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxFinishingSpandex"
+                       class="form-control"
+                       name="txtbxFinishingSpandex" ng-model="txtbxFinishingSpandex"
+                       placeholder="Spandex(%)" />
+            </div>           
+        </div>*@
+        
+
+        @*<div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Modal %</label>
+            <div class="col-md-7">
+                <input type="number"
+                       style="width: 100%"
+                       id="txtbxModal"
+                       class="form-control"
+                       name="txtbxModal" ng-model="txtbxModal"
+                       placeholder="Modal(%)" />
+            </div>            
+        </div>*@
+
+
+
+
+
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+
+
+

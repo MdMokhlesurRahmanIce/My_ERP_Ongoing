@@ -1,0 +1,13 @@
+﻿
+<table class="table table-striped table-bordered table-hover table-checkable table-tabletools datatable dataTable  " ng-if="ListMachineSetupDetails.length>0">
+    <tr ng-repeat="x in ListMachineSetupDetails " ng-show="x.Machine!='SetupDetailID' && x.Machine!='SetupID'  && x.Machine!='MACHINEPARTID' && x.Machine!='MACHINEOPERATIONID' ">
+        <td ng-repeat="(a,b) in x ">{{b}} </td>
+        @*<td style="text-align:right; color:white">
+                <span class="label label-warning label-mini">
+                    <a ng-href="#" data-toggle="modal" class="bs-tooltip" title="Edit Info" ng-click="EditOperationSetup(dataModel)">
+                        <i class="icon-pencil"></i>
+                    </a>
+                </span>
+            </td>*@
+    </tr>
+</table>

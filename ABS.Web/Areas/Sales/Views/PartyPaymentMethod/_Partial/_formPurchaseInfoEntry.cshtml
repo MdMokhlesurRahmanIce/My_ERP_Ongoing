@@ -1,0 +1,163 @@
+﻿
+<form novalidate name="frmPurchase" id="pPM" class="form-horizontal row-border">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company</label>
+                <div class="col-md-7">
+                    <select id="CompanyList_Pur" class="select2-select-00"
+                            ng-model="lstCompanyList_Pur"
+                            ng-change="getChangedCompanyID_Pur()"
+                            name="companyList_Pur"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%"
+                            ng-options="com.CompanyID as com.CompanyName for com in listCompany_Pur" required>
+                        <option></option>
+                        @*<option ng-repeat="com in listCompany_Pur" value="{{com.CompanyID}}">{{com.CompanyName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xCompanyID_Pur" id="companyId_Pur" name="companyId_Pur" required />*@
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.companyList_Pur.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Bill No</label>
+                <div class="col-md-7">
+                    <select id="billList_Pur" class="select2-select-00"
+                            ng-model="lstBillList_Pur"
+                            ng-change="loadDocumentsValue_Pur()"
+                            name="billList_Pur"
+                            data-placeholder="--Select Bill No--"
+                            style="width: 100%"
+                            ng-options="bill.BillMasterId as bill.BillNo for bill in ListBill_Pur" required>
+                        <option></option>
+                        @*<option ng-repeat="bill in ListBill_Pur" value="{{bill.BillMasterId}}">{{bill.BillNo}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xBillMasterId_Pur" id="billMasterId_Pur" name="billMasterId_Pur" required />*@
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.billList_Pur.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">LIB</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="lIB_Pur"
+                           class="form-control"
+                           name="lIB_Pur" ng-model="LIB_Pur" ng-change="setLib_Pur()" ng-required="!Discount_Pur" /> @*required*@
+                    </div>
+                    <span class="error" ng-hide="IsErrorShow">*</span>
+                </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Conversion Rate</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="conversionRate_Pur"
+                           class="form-control"
+                           name="conversionRate_Pur" ng-model="ConversionRate_Pur" min="0" required />
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.conversionRate_Pur.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Sugar PAD</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="sugarPAD_Pur"
+                           class="form-control"
+                           name="sugarPAD_Pur" ng-model="SugarPAD_Pur" />
+                </div>
+                @*<span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.sugarPAD_Pur.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Reserve Margin</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="reserveMargin_Pur"
+                           class="form-control"
+                           name="reserveMargin_Pur" ng-model="ReserveMargin_Pur" readonly required />
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.reserveMargin_Pur.$error.required">*</span>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Party Name</label>
+                <div class="col-md-7">
+                    <select id="BuyerList_Pur" class="select2-select-00"
+                            ng-model="lstBuyerList_Pur"
+                            ng-change="loadBill_Pur(0)"
+                            name="buyerList_Pur"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%"
+                            ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer_Pur" required>
+                        <option></option>
+                        @*<option ng-repeat="buy in ListBuyer_Pur" value="{{buy.UserID}}">{{buy.UserFirstName}}</option>*@
+                    </select>
+                    @*<input type="hidden" ng-model="xUserID_Pur" id="buyerId_Pur" name="buyerId_Pur" required />*@
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.buyerList_Pur.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Purchase Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtPurchaseDate_Pur"
+                           class="form-control datepicker"
+                           name="dtPurchaseDate_Pur" ng-model="PurchaseDate_Pur" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.dtPurchaseDate_Pur.$error.required">*</span>
+            </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Discount</label>
+                    <div class="col-md-7">
+                        <input type="number"
+                               id="discount_Pur"
+                               class="form-control"
+                               name="discount_Pur" ng-model="Discount_Pur" ng-change="setDiscount_Pur()" ng-required="!LIB_Pur" /> @*required*@
+                        </div>
+                    <span class="error" ng-hide="IsErrorShow">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Percentage(%)</label>
+                        <div class="col-md-7">
+                            <input type="number"
+                                   id="percentage_Pur"
+                                   class="form-control"
+                                   name="percentage_Pur" ng-model="Percentage_Pur" ng-keyup="setReservMargine_Pur()" required />
+                        </div>
+                        <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.percentage_Pur.$error.required">*</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">LIB Rate of Interest</label>
+                        <div class="col-md-7">
+                            <input type="number"
+                                   id="lIBRateOfInterest_Pur"
+                                   class="form-control"
+                                   name="lIBRateOfInterest_Pur" ng-model="LIBRateOfInterest_Pur" required />
+                        </div>
+                        <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.lIBRateOfInterest_Pur.$error.required">*</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Document Value</label>
+                        <div class="col-md-7">
+                            <input type="number"
+                                   id="documentValue_Pur"
+                                   class="form-control"
+                                   name="documentValue_Pur" ng-model="DocumentValue_Pur" readonly required />
+                        </div>
+                        <span class="error" ng-show="(frmPurchase.$dirty||submitted) && frmPurchase.documentValue_Pur.$error.required">*</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </form>

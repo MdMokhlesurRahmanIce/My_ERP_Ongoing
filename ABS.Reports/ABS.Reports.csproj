@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1E20EA2-E372-41B6-AAD5-7B48B9078DD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ABS.Reports</RootNamespace>
+    <AssemblyName>ABS.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=7.2.13.1016, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=7.2.13.1016, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABSClass.cs" />
+    <Compile Include="ABSConversion.cs" />
+    <Compile Include="Accounting\BalanceSheetReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\BalanceSheetReport.designer.cs">
+      <DependentUpon>BalanceSheetReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\BankPaymentStatReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\BankPaymentStatReport.designer.cs">
+      <DependentUpon>BankPaymentStatReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\BankPaymentVoucherNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\BankPaymentVoucherNew.designer.cs">
+      <DependentUpon>BankPaymentVoucherNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentStatReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentStatReport.designer.cs">
+      <DependentUpon>CashPaymentStatReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentVoucher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentVoucher.designer.cs">
+      <DependentUpon>CashPaymentVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentVoucherNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\CashPaymentVoucherNew.designer.cs">
+      <DependentUpon>CashPaymentVoucherNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ChartOfAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\ChartOfAccount.designer.cs">
+      <DependentUpon>ChartOfAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ContraStatReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\ContraStatReport.designer.cs">
+      <DependentUpon>ContraStatReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ContraVoucherNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\ContraVoucherNew.designer.cs">
+      <DependentUpon>ContraVoucherNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\IncomeStatementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\IncomeStatementReport.designer.cs">
+      <DependentUpon>IncomeStatementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\JournalStatementReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\JournalStatementReport.designer.cs">
+      <DependentUpon>JournalStatementReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\JournalVoucherNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\JournalVoucherNew.designer.cs">
+      <DependentUpon>JournalVoucherNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\LedgerBook.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\LedgerBook.designer.cs">
+      <DependentUpon>LedgerBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\LedgerBookAllLevel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\LedgerBookAllLevel.designer.cs">
+      <DependentUpon>LedgerBookAllLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ReceivedStatReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\ReceivedStatReport.designer.cs">
+      <DependentUpon>ReceivedStatReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ReceivedVoucherNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\ReceivedVoucherNew.designer.cs">
+      <DependentUpon>ReceivedVoucherNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\TrialBalanceAllLevel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\TrialBalanceAllLevel.designer.cs">
+      <DependentUpon>TrialBalanceAllLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\TrialBalanveLevel15.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Accounting\TrialBalanveLevel15.designer.cs">
+      <DependentUpon>TrialBalanveLevel15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AmberBusinessSuiteDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AmberBusinessSuiteDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptBillOfExchange2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptBillOfExchange2.Designer.cs">
+      <DependentUpon>rptBillOfExchange2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptFactoryDeliveryOrder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptFactoryDeliveryOrder.Designer.cs">
+      <DependentUpon>rptFactoryDeliveryOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptForwardingLetter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptForwardingLetter.Designer.cs">
+      <DependentUpon>rptForwardingLetter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptBeneficiarysCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptBeneficiarysCertificate.Designer.cs">
+      <DependentUpon>rptBeneficiarysCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptBillOfExchange1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptBillOfExchange1.Designer.cs">
+      <DependentUpon>rptBillOfExchange1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptPackingListGWNW.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptPackingListGWNW.Designer.cs">
+      <DependentUpon>rptPackingListGWNW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptPackingList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptPackingList.Designer.cs">
+      <DependentUpon>rptPackingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptCommercialInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptCommercialInvoice.Designer.cs">
+      <DependentUpon>rptCommercialInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptDeliveryChallanTruckReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptDeliveryChallanTruckReceipt.Designer.cs">
+      <DependentUpon>rptDeliveryChallanTruckReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptPreShipmentInspectionCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptPreShipmentInspectionCertificate.Designer.cs">
+      <DependentUpon>rptPreShipmentInspectionCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptConcernCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptConcernCertificate.Designer.cs">
+      <DependentUpon>rptConcernCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptBankForwarding.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptBankForwarding.Designer.cs">
+      <DependentUpon>rptBankForwarding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptFabricDeliveryStatement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptFabricDeliveryStatement.Designer.cs">
+      <DependentUpon>rptFabricDeliveryStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptSpunCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptSpunCertificate.Designer.cs">
+      <DependentUpon>rptSpunCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commercial\rptCertificateOfOrigin.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commercial\rptCertificateOfOrigin.Designer.cs">
+      <DependentUpon>rptCertificateOfOrigin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptISSDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptISSDetail.Designer.cs">
+      <DependentUpon>rptISSDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptItem.Designer.cs">
+      <DependentUpon>rptItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptQuotationDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptQuotationDetail.Designer.cs">
+      <DependentUpon>rptQuotationDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptQuotation.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptQuotation.Designer.cs">
+      <DependentUpon>rptQuotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptSPRDetail .cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptSPRDetail .Designer.cs">
+      <DependentUpon>rptSPRDetail .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptIssues.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptIssues.Designer.cs">
+      <DependentUpon>rptIssues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptSRDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptSRDetail.Designer.cs">
+      <DependentUpon>rptSRDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptMRR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptMRR.Designer.cs">
+      <DependentUpon>rptMRR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptQC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptQC.Designer.cs">
+      <DependentUpon>rptQC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptMRRDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptMRRDetail.Designer.cs">
+      <DependentUpon>rptMRRDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptQCDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptQCDetail.Designer.cs">
+      <DependentUpon>rptQCDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptGRRDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptGRRDetail.Designer.cs">
+      <DependentUpon>rptGRRDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptGRR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptGRR.Designer.cs">
+      <DependentUpon>rptGRR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptSPR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptSPR.Designer.cs">
+      <DependentUpon>rptSPR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\rptSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Inventory\rptSR.Designer.cs">
+      <DependentUpon>rptSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptRndFabricAnalysisDevelopment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptRndFabricAnalysisDevelopment.Designer.cs">
+      <DependentUpon>rptRndFabricAnalysisDevelopment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptSetWiseBreakage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptSetWiseBreakage.Designer.cs">
+      <DependentUpon>rptSetWiseBreakage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptSizeBreakage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptSizeBreakage.Designer.cs">
+      <DependentUpon>rptSizeBreakage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptLCBBreakage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptLCBBreakage.Designer.cs">
+      <DependentUpon>rptLCBBreakage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptSizeStopage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptSizeStopage.Designer.cs">
+      <DependentUpon>rptSizeStopage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptLCBStopage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptLCBStopage.Designer.cs">
+      <DependentUpon>rptLCBStopage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptBallStopage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptBallStopage.Designer.cs">
+      <DependentUpon>rptBallStopage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingWeftCMPXDaily.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingWeftCMPXDaily.Designer.cs">
+      <DependentUpon>rptWeavingWeftCMPXDaily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingWarpPerformanceAnalysis.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingWarpPerformanceAnalysis.Designer.cs">
+      <DependentUpon>rptWeavingWarpPerformanceAnalysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingProductionSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingProductionSummery.Designer.cs">
+      <DependentUpon>rptWeavingProductionSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingProductionDailyCodeWise.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingProductionDailyCodeWise.Designer.cs">
+      <DependentUpon>rptWeavingProductionDailyCodeWise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingLoomData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingLoomData.Designer.cs">
+      <DependentUpon>rptWeavingLoomData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptWeavingFloorPosition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptWeavingFloorPosition.Designer.cs">
+      <DependentUpon>rptWeavingFloorPosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptSizeProduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptSizeProduction.Designer.cs">
+      <DependentUpon>rptSizeProduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptLCBProduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptLCBProduction.Designer.cs">
+      <DependentUpon>rptLCBProduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptBallProduction.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptBallProduction.Designer.cs">
+      <DependentUpon>rptBallProduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Production\rptBreakage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Production\rptBreakage.Designer.cs">
+      <DependentUpon>rptBreakage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\rptCS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchase\rptCS.Designer.cs">
+      <DependentUpon>rptCS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchase\rptCSDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchase\rptCSDetail.Designer.cs">
+      <DependentUpon>rptCSDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\rptSalBookingSheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\rptSalBookingSheet.Designer.cs">
+      <DependentUpon>rptSalBookingSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\rptHDOSummaryWithItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\rptHDOSummaryWithItem.Designer.cs">
+      <DependentUpon>rptHDOSummaryWithItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\rptHDOSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\rptHDOSummary.Designer.cs">
+      <DependentUpon>rptHDOSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\rptPI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\rptPI.Designer.cs">
+      <DependentUpon>rptPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\rpt_HDOMasterDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\rpt_HDOMasterDetail.Designer.cs">
+      <DependentUpon>rpt_HDOMasterDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SBSConversion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Accounting\BalanceSheetReport.resx">
+      <DependentUpon>BalanceSheetReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\BankPaymentStatReport.resx">
+      <DependentUpon>BankPaymentStatReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\BankPaymentVoucherNew.resx">
+      <DependentUpon>BankPaymentVoucherNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\CashPaymentStatReport.resx">
+      <DependentUpon>CashPaymentStatReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\CashPaymentVoucher.resx">
+      <DependentUpon>CashPaymentVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\CashPaymentVoucherNew.resx">
+      <DependentUpon>CashPaymentVoucherNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ChartOfAccount.resx">
+      <DependentUpon>ChartOfAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ContraStatReport.resx">
+      <DependentUpon>ContraStatReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ContraVoucherNew.resx">
+      <DependentUpon>ContraVoucherNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\IncomeStatementReport.resx">
+      <DependentUpon>IncomeStatementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\JournalStatementReport.resx">
+      <DependentUpon>JournalStatementReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\JournalVoucherNew.resx">
+      <DependentUpon>JournalVoucherNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\LedgerBook.resx">
+      <DependentUpon>LedgerBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\LedgerBookAllLevel.resx">
+      <DependentUpon>LedgerBookAllLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ReceivedStatReport.resx">
+      <DependentUpon>ReceivedStatReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\ReceivedVoucherNew.resx">
+      <DependentUpon>ReceivedVoucherNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\TrialBalanceAllLevel.resx">
+      <DependentUpon>TrialBalanceAllLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\TrialBalanveLevel15.resx">
+      <DependentUpon>TrialBalanveLevel15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptBillOfExchange2.resx">
+      <DependentUpon>rptBillOfExchange2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptFactoryDeliveryOrder.resx">
+      <DependentUpon>rptFactoryDeliveryOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptForwardingLetter.resx">
+      <DependentUpon>rptForwardingLetter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptBeneficiarysCertificate.resx">
+      <DependentUpon>rptBeneficiarysCertificate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptBillOfExchange1.resx">
+      <DependentUpon>rptBillOfExchange1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptPackingListGWNW.resx">
+      <DependentUpon>rptPackingListGWNW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptPackingList.resx">
+      <DependentUpon>rptPackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptCommercialInvoice.resx">
+      <DependentUpon>rptCommercialInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptDeliveryChallanTruckReceipt.resx">
+      <DependentUpon>rptDeliveryChallanTruckReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptPreShipmentInspectionCertificate.resx">
+      <DependentUpon>rptPreShipmentInspectionCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptConcernCertificate.resx">
+      <DependentUpon>rptConcernCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptBankForwarding.resx">
+      <DependentUpon>rptBankForwarding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptFabricDeliveryStatement.resx">
+      <DependentUpon>rptFabricDeliveryStatement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptSpunCertificate.resx">
+      <DependentUpon>rptSpunCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commercial\rptCertificateOfOrigin.resx">
+      <DependentUpon>rptCertificateOfOrigin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptISSDetail.resx">
+      <DependentUpon>rptISSDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptItem.resx">
+      <DependentUpon>rptItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptQuotationDetail.resx">
+      <DependentUpon>rptQuotationDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptQuotation.resx">
+      <DependentUpon>rptQuotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptSPRDetail .resx">
+      <DependentUpon>rptSPRDetail .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptIssues.resx">
+      <DependentUpon>rptIssues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptSRDetail.resx">
+      <DependentUpon>rptSRDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptMRR.resx">
+      <DependentUpon>rptMRR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptQC.resx">
+      <DependentUpon>rptQC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptMRRDetail.resx">
+      <DependentUpon>rptMRRDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptQCDetail.resx">
+      <DependentUpon>rptQCDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptGRRDetail.resx">
+      <DependentUpon>rptGRRDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptGRR.resx">
+      <DependentUpon>rptGRR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptSPR.resx">
+      <DependentUpon>rptSPR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\rptSR.resx">
+      <DependentUpon>rptSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptRndFabricAnalysisDevelopment.resx">
+      <DependentUpon>rptRndFabricAnalysisDevelopment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptSetWiseBreakage.resx">
+      <DependentUpon>rptSetWiseBreakage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptSizeBreakage.resx">
+      <DependentUpon>rptSizeBreakage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptLCBBreakage.resx">
+      <DependentUpon>rptLCBBreakage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptSizeStopage.resx">
+      <DependentUpon>rptSizeStopage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptLCBStopage.resx">
+      <DependentUpon>rptLCBStopage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptBallStopage.resx">
+      <DependentUpon>rptBallStopage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingWeftCMPXDaily.resx">
+      <DependentUpon>rptWeavingWeftCMPXDaily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingWarpPerformanceAnalysis.resx">
+      <DependentUpon>rptWeavingWarpPerformanceAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingProductionSummery.resx">
+      <DependentUpon>rptWeavingProductionSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingProductionDailyCodeWise.resx">
+      <DependentUpon>rptWeavingProductionDailyCodeWise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingLoomData.resx">
+      <DependentUpon>rptWeavingLoomData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptWeavingFloorPosition.resx">
+      <DependentUpon>rptWeavingFloorPosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptSizeProduction.resx">
+      <DependentUpon>rptSizeProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptLCBProduction.resx">
+      <DependentUpon>rptLCBProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptBallProduction.resx">
+      <DependentUpon>rptBallProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Production\rptBreakage.resx">
+      <DependentUpon>rptBreakage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\rptCS.resx">
+      <DependentUpon>rptCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchase\rptCSDetail.resx">
+      <DependentUpon>rptCSDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\rptSalBookingSheet.resx">
+      <DependentUpon>rptSalBookingSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\rptHDOSummaryWithItem.resx">
+      <DependentUpon>rptHDOSummaryWithItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\rptHDOSummary.resx">
+      <DependentUpon>rptHDOSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\rptPI.resx">
+      <DependentUpon>rptPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\rpt_HDOMasterDetail.resx">
+      <DependentUpon>rpt_HDOMasterDetail.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AmberBusinessSuiteDataSet.xsc">
+      <DependentUpon>AmberBusinessSuiteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AmberBusinessSuiteDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AmberBusinessSuiteDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AmberBusinessSuiteDataSet.xss">
+      <DependentUpon>AmberBusinessSuiteDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Delivery\" />
+    <Folder Include="HRPayroll\" />
+    <Folder Include="Marketing\" />
+    <Folder Include="Planning\" />
+    <Folder Include="SalesInvoice\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

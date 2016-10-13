@@ -1,0 +1,31 @@
+﻿
+    <div ng-hide="pageValue" class="ng-hide">
+        <!--Logged User-->
+        <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+        <!--Logged Company-->
+        <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        <input type="hidden" id="hCompanyName" name="companyName" value="@Session["CompanyName"].ToString()" ng-model="CompanyName" />
+
+        <input type="hidden" id="hClientIP" name="hClientIP" value="@Session["ClientIP"].ToString()" ng-model="ClientIP" />
+        
+    </div>
+    <div class="crumbs">
+      
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li  ng-repeat="data in BreadcrumbsList">
+                <i class={{data.Icon}} ng-hide="data.Name==null"></i>
+                <a href="{{data.Path}}" title="Module" class="TextTransformCapitalize" ng-hide="data.Name==null" >{{data.Name}}</a>
+            </li>
+        </ul>
+        <ul class="crumb-buttons pull-right">
+            <li class="backgorund-info">
+                <a href="" title="">
+                    <i class="icon-th-large" title=""></i>
+                    <span> {{CompanyFullName}}  </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+ 

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Quality Assuarance";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="QualityAssuaranceCtrl">
+        <!-- /Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Areas/SystemCommon/Views/DeleteModal/_modalCmnDelete.cshtml")
+            </div>
+        </div>
+        <!--==Delete Modal From System Common==-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @Html.Partial("~/Areas/SystemCommon/Views/CommonButton/_cmnButton.cshtml")
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frmEntry" class="widget-content">
+                        @Html.Partial("~/Areas/Production/Views/QA/_Partial/_formQA.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="frmDetail">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitleDetail}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <input type="button" id="add" class="btn btn-info margin-right-btn" value="Add Rows" ng-click="AddItemToList(0)" ng-disabled="frmQualityAssuarance.$invalid" />
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding" ng-show="IsShow">
+                        @Html.Partial("~/Areas/Production/Views/QA/_Partial/_tableQADetail.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        
+
+        <div class="row">
+            @Html.Partial("~/Areas/SystemCommon/Views/PublicPartialViews/_ProductionItemModal.cshtml")
+        </div>
+    </div>
+</div>
+
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Controllers/QACtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/CrudService.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Scroller.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+
+    <!-- / Item Master Modal Refference -->
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/PublicService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/AttrEnter.js"></script>
+}

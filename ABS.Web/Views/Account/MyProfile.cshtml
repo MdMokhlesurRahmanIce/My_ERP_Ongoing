@@ -1,0 +1,169 @@
+﻿@{
+    ViewBag.Title = @Session["UserFirstName"].ToString();
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div ng-hide="pageValue" class="ng-hide">
+    <!--Logged User-->
+    <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" />
+    <!--Logged Company-->
+    <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" />
+</div>
+
+<div class="container" ng-controller='myProfileCtrl'>
+    <!-- Breadcrumbs line -->
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="Home">Dashboard</a>
+            </li>
+            <li><span class="red" my-current-time="format"></span></li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li>
+                <a href="" title="@Session["CompanyName"].ToString()">
+                    <i class="icon-th-large" title=""></i>
+                    <span>@Session["CompanyName"].ToString()! </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Welcome, @Session["UserFirstName"].ToString()</h3>
+            <span>Logged Company, @Session["CompanyName"].ToString()! </span>
+        </div>
+        @*<ul class="page-stats">
+                <li>
+                    <div class="summary">
+                        <span>New orders</span>
+                        <h3>17,561</h3>
+                    </div>
+                    <div id="sparkline-bar" class="graph sparkline hidden-xs">20,15,8,50,20,40,20,30,20,15,30,20,25,20</div>
+
+                </li>
+                <li>
+                    <div class="summary">
+                        <span>My balance</span>
+                        <h3>$21,561.21</h3>
+                    </div>
+                    <div id="sparkline-bar2" class="graph sparkline hidden-xs">20,15,8,50,20,40,20,30,20,15,30,20,25,20</div>
+                </li>
+            </ul>*@
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> @Session["UserFirstName"].ToString()'s Profile </h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            @*<span id="addUser" class="btn btn-info margin-right-btn" ng-click="">
+                                    <i class="icon-plus-sign"></i>
+                                </span>*@
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> <strong>Company</strong></label>
+                            <label class="col-md-8 control-label"> @Session["CompanyName"].ToString()</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> <strong>Full Name</strong></label>
+                            <label class="col-md-8 control-label"> @Session["UserFullName"].ToString()</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> <strong>User Type</strong></label>
+                            <label class="col-md-8 control-label"> @Session["UserTypeName"].ToString()</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> <strong>User Group</strong></label>
+                            <label class="col-md-8 control-label"> @Session["GroupName"].ToString()</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"> <strong>Password</strong></label>
+                            <label class="col-md-8 control-label">
+                                ****** @*<span id="addUser" class="btn btn-info margin-right-btn" ng-href="#userModal" data-toggle="modal">
+                                        <i class="icon-plus-sign"></i> Change Password
+                                    </span>*@
+                                <span class="label label-success label-primary">
+                                    <a href="" @*ng-href="#modalPasswordChange"*@ data-toggle="modal" class="bs-tooltip" title="Password Change" ng-click="ShowPasswordChangeModal()">
+                                        <i class="icon-plus-sign"></i>Change Password
+                                    </a>
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+        @*<div class="col-md-6">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> @Session["UserFirstName"].ToString()'s Personal Info </h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-click="">
+                                        <i class="icon-plus-sign"></i>
+                                    </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+
+                    </div>
+                </div>
+            </div>*@ <!-- /.col-md-12 -->
+    </div> <!-- /.row -->
+    <!-- /Page Content -->
+    <div class="row">
+        @Html.Partial("~/Views/Account/_modalPasswordChange.cshtml")
+    </div>
+    <div class="row">
+        <!-- Modal dialog -->
+        <div class="modal fade" id="userModal">
+            <div class="modal-dialog modal-dialog-ext">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"><i class="icon-user"></i> Change Password</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label"></label>
+                            <div class="col-md-11">
+                                <input type="button" id="reset" class="btn btn-danger" value="Reset" />
+                                <input type="button" id="save" class="btn btn-success" value="Save" />
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div> <!-- /.row -->
+</div>
+<!-- /.container -->
+
+@section AngularScript{
+
+<script src="~/ScriptsNg/Service/MyProfileService.js"></script>
+<script src="~/ScriptsNg/Controllers/MyProfileCtrl.js"></script>
+}

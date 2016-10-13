@@ -1,0 +1,73 @@
+﻿
+
+<table class="table  table-hover table-striped" style="display: block; overflow-x: auto;">
+
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">CSID</th>
+            <th style="display:none">CSDetailID</th>
+            <td style="display:none">Item ID</td>
+            <td style="display:none">Company ID</td>
+            <th style="display:none">UnitID</th>
+            <th style="display:none">OriginCountryID</th>
+            <th style="display:none">CurrencyID</th> 
+            <th>Sl.No</th>
+            <th>Item Code</th>
+            <th>Particular Of Item</th>
+            <th>Origin Country</th>
+            <th>HSCODE</th>  
+            <th>Unit Name</th>
+            <th>Currency</th>
+            <th>Quantity</th> 
+            <th>Unit Price</th>
+            <th>Amount</th>
+            <th>Freight Charge</th>
+            <th>FOB Value</th>
+             
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListPODetails">
+            <td style="display:none">{{dataModel.CSID}}</td>
+            <td style="display:none">{{dataModel.CSDetailID}}</td>
+            <td style="display:none">{{dataModel.ItemID}}</td>
+            <td style="display:none">{{dataModel.CompanyID}}</td>
+            <td style="display:none">{{dataModel.UnitID}}</td>
+            <td style="display:none">{{dataModel.OriginCountryID}}</td>
+            <td style="display:none">{{dataModel.CurrencyID}}</td> 
+            <td>{{$index + 1}}</td>
+            <td>{{dataModel.ItemCode}}</td>
+            <td>{{dataModel.ItemName}}</td>
+            <td>{{dataModel.CountryName}}</td>
+            <td>{{dataModel.HSCODE}}</td> 
+            <td>{{dataModel.UOMName}}</td>  
+            <td>{{dataModel.CurrencyName}}</td>
+
+            <td>{{dataModel.Qty}}</td>
+            <td> {{dataModel.UnitPrice}}</td>  
+            <td>{{dataModel.Amount|number:2}}</td>
+            <td>{{dataModel.FreightCharge|number:2}}</td>   
+            <td>{{dataModel.FOBValue|number:2}}</td>  
+  
+ 
+            <td style="text-align:right; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="(ListPODetails).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

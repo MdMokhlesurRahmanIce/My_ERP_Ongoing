@@ -1,0 +1,48 @@
+﻿@*<input id="DCInfoSearch" ng-model="DCInfoSearch" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table  table-hover general-table">
+    <thead>
+        <tr>
+            <th style="display:none">DC DetailID</th>
+            <th style="display:none">FDOID</th>
+            <th>FDO No</th>
+            <th>Truck No</th>
+            <th>Quantity (Yds)</th>
+            <th>Number of Roll</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListDCInfoDetails">
+            <td style="display:none">{{dataModel.DCDetailID}}</td>
+            <td style="display:none">{{dataModel.FDOID}}</td>
+            <td>{{dataModel.FDONo}}</td>
+            <td>{{dataModel.TruckNo}}</td>
+            <td>{{dataModel.QuantityYds}}</td>
+            <td>{{dataModel.Roll}}</td>
+            <td style="text-align:left; color:white">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                        <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                    </a>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th>Total Quantity and Rolls</th>
+            <td></td>
+            <td> {{qtyTotal}}</td>
+            <td>{{rollTotal}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+@*<p ng-show="(ListDCInfoDetails | filter:DCInfoSearch).length == 0" style="color:red">Nothing found!</p>*@
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

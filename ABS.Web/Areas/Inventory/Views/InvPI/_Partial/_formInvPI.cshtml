@@ -1,0 +1,192 @@
+﻿
+<form novalidate name="frmInvPI" id="invPI" class="form-horizontal row-border">
+    <input type="hidden" id="pIID" readonly="readonly" ng-model="PIID" />
+    <input type="hidden" id="pITypeID" readonly="readonly" ng-model="PITypeID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">PI No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="pINo"
+                           class="form-control"
+                           name="pINo" ng-model="HPINO" placeholder="New" ng-readonly="true" /> @*//     validation problem*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label"> Ref PI No </label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               id="txtRefPINo"
+                               class="form-control"
+                               name="txtRefPINo" ng-model="RefPINo" />
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.txtRefPINo.$error.required">*</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">SPR No </label>
+
+                    <div class="col-md-6">
+                        <select id="ddlSPRNo" class="select2-select-00"
+                                ng-model="SprNo"
+                                name="ddlSPRNo"
+                                data-placeholder="--Select SPR No--"
+                                style="width: 100%" ng-options="sprn.RequisitionID as sprn.RequisitionNo for sprn in listSprNo">
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlSPRNo.$error.required">*</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Trans Shipment </label>
+                    <div class="col-md-6">
+                        <select id="ddlTransShipment" class="select2-select-00"
+                                ng-model="lstTransShipmentList"
+                                name="ddlTransShipment"
+                                data-placeholder="--Select Trans Shipment--"
+                                style="width: 100%" ng-options="vl.ComboID as vl.ComboName for vl in listTransShipment" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlTransShipment.$error.required">*</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Bank Advising </label>
+                    <div class="col-md-6">
+                        <select id="ddlBankAdvising" class="select2-select-00"
+                                ng-model="lstBankAdvisingList"
+                                name="ddlBankAdvising"
+                                data-placeholder="--Select Bank Advising--"
+                                style="width: 100%" ng-change="LoadBranchByBankID()" ng-options="bnk.BankID as bnk.BankName for bnk in listBankAdvising" required>
+
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlBankAdvising.$error.required">*</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Account No </label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               id="txtAccountNo"
+                               class="form-control"
+                               name="txtAccountNo" ng-model="AccountNo" required />
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.txtAccountNo.$error.required">*</span>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Current Date </label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               id="dtCurrentDate"
+                               class="form-control datepicker"
+                               name="dtCurrentDate" ng-model="CurrentDate" @*placeholder="dd-MM-yyyy"*@ @*value="{{PIDate | date:'dd-MM-yyyy'}}"*@ required ng-disabled="true" readonly="readonly" />
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.dtCurrentDate.$error.required">*</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Statement No </label>
+                    <div class="col-md-6">
+                        <select id="ddlStatementNo" class="select2-select-00"
+                                ng-model="lstStatementNoList"
+                                name="ddlStatementNo"
+                                data-placeholder="--Select Statement No--"
+                                style="width: 100%" ng-options="stn.UserID as stn.UserFullName for stn in listStatementNo" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlStatementNo.$error.required">*</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Partial Shipment </label>
+                    <div class="col-md-6">
+                        <select id="ddlPartialShipment" class="select2-select-00"
+                                ng-model="lstPartialShipmentList"
+                                name="ddlPartialShipment"
+                                data-placeholder="--Select Partial Shipment--"
+                                style="width: 100%" ng-options="prs.UserID as prs.UserFullName for prs in listPartialShipment" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlPartialShipment.$error.required">*</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Last Date Of Shipment </label>
+                    <div class="col-md-6">
+                        <input type="text"
+                               id="dtLastDateOfShipment"
+                               class="form-control datepicker"
+                               name="dtLastDateOfShipment" ng-model="LastDateOfShipment" @*placeholder="dd-MM-yyyy"*@ @*value="{{PIDate | date:'dd-MM-yyyy'}}"*@ required ng-disabled="true" readonly="readonly" />
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.dtLastDateOfShipment.$error.required">*</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Bank Branch </label>
+                    <div class="col-md-6">
+                        <select id="ddlBankBranch" class="select2-select-00"
+                                ng-model="lstBankBranchList"
+                                name="ddlBankBranch"
+                                data-placeholder="--Select Bank Branch--"
+                                style="width: 100%" ng-options="bnkBranch.BranchID as bnkBranch.BranchName for bnkBranch in listBankBranch" required>
+                            <option></option>
+
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlBankBranch.$error.required">*</span>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label class="col-md-4 control-label" for="input17">Supplier </label>
+                    <div class="col-md-6">
+                        <select id="ddlSupplier" class="select2-select-00"
+                                ng-model="lstSupplierList"
+                                name="ddlSupplier"
+                                data-placeholder="--Select Sales Person--"
+                                style="width: 100%" ng-options="lsp.UserID as lsp.UserFullName for lsp in listSupplier" required>
+                            <option></option>
+                        </select>
+                    </div>
+                    <span class="error" ng-show="(frmInvPI.$dirty||submitted) && frmInvPI.ddlSupplier.$error.required">*</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-md-2 control-label">Remarks </label>
+            <div class="col-md-9">
+                <textarea rows="7" cols="3"
+                          id="txtRemarks"
+                          class="form-control"
+                          name="txtRemarks" ng-model="Remarks"></textarea>
+            </div>
+        </div>
+
+
+    </form>

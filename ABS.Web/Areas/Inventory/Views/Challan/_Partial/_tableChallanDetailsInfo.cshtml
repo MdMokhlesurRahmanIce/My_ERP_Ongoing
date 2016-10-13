@@ -1,0 +1,161 @@
+﻿
+<table class="table  table-hover table-striped" style="display: block; overflow-x: auto;">
+    
+        <thead class="grid-top-panel">
+            <tr>
+                <th style="display:none">CHID</th>
+                <th style="display:none">CHDetailID</th>
+                <td style="display:none">Item ID</td>
+                <td style="display:none">Company ID</td>
+                <th style="display:none">UnitID</th>
+                <th style="display:none">LotID</th>
+                <th style="display:none">BatchID</th>
+                <th style="display:none">PackingUnitID</th>
+                <th style="display:none">WeightUnitID</th>
+                <th>Sl.No</th>
+                <th>Item Code</th>
+                <th>Particular Of Item</th>
+                <th>HSCODE</th>
+                <th>Batch No</th>
+                <th></th>
+                <th>Lot No</th>
+                <th></th>
+
+                <th style="display:none">ExistQuantity</th>
+                <th>UnitName</th>
+                <th>Quantity</th>
+                <th>Ad.Quantity</th>
+                <th>Unit Price</th>
+                <th>Amount</th>
+                <th>Dis.Amount</th>
+                <th>IsPercent</th>
+                <th>Total Amount</th>
+                <th>Packing Quantity</th>
+                <th>Packing Unit</th>
+                <th>Net Weight</th>
+                <th>Gross Weight</th>
+                <th>Weight Unit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dataModel in ListChallanDetails">
+                <td style="display:none">{{dataModel.CHID}}</td>
+                <td style="display:none">{{dataModel.CHDetailID}}</td>
+                <td style="display:none">{{dataModel.ItemID}}</td>
+                <td style="display:none">{{dataModel.CompanyID}}</td>
+                <td style="display:none">{{dataModel.UnitID}}</td>
+                <td style="display:none">{{dataModel.LotID}}</td>
+                <td style="display:none">{{dataModel.BatchID}}</td>
+                <td style="display:none">{{dataModel.PackingUnitID}}</td>
+                <td style="display:none">{{dataModel.WeightUnitID}}</td>
+                <td>{{$index + 1}}</td>
+                <td>{{dataModel.ItemCode}}</td>
+                <td>{{dataModel.ItemName}}</td>
+                <td>{{dataModel.HSCODE}}</td>
+
+                <td>
+                    @*{{dataModel.BatchNo}}*@
+
+                    <select id="ddlMrrBatch"
+                            ng-model="dataModel.BatchID"
+                            name="ddlMrrBatch"
+                            ng-options="wu.BatchID as wu.BatchNo for wu in listMrrBatchNo">
+                        <option>-- Select Batch No --</option>
+                    </select>
+
+                </td>
+                <td>
+
+                    <span class="label label-success label-mini">
+                        <a href="javascript:void(0);" ng-href="#BatchSetupModal" data-toggle="modal" class="bs-tooltip" title="Batch Detail">
+                            <i class="icon-search" ng-click="LoadBatchModal(dataModel)"></i>
+                        </a>
+                    </span>
+
+                </td>
+                <td>
+                    @*{{dataModel.LotNo}}*@
+
+                    <select id="ddlMrrLot"
+                            ng-model="dataModel.LotID"
+                            name="ddlMrrLot"
+                            ng-options="lt.LotID as lt.LotNo for lt in listMrrLot">
+                        <option>-- Select Lot No --</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="label label-success label-mini">
+                        <a href="javascript:void(0);" ng-href="#LotSetupModal" data-toggle="modal" class="bs-tooltip" title="Lot Detail">
+                            <i class="icon-search" ng-click="LoadLotModal(dataModel)"></i>
+                        </a>
+                    </span>
+                </td>
+
+                <td>{{dataModel.UOMName}}</td>
+
+                <td style="display:none">{{dataModel.ExistQty}}</td>
+
+                <td><input type="number" style="width:100px;" id="txtQuantity" name="txtQuantity" class="form-control" ng-model="dataModel.Qty" min="0.00" ng-blur="calDisAmntNIsPercent(dataModel)" /></td>
+
+                <td><input type="number" style="width:100px;" id="txtAddQuantity" name="txtAddQuantity" class="form-control" ng-model="dataModel.AditionalQty" min="0.00" @*ng-blur="calculation(dataModel)"*@ /></td>
+
+                <td ng-show="{{IsSPRType}}">{{dataModel.UnitPrice}}</td>
+
+                <td ng-show="{{IsLoanTypeOrOthers}}"><input type="number" style="width:100px;" id="txtUnitPrice" name="txtUnitPrice" class="form-control" ng-model="dataModel.UnitPrice" min="0.00" ng-blur="calDisAmntNIsPercent(dataModel)" /></td>
+
+                <td>{{dataModel.Amount|number:2}}</td>
+
+                <td><input type="number" style="width:100px;" id="txtDisAmount" name="txtDisAmount" class="form-control" ng-model="dataModel.DisAmount" min="0.00" ng-blur="calDisAmntNIsPercent(dataModel)" /></td>
+
+
+                <td><input type="checkbox" id="chkPercent" name="chkPercent" ng-model="dataModel.IsPercent" ng-change="calDisAmntNIsPercent(dataModel)" /></td>
+
+                <td>{{dataModel.TotalAmount|number:2 }}</td>
+
+                <td><input type="number" style="width:100px;" id="txtPackingQty" name="txtPackingQty" class="form-control" ng-model="dataModel.PackingQty" min="0.00" @*ng-blur="calculation(dataModel)"*@ /></td>
+
+                <td>
+                    @*{{dataModel.PackingUnit}}*@
+
+                    <select id="ddlPackingUnit"
+                            ng-model="dataModel.PackingUnitID"
+                            name="ddlPackingUnit"
+                            @*placeholder="-- Select Can --"*@
+                            ng-options="pu.UOMID as pu.UOMName for pu in listPackingUnit">
+                        <option>-- Select Packing Unit --</option>
+                    </select>
+                </td>
+
+
+                <td><input type="text" style="width:100px;" id="txtNetWeight" name="txtNetWeight" class="form-control" ng-model="dataModel.NetWeight" /></td>
+                <td><input type="text" style="width:100px;" id="txtGrossWeight" name="txtGrossWeight" class="form-control" ng-model="dataModel.GrossWeight" /></td>
+                <td>
+                    @*{{dataModel.WeightUnit}}*@
+                    <select id="ddlWeightUnit"
+                            ng-model="dataModel.WeightUnitID"
+                            name="ddlWeightUnit"
+                            ng-options="wu.UOMID as wu.UOMName for wu in listWeightUnit">
+                        <option>-- Select Weight Unit --</option>
+                    </select>
+                </td>
+                <td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                            <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p ng-show="(ListChallanDetails).length == 0" style="color:red">Nothing found!</p>
+
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>

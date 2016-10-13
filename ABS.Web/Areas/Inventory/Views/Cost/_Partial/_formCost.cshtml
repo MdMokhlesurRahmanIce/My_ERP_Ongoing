@@ -1,0 +1,137 @@
+﻿
+<form novalidate name="frmGRR" id="gRR" class="form-horizontal row-border">
+    <input type="hidden" id="gRRID" readonly="readonly" ng-model="GrrID" />
+    <input type="hidden" id="gRRID" readonly="readonly" ng-model="GRRTypeID" />
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Cost No </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtGRRNo"
+                           class="form-control"
+                           name="txGRRNo" ng-model="HGRRNo" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Cost Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtcurrentDate"
+                           class="form-control datepicker"
+                           name="dtGRRDate" ng-model="GRRDate" required @*ng-disabled="true" readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.dtGRRDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Supplier </label>
+                <div class="col-md-7">
+                    <select id="ddlParty" class="select2-select-00"
+                            ng-model="lstPartyList"
+                            name="ddlParty"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%" ng-options="buy.UserID as buy.UserFullName for buy in listParty" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlParty.$error.required">*</span>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Ref Challan No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtRefChallanNo"
+                           class="form-control"
+                           name="txtRefChallanNo" ng-model="RefChallanNo" placeholder="Ref Challan No" required />
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.txtRefChallanNo.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Ref Challan Date </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtRefChallanDate"
+                           class="form-control datepicker"
+                           name="dtRefChallanDate" ng-model="RefChallanDate" placeholder="dd-MM-yyyy" value="{{RefChallanDate | date:'dd-MM-yyyy'}}" required @*ng-disabled="true" readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.dtRefChallanDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Description </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Warehouse</label>
+                <div class="col-md-7">
+
+                    <select id="ddlWarehouse" class="select2-select-00"
+                            ng-model="Warehouse"
+                            name="ddlWarehouse"
+                            data-placeholder="--Select Warehouse--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in listWarehouse" required>
+                        <option></option>
+                    </select>
+
+                </div>
+                <span class="error" ng-show="(frmGRR.$dirty||submitted) && frmGRR.ddlWarehouse.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Warehouse Loc </label>
+
+                <div class="col-md-7">
+
+                    <select id="ddlWarehouseLocation" class="select2-select-00"
+                            ng-model="WarehouseLocation"
+                            name="ddlWarehouseLocation"
+                            data-placeholder="--Select Warehouse Location--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in listWarehouseLocation">
+                        <option></option>
+                    </select>
+
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.ddlParentDept.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Self No </label>
+
+                <div class="col-md-7">
+
+                    <select id="ddlSelfNo" class="select2-select-00"
+                            ng-model="SelfNo"
+                            name="ddlSelfNo"
+                            data-placeholder="--Select Self No--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in listSelfNo">
+                        <option></option>
+                    </select>
+
+                </div>
+                @*<span class="error" ng-show="(frmSPRReceive.$dirty||submitted) && frmSPRReceive.ddlParentDept.$error.required">*</span>*@
+            </div>
+            
+        </div>
+    </div>
+
+</form>

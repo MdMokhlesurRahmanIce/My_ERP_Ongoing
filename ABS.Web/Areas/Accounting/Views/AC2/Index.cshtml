@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ABS.Web.ViewModels.ViewModelAC2>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+
+
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href='@Url.Action("Index", "Dashboard", new { area = "Accounting" })'>Dashboard</a>
+
+            </li>
+            <li class="current">
+                <a href='@Url.Action("Index", "AC2", new { area = "Accounting" })'>Level 2</a>
+
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> Account Ledger 2 </h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+
+                            @if (Convert.ToBoolean(@ViewBag.UserAddPrivilige))
+                            {
+                                <a class="btn btn-info margin-right-btn glyphicon glyphicon-plus" href='@Url.Content("~/Accounting/AC2/Create")' title="Create AccountLedger 2">Add</a>
+
+                            }
+
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content no-padding">
+                    <table class="table table-striped table-bordered table-hover datatable">
+                        <thead>
+                            <tr>
+                                @*<th>@Html.LabelFor(r => Model.First().Id)</th>*@
+                                <th>@Html.LabelFor(r => Model.First().AC2ManualCode)</th>
+                                <th>@Html.LabelFor(r => Model.First().AC2Name)</th>
+                                <th>@Html.LabelFor(r => Model.First().AC1Name)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @*<td>@Html.Raw(item.Id)</td>*@
+                                    <td>@Html.Raw(item.AC2ManualCode)</td>
+                                    <td>@Html.Raw(item.AC2Name)</td>
+                                    <td>@Html.Raw(item.AC1Name)</td>
+                                    <td>
+                                        @if (Convert.ToBoolean(@ViewBag.UserEditPrivilige))
+                                        { <span class="label label-danger label-mini">
+                                            <a class="" title="Edit AccountLedger 2" href="~/Accounting/AC2/Edit/@Html.Raw(item.Id)">Edit</a>
+                                        </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

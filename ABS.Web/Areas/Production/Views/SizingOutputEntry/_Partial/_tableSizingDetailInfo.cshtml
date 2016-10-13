@@ -1,0 +1,200 @@
+﻿@*<input id="sizeDetailSearch" ng-model="SizeDetailSearch" type="text" class="form-control search" placeholder="Search...">*@
+<table class="table table-hover general-table right-bottom-scroll-s">
+    <thead class="grid-top-panel">
+        <tr>
+            <th style="display:none">SizeMRRDetailID</th>
+            <th style="display:none">SizeMRRID</th>
+            <th style="display:none">OutputUnitID</th>
+            <th style="display:none">SizeMachineStopMasterID</th>
+            <th style="display:none">SizeBCMasterID</th>
+            <th style="display:none">SizeHSMasterID</th>
+            <th style="display:none">BeamQualityID</th>
+            <th style="display:none">ShiftID</th>
+            <th style="display:none">OperatorID</th>
+            <th style="display:none">ShiftEngineerID</th>
+            <th>Size Beam No</th>
+            <th>Length/Beam</th>
+            <th>Shift</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Squizing Std</th>
+            <th>Squizing Actual</th>
+            <th>Overall Stretch</th>
+            <th>MC Speed</th>
+            <th>Total Stop</th>
+            <th></th>
+            <th>Total H.S Breakage</th>
+            <th></th>
+            <th>Total B.C Breakage</th>
+            <th></th>
+            <th>Beam Quality</th>
+            <th>Operator</th>
+            <th>Duty Officer</th>
+            <th>Remarks</th>
+            <th ng-show="IsbtnAddDelShow">Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListSizeDetails|filter:SizeDetailSearch">
+            <td style="display:none">{{dataModel.SizeMRRDetailID}}</td>
+            <td style="display:none">{{dataModel.SizeMRRID}}</td>
+            <td style="display:none">{{dataModel.OutputUnitID}}</td>
+            <td style="display:none">{{dataModel.SizeMachineStopMasterID}}</td>
+            <td style="display:none">{{dataModel.SizeBCMasterID}}</td>
+            <td style="display:none">{{dataModel.SizeHSMasterID}}</td>
+            <td style="display:none">{{dataModel.BeamQualityID}}</td>
+            <td style="display:none">{{dataModel.ShiftID}}</td>
+            <td style="display:none">{{dataModel.OperatorID}}</td>
+            <td style="display:none">{{dataModel.ShiftEngineerID}}</td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlBeamNo"
+                            ng-model="dataModel.OutputUnitID"
+                            name="ddlBeamNo" data-tags="false"
+                            ng-change="ModalShowHide(dataModel)"
+                            data-placeholder="--Select Beam--"
+                            style="width: 100%"
+                            ng-options="BN.OutputID as BN.OutputNo for BN in listBeamNo">
+                        <option>--Select Beam--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="number" id="beamLength" name="beamLength" class="form-control" ng-model="dataModel.BeamLength" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlShiftList"
+                            ng-model="dataModel.ShiftID"
+                            name="ddlShiftList"
+                            ng-change="ModalShowHide(dataModel)"
+                            style="width: 100%"
+                            ng-options="S.ShiftID as S.ShiftName for S in listShifts">
+                        <option>--Select Shift--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="time" id="beginTime" name="beginTime" class="form-control" ng-model="dataModel.BeginTime" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <input type="time" id="endTime" name="endTime" class="form-control" ng-model="dataModel.EndTime" ng-change="ModalShowHide(dataModel)" />
+            </td>
+
+            <td>
+                <label id="squeezingSTD" class="form-control" ng-model="dataModel.SqueezingSTD" />
+            </td>
+
+            <td>
+                <input type="number" id="squeezingActual" name="squeezingActual" class="form-control" ng-model="dataModel.SqueezingActual" />
+            </td>
+
+            <td>
+                <input type="number" id="overallStretch" name="overallStretch" class="form-control" ng-model="dataModel.OverallStretch" />
+            </td>
+
+            <td>
+                <input type="number" id="machineSpeed" name="machineSpeed" class="form-control" ng-model="dataModel.MachineSpeed" />
+            </td>
+
+            <td>
+                <input type="text" id="totalStop" name="totalStop" class="form-control" ng-model="dataModel.TotalStop" readonly />
+            </td>
+            <td>
+                <span class="label label-success label-mini" ng-show="dataModel.IsModalShow">
+                    <a href="javascript:void(0);" ng-href="#MachineStopModal" data-toggle="modal" class="bs-tooltip" title="Machine Detail">
+                        <i class="icon-search" ng-click="LoadMachineDetail(dataModel); LoadMachineStopCauses(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <input type="text" id="totalHSBreakage" name="totalHSBreakage" class="form-control" ng-model="dataModel.TotalHSBreakage" readonly />
+            </td>
+
+            <td>
+                <span class="label label-success label-mini" ng-show="dataModel.IsModalShow">
+                    <a href="javascript:void(0);" ng-href="#BrekageDetailModal" data-toggle="modal" class="bs-tooltip" title="Machine Detail">
+                        <i class="icon-search" ng-click="LoadBreakageDetailHS(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <input type="text" id="totalBCBreakage" name="totalBCBreakage" class="form-control" ng-model="dataModel.TotalBCBreakage" readonly />
+            </td>
+
+            <td>
+                <span class="label label-success label-mini" ng-show="dataModel.IsModalShow">
+                    <a href="javascript:void(0);" ng-href="#BrekageDetailModal" data-toggle="modal" class="bs-tooltip" title="Machine Detail">
+                        <i class="icon-search" ng-click="LoadBreakageDetailBC(dataModel)"></i>
+                    </a>
+                </span>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="beamQualityList"
+                            ng-model="dataModel.BeamQualityID"
+                            name="beamQualityList"
+                            style="width: 100%"
+                            ng-options="Beam.BeamQualityID as Beam.BeamQualityName for Beam in listBeamQuality">
+                        <option>--Select Beam Quality--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlOperatorList"
+                            ng-model="dataModel.OperatorID"
+                            name="ddlOperatorList"
+                            data-placeholder="--Select Operator--"
+                            style="width: 100%"
+                            ng-options="Op.UserID as Op.UserFullName for Op in listOperator">
+                        <option>--Select Operator--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <div style="width:100px">
+                    <select id="ddlDutyOfficerList"
+                            ng-model="dataModel.ShiftEngineerID"
+                            name="ddlDutyOfficerList"
+                            style="width: 100%"
+                            ng-options="Du.UserID as Du.UserFullName for Du in listOfficer">
+                        <option>--Select Duty Officer--</option>
+                    </select>
+                </div>
+            </td>
+
+            <td>
+                <input type="text" id="remarks" name="remarks" class="form-control" ng-model="dataModel.Description" />
+            </td>
+            <td style="text-align:right; color:white" ng-show="IsbtnAddDelShow">
+                <span class="label label-danger label-mini">
+                    <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Delete">
+                        <i class="icon-trash" ng-click="DeleteMainDetail($index)"></i>
+                    </a>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+@*<p ng-show="(ListSizeDetails | filter:SizeDetailSearch).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadmore">
+    <div ng-show="loaderMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>*@

@@ -1,0 +1,437 @@
+﻿
+<form novalidate name="frmPO" id="pO" class="form-horizontal row-border">
+    <input type="hidden" id="pOID" readonly="readonly" ng-model="POID" /> 
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">PO No </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtPONo"
+                           class="form-control"
+                           name="txPONo" ng-model="HPONo" placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">PO Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtPODate"
+                           class="form-control datepicker"
+                           name="dtPODate" ng-model="PODate" required ng-disabled="true" @*readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.dtPODate.$error.required">*</span>
+            </div>
+             
+            <div class="form-group">
+                <label class="col-md-4 control-label">Quotation No </label>
+                <div class="col-md-7">
+
+                    <select id="ddlStatementNo" class="select2-select-00"
+                            ng-model="StatementNo" 
+                            name="ddlStatementNo"
+                            ng-change="LoadItemByStatementNoChange()"
+                            data-placeholder="--Select Quotation No--"
+                            style="width: 100%" ng-options="pn.QuotationID as pn.QuotationNo for pn in listStatementNo">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">SPR No </label>
+
+                <div class="col-md-7">
+                    <select id="ddlSPRNo" class="select2-select-00"
+                            ng-model="SprNo"
+                            name="ddlSPRNo"
+                            @*ng-change="LoadItemBySPRNoChange()"*@
+                            data-placeholder="--Select SPR No--"
+                            style="width: 100%" ng-options="sprn.RequisitionID as sprn.RequisitionNo for sprn in listSprNo" ng-readonly="true" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.ddlSPRNo.$error.required">*</span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Supplier </label>
+                <div class="col-md-7">
+                    <select id="ddlParty" class="select2-select-00"
+                            ng-model="lstPartyList"
+                            name="ddlParty"
+                            data-placeholder="--Select Supplier--"
+                            style="width: 100%" ng-options="buy.UserID as buy.UserFullName for buy in listParty" required ng-readonly="true">
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.ddlParty.$error.required">*</span>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Currency </label>
+                <div class="col-md-7">
+                    <select id="ddlCurrency" class="select2-select-00"
+                            ng-model="lstCurrencyList"
+                            name="ddlCurrency"
+                            data-placeholder="--Select Currency--"
+                            style="width: 100%" ng-options="curn.Id as curn.CurrencyName for curn in listCurrency" required ng-readonly="true">
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.ddlCurrency.$error.required">*</span>
+            </div>
+
+              
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input">Attachment</label>
+                <div class="col-md-7">
+                    <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+                </div>
+            </div>
+
+           
+
+
+
+            @*<div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Item Type  </label>
+                    <div class="col-md-6">
+
+                        <select id="ddlItemType" class="select2-select-00"
+                                ng-model="ItemType"
+                                name="ddlItemType"
+                                data-placeholder="--Select Item Type--"
+                                style="width: 100%" ng-options="Type.Value as Type.Item for Type in Types" ng-change="getItemGroupsByType()"  >
+                            <option></option>
+                        </select>
+                    </div>
+
+                </div>*@
+
+
+            @*<div class="form-group">
+                    <label class="col-md-4 control-label" for="input17"> Item Group: </label>
+                    <div class="col-md-7">
+                        <select id="ddlItemGroup" class="select2-select-00"
+                                ng-model="ItemGroup"
+                                name="ddlItemGroup"
+                                data-placeholder="--Select Group--"
+                                style="width: 100%" ng-options="Grp.ItemGroupID as Grp.ItemGroupName for Grp in itemGroupes" required>
+                            <option></option>
+                        </select>
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+
+                    <label class="col-md-4 control-label">Item Group </label>
+                    <div class="col-md-6">
+
+                        <select id="ddlSampleNo" class="select2-select-00"
+                                ng-model="lstSampleNoList"
+                                name="ddlSampleNo"
+                                data-placeholder="--Select Item Group--"
+                                style="width: 100%" ng-options="lsn.ItemGroupID as lsn.ItemGroupName for lsn in listSampleNo">
+                            <option></option>
+                        </select>
+
+                        <div class="loadmore_ddl">
+                            <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                                <img src="~/Content/img/ng-loader.gif" />
+                                {{lblMessageForSampleNo}}
+                            </div>
+                        </div>
+                    </div>
+                    <span class="label label-success label-mini">
+                        <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                            <i class="icon-search"></i>
+                        </a>
+                    </span>
+                </div>*@
+
+
+
+            @*<div class="form-group">
+                    <label class="col-md-4 control-label" for="input17">Transaction Type </label>
+                    <div class="col-md-6">
+                        <select id="ddlChallanType" class="select2-select-00"
+                                ng-model="lstChallanTypeList"
+                                name="ddlChallanType"
+                                ng-change="LoadByChallanTransType()"
+                                data-placeholder="--Select Challan Type--"
+                                style="width: 100%" ng-options="ct.ComboID as ct.ComboName for ct in listChallanType" >
+                            <option></option>
+                        </select>
+                    </div>
+
+                </div>*@
+
+
+            
+            @*<div class="form-group" ng-show="IsSPRType">
+
+                                <label class="col-md-4 control-label">Loading Location:</label>
+                    <div class="col-md-6">
+                        <input type="number"
+                               id="txtLoadingLocation"
+                               class="form-control"
+                               name="txtLoadingLocation" ng-model="LoadingLocation" />
+                    </div>
+                </div>*@
+             
+        </div>
+
+        <div class="col-md-4">
+
+
+            @*<div class="form-group">
+                <label class="col-md-5 control-label">Found No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtFoundNo"
+                           class="form-control"
+                           name="txtFoundNo" ng-model="FoundNo" placeholder="Found No" required />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.txtFoundNo.$error.required">*</span>
+            </div>*@
+
+
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Order Type </label>
+                <div class="col-md-6">
+
+                    <select id="ddlOrderType" class="select2-select-00"
+                            ng-model="OrderType"
+                            name="ddlOrderType"
+                            data-placeholder="--Select Order Type--"
+                            style="width: 100%" ng-options="ord.ComboID as ord.ComboName for ord in listOrderType">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Money Tr. Type </label>
+                <div class="col-md-6">
+
+                    <select id="ddlMoneyTrnsType" class="select2-select-00"
+                            ng-model="MoneyTrnsTypes"
+                            name="ddlMoneyTrnsType"
+                            data-placeholder="--Select Money Trns. Type--"
+                            style="width: 100%" ng-options="mtt.ComboID as mtt.ComboName for mtt in listMoneyTrnsType">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">LC Voucher No </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="txtLCBankVoucherNo"
+                           class="form-control"
+                           name="txtLCBankVoucherNo" ng-model="LCBankVoucherNo" placeholder="LC Bank Voucher No" required />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.txtLCBankVoucherNo.$error.required">*</span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label class="col-md-5 control-label"> LC Voucher Date </label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtLCVoucherDate"
+                           class="form-control datepicker"
+                           name="dtLCVoucherDate" ng-model="LCVoucherDate" required @*ng-disabled="true" readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.dtLCVoucherDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Bank </label>
+                <div class="col-md-6">
+                    <select id="ddlBankAdvising" class="select2-select-00"
+                            ng-model="lstBankAdvisingList"
+                            name="ddlBankAdvising"
+                            data-placeholder="--Select Bank Advising--"
+                            style="width: 100%" ng-change="LoadBranchByBankID()" ng-options="bnk.BankID as bnk.BankName for bnk in listBankAdvising" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.ddlBankAdvising.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="input17">Bank Branch </label>
+                <div class="col-md-6">
+                    <select id="ddlBankBranch" class="select2-select-00"
+                            ng-model="lstBankBranchList"
+                            name="ddlBankBranch"
+                            data-placeholder="--Select Bank Branch--"
+                            style="width: 100%" ng-options="bnkBranch.BranchID as bnkBranch.BranchName for bnkBranch in listBankBranch" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.ddlBankBranch.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-5 control-label">Terms&Condition </label>
+                <div class="col-md-6">
+                    <span class="label label-success label-mini">
+                        <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Terms&Condition">
+                            <i class="glyphicon glyphicon-search" @*ng-click="loadQuotationDetailPop_Records(dataModel)"*@></i>
+                        </a>
+                    </span>
+                </div>
+            </div>  
+
+             
+
+        </div>
+        <div class="col-md-4">
+
+
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Account No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtAccountNo"
+                           class="form-control"
+                           name="txtAccountNo" ng-model="AccountNo"  placeholder="Account No" required />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.txtAccountNo.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Amount </label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtAmount"
+                           class="form-control"
+                           name="txtAmount" ng-model="Amount" min="1" placeholder="Amount" required />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.txtAmount.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"> Shipment Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtShipmentDate"
+                           class="form-control datepicker"
+                           name="dtShipmentDate" ng-model="ShipmentDate" required @*ng-disabled="true" readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.dtShipmentDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label"> Expire Date </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtExpireDate"
+                           class="form-control datepicker"
+                           name="dtExpireDate" ng-model="ExpireDate" required @*ng-disabled="true" readonly="readonly"*@ />
+                </div>
+                <span class="error" ng-show="(frmPO.$dirty||submitted) && frmPO.dtExpireDate.$error.required">*</span>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Description </label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtDescription"
+                           class="form-control"
+                           name="txtDescription" ng-model="Description" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="form-group">
+                <label class="col-md-1 control-label" style="width:11%;">Remarks </label>
+
+                <div class="col-md-10">
+                    <textarea rows="2" cols="3"
+                              id="txtRemarks"
+                              class="form-control"
+                              name="txtRemarks" ng-model="Remarks" style="width:103.5%;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*<div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="text-align:left">               
+                <label class="col-md-4 control-label">Term & Condition</label>
+                <span class="label label-success label-mini">
+                    <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Search Item">
+                        <i class="icon-search"></i>
+                    </a>
+                </span>
+            </div>
+            </div>
+        </div>*@
+
+        @*<div class="row" ng-show="IsLoanTypeOrOthers">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Item Code</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtItemCode"
+                                   class="form-control"
+                                   name="txtItemCode" ng-model="ItemCode" ng-blur="getItmDetailsByItmCode()" />
+
+                            <div class="loadmore_ddl">
+                                <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                                    <img src="~/Content/img/ng-loader.gif" />
+                                    {{lblMessageForSampleNo}}
+                                </div>
+                            </div>
+                        </div>
+                        <span class="label label-success label-mini">
+                            <a href="javascript:void(0);" ng-click="loadSampleNoModalRecords(0)" class="bs-tooltip" title="Show Sample No">
+                                <i class="icon-search"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+
+                        <span>
+                            <input type="button" id="Add" class="btn btn-info margin-right-btn" value="Add" ng-click="AddItem()" />
+                        </span>
+                    </div>
+                </div>
+            </div>*@
+</form>

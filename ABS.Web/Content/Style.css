@@ -1,0 +1,134 @@
+﻿
+/*.btn-cancel {
+	background: #fa542d;
+}
+
+
+
+.user-table tr td {
+	color: #7c7c7c;
+	font-weight: 400;
+	border: none !important;
+}
+
+.user-table tbody tr:nth-child(even) {
+	background: #eceaea;
+}
+
+.add-row {
+	background: url("../images/plus.png") no-repeat scroll 10px center #f26722;
+	color: #fff;
+	display: inline-block;
+	padding: 10px 10px 10px 34px;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+	.add-row:hover {
+		background: url("../images/plus.png") no-repeat scroll 10px center #171e20;
+		color: #fff;
+	}
+
+
+.formStaticInfo {
+	background: none repeat scroll 0 0 #e6e6e6;
+	border-radius: 4px;
+	height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+	.formStaticInfo h2 {
+		
+		background: #008b8b;
+		color: #fff;
+		font-size: 14px;
+		font-weight: 700;
+		margin: 0;
+		padding: 5px;
+	}
+
+	.formStaticInfo .table th {
+		
+		color: #4c4c4c;
+		font-weight: 700;
+		align-content: center;
+	}
+	 .formStaticInfo .table td {
+		
+		color: #4c4c4c;
+		font-weight: 400;
+		align-content: center;
+
+	}
+
+	.formStaticInfo tbody tr:nth-child(2n+1) {
+		background: none repeat scroll 0 0 #d7d9da;
+	}
+
+.tableGridStructure {
+	margin-bottom: 15px;
+}
+
+div .widget-content >.formStaticInfo .tableGridStructure {
+	position: relative;
+}
+
+.formStaticInfo .tableGridStructure {
+	position: absolute;
+	margin: 2px 2px;
+	
+	}
+
+
+
+.width150 {
+	width:150px;
+}
+
+.width300 {
+	width:300px;
+}*/
+
+/*.widget.box .widget-header {
+	background: #008b8b;
+		color: #fff;
+}
+.widget .widget-header h4 {
+	color: #fff;
+	
+}*/
+
+/* override Details Grid Table Cashvoucher */
+
+div .widget-content >.formStaticInfo .tableGridStructure {
+	position: relative;
+}
+
+.formStaticInfo .tableGridStructure {
+	position: absolute;
+	margin: 2px 2px;
+	
+	}
+
+.formStaticInfo {
+
+	border-radius: 4px;
+	height: 250px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+
+	.formStaticInfo h2 {
+		
+		background: #008b8b;
+		color: #fff;
+		font-size: 14px;
+		font-weight: 600;
+		margin: 0;
+		padding: 5px;
+	}

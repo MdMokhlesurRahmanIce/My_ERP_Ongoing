@@ -1,0 +1,20 @@
+﻿<table class="table  table-hover general-table">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Count</th>
+            <th>Jog %</th>
+            <th>R. Front %</th>
+            <th>R. Rear %</th>
+            <th>Agm</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListMachineSetup">
+            <td>{{dataModel.Count}}</td>
+            <td>{{dataModel.Jog}}</td>
+            <td>{{dataModel.RFront}}</td>
+            <td>{{dataModel.RRear}}</td>
+            <td>{{dataModel.Agm}}</td>
+        </tr>
+    </tbody>
+</table>

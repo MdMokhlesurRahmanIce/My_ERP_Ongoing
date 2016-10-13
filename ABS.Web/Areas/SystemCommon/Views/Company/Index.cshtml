@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="companyCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> Company List</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+
+
+                                <span id="addUser" class="btn btn-info margin-right-btn" ng-href="#NewCompanyModal" data-toggle="modal" ng-click="clear()">
+                                    <i class="icon-plus-sign"></i> New Company
+                                </span>
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/SystemCommon/Views/Company/_Partial/_tableCompany.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div> <!-- /.row -->
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="approveNotificationModal" style="z-index:1260 !important;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-ok-sign"></i> {{APModalPageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"> Comments:</label>
+                                <div class="col-md-7">
+                                    @*<input type="text" id="comments" class="form-control" ng-model="commentsModle" name="comments" />*@
+                                    <textarea rows="3" cols="5" id="comments" ng-model="commentsModle" name="comments" class="auto form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="btnapprovalSubmitt" class="btn btn-info margin-right-btn " value="Submit" ng-click="ApprovedMethod()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="declainedNotificationModal" style="z-index:1260 !important;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-remove-sign"></i> {{DCModalPageTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"> Comments:</label>
+                                <div class="col-md-7">
+                                    @*<input type="text" id="comments" class="form-control" ng-model="commentsDeclained" name="comments" />*@
+                                    <textarea rows="3" cols="5" id="comments" ng-model="commentsModle" name="comments" class="auto form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label"></label>
+                                <div class="col-md-11">
+                                    <input type="button" id="btnDeclainedSubmitt" class="btn btn-info margin-right-btn " value="Submit" ng-click="DeclinedMethod()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+
+        <div class="row">
+            <!-- Modal dialog -->
+            <div class="modal fade" id="NewCompanyModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"><i class="icon-user"></i> {{ModalTitle}}</h4>
+                            <div class="btn-group" style="margin-left:360px;">
+                                <span class="pull-left" ng-show="PageDisplay">
+                                    <span ng-show="{{IsApproved}}" id="addUser" class="btn btn-success">
+                                        <a href="" ng-href="#approveNotificationModal" data-toggle="modal" title="Approve">
+                                            <i class="icon-ok-sign"></i> Approve
+                                        </a>
+                                    </span>
+                                    <span ng-show="{{IsDelained}}" id="addUser" class="btn btn-warning margin-right-btn">
+                                        <a href="" ng-href="#declainedNotificationModal" data-toggle="modal" title="Decline">
+                                            <i class="icon-remove-sign"></i> Decline
+                                        </a>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Partial("~/Areas/SystemCommon/Views/Company/_Partial/_formCompany.cshtml")
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" id="reset" class="btn btn-danger" value="Reset" ng-click="clear()" ng-disabled="frmCompany.$invalid" />
+                            <input type="button" id="save" class="btn btn-success" value="{{btnSaveUpdateText}}" ng-click="save()" ng-disabled="frmCompany.$invalid" />
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div> <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>
+
+@section AngularScript{
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/CompanyCtrl.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/companyService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+<script src="~/Areas/SystemCommon/ScriptsNg/Service/DataHandler.js"></script>
+ 
+}
+

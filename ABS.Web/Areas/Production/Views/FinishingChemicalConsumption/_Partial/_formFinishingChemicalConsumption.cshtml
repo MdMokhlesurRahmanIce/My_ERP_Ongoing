@@ -1,0 +1,97 @@
+﻿
+<form novalidate name="frmFinishingChemCosumption" id="finishingChemConsumptionEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="finishingConsumptionID" readonly="readonly" ng-model="FinishingConsumptionID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Set No</label>
+                <div class="col-md-7">
+                    <select id="ddlSetNoList" class="select2-select-00"
+                            ng-model="lstSetNoList"
+                            name="ddlSetNoList" data-placeholder="--Select Set No--"
+                            ng-change="loadWeavingSetInfoRecords(lstSetNoList)"
+                            style="width: 100%" ng-options="com.WeavingMRRID as com.WeavingMRRNo for com in listSetNo" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmFinishingChemCosumption.$dirty||submitted) && frmFinishingChemCosumption.ddlSetNoList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Article No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtArticleNo"
+                           class="form-control"
+                           name="txtArticleNo" ng-model="ArticleNo" readonly />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Finshing Type</label>
+                <div class="col-md-7">
+                    <select id="ddlFinishType" class="select2-select-00"
+                            ng-model="FInishTypeID"
+                            name="FinishTypeName"
+                            data-placeholder="--Select Finish Type--"
+                            style="width: 100%;"
+                            ng-options="U.FInishTypeID as U.FInishTypeName for U in ListFinishType" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmFinishingChemCosumption.$dirty||submitted) && frmFinishingChemCosumption.FinishTypeName.$error.required">*</span>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Unit</label>
+                <div class="col-md-7">
+                    <select id="UnitListD" class="select2-select-00"
+                            ng-model="UnitID"
+                            @*ng-change="callGenerate(0)"*@
+                            name="unitListD"
+                            data-placeholder="--Select Unit--"
+                            style="width: 100%;"
+                            ng-options="U.UOMID as U.UOMName for U in ListUOM">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Volume</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtChemicalVolume"
+                           class="form-control"
+                           name="txtChemicalVolume" ng-model="ChemicalVolume" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="ConsumptionDate"
+                           class="form-control datepicker"
+                           name="ConsumptionDate" ng-model="ConsumptionDate" placeholder=" dd/mm/yyyy" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Remarks</label>
+                <div class="col-md-7">
+                    <textarea rows="5" cols="3"
+                              id="txtRemarks"
+                              class="form-control"
+                              name="txtRemarks" ng-model="Remarks"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

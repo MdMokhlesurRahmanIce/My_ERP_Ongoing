@@ -1,0 +1,125 @@
+﻿<form novalidate name="frmRequisition" id="Requisition" class="form-horizontal row-border">
+
+    <input type="hidden" id="requisitionID" readonly="readonly" ng-model="requisitionID" /> 
+   
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">SR No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="requisitionNo"
+                           class="form-control"
+                           readonly placeholder="New"
+                           name="requisitionNo" ng-model="CustomrequisitionNo" />
+                </div>
+            </div>
+         
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">SR By</label>
+                <div class="col-md-6">
+                    <select id="ddlRequisitionBy" class="select2-select-00"
+                            ng-model="RequisitionBy"
+                            name="ddlRequisitionBy" disabled
+                            data-placeholder="--Select Req By--"
+                            style="width: 100%" ng-options="user.UserID as user.UserFullName for user in UserLst" required>
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">SR Date</label>
+                <div class="col-md-6">
+                    <input type="text" disabled
+                           id="dtRequisitionDate"
+                           class="form-control datepicker"
+                           name="dtRequisitionDate" ng-model="RequistionDate" placeholder="dd-MM-yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmRequisition.$dirty||submitted) && frmRequisition.dtRequisitionDate.$error.required">*</span>
+            </div>
+
+           
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">SR To</label>
+                <div class="col-md-6">
+                    <select id="ddlDepartiment" class="select2-select-00"
+                            ng-model="Department"
+                            name="ddlDepartiment"
+                            data-placeholder="--Select Department--"
+                            style="width: 100%" ng-options="dept.OrganogramID as dept.OrganogramName for dept in ListDepartment" required>
+                        <option></option>
+                    </select>
+
+                </div>
+            </div>      
+        </div>
+    </div>
+   
+        <div class="row">
+        <label class="col-md-2 control-label">Purpose</label>
+        <div class="col-md-9">
+            <textarea rows="2" cols="3"
+                      id="txtPurpose"
+                      class="form-control"
+                      name="txtPurpose" ng-model="Purpose"></textarea>
+        </div>
+    </div>
+        <div class="row">
+       <div style="height:3px"></div>
+    </div>
+
+         <div class="row">     
+            <label class="col-md-2 control-label">Remarks</label>
+            <div class="col-md-9">
+                <textarea rows="2" cols="3"
+                          id="txtRemarks"
+                          class="form-control"
+                          name="txtRemarks" ng-model="Remarks"></textarea>
+            </div>
+        </div>
+
+         <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label"> Item Code</label>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtItemCode"
+                                   class="form-control"
+                                   name="txtItemCode" ng-model="ItemCode" ng-change="getItmDetailsByItmCode()" />
+                        </div>
+                        <div class="col-md-1">
+                            <div class="loadmore_ddl">
+                                <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                                    <img src="~/Content/img/ng-loader.gif" />
+                                    {{lblMessageForSampleNo}}
+                                </div>
+                            </div>
+                            <span class="label label-success label-mini">
+                                <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Search Item">
+                                    <i class="icon-search"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="button" id="Add" class="btn btn-info margin-right-btn" ng-disabled="IsAddDisable" value="Add" ng-click="AddItem()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

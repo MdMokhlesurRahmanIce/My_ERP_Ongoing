@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "Fabric Detail";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="FabricDetailController">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget box widget">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                @*<input type="button" id="btnsave" class="btn btn-success margin-right-btn" value="{{btnFinisFoodShow}}" ng-click="save()" ng-disabled="frmRawMaterial.$invalid" />
+                                    <input type="button" id="btnShow" class="btn btn-info margin-right-btn" value="{{btnRawMaterialShowText}}" ng-click="ShowHide()" />
+                                    <input type="button" id="Print" class="btn btn-primary margin-right-btn" value="Print" ng-click="Print()" />
+                                    <input type="button" id="btnreset" class="btn btn-danger margin-right-btn" value="Reset" ng-click="clear()" />*@
+
+                                <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmFinishGood.$invalid">
+                                    <i class="icon-save"></i> {{btnFinisFoodShow}}
+                                </span>
+                                <span id="show" class="btn btn-info margin-right-btn" ng-click="ShowHide()">
+                                    <i class="icon-search"></i> {{btnRawMaterialShowText}}
+                                </span>
+                                <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                    <i class="icon-refresh"></i> Reset
+                                </span>
+
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="FabricInfoIsShow">
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formFinishGood.cshtml")
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+        </div>
+        <div class="row" ng-show="WeavingIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{WeavingTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formWeaving.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row" ng-show="FinishingIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{FinishingTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formFinishing.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="CompusitionTitleIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{CompusitionTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_fromCompusition.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" ng-show="WashingIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{WashingTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formWashing.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="ConsumptionIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> Document </h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formDocument.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="ConsumptionIsShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ConsumptionTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_formConsumption.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="fabdevShow">
+            <div class="col-md-12">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{FabricDevelopmentList}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+
+                        @Html.Partial("~/Areas/Production/Views/FabricDetail/_Partial/_tableFabricDevelopmentList.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("/Areas/Production/Views/FinishGood/_Partial/_modalWarpYarnSetup.cshtml")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("/Areas/Production/Views/FabricDetail/_Partial/_modalConsumptionSetup.cshtml")
+            </div>
+        </div>
+        <!--MRR Item Modal-->
+        <div class="row">
+            @Html.Partial("~/Areas/SystemCommon/Views/PublicPartialViews/_ProductionItemModal.cshtml")
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+    <script src="~/Areas/Production/ScriptsNg/Directives/DropdownMultiselect.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Controllers/FabricDetailCtrl.js"></script>
+    <script src="~/Areas/Production/ScriptsNg/Service/FinishGoodService.js"></script>
+
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+
+    <!-- / Item Master Modal Refference -->
+    <script src="~/Areas/SystemCommon/ScriptsNg/Service/PublicService.js"></script>
+    <script src="~/Areas/SystemCommon/ScriptsNg/Directives/AttrEnter.js"></script>
+}
+

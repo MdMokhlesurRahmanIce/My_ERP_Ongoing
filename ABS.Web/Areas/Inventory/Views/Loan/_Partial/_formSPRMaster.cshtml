@@ -1,0 +1,157 @@
+﻿<form novalidate name="frmRequisition" id="Requisition" class="form-horizontal row-border">
+
+    <input type="hidden" id="requisitionID" readonly="readonly" ng-model="requisitionID" />
+
+    <input type="hidden" id="menuID" readonly="readonly" ng-model="MenuID" />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Loan No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="requisitionNo"
+                           class="form-control"
+                           readonly placeholder="New"
+                           name="requisitionNo" ng-model="CustomrequisitionNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Manual Loan No</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="ManualSPR"
+                           class="form-control"
+                           ng-blur="ChkDuplicateNo()"
+                           placeholder="Manual Laon No"
+                           name="ManualSPR" ng-model="ManualSPRNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Loan By</label>
+                <div class="col-md-6">
+                    <select id="ddlRequisitionBy" class="select2-select-00" 
+                            ng-model="RequisitionBy" 
+                            name="ddlRequisitionBy"
+                            data-placeholder="--Select Req By--"
+                            style="width: 100%" ng-options="user.UserID as user.UserFullName for user in UserLst">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input">Attachment</label>
+                <div class="col-md-7">
+                    <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Loan Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtRequisitionDate"
+                           class="form-control datepicker" 
+                           name="dtRequisitionDate" ng-model="RequistionDate" placeholder="dd-MM-yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmRequisition.$dirty||submitted) && frmRequisition.dtRequisitionDate.$error.required">*</span>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Estimated Date</label>
+                <div class="col-md-6">
+                    <input type="text"
+                           id="dtEstimateDate"
+                           class="form-control datepicker"
+                           name="dtEstimateDate" ng-model="EstDate" ng-change="GetDays()" placeholder="dd-MM-yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmRequisition.$dirty||submitted) && frmRequisition.dtRequisitionDate.$error.required">*</span>
+            </div>  
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company</label>
+                <div class="col-md-6">
+                    <select id="ddlCompany" class="select2-select-00"
+                            ng-model="Company"
+                            name="ddlCompany"
+                            data-placeholder="--Select Company--"
+                            style="width: 100%" ng-options="Com.CompanyID as Com.CompanyName for Com in ListCompany">
+                        <option></option>
+                    </select>
+                </div>
+            </div>        
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <label class="col-md-2 control-label">Purpose</label>
+        <div class="col-md-9">
+            <textarea rows="2" cols="3"
+                      id="txtPurpose"
+                      class="form-control"
+                      name="txtPurpose" ng-model="Purpose" required></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <div style="height:3px"></div>
+    </div>
+
+    <div class="row">
+        <label class="col-md-2 control-label">Remarks</label>
+        <div class="col-md-9">
+            <textarea rows="2" cols="3"
+                      id="txtRemarks"
+                      class="form-control"
+                      name="txtRemarks" ng-model="Remarks"></textarea>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Item Code</label>
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="txtItemCode"
+                                   class="form-control"
+                                   name="txtItemCode" ng-model="ItemCode" ng-change="getItmDetailsByItmCode()" />
+                        </div>
+                        <div class="col-md-1">
+                            <div class="loadmore_ddl">
+                                <div ng-show="loaderMoreForSampleNo" ng-class="result">
+                                    <img src="~/Content/img/ng-loader.gif" />
+                                    {{lblMessageForSampleNo}}
+                                </div>
+                            </div>
+                            <span class="label label-success label-mini">
+                                <a href="javascript:void(0);" ng-href="#HDOMasterModal" data-toggle="modal" class="bs-tooltip" title="Search Item">
+                                    <i class="icon-search"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="button" id="Add" ng-click="AddItem()" ng-disabled="IsAddDisable" class=" btn btn-info margin-right-btn" value="Add" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+</form>

@@ -1,0 +1,238 @@
+﻿<form novalidate name="frmFinishingEntry" id="FinishingEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="FinishingMRRID" ng-model="FinishingMRRID" />
+    <input type="hidden" id="SetID" name="SetID" ng-model="SetID" />
+    <input type="hidden" id="ItemID" name="ItemID" ng-model="ItemID" />
+    <input type="hidden" id="SizeMRRID" name="SizeMRRID" ng-model="SizeMRRID" />
+    <input type="hidden" id="BuyerID" name="BuyerID" ng-model="BuyerID" />
+    <input type="hidden" id="PIID" name="PIID" ng-model="PIID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">Style No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="styleNo"
+                           class="form-control"
+                           name="styleNo" ng-model="StyleNo" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Set No</label>
+                <div class="col-md-7">
+                    <select id="ddlSetNoList" class="select2-select-00"
+                            ng-model="lstSetNoList"
+                            name="ddlSetNoList" data-placeholder="--Select Set No--"
+                            ng-change="loadWeavingSetInfoRecords(lstSetNoList)"
+                            style="width: 100%" ng-options="com.WeavingMRRID as com.WeavingMRRNo for com in listSetNo" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.ddlSetNoList.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Article No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtArticleNo"
+                           class="form-control"
+                           name="txtArticleNo" ng-model="ArticleNo" readonly/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">F. Length</label>
+                <div class="col-md-7">
+                    <input type="number"
+                           id="txtSetLength"
+                           class="form-control"
+                           name="txtSetLength" ng-model="Length" />
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.txtSetLength.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Buyer</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtBuyer"
+                           class="form-control"
+                           name="txtBuyer" ng-model="BuyerName" readonly/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Remarks</label>
+                <div class="col-md-7">
+                    <textarea rows="3" cols="3"
+                              id="remarks"
+                              class="form-control"
+                              name="remarks" ng-model="Remarks"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Machine</label>
+                <div class="col-md-7">
+                    <select id="MachineList" class="select2-select-00"
+                            ng-model="MachineID"
+                            ng-change="callGenerate(0)"
+                            name="machineList"
+                            data-placeholder="--Select Machine--"
+                            style="width: 100%;"
+                            ng-options="M.MachineID as M.MachineName for M in ListMachine">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.machineList.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Unit</label>
+                <div class="col-md-7">
+                    <select id="UnitListD" class="select2-select-00"
+                            ng-model="UnitID"
+                            @*ng-change="callGenerate(0)"*@
+                            name="unitListD"
+                            data-placeholder="--Select Unit--"
+                            style="width: 100%;"
+                            ng-options="U.UOMID as U.UOMName for U in ListUOM">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.unitListD.$error.required">*</span>*@
+            </div>
+
+            @*<div class="form-group">
+                <label class="col-md-4 control-label">Finish Name</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="finishTypeName"
+                           class="form-control"
+                           name="finishTypeName" ng-model="FinishTypeName" readonly />
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Fini Process</label>
+                <div class="col-md-7">
+                    <select id="ddlFinishType" class="select2-select-00"
+                            ng-model="FInishTypeID"
+                            name="FinishTypeName"
+                            data-placeholder="--Select Finish Type--"
+                            style="width: 100%;"
+                            ng-options="U.FInishTypeID as U.FInishTypeName for U in ListFinishType">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Operator</label>
+                <div class="col-md-7">
+                    <select id="ddlOperatorList" class="select2-select-00"
+                            ng-model="OperatorID"
+                            @*ng-change="callGenerate(0)"*@
+                            name="ddlOperatorList"
+                            data-placeholder="--Select Operator--"
+                            style="width: 100%;"
+                            ng-options="Op.UserID as Op.UserFullName for Op in listOperator">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.unitListD.$error.required"></span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Shift Engr.</label>
+                <div class="col-md-7">
+                    <select id="ddlDutyOfficerList" class="select2-select-00"
+                            ng-model="ShiftEngineerID"
+                            @*ng-change="callGenerate(0)"*@
+                            name="ddlDutyOfficerList"
+                            data-placeholder="--Select Shift Engineer--"
+                            style="width: 100%;"
+                            ng-options="Du.UserID as Du.UserFullName for Du in listOfficer">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.unitListD.$error.required"></span>*@
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label">PINO</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtPINO"
+                           class="form-control"
+                           name="txtPINO" ng-model="PINO" readonly/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Shift</label>
+                <div class="col-md-7">
+                    <select id="ddlShiftList" class="select2-select-00"
+                            ng-model="ShiftID"
+                            @*ng-change="callGenerate(0)"*@
+                            name="ddlShiftList"
+                            data-placeholder="--Select Shift--"
+                            style="width: 100%;"
+                            ng-options="S.ShiftID as S.ShiftName for S in listShifts">
+                        <option></option>
+                    </select>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.ddlShiftList.$error.required">*</span>*@
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Start Time:</label>
+                <div class="col-md-7">
+                    <input type="time"
+                           id="txtStartTime"
+                           class="form-control"
+                           name="txtStartTime" placeholder="HH:mm:ss" ng-model="StartTime" ng-change="OnChangeMachineTime()" required />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">End Time:</label>
+                <div class="col-md-7">
+                    <input type="time"
+                           id="txtStopTime"
+                           class="form-control"
+                           name="txtStopTime" placeholder="HH:mm:ss" ng-model="StopTime" ng-change="OnChangeMachineTime()" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtDate"
+                           class="form-control datepicker"
+                           name="dtDate" ng-model="FinishingMRRDate" placeholder=" dd/mm/yyyy"/>
+                </div>
+                @*<span class="error" ng-show="(frmFinishingEntry.$dirty||submitted) && frmFinishingEntry.dtDate.$error.required">*</span>*@
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="container">
+                <div class="form-group">
+                    <label class="col-md-1 control-label">Remarks</label>
+                    <div class="col-md-10">
+                        <textarea rows="3" cols="3"
+                                  id="remarks"
+                                  class="form-control"
+                                  name="remarks" ng-model="Remarks"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</form>

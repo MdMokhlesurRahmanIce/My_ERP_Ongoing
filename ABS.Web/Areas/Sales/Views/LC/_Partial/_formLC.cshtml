@@ -1,0 +1,330 @@
+﻿<form novalidate name="frmLC" id="lCEntryForm" class="form-horizontal row-border">
+    <input type="hidden" id="lCID" readonly="readonly" ng-model="LCID" />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input17">Company</label>
+                <div class="col-md-7">
+                    <select id="CompanyList" class="select2-select-00"
+                            ng-model="lstCompanyList"
+                            name="CompanyList" ng-disabled="!bool"
+                            data-placeholder="--Select Company--" ng-change="onChangedCompany()"
+                            style="width: 100%" ng-options="com.CompanyID as com.CompanyName for com in listCompany" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.CompanyList.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC Reference</label>
+                <div class="col-md-8">
+                    <input type="text"
+                           id="txtLCReferenceNo" style="font-weight:bold; color:red !important;"
+                           class="form-control"
+                           name="txtLCReferenceNo" ng-model="LCReferenceNo"
+                           placeholder="New" ng-readonly="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Buyer</label>
+                <div class="col-md-7">
+                    <select id="BuyerList" class="select2-select-00"
+                            ng-model="lstBuyerList" ng-disabled="!bool"
+                            name="BuyerList"
+                            ng-change="loadPendingPIRecords(lstBuyerList)"
+                            data-placeholder="--Select Party--"
+                            style="width: 100%" ng-options="buy.UserID as buy.UserFullName for buy in ListBuyer" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.BuyerList.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtLCNo"
+                           class="form-control" 
+                           name="txtLCNo" ng-model="LCNo" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.txtLCNo.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtLCDate"
+                           class="form-control datepicker"
+                           name="dtLCDate" ng-model="LCDate" date-parser="dd/MM/yyyy" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.dtLCDate.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Shipment Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtShipmentDate"
+                           class="form-control datepicker"
+                           name="dtShipmentDate" ng-model="ShipmentDate" date-parser="dd/MM/yyyy" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.dtShipmentDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Expiry Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtExpiryDate"
+                           class="form-control datepicker"
+                           name="dtExpiryDate" ng-model="ExpiryDate" date-parser="dd/MM/yyyy" placeholder=" dd/mm/yyyy" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.dtExpiryDate.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Sight(Days)</label>
+                <div class="col-md-7">
+                    <select id="ddlSight" class="select2-select-00"
+                            ng-model="lstSightList"
+                            name="ddlSight"
+                            data-placeholder="--Select Sight--"
+                            style="width: 100%" ng-options="sgt.CustomCode as sgt.ComboName for sgt in listSight" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.ddlSight.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Overdue Interest(%)</label>
+                <div class="col-md-7">
+                    <input type="number" min="0"
+                           id="txtOverdueInterest"
+                           class="form-control"
+                           name="txtOverdueInterest" ng-model="ODInterest" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.txtOverdueInterest.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Garments Quantity</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtGarmentsQTY"
+                           class="form-control"
+                           name="txtGarmentsQTY" ng-model="GarmentsQTY" required />
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.txtGarmentsQTY.$error.required">*</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC Open Bank</label>
+                <div class="col-md-7">
+                    <select id="LCOpenBankList" class="select2-select-00"
+                            ng-model="lstLCBankList"
+                            name="LCOpenBankList"
+                            ng-change="loadLCBankBranch()"
+                            data-placeholder="--Select Bank--"
+                            style="width: 100%" ng-options="bank.BankID as bank.BankName for bank in ListBank" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.LCOpenBankList.$error.required">*</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC Bank Branch</label>
+                <div class="col-md-7">
+                    <select id="LCBankBranchList" class="select2-select-00"
+                            ng-model="lstLCBankBranchList"
+                            name="LCBankBranchList"
+                            data-placeholder="--Select Branch--"
+                            style="width: 100%" ng-options="branch.BranchID as branch.BranchName for branch in ListLCBankBranch" required>
+                        <option></option>
+                    </select>
+                </div>
+                <span class="error" ng-show="(frmLC.$dirty||submitted) && frmLC.LCBankBranchList.$error.required">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Master Bank</label>
+                <div class="col-md-7">
+                    <select id="MasterBankList" class="select2-select-00"
+                            ng-model="lstMasterBankList"
+                            name="MasterBankList"
+                            ng-change="loadMasterBankBranch()"
+                            data-placeholder="--Select Bank--"
+                            style="width: 100%" ng-options="bank.BankID as bank.BankName for bank in ListBank">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Master Bank Branch</label>
+                <div class="col-md-7">
+                    <select id="MasterBankBranchList" class="select2-select-00"
+                            ng-model="lstMasterBankBranchList"
+                            name="MasterBankBranchList"
+                            data-placeholder="--Select Branch--"
+                            style="width: 100%" ng-options="branch.BranchID as branch.BranchName for branch in ListMasterBankBranch">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-4 control-label">IRC No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtIRCNo"
+                           class="form-control"
+                           name="txtIRCNo" ng-model="IRCNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Circular No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtCircularNo"
+                           class="form-control"
+                           name="txtCircularNo" ng-model="CircularNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Circular Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtCircularDate"
+                           class="form-control datepicker"
+                           name="dtCircularDate" ng-model="CircularNoDate" date-parser="dd/MM/yyyy" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">VAT Reg. No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtVATRegNo"
+                           class="form-control"
+                           name="txtVATRegNo" ng-model="VATRegNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">LC Amount</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtLCAmount"
+                           class="form-control" readonly="readonly"
+                           name="txtLCAmount" ng-model="LCAmount" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Doc Prep. Days</label>
+                <div class="col-md-7">
+                    <input type="number" min="0"
+                           id="txtDocPrepDays"
+                           class="form-control"
+                           name="txtDocPrepDays" ng-model="DocPrepDays" />
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Export LC No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtExportLCNo"
+                           class="form-control"
+                           name="txtExportLCNo" ng-model="ExportLCNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Export LC Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtExportLCDate"
+                           class="form-control datepicker"
+                           name="dtExportLCDate" ng-model="ExportLCNoDate" date-parser="dd/MM/yyyy" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">BB Ref. No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtReferenceNo"
+                           class="form-control"
+                           name="txtReferenceNo" ng-model="ReferenceNo" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Reference Date</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="dtReferenceDate"
+                           class="form-control datepicker"
+                           name="dtReferenceDate" ng-model="RefNoDate" date-parser="dd/MM/yyyy" placeholder="dd/mm/yyyy" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Remarks</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtRemarks"
+                           class="form-control"
+                           name="txtRemarks" ng-model="Remarks" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Central Bank Ref No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtCentralBankRefNo"
+                           class="form-control"
+                           name="txtCentralBankRefNo" ng-model="CentralBankRefNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-9">
+                    <label class="radio-inline">
+                        <input type="radio" id="rdSalesContractRadio" value="SalesContact" class="uniform" name="optionsRadios2"
+                               ng-model="radioption" style="float:left;" />    @*ng-click="clearMasterLC()"*@
+                        Sales Contract
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" id="rdMasterLC" value="MasterLC" class="uniform" name="optionsRadios2" ng-model="radioption"
+                               style="float: left;" />    @*ng-click="clearSalesContact()"*@
+                        Master LC
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" ng-show="radioption == 'SalesContact'">
+                <label class="col-md-4 control-label">Sales Contact No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtSalesContractNo"
+                           class="form-control"
+                           name="txtSalesContractNo" ng-model="SalesContractNo" />
+                </div>
+            </div>
+            <div class="form-group" ng-show="radioption == 'MasterLC'">
+                <label class="col-md-4 control-label">Master LC No</label>
+                <div class="col-md-7">
+                    <input type="text"
+                           id="txtMasterLCNO"
+                           class="form-control"
+                           name="txtMasterLCNO" ng-model="MasterLCNO" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="input">Attachment</label>
+                <div class="col-md-7">
+                    <input type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

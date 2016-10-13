@@ -1,0 +1,40 @@
+﻿<table class="table  table-hover table-striped">
+    <thead class="grid-top-panel">
+        <tr>
+
+            <th>SL No:</th>
+            <th>Chemical</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Last Purchase Price</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in ListDying">
+
+            <td>{{ $index + 1 }}</td>
+            <td>{{dataModel.ItemName}}</td>
+            <td>{{dataModel.Qty}}</td>
+            <td>{{dataModel.UOMName}}</td> 
+
+            <td><input type="number" min="0" id="txtLastPurchasePrice" name="txtLastPurchasePrice" class="form-control" ng-model="dataModel.LastPurchasePrice" ng-blur="calculationDyng(dataModel)" /></td>
+ 
+            <td>{{dataModel.Amount}}</td>
+            
+        </tr>
+
+        <tr> <td></td> <td><span style="font-weight:bold">Total</span></td> <td></td> <td></td><td></td> <td><span style="font-weight:bold">{{dyngTotal}}</span></td>   </tr>
+
+    </tbody>
+</table>
+<p ng-show="(ListDying).length == 0" style="color:red">Nothing found!</p>
+
+<div class="loadListDyingmore">
+    <div ng-show="loaderListDyingMore" ng-class="result">
+        {{lblMessage}}
+    </div>
+    <div ng-show="scrollended" ng-class="result">
+        {{lblMessage}}
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Title = "Internal Receive";
+}
+
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="mRRCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-hide="pageValue" class="ng-hide">
+            <!--Logged User-->
+            <input type="hidden" id="hUserID" name="userID" value="@Session["UserID"].ToString()" ng-model="UserID" />
+            <!--Logged Company-->
+            <input type="hidden" id="hCompanyID" name="companyID" value="@Session["CompanyID"].ToString()" ng-model="CompanyID" />
+        </div>
+
+        <!-- Breadcrumbs line -->
+        <div class="crumbs">
+            <ul id="breadcrumbs" class="breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="">Sales</a>
+                </li>
+                <li class="current">
+                    <a href="" title="">Transaction</a>
+                </li>
+                <li class="current">
+                    <a href="" title="">PI</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+        <div id="PIDiv">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+
+                                    <span id="save" class="btn btn-success margin-right-btn" ng-click="save()" ng-disabled="frmMRR.$invalid">
+                                        <i class="icon-save"></i> {{btnMrrSaveText}}
+                                    </span>
+                                    <span id="show" class="btn btn-info margin-right-btn" ng-href="#MrrModal" data-toggle="modal" ng-click="loadMrrRecords()">
+                                        <i class="icon-search"></i> {{btnMrrShowText}}
+                                    </span>
+                                    <span id="reset" class="btn btn-danger margin-right-btn" ng-click="clear()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </span>
+
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content" ng-show="IsShow">
+
+                            @*@Html.Partial("~/Areas/Inventory/Views/SPRReceive/_Partial/_formSPRReceive.cshtml")*@
+
+                            @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_formMRR.cshtml")
+
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+            @*start add for detail items*@
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="widget-header">
+                        @*<h4><i class="icon-reorder"></i> {{ListTitlePIDeatails}}</h4>*@
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span>
+                                    <a href="javascript:void(0);" ng-href="#RequisitionDetailModal" data-toggle="modal" class="btn btn-info" title="Detail info">
+                                        <b ng-click="EmptyRequisitionDetail()">Add Detail</b>
+                                    </a>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="widget-content" ng-show="IsShow">
+                        <div>
+
+
+                            @*@Html.Partial("~/Areas/Inventory/Views/Requisition/_Partial/_formRequisitionDetail.cshtml")*@
+
+                            @Html.Partial("~/Areas/Inventory/Views/SPR/_Partial/_formSPRMaster.cshtml")
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @*END add for detail items*@
+
+
+
+            <div class="row" ng-hide="IsHiddenDetail">
+                <div class="col-md-12">
+                    <div class="widget box">
+                        <div class="widget-header">
+                            <h4><i class="icon-reorder"></i> {{ListTitleMrrDeatails}}</h4>
+                            <div class="toolbar no-padding">
+                                <div class="btn-group">
+                                    <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+
+
+                            @*@Html.Partial("~/Areas/Inventory/Views/SPRReceive/_Partial/_tableSPRReceiveDetailsInfo.cshtml")*@
+
+                            @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_tableMRRDetailsInfo.cshtml")
+                        </div>
+                    </div>
+                </div> <!-- /.col-md-12 -->
+            </div>
+        </div>
+        <!-- /Page Content -->
+        <!-- /Modal Item Master(Sample) -->
+        <div class="row">
+            @Html.Partial("~/Areas/Sales/Views/PI/_Partial/_tableSampleNoInfoModal.cshtml")
+        </div> <!-- /.row -->
+        <!-- /Modal PI Master -->
+        <div class="row">
+
+            @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_tableMRRMastrsInfo.cshtml")
+
+            @*@Html.Partial("~/Areas/Inventory/Views/SPRReceive/_Partial/_tableSPRReceiveMastrsInfo.cshtml")*@
+
+        </div> <!-- /.row -->
+
+        <div class="row">
+            @*@Html.Partial("~/Areas/Inventory/Views/SPRReceive/_Partial/_formBatchSetup.cshtml")*@
+
+            @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_formBatchSetup.cshtml")
+        </div> <!-- /.row -->
+
+        <div class="row">
+            @*@Html.Partial("~/Areas/Inventory/Views/SPRReceive/_Partial/_formLotSetup.cshtml")*@
+
+            @Html.Partial("~/Areas/Inventory/Views/MRR/_Partial/_formLotSetup.cshtml")
+
+        </div> <!-- /.row -->
+
+    </div>
+</div>
+<!-- /.container -->
+@section AngularScript{
+
+    @*<script src="~/Areas/Inventory/ScriptsNg/Controllers/SPRReceiveCtrl.js"></script>
+        <script src="~/Areas/Inventory/ScriptsNg/Service/SPRReceiveService.js"></script>*@
+
+    <script src="~/Areas/Inventory/ScriptsNg/Controllers/MRRCtrl.js"></script>
+    <script src="~/Areas/Inventory/ScriptsNg/Service/MRRService.js"></script>
+
+    <script src="~/Areas/Inventory/ScriptsNg/Service/QCService.js"></script>
+    @*<script src="~/Areas/Inventory/ScriptsNg/Controllers/RequisitionCtrl.js"></script>*@
+    <script src="~/Areas/Inventory/ScriptsNg/Service/RequisitionService.js"></script>
+
+    @*<script src="~/Areas/Inventory/ScriptsNg/Service/CrudService.js"></script>*@
+    <script src="~/Areas/Inventory/ScriptsNg/Directives/Conversion.js"></script>
+    <script src="~/Scripts/CustomToastrMessage.js"></script>
+
+    <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+    <script src="~/Areas/Token/TokenController.js"></script>
+
+}

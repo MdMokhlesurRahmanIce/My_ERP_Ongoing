@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Unit Of Measurement";
+}
+<div ng-controller="tokenCtrl">
+    <div class="container" ng-controller="unitOfMeasurementCtrl">
+        <!-- Breadcrumbs line -->
+        <div ng-controller="BreadcrumbCtrl">
+            @Html.Partial("~/Areas/SystemCommon/Views/Shared/_Partial/_Breadcrumbs.cshtml")
+        </div>
+        <!-- /Breadcrumbs line -->
+        <!--=== Page Header ===-->
+        <div class="page-header">
+
+        </div>
+        <!-- /Page Header -->
+        <!--=== Page Content ===-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{PageTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        @Html.Partial("~/Areas/SystemCommon/Views/UnitOfMeasurement/_Partial/_formUnitOfMeasurement.cshtml")
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+            @*</div>
+                <div class="row">*@
+            <div class="col-md-6">
+                <div class="widget box">
+                    <div class="widget-header">
+                        <h4><i class="icon-reorder"></i> {{ListTitle}}</h4>
+                        <div class="toolbar no-padding">
+                            <div class="btn-group">
+                                <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content no-padding">
+                        <div when-scrolled="loadUnitOfMeasurementRecords(1)">
+                            @Html.Partial("~/Areas/SystemCommon/Views/UnitOfMeasurement/_Partial/_tableUnitOfMeasurement.cshtml")
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.col-md-12 -->
+            @*</div>*@
+
+        </div>
+    </div>
+</div>
+    <!-- /.container -->
+    @section AngularScript{
+        <script src="~/Areas/Token/TokenController.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/UnitOfMeasurementCtrl.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Service/CrudService.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Directives/Conversion.js"></script>
+        <script src="~/Areas/SystemCommon/ScriptsNg/Controllers/BreadcrumbCtrl.js"></script>
+        <script src="~/Areas/Token/TokenController.js"></script>
+    }

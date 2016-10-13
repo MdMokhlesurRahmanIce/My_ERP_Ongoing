@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Customer";
+}
+
+
+
+<div class="container" ng-controller="customerCtrl">
+    <!-- Breadcrumbs line -->
+    <div class="crumbs">
+        <ul id="breadcrumbs" class="breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <a href="index.html">Dashboard</a>
+            </li>
+            <li class="current">
+                <a href="pages_calendar.html" title="">Calendar</a>
+            </li>
+        </ul>
+        <ul class="crumb-buttons">
+            <li><a href="charts.html" title=""><i class="icon-signal"></i><span>Statistics</span></a></li>
+            <li class="dropdown">
+                <a href="#" title="" data-toggle="dropdown"><i class="icon-tasks"></i><span>Users <strong>(+3)</strong></span><i class="icon-angle-down left-padding"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="form_components.html" title=""><i class="icon-plus"></i>Add new User</a></li>
+                    <li><a href="tables_dynamic.html" title=""><i class="icon-reorder"></i>Overview</a></li>
+                </ul>
+            </li>
+            <li class="range">
+                <a href="#">
+                    <i class="icon-calendar"></i>
+                    <span></span>
+                    <i class="icon-angle-down"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /Breadcrumbs line -->
+    <!--=== Page Header ===-->
+    <div class="page-header">
+
+    </div>
+    <!-- /Page Header -->
+    <!--=== Page Content ===-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> {{PanelTitle}}</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    @Html.Partial("~/Areas/Sample/Views/Customer/_formCustomer.cshtml")
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+        <div class="col-md-6">
+            <div class="widget box">
+                <div class="widget-header">
+                    <h4><i class="icon-reorder"></i> {{DataPanelTitle}}</h4>
+                    <div class="toolbar no-padding">
+                        <div class="btn-group">
+                            <span class="btn btn-xs widget-collapse"><i class="icon-angle-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div when-scrolled="loadRecords(1)">
+                        @Html.Partial("~/Areas/Sample/Views/Customer/_tableCustomer.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.col-md-12 -->
+    </div> <!-- /.row -->
+    <!-- /Page Content -->
+</div>
+<!-- /.container -->
+
+
+@section AngularScript{
+    <script src="~/Areas/Sample/ScriptsNg/Controllers/CustomerCtrl.js"></script>
+    <script src="~/Areas/Sample/ScriptsNg/Service/CrudService.js"></script>
+}

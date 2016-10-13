@@ -1,0 +1,77 @@
+﻿<form novalidate name="frmMachineMaintenanceOrderEntry" id="frmMachineMaintenanceOrderEntry" class="form-horizontal row-border">
+    <input type="hidden" id="MaintenanceID" readonly="readonly" ng-model="MaintenanceID" />
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Maintenance No</label>
+            <div class="col-md-7">
+                <input type="text"
+                       style="width: 100%"
+                       id="maintenanceNo"
+                       class="form-control"
+                       placeholder="Maintenance No"
+                       name="maintenanceNo" ng-model="MaintenanceNo" readonly/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Department</label>
+            <div class="col-md-7">
+                <select id="DeptList" class="select2-select-00"
+                        ng-model="lstDeptList"
+                        ng-change="loadMachineRecords(lstDeptList)"
+                        name="deptList"
+                        data-placeholder="--Select Department--"
+                        style="width: 100%"
+                        ng-options="Dept.OrganogramID as Dept.OrganogramName for Dept in listDept" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmMachineMaintenanceOrderEntry.$dirty||submitted) && frmMachineMaintenanceOrderEntry.deptList.$error.required">*</span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label">Machine</label>
+            <div class="col-md-7">
+                <select id="ddlMachine" class="select2-select-00"
+                        ng-model="MachineID"
+                        name="ddlMachine"
+                        @*ng-change="ModalShowHide(dataModel)"*@
+                        data-placeholder="--Select Machine--"
+                        style="width: 100%"
+                        ng-options="M.MachineID as M.MachineName for M in ListMachine" required>
+                    <option></option>
+                </select>
+            </div>
+            <span class="error" ng-show="(frmMachineMaintenanceOrderEntry.$dirty||submitted) && frmMachineMaintenanceOrderEntry.ddlMachine.$error.required">*</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-md-4 control-label">Maintenance Date</label>
+            <div class="col-md-7">
+                <input type="text"
+                       id="dtDate"
+                       class="form-control datepicker"
+                       name="dtDate" ng-model="MaintenanceDate" placeholder=" dd/mm/yyyy" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="input17">Reason</label>
+            <div class="col-md-7">
+                <textarea cols="3" rows="3"
+                          style="width: 100%"
+                          id="Reason"
+                          class="form-control"
+                          name="Reason" ng-model="Reason"
+                          placeholder="Reason" required></textarea>
+            </div>
+            <span class="error" ng-show="(frmMachineMaintenanceOrderEntry.$dirty||submitted) && frmMachineMaintenanceOrderEntry.Reason.$error.required">*</span>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</form>
+
+

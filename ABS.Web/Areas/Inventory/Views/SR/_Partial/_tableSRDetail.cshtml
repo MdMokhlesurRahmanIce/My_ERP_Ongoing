@@ -1,0 +1,92 @@
+﻿
+
+    <table class="table  table-hover general-table">
+        <thead class="grid-top-panel">
+            <tr>
+                <th style="display:none">Item ID</th>
+                <td style="display:none">Unit ID</td>
+                <td style="display:none">Lot ID</td>
+                <td style="display:none">Batch ID</td>
+                <th>SL. No</th>
+                <th>Article No</th>
+                <th>Particular Of Item</th>
+                <th>Unit</th>
+                <th>Supplier</th>
+                <th>Lot</th>
+                <th>Batch</th>
+                <th>Grade</th>
+                <th>Quantity Required</th>  
+                <th>Current Stock</th>          
+                <th>Transit Qty</th>
+                @*<th>Amount</th>*@
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="dataModel in ListRequisitionDetails">
+                <td style="display:none">{{dataModel.ItemID}}</td>
+                <td style="display:none">{{dataModel.UnitID}}</td>
+                <td style="display:none">{{dataModel.LotID}}</td>
+                <td style="display:none">{{dataModel.BatchID}}</td>   
+                <td style="display:none">{{dataModel.UnitPrice}}</td>             
+                <td>{{$index+1}}</td>    
+                <td>{{dataModel.ArticleNo}}</td>   
+                <td>{{dataModel.ItemName}}</td>
+                <td>{{dataModel.UnitName}}</td>   
+                <td>
+                    <select id="ddlSupplier"
+                            ng-model="dataModel.UserID"
+                            name="ddlSupplier"
+                            style="width: 100%"
+                            ng-options="Supp.UserID as Supp.UserFullName for Supp in dataModel.Suppliers">
+                        <option></option>
+                    </select>
+    </td>                         
+                <td>
+                    <select id="ddlLotNo"
+                            ng-model="dataModel.LotID"
+                            name="ddlLotNo"
+                            style="width: 100%"
+                            ng-options="lot.LotID as lot.LotNo for lot in dataModel.LotNos">
+                        <option></option>
+                    </select>
+                </td>
+                <td>
+                    <select id="ddlBatch"
+                            ng-model="dataModel.BatchID"
+                            name="ddlBatch"
+                            style="width: 100%" ng-options="batch.BatchID as batch.BatchNo for batch in dataModel.BatchNos">
+                        <option></option>
+                    </select>
+                </td>     
+                <td>
+                    <select id="ddlGrade"
+                            ng-model="dataModel.ItemGradeID"
+                            name="ddlGrade"
+                            style="width: 100%" ng-options="Grade.ItemGradeID as Grade.GradeName for Grade in listGrade">
+                        <option></option>
+                    </select>
+                </td>            
+                <td><input type="number" id="txtQtyRequired" ng-model="dataModel.Qty" @*ng-blur="GetRequisitionQty(dataModel)"*@ name="txtQtyRequired" min="0" class="form-control" required /></td>        
+                <td>{{dataModel.CurrentStock}}</td>                  
+                <td>{{dataModel.transitQty}}</td>
+                @*<td>{{dataModel.Amount}}</td>*@
+                <td style="text-align:right; color:white">
+                    <span class="label label-danger label-mini">
+                        <a href="javascript:void(0);" data-toggle="modal" class="bs-tooltip" title="Select">
+                            <i class="icon-trash" ng-click="deleteRow($index)"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="loadmore">
+        <div ng-show="loaderMore" ng-class="result">
+            {{lblMessage}}
+        </div>
+        <div ng-show="scrollended" ng-class="result">
+            {{lblMessage}}
+        </div>
+    </div>

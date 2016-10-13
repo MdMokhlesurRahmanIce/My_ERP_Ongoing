@@ -1,0 +1,41 @@
+﻿@model ViewModelVoucherDetail
+
+@using UIHtmlHelper;
+@{
+    Layout = null;
+}
+
+
+<tr>
+    @using (Html.BeginCollectionItem("VoucherDetails"))
+    {
+        <td>
+            @Html.SimpleDropDownFor(model => model.AC5Id, @Url.Content("~/Accounting/ACDetails/GetAccountLedgerListCashHo/"), new { @class = "form-control input-sm  accountLedger", @style = "width:300px", onchange = "CheckDuplicateRow1('" + @Html.NameFor(model => model.AC5Id) + "',  this)" })
+            @Html.ValidationMessageFor(model => model.AC5Id)
+        </td>
+        <td>
+            @Html.SimpleDropDownFor(model => model.CostCenterId, @Url.Content("~/Accounting/CashVoucher/GetCostCenter/"), new { @class = "form-control input-sm select2 CostCenter", @style = "width:300px" })
+            @Html.ValidationMessageFor(model => model.CostCenterId)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.DebitAmount, new { @Value = "0", @class = "form-control input-sm debitAmount width150", onkeydown = "return isNumeric(event.keyCode);", onkeyup = "return sumDebit('" + @Html.IdFor(model => model.DebitAmount) + "','" + @Html.IdFor(model => model.CreditAmount) + "' );" })
+            @Html.ValidationMessageFor(model => model.DebitAmount)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.CreditAmount, new { @Value = "0", @class = "form-control input-sm creditAmount width150", onkeydown = "return isNumeric(event.keyCode);", onkeyup = "return sumCredit('" + @Html.IdFor(model => model.CreditAmount) + "','" + @Html.IdFor(model => model.DebitAmount) + "' );" })
+            @Html.ValidationMessageFor(model => model.CreditAmount)
+        </td>
+        <td><a onclick="return DeleteRow(this)" href="#" class="btn btn-danger btn-xs">Delete</a></td>
+    }
+
+
+
+</tr>
+
+
+
+<script>
+    $(function () {
+        HelperDropDowns();
+    });
+</script>

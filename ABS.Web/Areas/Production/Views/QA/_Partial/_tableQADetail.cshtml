@@ -1,0 +1,87 @@
+﻿<table class="table  table-hover general-table right-bottom-scroll-m">
+    <thead class="grid-top-panel">
+        <tr>
+            <th>Roll&nbsp;No</th>
+            <th>Length</th>
+            <th>Piece</th>
+            <th>Defect Point</th>
+            <th>Plate&nbsp;No&nbsp;&nbsp;&nbsp;</th>
+            <th>Set&nbsp;No&nbsp;&nbsp;&nbsp;</th>
+            <th>Production&nbsp;Date</th>
+            <th>Size&nbsp;Beam&nbsp;No</th>
+            <th>Width</th>
+            <th>Doffing&nbsp;No</th>
+            <th>L%</th>
+            <th>W%</th>
+            <th>Grade</th>
+            <th>Is&nbsp;Not&nbsp;Delevarable</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dataModel in InspactionDetails">
+            <td>{{dataModel.RollNo}}</td>
+            <td>{{dataModel.GreigeLength}}</td>
+            <td>{{dataModel.Piece}}</td>
+            <td>{{dataModel.DefectPointNo}}</td>
+            <td>{{dataModel.PlateNo}}</td>
+            <td>{{dataModel.SetNo}}</td>
+            <td>{{dataModel.ProductionDate | date:dd-MM-yyyy }}</td>
+            <td>{{dataModel.SizeBeamNo}}</td>
+            <td>{{dataModel.FiniWidth}}</td>
+            <td>{{dataModel.DoffingNo}}</td>
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="LPercent"
+                           class="form-control"
+                           name="LPercent" ng-model="dataModel.LPercent"
+                           placeholder="L%" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="number"
+                           style="width: 100%"
+                           id="WPercent"
+                           class="form-control"
+                           name="WPercent" ng-model="dataModel.WPercent"
+                           placeholder="W%" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <select id="GradeID"
+                            ng-model="dataModel.ItemGradeID"
+                            name="GradeID" data-tags="false"
+                            data-placeholder="--Select Unit--"
+                            style="width: 100%"
+                            ng-options="Grade.ItemGradeID as Grade.GradeName for Grade in ListGrade"></select>
+                </div>
+            </td>
+            <td>
+                <div class="roundedTwo">
+                    <input type="checkbox"
+                           style="width: 100%"
+                           id="IsNotDeliverable"
+                           name="IsNotDeliverable" ng-model="dataModel.IsNotDeliverable"
+                           placeholder="IsNotDeliverable" />
+                </div>
+            </td>
+            <td>
+                <div style="width:100px">
+                    <input type="text"
+                           style="width: 100%"
+                           id="Remarks"
+                           class="form-control"
+                           name="Remarks" ng-model="dataModel.Remarks"
+                           placeholder="Remarks" />
+                </div>
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+
